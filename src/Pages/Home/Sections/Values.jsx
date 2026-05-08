@@ -1,6 +1,9 @@
 import React, { useRef, useState } from 'react';
 import { motion, useInView } from 'framer-motion';
-import valuesImg from '../../../assets/images/values.jpg';
+import transparencyImg from '../../../assets/images/values.jpg';
+import speedImg from '../../../assets/images/817045.jpg';
+import inclusionImg from '../../../assets/images/2151884873.jpg';
+import resilienceImg from '../../../assets/images/2151883556.jpg';
 
 const VALUES = [
   {
@@ -9,6 +12,7 @@ const VALUES = [
     tagline: 'No hidden fees. No fine print.',
     body: "Every fee, rate, and condition is surfaced upfront — before you commit to anything. We built our platform on one rule: if you can't see it, we don't charge it.",
     indent: '0px',
+    img: transparencyImg,
   },
   {
     num: '02',
@@ -16,6 +20,7 @@ const VALUES = [
     tagline: '48-hour decisions. Days, not months.',
     body: "Time is capital. We've rebuilt every step of the finance process to eliminate delays — from application to funds hitting your account.",
     indent: '6vw',
+    img: speedImg,
   },
   {
     num: '03',
@@ -23,6 +28,7 @@ const VALUES = [
     tagline: 'If your business is real, you deserve a chance.',
     body: "We don't discriminate by size or geography. Our AI-powered model looks at the full picture of your business health, not just credit scores.",
     indent: '2vw',
+    img: inclusionImg,
   },
   {
     num: '04',
@@ -30,6 +36,7 @@ const VALUES = [
     tagline: 'Built for volatility. Here when it matters most.',
     body: "Global trade doesn't stop for crises. Neither do we. Our platform is engineered to keep capital flowing through market turbulence.",
     indent: '9vw',
+    img: resilienceImg,
   },
 ];
 
@@ -55,7 +62,7 @@ export default function Values() {
 
       {/* Background image — faint, right half */}
       <div className="absolute right-0 top-0 w-1/2 h-full pointer-events-none overflow-hidden">
-        <img src={valuesImg} alt="" className="w-full h-full object-cover opacity-[0.04]" />
+        <img src={transparencyImg} alt="" className="w-full h-full object-cover opacity-[0.04]" />
       </div>
 
       {/* ── Header ── */}
@@ -109,7 +116,7 @@ export default function Values() {
               animate={{ opacity: hovered === i ? 1 : 0, x: hovered === i ? 0 : 40 }}
               transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
             >
-              <img src={valuesImg} alt="" className="w-full h-full object-cover" />
+              <img src={v.img} alt="" className="w-full h-full object-cover" />
               <div className="absolute inset-0"
                 style={{ background: 'linear-gradient(to right, #070d1f 0%, rgba(7,13,31,0.7) 40%, transparent 100%)' }} />
             </motion.div>

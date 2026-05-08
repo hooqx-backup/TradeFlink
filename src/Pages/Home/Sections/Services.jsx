@@ -73,6 +73,42 @@ function ServiceRow({ service, index }) {
         style={{ background: 'radial-gradient(ellipse 70% 70% at 50% 50%, rgba(13,148,136,0.18) 0%, transparent 70%)' }}
       />
 
+      {/* Auto-sliding teal light beam */}
+      <motion.div
+        className="absolute inset-y-0 w-24 pointer-events-none"
+        style={{
+          background: 'linear-gradient(90deg, transparent 0%, rgba(13,148,136,0.28) 50%, transparent 100%)',
+          filter: 'blur(14px)',
+          skewX: -12,
+        }}
+        animate={{ x: [-96, 800] }}
+        transition={{
+          duration: 3,
+          repeat: Infinity,
+          ease: 'easeInOut',
+          repeatDelay: 2.2,
+          delay: index * 0.8,
+        }}
+      />
+
+      {/* Auto-sliding white shimmer (offset) */}
+      <motion.div
+        className="absolute inset-y-0 w-12 pointer-events-none"
+        style={{
+          background: 'linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.07) 50%, transparent 100%)',
+          filter: 'blur(8px)',
+          skewX: -12,
+        }}
+        animate={{ x: [-48, 800] }}
+        transition={{
+          duration: 2.6,
+          repeat: Infinity,
+          ease: 'easeInOut',
+          repeatDelay: 2.2,
+          delay: index * 0.8 + 1.3,
+        }}
+      />
+
       {/* Ghost service number */}
       <div
         className="absolute right-6 bottom-2 font-black leading-none select-none pointer-events-none"
