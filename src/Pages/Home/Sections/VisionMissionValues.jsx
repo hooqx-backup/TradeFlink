@@ -73,8 +73,8 @@ function Card({ card, index }) {
           scale: index === 1 ? 0.9 : 1,
         }}
         whileInView={{ opacity: 1, x: 0, y: 0, scale: 1 }}
-        viewport={{ once: true, margin: '-60px' }}
-        transition={{ duration: 1.4, delay: index * 0.22, ease: [0.22, 1, 0.36, 1] }}
+        viewport={{ once: false, margin: '-60px' }}
+        transition={{ duration: 2.52, delay: index * 0.22, ease: [0.22, 1, 0.36, 1] }}
         onMouseMove={handleMouseMove}
         onMouseEnter={() => setHovered(true)}
         onMouseLeave={handleMouseLeave}
@@ -84,7 +84,7 @@ function Card({ card, index }) {
           className="absolute inset-0 bg-cover bg-center"
           style={{ backgroundImage: `url(${card.image})` }}
           animate={{ scale: hovered ? 1.1 : 1 }}
-          transition={{ duration: 0.75, ease: [0.22, 1, 0.36, 1] }}
+          transition={{ duration: 1.35, ease: [0.22, 1, 0.36, 1] }}
         />
 
         {/* Dark base overlay */}
@@ -103,7 +103,7 @@ function Card({ card, index }) {
             background: `linear-gradient(160deg, ${card.accent}00 0%, ${card.accent}bb 100%)`,
           }}
           animate={{ opacity: hovered ? 1 : 0 }}
-          transition={{ duration: 0.55, ease: 'easeInOut' }}
+          transition={{ duration: 0.99, ease: 'easeInOut' }}
         />
 
         {/* Shimmer sweep on enter */}
@@ -114,8 +114,8 @@ function Card({ card, index }) {
               className="absolute inset-0 pointer-events-none"
               initial={{ x: '-100%' }}
               animate={{ x: '220%' }}
-              exit={{ opacity: 0, transition: { duration: 0.2 } }}
-              transition={{ duration: 0.75, ease: 'easeOut' }}
+              exit={{ opacity: 0, transition: { duration: 0.36 } }}
+              transition={{ duration: 1.35, ease: 'easeOut' }}
               style={{
                 background:
                   'linear-gradient(105deg, transparent 35%, rgba(255,255,255,0.16) 50%, transparent 65%)',
@@ -134,7 +134,7 @@ function Card({ card, index }) {
               className="font-black leading-none"
               style={{ fontSize: '5.5rem', lineHeight: 1, color: 'rgba(255,255,255,0.07)' }}
               animate={{ color: hovered ? `${card.accent}55` : 'rgba(255,255,255,0.07)' }}
-              transition={{ duration: 0.4 }}
+              transition={{ duration: 0.72 }}
             >
               {card.num}
             </motion.span>
@@ -146,7 +146,7 @@ function Card({ card, index }) {
                 color: hovered ? '#fff' : 'rgba(255,255,255,0.55)',
                 backgroundColor: hovered ? card.accent : 'transparent',
               }}
-              transition={{ duration: 0.35 }}
+              transition={{ duration: 0.63 }}
             >
               {card.tag}
             </motion.div>
@@ -155,14 +155,14 @@ function Card({ card, index }) {
           {/* Bottom text block — lifts on hover */}
           <motion.div
             animate={{ y: hovered ? -10 : 0 }}
-            transition={{ duration: 0.45, ease: 'easeOut' }}
+            transition={{ duration: 0.81, ease: 'easeOut' }}
           >
             {/* Expanding accent line */}
             <motion.div
               className="rounded-full mb-5"
               style={{ height: 2, backgroundColor: card.accent }}
               animate={{ width: hovered ? 60 : 28 }}
-              transition={{ duration: 0.4, ease: 'easeOut' }}
+              transition={{ duration: 0.72, ease: 'easeOut' }}
             />
 
             {/* Title — each line masked-reveals from below */}
@@ -173,9 +173,9 @@ function Card({ card, index }) {
                     className="block"
                     initial={{ y: '105%' }}
                     whileInView={{ y: 0 }}
-                    viewport={{ once: true }}
+                    viewport={{ once: false }}
                     transition={{
-                      duration: 0.65,
+                      duration: 1.17,
                       delay: 0.35 + index * 0.12 + i * 0.07,
                       ease: [0.22, 1, 0.36, 1],
                     }}
@@ -192,7 +192,7 @@ function Card({ card, index }) {
               animate={{
                 color: hovered ? 'rgba(255,255,255,0.9)' : 'rgba(255,255,255,0.6)',
               }}
-              transition={{ duration: 0.35 }}
+              transition={{ duration: 0.63 }}
             >
               {card.description}
             </motion.p>
@@ -201,7 +201,7 @@ function Card({ card, index }) {
             {card.values && (
               <div className="flex flex-wrap gap-2 mb-5">
                 {card.values.map((v, i) => (
-                  <motion.span
+                    <motion.span
                     key={v}
                     className="text-xs font-semibold rounded-full px-3 py-1"
                     style={{
@@ -211,7 +211,7 @@ function Card({ card, index }) {
                       borderColor: `${card.accent}55`,
                     }}
                     animate={{ color: hovered ? '#fff' : card.accent }}
-                    transition={{ duration: 0.3, delay: i * 0.05 }}
+                    transition={{ duration: 0.54, delay: i * 0.05 }}
                   >
                     {v}
                   </motion.span>
@@ -232,7 +232,7 @@ function Card({ card, index }) {
                 viewBox="0 0 24 24"
                 stroke="currentColor"
                 animate={{ x: hovered ? 6 : 0 }}
-                transition={{ duration: 0.3, ease: 'easeOut' }}
+                transition={{ duration: 0.54, ease: 'easeOut' }}
               >
                 <path
                   strokeLinecap="round"
@@ -251,7 +251,7 @@ function Card({ card, index }) {
 
 export default function VisionMissionValues() {
   const sectionRef = useRef(null);
-  const inView = useInView(sectionRef, { once: true, margin: '-100px' });
+  const inView = useInView(sectionRef, { once: false, margin: '-100px' });
 
   return (
     <section
@@ -271,7 +271,7 @@ export default function VisionMissionValues() {
             'radial-gradient(circle, rgba(13,148,136,0.18) 0%, transparent 70%)',
         }}
         animate={{ scale: [1, 1.22, 1], opacity: [0.7, 1, 0.7] }}
-        transition={{ duration: 9, repeat: Infinity, ease: 'easeInOut' }}
+        transition={{ duration: 16, repeat: Infinity, ease: 'easeInOut' }}
       />
 
       {/* Ambient glow — bottom-left */}
@@ -286,7 +286,7 @@ export default function VisionMissionValues() {
             'radial-gradient(circle, rgba(20,184,166,0.1) 0%, transparent 70%)',
         }}
         animate={{ scale: [1, 1.2, 1], opacity: [0.5, 0.8, 0.5] }}
-        transition={{ duration: 11, repeat: Infinity, ease: 'easeInOut', delay: 4 }}
+        transition={{ duration: 20, repeat: Infinity, ease: 'easeInOut', delay: 4 }}
       />
 
       {/* Dot grid texture — masked so it fades in from top */}
@@ -311,13 +311,13 @@ export default function VisionMissionValues() {
             className="inline-flex items-center gap-3 mb-5"
             initial={{ opacity: 0, y: 20 }}
             animate={inView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.6 }}
+            transition={{ duration: 1.08 }}
           >
             <motion.span
               className="block h-px bg-teal-500"
               initial={{ width: 0 }}
               animate={inView ? { width: 32 } : {}}
-              transition={{ duration: 0.9, delay: 0.2 }}
+              transition={{ duration: 1.62, delay: 0.2 }}
             />
             <span className="text-teal-600 text-xs font-bold uppercase tracking-[0.22em]">
               Our Purpose
@@ -326,7 +326,7 @@ export default function VisionMissionValues() {
               className="block h-px bg-teal-500"
               initial={{ width: 0 }}
               animate={inView ? { width: 32 } : {}}
-              transition={{ duration: 0.9, delay: 0.2 }}
+              transition={{ duration: 1.62, delay: 0.2 }}
             />
           </motion.div>
 
@@ -336,7 +336,7 @@ export default function VisionMissionValues() {
               className="text-5xl lg:text-6xl font-black text-gray-900"
               initial={{ y: '100%' }}
               animate={inView ? { y: 0 } : {}}
-              transition={{ duration: 0.9, delay: 0.18, ease: [0.22, 1, 0.36, 1] }}
+              transition={{ duration: 1.62, delay: 0.18, ease: [0.22, 1, 0.36, 1] }}
             >
               Vision, Mission &amp;{' '}
               <span style={{ color: '#0d9488' }}>Values</span>
@@ -347,7 +347,7 @@ export default function VisionMissionValues() {
             className="text-lg max-w-xl mx-auto text-gray-500"
             initial={{ opacity: 0, y: 14 }}
             animate={inView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.7, delay: 0.38 }}
+            transition={{ duration: 1.26, delay: 0.38 }}
           >
             What drives everything we do at TradeFlink
           </motion.p>

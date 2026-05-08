@@ -1,6 +1,7 @@
 import React, { useState, useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
 import logo from '../../assets/logos/logo4.png';
+import footerBg from '../../assets/images/18459.jpg';
 
 /* ── Nav columns ────────────────────────────────────────────── */
 const NAV = [
@@ -100,7 +101,12 @@ export default function Footer() {
     <footer
       ref={ref}
       className="relative w-full text-white overflow-hidden"
-      style={{ background: 'linear-gradient(160deg, #060c1d 0%, #091627 60%, #060c1d 100%)' }}
+      style={{
+        backgroundImage: `linear-gradient(180deg, rgba(5,10,24,0.58) 0%, rgba(6,12,29,0.72) 45%, rgba(5,10,24,0.88) 100%), url(${footerBg})`,
+        backgroundSize: 'cover',
+        backgroundPosition: 'center center',
+        backgroundRepeat: 'no-repeat',
+      }}
     >
       {/* Top gradient border */}
       <div className="h-px w-full" style={{ background: 'linear-gradient(90deg, transparent, #0d9488, transparent)' }} />
@@ -130,224 +136,281 @@ export default function Footer() {
         }}
       />
 
-      {/* ── Main content ── */}
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 pb-12">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8">
+        <motion.div
+          className="grid gap-8 lg:grid-cols-[1.15fr_0.85fr]"
+          {...(inView ? fadeUp(0) : { initial: { opacity: 0, y: 28 } })}
+        >
+          <section className="relative overflow-hidden rounded-4xl border border-white/10 bg-white/5 p-8 sm:p-10 backdrop-blur-xl">
+            <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(20,184,166,0.14),transparent_35%),radial-gradient(circle_at_bottom_left,rgba(59,130,246,0.12),transparent_30%)]" />
+            <div className="relative z-10 flex h-full flex-col justify-between gap-10">
+              <div className="space-y-6 max-w-xl">
+                <a href="#home" className="inline-flex items-center gap-3 w-fit">
+                  <img src={logo} alt="TradeFlink" className="h-12 w-auto object-contain" />
+                  <span className="text-xs font-semibold uppercase tracking-[0.28em] text-white/45">Trade finance, modernized</span>
+                </a>
 
-          {/* ── Brand column ── */}
-          <motion.div
-            className="lg:col-span-4 flex flex-col gap-6"
-            {...(inView ? fadeUp(0) : { initial: { opacity: 0, y: 28 } })}
-          >
-            <a href="#home" className="inline-block w-fit">
-              <img src={logo} alt="TradeFlink" className="h-12 w-auto object-contain" />
-            </a>
+                <div className="space-y-4">
+                  <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black leading-[0.95] tracking-[-0.04em] text-white">
+                    Faster capital for global trade.
+                  </h2>
+                  <p className="max-w-lg text-sm sm:text-base leading-relaxed text-white/55">
+                    Empowering SMEs worldwide with transparent, fast, and technology-driven trade finance solutions across 70+ countries.
+                  </p>
+                </div>
 
-            <p className="text-sm leading-relaxed max-w-xs" style={{ color: 'rgba(255,255,255,0.45)' }}>
-              Empowering SMEs worldwide with transparent, fast, and technology-driven trade finance solutions across 70+ countries.
-            </p>
+                <div className="flex flex-wrap gap-2.5">
+                  {OFFICES.map((city) => (
+                    <span
+                      key={city}
+                      className="rounded-full border border-teal-400/20 bg-teal-400/10 px-3 py-1 text-xs font-medium text-white/70"
+                    >
+                      {city}
+                    </span>
+                  ))}
+                </div>
+              </div>
 
-            {/* Office tags */}
-            <div>
-              <p className="text-xs font-bold uppercase tracking-[0.18em] text-teal-500 mb-3">Global Offices</p>
-              <div className="flex flex-wrap gap-2">
-                {OFFICES.map((city, i) => (
-                  <motion.span
-                    key={city}
-                    className="text-xs px-3 py-1 rounded-full font-medium"
-                    style={{ backgroundColor: 'rgba(13,148,136,0.1)', color: 'rgba(255,255,255,0.5)', border: '1px solid rgba(13,148,136,0.2)' }}
-                    initial={{ opacity: 0, scale: 0.8 }}
-                    animate={inView ? { opacity: 1, scale: 1 } : {}}
-                    transition={{ duration: 0.4, delay: 0.3 + i * 0.07, ease: 'backOut' }}
-                    whileHover={{ borderColor: '#0d9488', color: '#fff', backgroundColor: 'rgba(13,148,136,0.2)' }}
-                  >
-                    {city}
-                  </motion.span>
-                ))}
+              <div className="grid gap-3 sm:grid-cols-2">
+                <a
+                  href="tel:+14703809098"
+                  className="group flex items-center justify-between rounded-2xl border border-white/10 bg-white/5 px-4 py-4 text-sm text-white/70 transition-colors hover:border-teal-400/40 hover:bg-white/10 hover:text-white"
+                >
+                  <span>
+                    <span className="block text-[10px] uppercase tracking-[0.25em] text-teal-300/80">Call us</span>
+                    <span className="mt-1 block font-medium">+1-470-380-9098</span>
+                  </span>
+                  <span className="grid h-10 w-10 place-items-center rounded-xl bg-teal-400/15 text-teal-300 transition-transform group-hover:scale-105">
+                    <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                    </svg>
+                  </span>
+                </a>
+
+                <div className="rounded-2xl border border-white/10 bg-white/5 px-4 py-4">
+                  <p className="text-[10px] uppercase tracking-[0.25em] text-teal-300/80">Follow</p>
+                  <div className="mt-3 flex items-center gap-2">
+                    {SOCIALS.map((s) => (
+                      <a
+                        key={s.label}
+                        href={s.href}
+                        aria-label={s.label}
+                        className="grid h-10 w-10 place-items-center rounded-xl border border-white/10 bg-white/5 text-white/55 transition-all hover:-translate-y-0.5 hover:border-teal-400/40 hover:bg-teal-400 hover:text-white"
+                      >
+                        {s.icon}
+                      </a>
+                    ))}
+                  </div>
+                </div>
               </div>
             </div>
+          </section>
 
-            {/* Phone */}
-            <motion.a
-              href="tel:+14703809098"
-              className="inline-flex items-center gap-2.5 text-sm font-medium group w-fit"
-              style={{ color: 'rgba(255,255,255,0.45)' }}
-              whileHover={{ color: '#fff' }}
-              transition={{ duration: 0.2 }}
-            >
-              <motion.span
-                className="w-8 h-8 rounded-xl flex items-center justify-center"
-                style={{ backgroundColor: 'rgba(13,148,136,0.15)' }}
-                whileHover={{ backgroundColor: '#0d9488', scale: 1.1 }}
-                transition={{ duration: 0.25 }}
-              >
-                <svg className="w-3.5 h-3.5 text-teal-400 group-hover:text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
-                </svg>
-              </motion.span>
-              +1-470-380-9098
-            </motion.a>
-
-            {/* Social icons */}
-            <div className="flex items-center gap-2">
-              {SOCIALS.map((s, i) => (
-                <motion.a
-                  key={s.label}
-                  href={s.href}
-                  aria-label={s.label}
-                  className="w-9 h-9 rounded-xl flex items-center justify-center"
-                  style={{ backgroundColor: 'rgba(255,255,255,0.05)', color: 'rgba(255,255,255,0.35)', border: '1px solid rgba(255,255,255,0.08)' }}
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={inView ? { opacity: 1, y: 0 } : {}}
-                  transition={{ duration: 0.4, delay: 0.5 + i * 0.07 }}
-                  whileHover={{ backgroundColor: '#0d9488', color: '#fff', borderColor: '#0d9488', scale: 1.12, y: -2 }}
-                  whileTap={{ scale: 0.93 }}
-                >
-                  {s.icon}
-                </motion.a>
-              ))}
-            </div>
-          </motion.div>
-
-          {/* ── Nav columns ── */}
-          {NAV.map((col, ci) => (
-            <motion.div
-              key={col.title}
-              className="lg:col-span-2"
-              initial={{ opacity: 0, y: 28 }}
-              animate={inView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.7, delay: 0.1 + ci * 0.1, ease: [0.22, 1, 0.36, 1] }}
-            >
-              <p className="text-xs font-bold uppercase tracking-[0.18em] text-teal-500 mb-5">{col.title}</p>
-              <ul className="space-y-3.5">
-                {col.links.map((link) => (
+          <section className="grid gap-4 sm:grid-cols-2">
+            <div className="rounded-[1.75rem] border border-white/10 bg-white/5 p-6 backdrop-blur-xl">
+              <p className="text-xs font-bold uppercase tracking-[0.22em] text-teal-300">Company</p>
+              <ul className="mt-5 space-y-3">
+                {NAV[0].links.map((link) => (
                   <li key={link.label}>
                     <motion.a
                       href={link.href}
-                      className="inline-flex items-center gap-1.5 text-sm"
-                      style={{ color: 'rgba(255,255,255,0.42)' }}
-                      whileHover={{ color: '#fff', x: 4 }}
-                      transition={{ duration: 0.2 }}
+                      className="group relative inline-flex items-center gap-2 pb-2 text-sm text-white/55 transition-colors"
+                      whileHover={{ x: 6, color: '#ffffff' }}
+                      transition={{ duration: 0.28, ease: 'easeOut' }}
                     >
+                      <span className="relative z-10">{link.label}</span>
                       <motion.span
-                        className="w-1 h-1 rounded-full bg-teal-500 shrink-0"
-                        whileHover={{ scale: 1.8 }}
+                        aria-hidden="true"
+                        className="relative z-10 ml-1 flex h-5 w-5 items-center justify-center rounded-full bg-teal-400/15 text-teal-200"
+                        initial={{ opacity: 0, x: -6 }}
+                        whileHover={{ opacity: 1, x: 4, scale: 1.08, backgroundColor: 'rgba(45,212,191,0.24)' }}
+                        transition={{ duration: 0.28, ease: 'easeOut' }}
+                      >
+                        <svg className="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
+                          <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+                        </svg>
+                      </motion.span>
+                      <motion.span
+                        aria-hidden="true"
+                        className="absolute left-0 bottom-0 h-px w-full origin-left bg-white/70"
+                        initial={{ scaleX: 0, opacity: 0.35 }}
+                        whileHover={{ scaleX: 1, opacity: 1 }}
+                        transition={{ duration: 0.32, ease: 'easeOut' }}
                       />
-                      {link.label}
+                      <motion.span
+                        aria-hidden="true"
+                        className="absolute -inset-x-2 -bottom-1 h-5 rounded-full bg-teal-400/12 blur-md"
+                        initial={{ opacity: 0, scale: 0.9 }}
+                        whileHover={{ opacity: 1, scale: 1 }}
+                        transition={{ duration: 0.32, ease: 'easeOut' }}
+                      />
+                    </motion.a>
+                  </li>
+                ))}  
+              </ul>
+            </div>
+
+            <div className="rounded-[1.75rem] border border-white/10 bg-white/5 p-6 backdrop-blur-xl">
+              <p className="text-xs font-bold uppercase tracking-[0.22em] text-teal-300">Solutions</p>
+              <ul className="mt-5 space-y-3">
+                {NAV[1].links.map((link) => (
+                  <li key={link.label}>
+                    <motion.a
+                      href={link.href}
+                      className="group relative inline-flex items-center gap-2 pb-2 text-sm text-white/55 transition-colors"
+                      whileHover={{ x: 6, color: '#ffffff' }}
+                      transition={{ duration: 0.28, ease: 'easeOut' }}
+                    >
+                      <span className="relative z-10">{link.label}</span>
+                      <motion.span
+                        aria-hidden="true"
+                        className="relative z-10 ml-1 flex h-5 w-5 items-center justify-center rounded-full bg-teal-400/15 text-teal-200"
+                        initial={{ opacity: 0, x: -6 }}
+                        whileHover={{ opacity: 1, x: 4, scale: 1.08, backgroundColor: 'rgba(45,212,191,0.24)' }}
+                        transition={{ duration: 0.28, ease: 'easeOut' }}
+                      >
+                        <svg className="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
+                          <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+                        </svg>
+                      </motion.span>
+                      <motion.span
+                        aria-hidden="true"
+                        className="absolute left-0 bottom-0 h-px w-full origin-left bg-white/70"
+                        initial={{ scaleX: 0, opacity: 0.35 }}
+                        whileHover={{ scaleX: 1, opacity: 1 }}
+                        transition={{ duration: 0.32, ease: 'easeOut' }}
+                      />
+                      <motion.span
+                        aria-hidden="true"
+                        className="absolute -inset-x-2 -bottom-1 h-5 rounded-full bg-teal-400/12 blur-md"
+                        initial={{ opacity: 0, scale: 0.9 }}
+                        whileHover={{ opacity: 1, scale: 1 }}
+                        transition={{ duration: 0.32, ease: 'easeOut' }}
+                      />
                     </motion.a>
                   </li>
                 ))}
               </ul>
-            </motion.div>
-          ))}
+            </div>
 
-          {/* ── Newsletter ── */}
-          <motion.div
-            className="lg:col-span-2"
-            initial={{ opacity: 0, y: 28 }}
-            animate={inView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.7, delay: 0.42, ease: [0.22, 1, 0.36, 1] }}
-          >
-            <p className="text-xs font-bold uppercase tracking-[0.18em] text-teal-500 mb-5">Newsletter</p>
-            <p className="text-sm mb-4" style={{ color: 'rgba(255,255,255,0.4)' }}>
-              Stay ahead of global trade trends.
-            </p>
+            <div className="rounded-[1.75rem] border border-white/10 bg-white/5 p-6 backdrop-blur-xl">
+              <p className="text-xs font-bold uppercase tracking-[0.22em] text-teal-300">Legal</p>
+              <ul className="mt-5 space-y-3">
+                {NAV[2].links.map((link) => (
+                  <li key={link.label}>
+                    <motion.a
+                      href={link.href}
+                      className="group relative inline-flex items-center gap-2 pb-2 text-sm text-white/55 transition-colors"
+                      whileHover={{ x: 6, color: '#ffffff' }}
+                      transition={{ duration: 0.28, ease: 'easeOut' }}
+                    >
+                      <span className="relative z-10">{link.label}</span>
+                      <motion.span
+                        aria-hidden="true"
+                        className="relative z-10 ml-1 flex h-5 w-5 items-center justify-center rounded-full bg-teal-400/15 text-teal-200"
+                        initial={{ opacity: 0, x: -6 }}
+                        whileHover={{ opacity: 1, x: 4, scale: 1.08, backgroundColor: 'rgba(45,212,191,0.24)' }}
+                        transition={{ duration: 0.28, ease: 'easeOut' }}
+                      >
+                        <svg className="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
+                          <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+                        </svg>
+                      </motion.span>
+                      <motion.span
+                        aria-hidden="true"
+                        className="absolute left-0 bottom-0 h-px w-full origin-left bg-white/70"
+                        initial={{ scaleX: 0, opacity: 0.35 }}
+                        whileHover={{ scaleX: 1, opacity: 1 }}
+                        transition={{ duration: 0.32, ease: 'easeOut' }}
+                      />
+                      <motion.span
+                        aria-hidden="true"
+                        className="absolute -inset-x-2 -bottom-1 h-5 rounded-full bg-teal-400/12 blur-md"
+                        initial={{ opacity: 0, scale: 0.9 }}
+                        whileHover={{ opacity: 1, scale: 1 }}
+                        transition={{ duration: 0.32, ease: 'easeOut' }}
+                      />
+                    </motion.a>
+                  </li>
+                ))}
+              </ul>
+            </div>
 
-            {subscribed ? (
-              <motion.div
-                className="flex items-center gap-2 text-sm text-teal-400 font-semibold"
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ type: 'spring', stiffness: 300, damping: 20 }}
-              >
-                <motion.svg
-                  className="w-5 h-5"
-                  fill="none" viewBox="0 0 24 24" stroke="currentColor"
-                  initial={{ pathLength: 0 }}
-                  animate={{ pathLength: 1 }}
-                  transition={{ duration: 0.5 }}
-                >
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
-                </motion.svg>
-                You're subscribed!
-              </motion.div>
-            ) : (
-              <form onSubmit={handleSubscribe} className="space-y-3">
+            <div className="rounded-3xl border border-teal-400/15 bg-white/5 p-6 backdrop-blur-xl">
+              <p className="text-xs font-bold uppercase tracking-[0.22em] text-teal-300">Newsletter</p>
+              <p className="mt-4 text-sm leading-relaxed text-white/55">
+                Stay ahead of global trade trends.
+              </p>
+
+              {subscribed ? (
                 <motion.div
-                  className="relative rounded-xl overflow-hidden"
-                  animate={{ boxShadow: focused ? `0 0 0 2px #0d9488` : '0 0 0 1px rgba(255,255,255,0.1)' }}
-                  transition={{ duration: 0.2 }}
+                  className="mt-6 flex items-center gap-2 text-sm font-semibold text-teal-300"
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
                 >
-                  <input
-                    type="email"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    onFocus={() => setFocused(true)}
-                    onBlur={() => setFocused(false)}
-                    placeholder="your@email.com"
-                    required
-                    className="w-full px-4 py-3 text-sm text-white placeholder-gray-600 focus:outline-none"
-                    style={{ background: 'rgba(255,255,255,0.05)' }}
-                  />
+                  <motion.svg
+                    className="h-5 w-5"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                    initial={{ pathLength: 0 }}
+                    animate={{ pathLength: 1 }}
+                    transition={{ duration: 0.6 }}
+                  >
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
+                  </motion.svg>
+                  You're subscribed!
                 </motion.div>
+              ) : (
+                <form onSubmit={handleSubscribe} className="mt-6 space-y-3">
+                  <motion.div
+                    className="rounded-2xl border border-white/10 bg-white/5 px-3 py-2"
+                    animate={{ boxShadow: focused ? '0 0 0 1px rgba(45,212,191,0.8)' : 'none' }}
+                    transition={{ duration: 0.25 }}
+                  >
+                    <input
+                      type="email"
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                      onFocus={() => setFocused(true)}
+                      onBlur={() => setFocused(false)}
+                      placeholder="your@email.com"
+                      required
+                      className="w-full bg-transparent px-1 py-2 text-sm text-white placeholder:text-white/30 focus:outline-none"
+                    />
+                  </motion.div>
 
-                <motion.button
-                  type="submit"
-                  className="w-full py-3 text-sm font-bold rounded-xl text-white relative overflow-hidden"
-                  style={{ background: 'linear-gradient(135deg, #0d9488, #14b8a6)' }}
-                  whileHover={{ scale: 1.02, boxShadow: '0 8px 30px rgba(13,148,136,0.4)' }}
-                  whileTap={{ scale: 0.97 }}
-                >
-                  Subscribe
-                </motion.button>
-              </form>
-            )}
-          </motion.div>
+                  <motion.button
+                    type="submit"
+                    className="w-full rounded-2xl bg-linear-to-r from-teal-500 to-cyan-500 px-4 py-3 text-sm font-bold text-white shadow-lg shadow-teal-500/20"
+                    whileHover={{ scale: 1.01, y: -1 }}
+                    whileTap={{ scale: 0.98 }}
+                  >
+                    Subscribe
+                  </motion.button>
+                </form>
+              )}
+            </div>
+          </section>
+        </motion.div>
 
-        </div>
-
-        {/* ── Divider ── */}
         <motion.div
-          className="my-10 h-px"
-          style={{ background: 'linear-gradient(90deg, transparent, rgba(255,255,255,0.08), transparent)' }}
-          initial={{ scaleX: 0 }}
-          animate={inView ? { scaleX: 1 } : {}}
-          transition={{ duration: 1, delay: 0.5 }}
-        />
-
-        {/* ── Bottom bar ── */}
-        <motion.div
-          className="flex flex-col sm:flex-row items-center justify-between gap-4"
-          initial={{ opacity: 0 }}
-          animate={inView ? { opacity: 1 } : {}}
-          transition={{ duration: 0.6, delay: 0.6 }}
+          className="mt-8 flex flex-col gap-4 rounded-3xl border border-white/10 bg-white/5 px-5 py-4 backdrop-blur-xl sm:flex-row sm:items-center sm:justify-between"
+          initial={{ opacity: 0, y: 20 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.7, delay: 0.2 }}
         >
-          <p className="text-xs" style={{ color: 'rgba(255,255,255,0.25)' }}>
+          <p className="text-xs text-white/35">
             &copy; {year} TradeFlink. All rights reserved.
           </p>
 
-          <div className="flex items-center gap-6">
-            {['Privacy', 'Terms', 'Cookies'].map((item) => (
-              <motion.a
-                key={item}
-                href="#"
-                className="text-xs"
-                style={{ color: 'rgba(255,255,255,0.25)' }}
-                whileHover={{ color: '#0d9488' }}
-                transition={{ duration: 0.2 }}
-              >
-                {item}
-              </motion.a>
-            ))}
-          </div>
-
-          <div className="flex items-center gap-1.5" style={{ color: 'rgba(255,255,255,0.2)' }}>
-            <motion.span
-              className="w-1.5 h-1.5 rounded-full bg-teal-500"
-              animate={{ opacity: [1, 0.3, 1] }}
-              transition={{ duration: 2, repeat: Infinity }}
-            />
-            <span className="text-xs">All systems operational</span>
+          <div className="flex items-center gap-4 text-xs text-white/35">
+            <span className="inline-flex items-center gap-2">
+              <span className="h-2 w-2 rounded-full bg-teal-400" />
+              Global offices active
+            </span>
+            <span className="hidden h-4 w-px bg-white/10 sm:block" />
+            <span>Fast. Transparent. Inclusive.</span>
           </div>
         </motion.div>
       </div>

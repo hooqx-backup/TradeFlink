@@ -10,14 +10,14 @@ const TESTIMONIALS = [
     initials: 'AR',
   },
   {
-    quote: "TradeFlink's supply chain finance gave us confidence to offer better terms to our suppliers. Relationships improved dramatically and we doubled our import volume within a year.",
+    quote: "TradeFlink's supply chain finance gave us confidence to offer better terms to our suppliers. Relationships improved dramatically",
     name: 'Omar Khalid',
     role: 'FMCG Importer',
     location: 'UAE',
     initials: 'OK',
   },
   {
-    quote: 'The transparency is what sets TradeFlink apart. Every fee is clear upfront, every transaction is visible. That level of trust is rare in trade finance.',
+    quote: 'The transparency is what sets TradeFlink apart. Every fee is clear upfront, every transaction is visible',
     name: 'Priya Menon',
     role: 'Export Manager',
     location: 'India',
@@ -51,7 +51,7 @@ export default function Testimonials() {
   return (
     <section
       className="relative w-full overflow-hidden flex flex-col justify-center"
-      style={{ background: '#060d1f', minHeight: '80vh', padding: '5rem 0' }}
+      style={{ background: '#060d1f', height: '86vh', padding: '5rem 0' }}
     >
       {/* Enormous ghost quote mark */}
       <div
@@ -74,22 +74,24 @@ export default function Testimonials() {
         </div>
 
         {/* Full-width quote */}
-        <AnimatePresence mode="wait">
-          <motion.blockquote
-            key={active}
-            className="font-black text-white leading-tight mb-12 lg:mb-16"
-            style={{ fontSize: 'clamp(24px, 3.8vw, 52px)' }}
-            initial={{ opacity: 0, x: dir * 60 }}
-            animate={{ opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: dir * -60 }}
-            transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
-          >
-            "{t.quote}"
-          </motion.blockquote>
-        </AnimatePresence>
+        <div className="mb-12 lg:mb-16" style={{ height: 'clamp(11rem, 16vw, 16rem)' }}>
+          <AnimatePresence mode="wait">
+            <motion.blockquote
+              key={active}
+              className="font-black text-white leading-tight max-w-5xl"
+              style={{ fontSize: 'clamp(24px, 3.8vw, 52px)' }}
+              initial={{ opacity: 0, x: dir * 60 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: dir * -60 }}
+              transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
+            >
+              "{t.quote}"
+            </motion.blockquote>
+          </AnimatePresence>
+        </div>
 
         {/* Author + controls row */}
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-8">
+        <div className="flex min-h-22 flex-col justify-between gap-8 sm:flex-row sm:items-center">
 
           {/* Author */}
           <AnimatePresence mode="wait">
