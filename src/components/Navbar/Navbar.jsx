@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 import logo from '../../assets/logos/logo3.png';
 
 /* ── Nav data ───────────────────────────────────────────────────── */
@@ -6,7 +7,7 @@ const SERVICES = [
   {
     title: 'Supply Chain Finance',
     desc: 'Early payments for suppliers',
-    href: '#services',
+    href: '/#services',
     icon: (
       <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth={1.8} viewBox="0 0 24 24">
         <path strokeLinecap="round" strokeLinejoin="round"
@@ -17,7 +18,7 @@ const SERVICES = [
   {
     title: 'Export Factoring',
     desc: 'Instant cash on export invoices',
-    href: '#services',
+    href: '/#services',
     icon: (
       <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth={1.8} viewBox="0 0 24 24">
         <path strokeLinecap="round" strokeLinejoin="round"
@@ -28,7 +29,7 @@ const SERVICES = [
   {
     title: 'Invoice Financing',
     desc: 'Unlock unpaid invoice liquidity',
-    href: '#services',
+    href: '/#services',
     icon: (
       <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth={1.8} viewBox="0 0 24 24">
         <path strokeLinecap="round" strokeLinejoin="round"
@@ -39,7 +40,7 @@ const SERVICES = [
   {
     title: 'Open Account Trade',
     desc: 'Flexible terms, zero defaults',
-    href: '#services',
+    href: '/#services',
     icon: (
       <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth={1.8} viewBox="0 0 24 24">
         <path strokeLinecap="round" strokeLinejoin="round"
@@ -50,12 +51,12 @@ const SERVICES = [
 ];
 
 const NAV_LINKS = [
-  { label: 'Home',      href: '#home',      active: true },
-  { label: 'About',     href: '#about' },
-  { label: 'Service',   href: '#services',  dropdown: SERVICES },
-  { label: 'Investors', href: '#investors' },
-  { label: 'Exports',   href: '#exports' },
-  { label: 'Contact',   href: '#contact' },
+  { label: 'Home',      route: '/' },
+  { label: 'About',     route: '/about' },
+  { label: 'Service',   href: '/#services', dropdown: SERVICES },
+  { label: 'Investors', href: '/#investors' },
+  { label: 'Exports',   href: '/#exports' },
+  { label: 'Contact',   href: '/#contact' },
 ];
 
 /* ── Service mega-dropdown ──────────────────────────────────────── */
@@ -109,7 +110,7 @@ function ServiceDropdown({ visible }) {
       <div className="px-5 py-3 bg-gray-50 border-t border-gray-100 flex items-center justify-between">
         <p className="text-xs text-gray-500">Ready to grow your business globally?</p>
         <a
-          href="#contact"
+          href="/#contact"
           className="text-xs font-bold text-teal-600 hover:text-teal-700 flex items-center gap-1 transition"
         >
           Get started
@@ -127,6 +128,8 @@ function DesktopLink({ link }) {
   const [open, setOpen] = useState(false);
   const ref = useRef(null);
   const timerRef = useRef(null);
+  const { pathname } = useLocation();
+  const isActive = link.route ? pathname === link.route : false;
 
   const handleEnter = () => {
     clearTimeout(timerRef.current);
@@ -148,7 +151,7 @@ function DesktopLink({ link }) {
       >
         <button
           className={`group flex items-center gap-1.5 text-[14px] font-semibold transition-colors duration-150 pb-0.5 ${
-            link.active ? 'text-teal-600' : 'text-gray-700 hover:text-teal-600'
+            isActive ? 'text-teal-600' : 'text-gray-700 hover:text-teal-600'
           }`}
         >
           {link.label}
@@ -163,7 +166,7 @@ function DesktopLink({ link }) {
         {/* Active underline */}
         <span
           className={`absolute bottom-0 left-0 h-[2px] rounded-full bg-teal-500 transition-all duration-300 ${
-            link.active || open ? 'w-full' : 'w-0 group-hover:w-full'
+            isActive || open ? 'w-full' : 'w-0 group-hover:w-full'
           }`}
         />
 
@@ -172,19 +175,30 @@ function DesktopLink({ link }) {
     );
   }
 
-  return (
-    <a
-      href={link.href}
-      className={`relative group text-[14px] font-semibold transition-colors duration-150 pb-0.5 ${
-        link.active ? 'text-teal-600' : 'text-gray-700 hover:text-teal-600'
+  const cls = `relative group text-[14px] font-semibold transition-colors duration-150 pb-0.5 ${
+    isActive ? 'text-teal-600' : 'text-gray-700 hover:text-teal-600'
+  }`;
+  const underline = (
+    <span
+      className={`absolute bottom-0 left-0 h-[2px] rounded-full bg-teal-500 transition-all duration-300 ${
+        isActive ? 'w-full' : 'w-0 group-hover:w-full'
       }`}
-    >
+    />
+  );
+
+  if (link.route) {
+    return (
+      <Link to={link.route} className={cls}>
+        {link.label}
+        {underline}
+      </Link>
+    );
+  }
+
+  return (
+    <a href={link.href} className={cls}>
       {link.label}
-      <span
-        className={`absolute bottom-0 left-0 h-[2px] rounded-full bg-teal-500 transition-all duration-300 ${
-          link.active ? 'w-full' : 'w-0 group-hover:w-full'
-        }`}
-      />
+      {underline}
     </a>
   );
 }
@@ -194,6 +208,7 @@ export default function Navbar() {
   const [scrolled, setScrolled]           = useState(false);
   const [mobileOpen, setMobileOpen]       = useState(false);
   const [mobileSvcOpen, setMobileSvcOpen] = useState(false);
+  const { pathname } = useLocation();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 10);
@@ -221,7 +236,7 @@ export default function Navbar() {
           }`}
         >
           {/* ── Logo ───────────────────────────────────────────── */}
-          <a href="#home" className="flex-shrink-0">
+          <Link to="/" className="flex-shrink-0">
             <img
               src={logo}
               alt="TradeFlink"
@@ -229,7 +244,7 @@ export default function Navbar() {
                 scrolled ? 'h-[46px]' : 'h-[70px]'
               }`}
             />
-          </a>
+          </Link>
 
           {/* ── Desktop nav ─────────────────────────────────────── */}
           <nav className="hidden lg:flex items-center gap-7">
@@ -243,7 +258,7 @@ export default function Navbar() {
 
             {/* CTA button */}
             <a
-              href="#contact"
+              href="/#contact"
               className="hidden sm:inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-white text-[13px] font-bold uppercase tracking-wider shadow-md hover:shadow-lg hover:-translate-y-px active:scale-95 transition-all duration-200"
               style={{ background: 'linear-gradient(135deg,#0d9488,#0ea5e9)' }}
             >
@@ -329,20 +344,23 @@ export default function Navbar() {
                   </div>
                 </div>
               </div>
+            ) : link.route ? (
+              <Link
+                key={link.label}
+                to={link.route}
+                onClick={() => setMobileOpen(false)}
+                className="flex items-center px-4 py-3.5 rounded-xl text-[14px] font-semibold transition text-gray-800 hover:bg-gray-50 hover:text-teal-600"
+              >
+                {link.label}
+              </Link>
             ) : (
               <a
                 key={link.label}
                 href={link.href}
                 onClick={() => setMobileOpen(false)}
-                className={`flex items-center px-4 py-3.5 rounded-xl text-[14px] font-semibold transition ${
-                  link.active
-                    ? 'bg-teal-50 text-teal-600'
-                    : 'text-gray-800 hover:bg-gray-50 hover:text-teal-600'
-                }`}
+                className="flex items-center px-4 py-3.5 rounded-xl text-[14px] font-semibold transition text-gray-800 hover:bg-gray-50 hover:text-teal-600"
               >
-                {link.active && (
-                  <span className="w-1.5 h-1.5 rounded-full bg-teal-500 mr-2.5 flex-shrink-0" />
-                )}
+                {null}
                 {link.label}
               </a>
             )
@@ -351,7 +369,7 @@ export default function Navbar() {
           {/* Mobile CTA */}
           <div className="pt-4 pb-2">
             <a
-              href="#contact"
+              href="/#contact"
               onClick={() => setMobileOpen(false)}
               className="flex items-center justify-center gap-2 w-full py-3.5 rounded-full text-white text-[14px] font-bold uppercase tracking-wider transition active:scale-95"
               style={{ background: 'linear-gradient(135deg,#0d9488,#0ea5e9)' }}
