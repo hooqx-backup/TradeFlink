@@ -80,7 +80,7 @@ export default function FAQ() {
                     style={{
                       fontSize: '2.2rem',
                       lineHeight: 1,
-                      color: active === i ? '#0d9488' : '#e5e7eb',
+                      color: active === i ? '#1C96BF' : '#e5e7eb',
                     }}
                   >
                     {String(i + 1).padStart(2, '0')}

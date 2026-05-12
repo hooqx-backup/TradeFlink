@@ -26,7 +26,7 @@ export default function Vision() {
 
       {/* Decorative teal radial glow */}
       <div className="absolute inset-0 pointer-events-none"
-        style={{ background: 'radial-gradient(ellipse 60% 50% at 70% 50%, rgba(13,148,136,0.12) 0%, transparent 70%)' }} />
+        style={{ background: 'radial-gradient(ellipse 60% 50% at 70% 50%, rgba(28,150,191,0.12) 0%, transparent 70%)' }} />
 
       {/* Vertical "01 VISION" label */}
       <motion.div
@@ -106,7 +106,7 @@ export default function Vision() {
 
           {/* Decorative horizontal line */}
           <motion.div
-            style={{ transformOrigin: 'left', marginTop: '3rem', height: '1px', background: 'linear-gradient(to right, rgba(13,148,136,0.5), rgba(255,255,255,0.05) 60%, transparent)' }}
+            style={{ transformOrigin: 'left', marginTop: '3rem', height: '1px', background: 'linear-gradient(to right, rgba(28,150,191,0.5), rgba(255,255,255,0.05) 60%, transparent)' }}
             initial={{ scaleX: 0 }}
             animate={inView ? { scaleX: 1 } : {}}
             transition={{ duration: 1.8, delay: 0.6 }}

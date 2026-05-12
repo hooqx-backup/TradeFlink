@@ -12,7 +12,7 @@ const CARDS = [
     description:
       'To make global trade accessible and sustainable for every business, regardless of size or geography.',
     image: visionImg,
-    accent: '#0d9488',
+    accent: '#1C96BF',
   },
   {
     num: '02',
@@ -21,7 +21,7 @@ const CARDS = [
     description:
       'Empower SMEs worldwide with technology-driven trade finance solutions that are transparent, fast, and genuinely inclusive.',
     image: missionImg,
-    accent: '#0f766e',
+    accent: '#157ea3',
   },
   {
     num: '03',
@@ -268,7 +268,7 @@ export default function VisionMissionValues() {
           top: -300,
           right: -220,
           background:
-            'radial-gradient(circle, rgba(13,148,136,0.18) 0%, transparent 70%)',
+            'radial-gradient(circle, rgba(28,150,191,0.18) 0%, transparent 70%)',
         }}
         animate={{ scale: [1, 1.22, 1], opacity: [0.7, 1, 0.7] }}
         transition={{ duration: 16, repeat: Infinity, ease: 'easeInOut' }}
@@ -294,7 +294,7 @@ export default function VisionMissionValues() {
         className="absolute inset-0 pointer-events-none"
         style={{
           backgroundImage:
-            'radial-gradient(rgba(13,148,136,0.12) 1px, transparent 1px)',
+            'radial-gradient(rgba(28,150,191,0.12) 1px, transparent 1px)',
           backgroundSize: '36px 36px',
           WebkitMaskImage: 'linear-gradient(to bottom, transparent 0%, black 22%)',
           maskImage: 'linear-gradient(to bottom, transparent 0%, black 22%)',
@@ -339,7 +339,7 @@ export default function VisionMissionValues() {
               transition={{ duration: 1.62, delay: 0.18, ease: [0.22, 1, 0.36, 1] }}
             >
               Vision, Mission &amp;{' '}
-              <span style={{ color: '#0d9488' }}>Values</span>
+              <span style={{ color: '#1C96BF' }}>Values</span>
             </motion.h2>
           </div>
 

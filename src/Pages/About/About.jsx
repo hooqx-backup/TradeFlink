@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { motion, useInView } from 'framer-motion';
+import { motion, useInView, useMotionValue, useSpring, useMotionTemplate, AnimatePresence } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import {
   ArrowRight, Eye, Lightbulb, Heart, Rocket,
@@ -66,8 +66,8 @@ const VALUES = [
     Icon: Eye,
     title: 'Transparency',
     desc: 'Every transaction, every rate, every term — visible and verifiable. Trust is built through radical openness.',
-    accent: '#0d9488',
-    light: 'rgba(13,148,136,0.08)',
+    accent: '#1C96BF',
+    light: 'rgba(28,150,191,0.08)',
   },
   {
     Icon: Lightbulb,
@@ -193,6 +193,35 @@ function Eyebrow({ children, light = false }) {
   );
 }
 
+// ── Premium tilt + spotlight card ────────────────────────────────────
+function PremiumCard({ children, className, style, spotColor = 'rgba(28,150,191,0.10)' }) {
+  const ref = useRef(null);
+  const rx  = useMotionValue(0), ry = useMotionValue(0);
+  const srx = useSpring(rx, { stiffness: 300, damping: 28 });
+  const sry = useSpring(ry, { stiffness: 300, damping: 28 });
+  const mx  = useMotionValue(0), my = useMotionValue(0);
+  const bg  = useMotionTemplate`radial-gradient(180px circle at ${mx}px ${my}px, ${spotColor}, transparent 80%)`;
+
+  const onMove = (e) => {
+    const r = ref.current.getBoundingClientRect();
+    rx.set(((e.clientY - r.top  - r.height / 2) / r.height) * -12);
+    ry.set(((e.clientX - r.left - r.width  / 2) / r.width)  *  12);
+    mx.set(e.clientX - r.left);
+    my.set(e.clientY - r.top);
+  };
+  const onLeave = () => { rx.set(0); ry.set(0); };
+
+  return (
+    <motion.div ref={ref} onMouseMove={onMove} onMouseLeave={onLeave}
+      style={{ rotateX: srx, rotateY: sry, transformPerspective: 1000, ...style }}
+      className={`relative ${className}`}
+    >
+      <motion.div className="pointer-events-none absolute inset-0 rounded-[inherit] z-10" style={{ background: bg }} />
+      {children}
+    </motion.div>
+  );
+}
+
 // ── Main Page ─────────────────────────────────────────────────────────
 export default function About() {
   return (
@@ -204,7 +233,7 @@ export default function About() {
       <section className="relative min-h-screen flex items-stretch overflow-hidden bg-[#050d18]">
         <div className="absolute inset-0 pointer-events-none">
           <div className="absolute -top-40 left-1/4 w-[700px] h-[700px] rounded-full opacity-[0.15]"
-            style={{ background: 'radial-gradient(circle,#0d9488 0%,transparent 65%)' }} />
+            style={{ background: 'radial-gradient(circle,#1C96BF 0%,transparent 65%)' }} />
           <div className="absolute bottom-0 right-0 w-[500px] h-[500px] rounded-full opacity-[0.10]"
             style={{ background: 'radial-gradient(circle,#0ea5e9 0%,transparent 65%)' }} />
           <div className="absolute inset-0 opacity-[0.03]"
@@ -299,7 +328,7 @@ export default function About() {
           STATS STRIP
       ══════════════════════════════════════════════════════════ */}
       <section className="py-20 relative overflow-hidden"
-        style={{ background: 'linear-gradient(135deg,#0a7c74 0%,#0d9488 40%,#0ea5e9 100%)' }}>
+        style={{ background: 'linear-gradient(135deg,#0a7c74 0%,#1C96BF 40%,#0ea5e9 100%)' }}>
         <div className="absolute inset-0 bg-dots opacity-20 pointer-events-none" />
         <div className="container-xl relative z-10">
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-12 divide-x divide-white/15">
@@ -387,38 +416,95 @@ export default function About() {
             {BENTO.map((card, i) => {
               if (card.bg) {
                 return (
-                  <motion.div key={card.title} variants={fadeUp} whileHover={{ y: -5 }}
-                    className={`relative rounded-3xl overflow-hidden min-h-[280px] flex flex-col justify-end p-8 cursor-default ${card.span}`}>
-                    <img src={card.bg} alt="" aria-hidden className="absolute inset-0 w-full h-full object-cover" />
-                    <div className="absolute inset-0" style={{ background: card.overlay }} />
-                    <div className="relative z-10">
-                      <div className="w-12 h-12 rounded-2xl bg-white/10 border border-white/15 flex items-center justify-center mb-4">
-                        <card.Icon size={card.large ? 24 : 20} className="text-teal-300" />
+                  <motion.div key={card.title} variants={fadeUp} className={`${card.span}`}>
+                    <PremiumCard className={`rounded-3xl overflow-hidden min-h-[280px] flex flex-col justify-end p-8 cursor-default group`} spotColor="rgba(255,255,255,0.06)">
+                      <motion.img src={card.bg} alt="" aria-hidden
+                        className="absolute inset-0 w-full h-full object-cover"
+                        whileHover={{ scale: 1.06 }} transition={{ duration: 0.7, ease: [0.22,1,0.36,1] }}
+                      />
+                      <div className="absolute inset-0" style={{ background: card.overlay }} />
+                      {/* Scan line */}
+                      <motion.div className="absolute inset-x-0 h-px pointer-events-none z-10"
+                        style={{ background: 'linear-gradient(90deg,transparent,rgba(28,150,191,0.5),rgba(45,212,191,0.4),transparent)' }}
+                        animate={{ top: ['0%','100%'] }} transition={{ duration: 5, repeat: Infinity, ease: 'linear', repeatDelay: 2 }}
+                      />
+                      {/* Shimmer */}
+                      <motion.div className="absolute inset-0 pointer-events-none z-10"
+                        style={{ background: 'linear-gradient(105deg,transparent 30%,rgba(255,255,255,0.06) 50%,transparent 70%)' }}
+                        animate={{ x: ['-100%','150%'] }} transition={{ duration: 3, repeat: Infinity, ease: 'easeInOut', repeatDelay: 4 }}
+                      />
+                      <div className="relative z-20">
+                        <motion.div
+                          className="w-12 h-12 rounded-2xl bg-white/10 border border-white/20 flex items-center justify-center mb-4 backdrop-blur-sm"
+                          animate={{ rotate: [0, 6, -6, 0], scale: [1, 1.08, 1] }}
+                          transition={{ duration: 4 + i, repeat: Infinity, ease: 'easeInOut', delay: i * 0.5 }}
+                        >
+                          <card.Icon size={card.large ? 24 : 20} className="text-teal-300" />
+                        </motion.div>
+                        <h3 className={`font-black text-white mb-2 ${card.large ? 'text-2xl' : 'text-xl'}`}>{card.title}</h3>
+                        <p className="text-slate-400 text-sm leading-relaxed max-w-md">{card.desc}</p>
                       </div>
-                      <h3 className={`font-black text-white mb-2 ${card.large ? 'text-2xl' : 'text-xl'}`}>{card.title}</h3>
-                      <p className="text-slate-400 text-sm leading-relaxed max-w-md">{card.desc}</p>
-                    </div>
-                    {card.badge && (
-                      <div className="absolute top-6 right-6 px-3 py-1.5 rounded-full bg-teal-500/20 border border-teal-500/30">
-                        <span className="text-teal-300 text-[10px] font-bold uppercase tracking-widest">{card.badge}</span>
-                      </div>
-                    )}
+                      {/* Animated border glow */}
+                      <motion.div className="absolute inset-0 rounded-3xl pointer-events-none"
+                        style={{ border: '1px solid rgba(28,150,191,0)' }}
+                        animate={{ borderColor: ['rgba(28,150,191,0)','rgba(28,150,191,0.4)','rgba(28,150,191,0)'] }}
+                        transition={{ duration: 3, repeat: Infinity, ease: 'easeInOut', delay: i * 0.8 }}
+                      />
+                      {card.badge && (
+                        <motion.div className="absolute top-6 right-6 px-3 py-1.5 rounded-full bg-teal-500/20 border border-teal-500/30 backdrop-blur-sm"
+                          animate={{ scale: [1, 1.05, 1] }} transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
+                        >
+                          <span className="text-teal-300 text-[10px] font-bold uppercase tracking-widest">{card.badge}</span>
+                        </motion.div>
+                      )}
+                    </PremiumCard>
                   </motion.div>
                 );
               }
               return (
-                <motion.div key={card.title} variants={fadeUp} whileHover={{ y: -5 }}
-                  className={`relative rounded-3xl overflow-hidden min-h-[200px] flex flex-col justify-end p-7 cursor-default ${card.dark ? 'bg-[#060f1e]' : 'bg-white border border-gray-100'}`}>
-                  {card.dark && <div className="absolute inset-0 bg-dots opacity-20" />}
-                  <div className="absolute top-6 left-7">
-                    <div className={`w-11 h-11 rounded-2xl flex items-center justify-center ${card.dark ? 'bg-white/8 border border-white/10' : 'bg-slate-50 border border-gray-100'}`}>
-                      <card.Icon size={20} className={card.dark ? 'text-teal-400' : 'text-teal-600'} />
+                <motion.div key={card.title} variants={fadeUp}>
+                  <PremiumCard
+                    className={`rounded-3xl overflow-hidden min-h-[200px] flex flex-col justify-end p-7 cursor-default group ${card.dark ? 'bg-[#060f1e]' : 'bg-white border border-gray-100'}`}
+                    spotColor={card.dark ? 'rgba(28,150,191,0.08)' : 'rgba(28,150,191,0.06)'}
+                  >
+                    {card.dark && <div className="absolute inset-0 bg-dots opacity-20" />}
+                    {/* Top shimmer */}
+                    <motion.div className="absolute top-0 left-0 right-0 h-px overflow-hidden"
+                      style={{ background: 'linear-gradient(90deg,transparent,rgba(28,150,191,0.5),transparent)' }}
+                    >
+                      <motion.div className="absolute inset-y-0 w-16 blur-sm"
+                        style={{ background: 'linear-gradient(90deg,transparent,rgba(255,255,255,0.7),transparent)' }}
+                        animate={{ x: ['-20%','120%'] }} transition={{ duration: 2.5, repeat: Infinity, ease: 'easeInOut', repeatDelay: 3 }}
+                      />
+                    </motion.div>
+                    <div className="absolute top-6 left-7">
+                      <motion.div
+                        className={`w-11 h-11 rounded-2xl flex items-center justify-center ${card.dark ? 'bg-white/8 border border-white/10' : 'bg-slate-50 border border-gray-100'}`}
+                        animate={{ y: [0, -4, 0], rotate: [0, 5, -5, 0] }}
+                        transition={{ duration: 3 + i * 0.4, repeat: Infinity, ease: 'easeInOut', delay: i * 0.3 }}
+                      >
+                        <card.Icon size={20} className={card.dark ? 'text-teal-400' : 'text-teal-600'} />
+                      </motion.div>
                     </div>
-                  </div>
-                  <div className="relative z-10 mt-14">
-                    <h3 className={`text-lg font-black mb-1.5 ${card.dark ? 'text-white' : 'text-[#0f172a]'}`}>{card.title}</h3>
-                    <p className="text-slate-400 text-xs leading-relaxed">{card.desc}</p>
-                  </div>
+                    {/* Pulsing corner dot */}
+                    <motion.div className="absolute top-6 right-6 w-2 h-2 rounded-full"
+                      style={{ background: card.dark ? '#1C96BF' : '#2dd4bf' }}
+                      animate={{ scale: [1, 1.8, 1], opacity: [0.5, 1, 0.5] }}
+                      transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut', delay: i * 0.4 }}
+                    />
+                    <div className="relative z-10 mt-14">
+                      <h3 className={`text-lg font-black mb-1.5 ${card.dark ? 'text-white' : 'text-[#0f172a]'}`}>{card.title}</h3>
+                      <p className="text-slate-400 text-xs leading-relaxed">{card.desc}</p>
+                    </div>
+                    {/* Animated bottom accent */}
+                    <motion.div className="absolute bottom-0 left-0 right-0 h-0.5 origin-left"
+                      style={{ background: 'linear-gradient(90deg,#1C96BF,#2dd4bf)' }}
+                      initial={{ scaleX: 0 }}
+                      whileInView={{ scaleX: 1 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.8, delay: 0.3 + i * 0.15, ease: [0.22,1,0.36,1] }}
+                    />
+                  </PremiumCard>
                 </motion.div>
               );
             })}
@@ -497,20 +583,56 @@ export default function About() {
           <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, margin: '-60px' }}
             variants={stagger} className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
             {VALUES.map((v, i) => (
-              <motion.div key={v.title} custom={i} variants={fadeUp} whileHover={{ y: -8 }}
-                className="group relative p-7 rounded-3xl border border-gray-100 bg-white cursor-default overflow-hidden transition-all duration-300 hover:shadow-2xl hover:border-transparent">
-                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-3xl"
-                  style={{ background: `linear-gradient(135deg, ${v.light} 0%, rgba(255,255,255,0) 100%)` }} />
-                <div className="relative z-10">
-                  <div className="w-12 h-12 rounded-2xl flex items-center justify-center mb-5 transition-transform duration-300 group-hover:scale-110"
-                    style={{ background: v.light }}>
-                    <v.Icon size={22} style={{ color: v.accent }} />
+              <motion.div key={v.title} custom={i} variants={fadeUp}>
+                <PremiumCard
+                  className="group p-7 rounded-3xl border border-gray-100 bg-white cursor-default overflow-hidden hover:shadow-2xl hover:border-transparent transition-shadow duration-300 h-full"
+                  spotColor={`${v.accent}14`}
+                >
+                  {/* Top shimmer */}
+                  <motion.div className="absolute top-0 left-0 right-0 h-px"
+                    style={{ background: `linear-gradient(90deg,transparent,${v.accent}60,transparent)` }}
+                  >
+                    <motion.div className="absolute inset-y-0 w-20 blur-sm"
+                      style={{ background: `linear-gradient(90deg,transparent,${v.accent},transparent)` }}
+                      animate={{ x: ['-20%','120%'] }}
+                      transition={{ duration: 2.2, repeat: Infinity, ease: 'easeInOut', repeatDelay: 2 + i * 0.5 }}
+                    />
+                  </motion.div>
+
+                  <div className="relative z-10">
+                    {/* Animated icon */}
+                    <motion.div
+                      className="w-12 h-12 rounded-2xl flex items-center justify-center mb-5"
+                      style={{ background: v.light }}
+                      animate={{ scale: [1, 1.1, 1], rotate: [0, 6, -6, 0] }}
+                      transition={{ duration: 3.5 + i * 0.4, repeat: Infinity, ease: 'easeInOut', delay: i * 0.5 }}
+                    >
+                      <v.Icon size={22} style={{ color: v.accent }} />
+                    </motion.div>
+
+                    {/* Animated accent bar */}
+                    <motion.div className="h-0.5 rounded-full mb-4"
+                      style={{ background: v.accent }}
+                      animate={{ width: ['2rem', '3.5rem', '2rem'] }}
+                      transition={{ duration: 2.5, repeat: Infinity, ease: 'easeInOut', delay: i * 0.4 }}
+                    />
+
+                    <h3 className="text-lg font-black text-[#0f172a] mb-3">{v.title}</h3>
+                    <p className="text-sm text-slate-500 leading-relaxed">{v.desc}</p>
                   </div>
-                  <div className="w-8 h-0.5 rounded-full mb-4 transition-all duration-300 group-hover:w-14"
-                    style={{ background: v.accent }} />
-                  <h3 className="text-lg font-black text-[#0f172a] mb-3">{v.title}</h3>
-                  <p className="text-sm text-slate-500 leading-relaxed">{v.desc}</p>
-                </div>
+
+                  {/* Hover background fill */}
+                  <motion.div className="absolute inset-0 rounded-3xl pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                    style={{ background: `linear-gradient(135deg,${v.light} 0%,rgba(255,255,255,0) 100%)` }}
+                  />
+
+                  {/* Pulsing corner glow */}
+                  <motion.div className="absolute bottom-4 right-4 w-8 h-8 rounded-full pointer-events-none"
+                    style={{ background: `radial-gradient(circle,${v.accent}30 0%,transparent 70%)` }}
+                    animate={{ scale: [1, 1.6, 1], opacity: [0.4, 0.9, 0.4] }}
+                    transition={{ duration: 2.5 + i * 0.3, repeat: Infinity, ease: 'easeInOut', delay: i * 0.4 }}
+                  />
+                </PremiumCard>
               </motion.div>
             ))}
           </motion.div>
@@ -538,12 +660,29 @@ export default function About() {
                 <motion.div key={m.year} custom={i} variants={fadeUp}
                   className={`flex items-center gap-8 ${i % 2 === 0 ? 'lg:flex-row' : 'lg:flex-row-reverse'}`}>
                   <div className={`flex-1 ${i % 2 === 0 ? 'lg:text-right' : 'lg:text-left'}`}>
-                    <motion.div whileHover={{ y: -4 }}
-                      className="inline-block p-6 rounded-2xl bg-white border border-gray-100 shadow-sm hover:shadow-xl transition-all duration-300 max-w-sm text-left">
-                      <p className="text-[10px] font-black text-teal-500 uppercase tracking-[0.25em] mb-2">{m.year}</p>
-                      <h4 className="text-lg font-black text-[#0f172a] mb-2">{m.title}</h4>
-                      <p className="text-sm text-slate-500 leading-relaxed">{m.desc}</p>
-                    </motion.div>
+                    <PremiumCard className="inline-block p-6 rounded-2xl bg-white border border-gray-100 shadow-sm hover:shadow-xl transition-shadow duration-300 max-w-sm text-left w-full" spotColor="rgba(28,150,191,0.07)">
+                        <motion.div className="absolute top-0 left-0 right-0 h-px overflow-hidden"
+                          style={{ background: 'linear-gradient(90deg,transparent,rgba(28,150,191,0.5),transparent)' }}
+                        >
+                          <motion.div className="absolute inset-y-0 w-16 blur-sm"
+                            style={{ background: 'linear-gradient(90deg,transparent,rgba(28,150,191,0.9),transparent)' }}
+                            animate={{ x: ['-20%','120%'] }}
+                            transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut', repeatDelay: 3 + i * 0.4 }}
+                          />
+                        </motion.div>
+                        <div className="relative z-10">
+                          <motion.p className="text-[10px] font-black text-teal-500 uppercase tracking-[0.25em] mb-2"
+                            animate={{ opacity: [0.7,1,0.7] }} transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut', delay: i * 0.3 }}
+                          >{m.year}</motion.p>
+                          <h4 className="text-lg font-black text-[#0f172a] mb-2">{m.title}</h4>
+                          <p className="text-sm text-slate-500 leading-relaxed">{m.desc}</p>
+                        </div>
+                        <motion.div className="absolute bottom-0 left-0 right-0 h-0.5 origin-left"
+                          style={{ background: 'linear-gradient(90deg,#1C96BF,#2dd4bf)' }}
+                          initial={{ scaleX: 0 }} whileInView={{ scaleX: 1 }} viewport={{ once: true }}
+                          transition={{ duration: 0.7, delay: 0.1 + i * 0.1, ease: [0.22,1,0.36,1] }}
+                        />
+                      </PremiumCard>
                   </div>
                   <div className="hidden lg:flex items-center justify-center w-10 h-10 rounded-full bg-gradient-to-br from-teal-400 to-sky-500 shadow-lg flex-shrink-0 z-10">
                     <div className="w-3 h-3 rounded-full bg-white" />
@@ -579,21 +718,41 @@ export default function About() {
           <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, margin: '-60px' }}
             variants={stagger} className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
             {OFFICES.map((o, i) => (
-              <motion.div key={o.city} custom={i} variants={fadeUp} whileHover={{ y: -5 }}
-                className="group flex items-center gap-5 p-6 rounded-2xl bg-white border border-gray-100 cursor-default
-                           transition-all duration-300 hover:border-teal-200 hover:shadow-xl">
-                <div className="text-4xl group-hover:scale-110 transition-transform duration-300 flex-shrink-0">{o.flag}</div>
-                <div>
-                  <div className="flex items-baseline gap-2">
-                    <h4 className="text-lg font-black text-[#0f172a]">{o.city}</h4>
-                    <span className="text-xs text-slate-400 font-medium">{o.country}</span>
+              <motion.div key={o.city} custom={i} variants={fadeUp}>
+                <PremiumCard className="group flex items-center gap-5 p-6 rounded-2xl bg-white border border-gray-100 cursor-default hover:border-teal-200 hover:shadow-xl transition-all duration-300" spotColor="rgba(28,150,191,0.06)">
+                  {/* Shimmer */}
+                  <motion.div className="absolute top-0 left-0 right-0 h-px opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                    style={{ background: 'linear-gradient(90deg,transparent,rgba(28,150,191,0.5),transparent)' }}
+                  />
+                  <motion.div
+                    className="text-4xl flex-shrink-0"
+                    animate={{ y: [0, -4, 0] }}
+                    transition={{ duration: 2.5 + i * 0.3, repeat: Infinity, ease: 'easeInOut', delay: i * 0.35 }}
+                  >{o.flag}</motion.div>
+                  <div className="relative z-10 flex-1">
+                    <div className="flex items-baseline gap-2">
+                      <h4 className="text-lg font-black text-[#0f172a]">{o.city}</h4>
+                      <span className="text-xs text-slate-400 font-medium">{o.country}</span>
+                    </div>
+                    <div className="flex items-center gap-1 mt-0.5">
+                      <motion.div animate={{ scale: [1,1.4,1] }} transition={{ duration: 2, repeat: Infinity, delay: i * 0.25 }}>
+                        <MapPin size={10} className="text-teal-600" />
+                      </motion.div>
+                      <p className="text-[10px] text-teal-600 font-black uppercase tracking-[0.18em]">{o.role}</p>
+                    </div>
                   </div>
-                  <div className="flex items-center gap-1 mt-0.5">
-                    <MapPin size={10} className="text-teal-600" />
-                    <p className="text-[10px] text-teal-600 font-black uppercase tracking-[0.18em]">{o.role}</p>
-                  </div>
-                </div>
-                <ArrowRight size={16} className="text-slate-200 group-hover:text-teal-400 transition-colors duration-300 ml-auto flex-shrink-0" />
+                  <motion.div
+                    className="relative z-10 ml-auto flex-shrink-0"
+                    animate={{ x: [0, 4, 0] }}
+                    transition={{ duration: 1.8, repeat: Infinity, ease: 'easeInOut', delay: i * 0.3 }}
+                  >
+                    <ArrowRight size={16} className="text-slate-200 group-hover:text-teal-400 transition-colors duration-300" />
+                  </motion.div>
+                  {/* Bottom accent */}
+                  <motion.div className="absolute bottom-0 left-0 right-0 h-0.5 origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-400"
+                    style={{ background: 'linear-gradient(90deg,#1C96BF,#2dd4bf)' }}
+                  />
+                </PremiumCard>
               </motion.div>
             ))}
           </motion.div>
@@ -606,7 +765,7 @@ export default function About() {
       <section className="section bg-[#060f1e] relative overflow-hidden">
         <div className="absolute inset-0 bg-dots opacity-30 pointer-events-none" />
         <div className="absolute -top-40 left-1/2 -translate-x-1/2 w-[600px] h-[600px] rounded-full opacity-[0.08] pointer-events-none"
-          style={{ background: 'radial-gradient(circle,#0d9488 0%,transparent 70%)' }} />
+          style={{ background: 'radial-gradient(circle,#1C96BF 0%,transparent 70%)' }} />
 
         <div className="container-xl relative z-10">
           <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, margin: '-60px' }}
@@ -620,33 +779,74 @@ export default function About() {
           <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, margin: '-60px' }}
             variants={stagger} className="grid lg:grid-cols-3 gap-5">
             {TESTIMONIALS.map((t, i) => (
-              <motion.div key={t.name} custom={i} variants={fadeUp} whileHover={{ y: -6 }}
-                className="glass rounded-3xl p-7 relative overflow-hidden cursor-default group">
-                <div className="absolute -top-4 -right-2 text-[120px] font-black leading-none select-none pointer-events-none"
-                  style={{ color: 'rgba(13,148,136,0.07)' }}>
-                  &ldquo;
-                </div>
-                <div className="flex gap-1 mb-5">
-                  {[...Array(5)].map((_, k) => (
-                    <Star key={k} size={14} className="text-amber-400 fill-amber-400" />
-                  ))}
-                </div>
-                <p className="text-white/85 text-sm leading-relaxed mb-7 relative z-10">
-                  &ldquo;{t.quote}&rdquo;
-                </p>
-                <div className="flex items-center gap-3">
-                  <div className={`w-10 h-10 rounded-2xl bg-gradient-to-br ${t.gradient} flex items-center justify-center text-white text-xs font-black flex-shrink-0`}>
-                    {t.initials}
+              <motion.div key={t.name} custom={i} variants={fadeUp}>
+                <PremiumCard className="glass rounded-3xl p-7 cursor-default group h-full" spotColor="rgba(28,150,191,0.08)">
+                  {/* Top shimmer */}
+                  <div className="absolute top-0 left-0 right-0 h-px overflow-hidden"
+                    style={{ background: 'linear-gradient(90deg,transparent,rgba(28,150,191,0.5),rgba(45,212,191,0.4),transparent)' }}
+                  >
+                    <motion.div className="absolute inset-y-0 w-24 blur-sm"
+                      style={{ background: 'linear-gradient(90deg,transparent,rgba(255,255,255,0.7),transparent)' }}
+                      animate={{ x: ['-20%','120%'] }}
+                      transition={{ duration: 2.5, repeat: Infinity, ease: 'easeInOut', repeatDelay: 3 + i }}
+                    />
                   </div>
-                  <div>
-                    <p className="text-white font-bold text-sm">{t.name}</p>
-                    <p className="text-white/40 text-[10px] mt-0.5">{t.role}</p>
+
+                  {/* Animated quote mark */}
+                  <motion.div className="absolute -top-4 -right-2 text-[120px] font-black leading-none select-none pointer-events-none"
+                    style={{ color: 'rgba(28,150,191,0.07)' }}
+                    animate={{ scale: [1, 1.08, 1], opacity: [0.07, 0.14, 0.07] }}
+                    transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut', delay: i * 0.8 }}
+                  >&ldquo;</motion.div>
+
+                  {/* Stars with staggered entry */}
+                  <div className="flex gap-1 mb-5">
+                    {[...Array(5)].map((_, k) => (
+                      <motion.div key={k}
+                        initial={{ opacity: 0, scale: 0, rotate: -30 }}
+                        whileInView={{ opacity: 1, scale: 1, rotate: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ delay: 0.1 + k * 0.07, type: 'spring', stiffness: 300 }}
+                      >
+                        <Star size={14} className="text-amber-400 fill-amber-400" />
+                      </motion.div>
+                    ))}
                   </div>
-                  <div className="ml-auto flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/8 text-white/50 text-[10px] font-semibold">
-                    <span>{t.flag}</span>
-                    <span>{t.location}</span>
+
+                  <p className="text-white/85 text-sm leading-relaxed mb-7 relative z-10">&ldquo;{t.quote}&rdquo;</p>
+
+                  <div className="flex items-center gap-3 relative z-10">
+                    <div className="relative flex-shrink-0">
+                      <div className={`w-10 h-10 rounded-2xl bg-gradient-to-br ${t.gradient} flex items-center justify-center text-white text-xs font-black`}>
+                        {t.initials}
+                      </div>
+                      {/* Pulsing ring */}
+                      <motion.div className="absolute inset-0 rounded-2xl pointer-events-none"
+                        style={{ border: '2px solid rgba(28,150,191,0.5)' }}
+                        animate={{ scale: [1, 1.55, 1], opacity: [0.6, 0, 0.6] }}
+                        transition={{ duration: 2.2, repeat: Infinity, ease: 'easeOut', delay: i * 0.5 }}
+                      />
+                    </div>
+                    <div>
+                      <p className="text-white font-bold text-sm">{t.name}</p>
+                      <p className="text-white/40 text-[10px] mt-0.5">{t.role}</p>
+                    </div>
+                    <motion.div className="ml-auto flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/8 text-white/50 text-[10px] font-semibold"
+                      animate={{ borderColor: ['rgba(255,255,255,0.05)','rgba(28,150,191,0.25)','rgba(255,255,255,0.05)'] }}
+                      style={{ border: '1px solid rgba(255,255,255,0.05)' }}
+                      transition={{ duration: 3, repeat: Infinity, ease: 'easeInOut', delay: i * 0.6 }}
+                    >
+                      <span>{t.flag}</span><span>{t.location}</span>
+                    </motion.div>
                   </div>
-                </div>
+
+                  {/* Animated bottom border */}
+                  <motion.div className="absolute bottom-0 left-0 right-0 h-0.5 origin-left"
+                    style={{ background: 'linear-gradient(90deg,#1C96BF,#2dd4bf)' }}
+                    initial={{ scaleX: 0 }} whileInView={{ scaleX: 1 }} viewport={{ once: true }}
+                    transition={{ duration: 0.8, delay: 0.2 + i * 0.15, ease: [0.22,1,0.36,1] }}
+                  />
+                </PremiumCard>
               </motion.div>
             ))}
           </motion.div>

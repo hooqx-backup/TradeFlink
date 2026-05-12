@@ -1,6 +1,7 @@
-import React, { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import logo from '../../assets/logos/logo3.png';
+import ContactModal from '../ContactModal/ContactModal';
 
 /* ── Nav data ───────────────────────────────────────────────────── */
 const SERVICES = [
@@ -54,9 +55,9 @@ const NAV_LINKS = [
   { label: 'Home',      route: '/' },
   { label: 'About',     route: '/about' },
   { label: 'Service',   href: '/#services', dropdown: SERVICES },
-  { label: 'Investors', href: '/#investors' },
-  { label: 'Exports',   href: '/#exports' },
-  { label: 'Contact',   href: '/#contact' },
+  { label: 'Investors', route: '/investors' },
+  { label: 'Exporters', route: '/exporters' },
+  { label: 'Contact',   route: '/contact' },
 ];
 
 /* ── Service mega-dropdown ──────────────────────────────────────── */
@@ -109,15 +110,15 @@ function ServiceDropdown({ visible }) {
       {/* Footer CTA */}
       <div className="px-5 py-3 bg-gray-50 border-t border-gray-100 flex items-center justify-between">
         <p className="text-xs text-gray-500">Ready to grow your business globally?</p>
-        <a
-          href="/#contact"
+        <Link
+          to="/contact"
           className="text-xs font-bold text-teal-600 hover:text-teal-700 flex items-center gap-1 transition"
         >
           Get started
           <svg className="w-3 h-3" fill="none" stroke="currentColor" strokeWidth={2.5} viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
           </svg>
-        </a>
+        </Link>
       </div>
     </div>
   );
@@ -208,7 +209,7 @@ export default function Navbar() {
   const [scrolled, setScrolled]           = useState(false);
   const [mobileOpen, setMobileOpen]       = useState(false);
   const [mobileSvcOpen, setMobileSvcOpen] = useState(false);
-  const { pathname } = useLocation();
+  const [contactOpen, setContactOpen]     = useState(false);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 10);
@@ -222,6 +223,7 @@ export default function Navbar() {
   }, [mobileOpen]);
 
   return (
+    <>
     <header
       className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${
         scrolled
@@ -257,17 +259,17 @@ export default function Navbar() {
           <div className="flex items-center gap-3">
 
             {/* CTA button */}
-            <a
-              href="/#contact"
-              className="hidden sm:inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-white text-[13px] font-bold uppercase tracking-wider shadow-md hover:shadow-lg hover:-translate-y-px active:scale-95 transition-all duration-200"
-              style={{ background: 'linear-gradient(135deg,#0d9488,#0ea5e9)' }}
+            <button
+              onClick={() => setContactOpen(true)}
+              className="hidden sm:inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-white text-[13px] font-bold uppercase tracking-wider shadow-md hover:shadow-lg hover:-translate-y-px active:scale-95 transition-all duration-200 cursor-pointer border-0"
+              style={{ background: 'linear-gradient(135deg,#1C96BF,#0ea5e9)' }}
             >
               <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" strokeWidth={2.5} viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round"
                   d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
               </svg>
               Contact Us
-            </a>
+            </button>
 
             {/* Hamburger — animated to X */}
             <button
@@ -368,18 +370,17 @@ export default function Navbar() {
 
           {/* Mobile CTA */}
           <div className="pt-4 pb-2">
-            <a
-              href="/#contact"
-              onClick={() => setMobileOpen(false)}
-              className="flex items-center justify-center gap-2 w-full py-3.5 rounded-full text-white text-[14px] font-bold uppercase tracking-wider transition active:scale-95"
-              style={{ background: 'linear-gradient(135deg,#0d9488,#0ea5e9)' }}
+            <button
+              onClick={() => { setMobileOpen(false); setContactOpen(true); }}
+              className="flex items-center justify-center gap-2 w-full py-3.5 rounded-full text-white text-[14px] font-bold uppercase tracking-wider transition active:scale-95 cursor-pointer border-0"
+              style={{ background: 'linear-gradient(135deg,#1C96BF,#0ea5e9)' }}
             >
               <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth={2.5} viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round"
                   d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
               </svg>
               Contact Us
-            </a>
+            </button>
           </div>
 
           {/* Quick contact info */}
@@ -395,5 +396,8 @@ export default function Navbar() {
         </div>
       </div>
     </header>
+
+    <ContactModal open={contactOpen} onClose={() => setContactOpen(false)} />
+    </>
   );
 }

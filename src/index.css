@@ -1,8 +1,22 @@
 @import "tailwindcss";
 
+/* ─── Override Tailwind teal scale → brand colour #1C96BF ──────── */
+@theme {
+  --color-teal-50:  #e8f5fb;
+  --color-teal-100: #c3e8f5;
+  --color-teal-200: #8dd2ec;
+  --color-teal-300: #50b8e1;
+  --color-teal-400: #2aa6d3;
+  --color-teal-500: #1C96BF;
+  --color-teal-600: #157ea3;
+  --color-teal-700: #106784;
+  --color-teal-800: #0c5068;
+  --color-teal-900: #083c4f;
+}
+
 /* ─── Brand tokens ─────────────────────────────────────────────── */
 :root {
-  --brand-teal:   #0d9488;
+  --brand-teal:   #1C96BF;
   --brand-blue:   #0ea5e9;
   --brand-dark:   #0f172a;
   --brand-gray:   #64748b;
@@ -34,7 +48,7 @@
 
   /* ─── Selection ─────────────────────────────────────────────── */
   ::selection {
-    background: #0d9488;
+    background: #1C96BF;
     color: #ffffff;
   }
 
@@ -46,11 +60,11 @@
     background: #f1f5f9;
   }
   ::-webkit-scrollbar-thumb {
-    background: #0d9488;
+    background: #1C96BF;
     border-radius: 99px;
   }
   ::-webkit-scrollbar-thumb:hover {
-    background: #0f766e;
+    background: #157ea3;
   }
 
   /* ─── Focus ring ─────────────────────────────────────────────── */
@@ -209,7 +223,7 @@
 }
 .btn-brand:hover {
   filter: brightness(1.1);
-  box-shadow: 0 8px 24px rgba(13, 148, 136, 0.35);
+  box-shadow: 0 8px 24px rgba(28, 150, 191, 0.35);
   transform: translateY(-1px);
 }
 .btn-brand:active {
@@ -226,7 +240,7 @@
 .card:hover {
   box-shadow: 0 12px 40px rgba(0, 0, 0, 0.09);
   transform: translateY(-3px);
-  border-color: #99f6e4;
+  border-color: #8dd2ec;
 }
 
 /* ─── Glass panel ───────────────────────────────────────────────── */

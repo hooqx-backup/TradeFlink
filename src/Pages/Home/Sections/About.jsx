@@ -131,7 +131,7 @@ export default function About() {
               >
                 <motion.span
                   className="w-5 h-5 rounded-full bg-teal-50 flex items-center justify-center shrink-0"
-                  whileHover={{ scale: 1.3, backgroundColor: '#0d9488' }}
+                  whileHover={{ scale: 1.3, backgroundColor: '#1C96BF' }}
                 >
                   <svg className="w-2.5 h-2.5 text-teal-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
                     <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />

@@ -14,8 +14,7 @@ export default function Partners({ title = 'Our Partners' }) {
 
   const slides = [...partners, ...partners];
 
-  // Loop speed (slowed)
-  const loopDuration = 32; // seconds
+  const loopDuration = 10; // seconds
 
   // Auto-play using CSS transform via Framer Motion when not paused
   const slideAnim = reduce ? undefined : { x: ['0%', '-50%'] };
@@ -58,7 +57,13 @@ export default function Partners({ title = 'Our Partners' }) {
             transition={reduce ? undefined : { duration: 36, repeat: Infinity, ease: 'easeInOut' }}
           />
 
-          <div className="pointer-events-auto -mx-4 overflow-hidden">
+          <div
+            className="pointer-events-auto -mx-4 overflow-hidden"
+            style={{
+              WebkitMaskImage: 'linear-gradient(to right, transparent, black 18%, black 82%, transparent)',
+              maskImage: 'linear-gradient(to right, transparent, black 18%, black 82%, transparent)',
+            }}
+          >
             <motion.div
               className="flex w-max gap-8 px-6 py-6 items-center"
               animate={slideAnim}
@@ -75,7 +80,7 @@ export default function Partners({ title = 'Our Partners' }) {
                       aria-label={`partner-${realIdx + 1}`}
                       className="w-40 h-20 sm:w-50 sm:h-24 lg:w-55 lg:h-28"
                       style={{
-                        background: 'linear-gradient(90deg, #0ea5e9 0%, #0d9488 100%)',
+                        background: 'linear-gradient(90deg, #0ea5e9 0%, #1C96BF 100%)',
                         WebkitMaskImage: 'url(' + src + ')',
                         WebkitMaskRepeat: 'no-repeat',
                         WebkitMaskSize: 'contain',
@@ -92,34 +97,7 @@ export default function Partners({ title = 'Our Partners' }) {
                   </div>
                 );
               })}
-              </motion.div>
-
-              {/* Foreground sweeping reveal overlays (sit above the slider) */}
-              {!reduce && (
-                <>
-                  <motion.div
-                    aria-hidden="true"
-                    className="pointer-events-none absolute left-[-30%] top-0 z-50 h-full w-2/5"
-                    style={{
-                      background: 'radial-gradient(closest-side at 10% 50%, rgba(255,255,255,1), rgba(255,255,255,0.9) 20%, rgba(255,255,255,0.65) 40%, transparent 75%)',
-                      filter: 'blur(96px)',
-                    }}
-                    animate={{ x: ['0%', '140%'], opacity: [1, 0.6, 0] }}
-                    transition={{ duration: 30, repeat: Infinity, ease: 'easeInOut', repeatDelay: 3 }}
-                  />
-
-                  <motion.div
-                    aria-hidden="true"
-                    className="pointer-events-none absolute right-[-30%] top-0 z-50 h-full w-2/5"
-                    style={{
-                      background: 'radial-gradient(closest-side at 90% 50%, rgba(255,255,255,1), rgba(255,255,255,0.9) 20%, rgba(255,255,255,0.65) 40%, transparent 75%)',
-                      filter: 'blur(96px)',
-                    }}
-                    animate={{ x: ['0%', '-140%'], opacity: [1, 0.6, 0] }}
-                    transition={{ duration: 36, repeat: Infinity, ease: 'easeInOut', repeatDelay: 2 }}
-                  />
-                </>
-              )}
+            </motion.div>
           </div>
         </div>
       </div>

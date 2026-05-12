@@ -70,14 +70,14 @@ function ServiceRow({ service, index }) {
         className="absolute inset-0 pointer-events-none"
         animate={{ opacity: hovered ? 1 : 0.4 }}
         transition={{ duration: 0.4 }}
-        style={{ background: 'radial-gradient(ellipse 70% 70% at 50% 50%, rgba(13,148,136,0.18) 0%, transparent 70%)' }}
+        style={{ background: 'radial-gradient(ellipse 70% 70% at 50% 50%, rgba(28,150,191,0.18) 0%, transparent 70%)' }}
       />
 
       {/* Auto-sliding teal light beam */}
       <motion.div
         className="absolute inset-y-0 w-24 pointer-events-none"
         style={{
-          background: 'linear-gradient(90deg, transparent 0%, rgba(13,148,136,0.28) 50%, transparent 100%)',
+          background: 'linear-gradient(90deg, transparent 0%, rgba(28,150,191,0.28) 50%, transparent 100%)',
           filter: 'blur(14px)',
           skewX: -12,
         }}
@@ -112,7 +112,7 @@ function ServiceRow({ service, index }) {
       {/* Ghost service number */}
       <div
         className="absolute right-6 bottom-2 font-black leading-none select-none pointer-events-none"
-        style={{ fontSize: 'clamp(72px, 9vw, 120px)', color: 'rgba(13,148,136,0.07)' }}
+        style={{ fontSize: 'clamp(72px, 9vw, 120px)', color: 'rgba(28,150,191,0.07)' }}
       >
         {service.num}
       </div>
@@ -135,7 +135,7 @@ function ServiceRow({ service, index }) {
       {/* Bottom glow line */}
       <motion.div
         className="absolute bottom-0 left-0 right-0 h-px"
-        style={{ background: 'linear-gradient(90deg, transparent, rgba(13,148,136,0.6), transparent)' }}
+        style={{ background: 'linear-gradient(90deg, transparent, rgba(28,150,191,0.6), transparent)' }}
         animate={{ opacity: hovered ? 1 : 0.2, scaleX: hovered ? 1 : 0.5 }}
         transition={{ duration: 0.4 }}
       />
@@ -171,7 +171,7 @@ function ServiceRow({ service, index }) {
       {/* CTA link */}
       <motion.div
         className="inline-flex items-center gap-2 text-sm font-bold uppercase tracking-widest"
-        animate={{ color: hovered ? '#0d9488' : '#d1d5db' }}
+        animate={{ color: hovered ? '#1C96BF' : '#d1d5db' }}
         transition={{ duration: 0.3 }}
       >
         <span>Explore Service</span>

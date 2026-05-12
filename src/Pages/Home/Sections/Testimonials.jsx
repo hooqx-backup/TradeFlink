@@ -56,7 +56,7 @@ export default function Testimonials() {
       {/* Enormous ghost quote mark */}
       <div
         className="absolute left-6 lg:left-16 top-0 font-black leading-none pointer-events-none select-none"
-        style={{ fontSize: 'clamp(200px, 28vw, 380px)', color: 'rgba(13,148,136,0.05)', lineHeight: 0.7 }}
+        style={{ fontSize: 'clamp(200px, 28vw, 380px)', color: 'rgba(28,150,191,0.05)', lineHeight: 0.7 }}
       >
         "
       </div>
