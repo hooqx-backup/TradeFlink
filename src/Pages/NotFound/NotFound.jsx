@@ -1,4 +1,3 @@
-import React from 'react';
 import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 import bgImage from '../../assets/images/404page.png';
@@ -10,7 +9,7 @@ export default function NotFound() {
     { label: 'Home', path: '/' },
     { label: 'Services', path: '/#services' },
     { label: 'Solutions', path: '/#solutions' },
-    { label: 'Contact', path: '/#contact' },
+    { label: 'Contact', path: '/contact' },
   ];
 
   return (

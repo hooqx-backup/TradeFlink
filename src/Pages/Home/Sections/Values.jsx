@@ -107,7 +107,7 @@ export default function Values() {
               className="absolute inset-0 pointer-events-none"
               animate={{ opacity: hovered === i ? 1 : 0 }}
               transition={{ duration: 0.35 }}
-              style={{ background: 'linear-gradient(105deg, rgba(13,148,136,0.10) 0%, rgba(13,148,136,0.04) 40%, transparent 70%)' }}
+              style={{ background: 'linear-gradient(105deg, rgba(28,150,191,0.10) 0%, rgba(28,150,191,0.04) 40%, transparent 70%)' }}
             />
 
             {/* Image reveal — slides in from right on hover */}
@@ -135,7 +135,7 @@ export default function Values() {
               {/* Number */}
               <motion.span
                 className="shrink-0 font-black tabular-nums leading-none select-none"
-                animate={{ color: hovered === i ? 'rgba(13,148,136,0.6)' : 'rgba(255,255,255,0.07)' }}
+                animate={{ color: hovered === i ? 'rgba(28,150,191,0.6)' : 'rgba(255,255,255,0.07)' }}
                 transition={{ duration: 0.3 }}
                 style={{ fontSize: 'clamp(40px, 4.5vw, 64px)' }}
               >

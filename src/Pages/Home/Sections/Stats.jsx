@@ -43,7 +43,7 @@ function StatRow({ stat, index, trigger }) {
         className="absolute inset-0 pointer-events-none"
         animate={{ opacity: hovered ? 1 : 0 }}
         transition={{ duration: 0.3 }}
-        style={{ background: 'linear-gradient(to right, rgba(13,148,136,0.04), transparent)' }}
+        style={{ background: 'linear-gradient(to right, rgba(28,150,191,0.04), transparent)' }}
       />
 
       {/* Active left border */}
@@ -60,7 +60,7 @@ function StatRow({ stat, index, trigger }) {
           className="font-black leading-none tracking-tight tabular-nums"
           style={{
             fontSize: 'clamp(52px, 6vw, 88px)',
-            color: hovered ? '#0d9488' : '#111827',
+            color: hovered ? '#1C96BF' : '#111827',
             transition: 'color 0.3s',
           }}
         >
@@ -80,7 +80,7 @@ function StatRow({ stat, index, trigger }) {
       {/* Index number — far right */}
       <motion.span
         className="absolute right-6 lg:right-10 text-xs font-bold uppercase tracking-widest"
-        animate={{ color: hovered ? '#0d9488' : '#d1d5db' }}
+        animate={{ color: hovered ? '#1C96BF' : '#d1d5db' }}
         transition={{ duration: 0.3 }}
       >
         0{index + 1}

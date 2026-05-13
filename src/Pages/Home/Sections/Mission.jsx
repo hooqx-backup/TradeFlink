@@ -58,7 +58,7 @@ function PillarRow({ p, i, inView }) {
         transition={{ duration: 0.3 }}
         style={{
           backgroundImage:
-            'linear-gradient(rgba(13,148,136,1) 1px, transparent 1px), linear-gradient(90deg, rgba(13,148,136,1) 1px, transparent 1px)',
+            'linear-gradient(rgba(28,150,191,1) 1px, transparent 1px), linear-gradient(90deg, rgba(28,150,191,1) 1px, transparent 1px)',
           backgroundSize: '28px 28px',
         }}
       />
@@ -68,7 +68,7 @@ function PillarRow({ p, i, inView }) {
         className="absolute inset-x-0 h-px pointer-events-none"
         style={{
           background:
-            'linear-gradient(90deg, transparent 0%, rgba(13,148,136,0.9) 35%, rgba(200,255,245,0.7) 50%, rgba(13,148,136,0.9) 65%, transparent 100%)',
+            'linear-gradient(90deg, transparent 0%, rgba(28,150,191,0.9) 35%, rgba(200,255,245,0.7) 50%, rgba(28,150,191,0.9) 65%, transparent 100%)',
         }}
         animate={hovered ? { top: ['0%', '100%'], opacity: [0, 1, 1, 0] } : { opacity: 0 }}
         transition={{ duration: 0.75, ease: 'linear' }}
@@ -97,7 +97,7 @@ function PillarRow({ p, i, inView }) {
         className="absolute right-0 top-0 bottom-0 w-24 pointer-events-none"
         animate={{ opacity: hovered ? 1 : 0 }}
         transition={{ duration: 0.4 }}
-        style={{ background: 'linear-gradient(to left, rgba(13,148,136,0.08) 0%, transparent 100%)' }}
+        style={{ background: 'linear-gradient(to left, rgba(28,150,191,0.08) 0%, transparent 100%)' }}
       />
 
       {/* Number */}
@@ -143,10 +143,10 @@ function PillarRow({ p, i, inView }) {
         <motion.span
           className="inline-flex items-center gap-2 text-xs font-bold px-3 py-1.5 rounded-full"
           animate={{
-            backgroundColor: hovered ? 'rgba(13,148,136,0.15)' : 'rgb(240,253,250)',
-            color: hovered ? '#2dd4bf' : '#0d9488',
+            backgroundColor: hovered ? 'rgba(28,150,191,0.15)' : 'rgb(240,253,250)',
+            color: hovered ? '#2dd4bf' : '#1C96BF',
           }}
-          style={{ border: '1px solid', borderColor: hovered ? 'rgba(13,148,136,0.35)' : 'transparent' }}
+          style={{ border: '1px solid', borderColor: hovered ? 'rgba(28,150,191,0.35)' : 'transparent' }}
           transition={{ duration: 0.2 }}
         >
           <motion.span

@@ -68,7 +68,7 @@ const TICKER = [
 function CardBar() {
   return (
     <motion.div className="h-0.75 w-full"
-      style={{ background: 'linear-gradient(90deg,#0d9488,#2dd4bf,#0d9488)', backgroundSize: '200% 100%' }}
+      style={{ background: 'linear-gradient(90deg,#1C96BF,#2dd4bf,#1C96BF)', backgroundSize: '200% 100%' }}
       animate={{ backgroundPosition: ['0% 0%', '200% 0%'] }}
       transition={{ duration: 3, repeat: Infinity, ease: 'linear' }}
     />
@@ -92,7 +92,7 @@ function FloatBadge({ children, className, floatY = -6, delay = 0, enterX = 16 }
 }
 
 /* ── Toast notification ───────────────────────────────────────── */
-function LiveToast({ text, color = '#0d9488', repeatDelay = 4 }) {
+function LiveToast({ text, color = '#1C96BF', repeatDelay = 4 }) {
   return (
     <motion.div
       className="absolute -bottom-3 -right-3 bg-white rounded-xl px-3.5 py-2 flex items-center gap-2"
@@ -120,7 +120,7 @@ function ExporterVisual() {
   return (
     <div className="relative w-full h-full flex items-center justify-center">
       <div className="absolute inset-0 pointer-events-none"
-        style={{ background: 'radial-gradient(ellipse 80% 70% at 60% 50%, rgba(13,148,136,0.07) 0%, transparent 70%)' }} />
+        style={{ background: 'radial-gradient(ellipse 80% 70% at 60% 50%, rgba(28,150,191,0.07) 0%, transparent 70%)' }} />
 
       <motion.div className="relative w-72 bg-white rounded-2xl overflow-visible"
         style={{ boxShadow: '0 0 0 1px rgba(0,0,0,0.06), 0 24px 64px rgba(0,0,0,0.09)' }}
@@ -160,7 +160,7 @@ function ExporterVisual() {
                   transition={{ duration: 0.3 }}>
                   <motion.span className="w-4 h-4 rounded-full flex items-center justify-center text-[8px] font-black"
                     animate={{
-                      background: step >= i ? '#0d9488' : '#f3f4f6',
+                      background: step >= i ? '#1C96BF' : '#f3f4f6',
                       color: step >= i ? '#fff' : '#9ca3af',
                     }}
                     transition={{ duration: 0.3 }}>
@@ -170,7 +170,7 @@ function ExporterVisual() {
                 </motion.div>
                 {i < steps.length - 1 && (
                   <motion.div className="flex-1 h-px"
-                    animate={{ background: step > i ? '#0d9488' : '#e5e7eb' }}
+                    animate={{ background: step > i ? '#1C96BF' : '#e5e7eb' }}
                     transition={{ duration: 0.4 }} />
                 )}
               </React.Fragment>
@@ -180,7 +180,7 @@ function ExporterVisual() {
           {/* Progress bar */}
           <div className="h-1.5 bg-gray-100 rounded-full overflow-hidden">
             <motion.div className="h-full rounded-full"
-              style={{ background: 'linear-gradient(90deg,#0d9488,#2dd4bf)' }}
+              style={{ background: 'linear-gradient(90deg,#1C96BF,#2dd4bf)' }}
               initial={{ width: 0 }} animate={{ width: '85%' }}
               transition={{ duration: 1.4, delay: 0.5, ease: 'easeOut' }} />
           </div>
@@ -212,7 +212,7 @@ function ImporterVisual() {
   return (
     <div className="relative w-full h-full flex items-center justify-center">
       <div className="absolute inset-0 pointer-events-none"
-        style={{ background: 'radial-gradient(ellipse 80% 70% at 60% 50%, rgba(13,148,136,0.07) 0%, transparent 70%)' }} />
+        style={{ background: 'radial-gradient(ellipse 80% 70% at 60% 50%, rgba(28,150,191,0.07) 0%, transparent 70%)' }} />
 
       <motion.div className="relative w-72 bg-white rounded-2xl overflow-visible"
         style={{ boxShadow: '0 0 0 1px rgba(0,0,0,0.06), 0 24px 64px rgba(0,0,0,0.09)' }}
@@ -226,7 +226,7 @@ function ImporterVisual() {
           <div className="flex items-end gap-1.5 h-16 mb-4">
             {bars.map((h, i) => (
               <motion.div key={i} className="flex-1 rounded-t relative overflow-hidden"
-                style={{ height: `${h}%`, background: i === 5 ? 'linear-gradient(to top,#0d9488,#2dd4bf)' : '#f0fdf9', transformOrigin: 'bottom' }}
+                style={{ height: `${h}%`, background: i === 5 ? 'linear-gradient(to top,#1C96BF,#2dd4bf)' : '#f0fdf9', transformOrigin: 'bottom' }}
                 initial={{ scaleY: 0 }} animate={{ scaleY: 1 }}
                 transition={{ duration: 0.45, delay: 0.15 + i * 0.07 }}>
                 {i === 5 && (
@@ -281,7 +281,7 @@ function InvestorVisual() {
   return (
     <div className="relative w-full h-full flex items-center justify-center">
       <div className="absolute inset-0 pointer-events-none"
-        style={{ background: 'radial-gradient(ellipse 80% 70% at 60% 50%, rgba(13,148,136,0.07) 0%, transparent 70%)' }} />
+        style={{ background: 'radial-gradient(ellipse 80% 70% at 60% 50%, rgba(28,150,191,0.07) 0%, transparent 70%)' }} />
 
       <motion.div className="relative w-72 bg-white rounded-2xl overflow-visible"
         style={{ boxShadow: '0 0 0 1px rgba(0,0,0,0.06), 0 24px 64px rgba(0,0,0,0.09)' }}
@@ -309,7 +309,7 @@ function InvestorVisual() {
             {base.map((v, i) => (
               <div key={i} className="flex-1 flex flex-col items-center gap-1">
                 <motion.div className="w-full rounded-t relative overflow-hidden"
-                  style={{ background: i === base.length - 1 ? 'linear-gradient(to top,#0d9488,#2dd4bf)' : '#f0fdf9', transformOrigin: 'bottom' }}
+                  style={{ background: i === base.length - 1 ? 'linear-gradient(to top,#1C96BF,#2dd4bf)' : '#f0fdf9', transformOrigin: 'bottom' }}
                   initial={{ scaleY: 0 }}
                   animate={{ scaleY: 1, height: `${(v / 10) * 100}%` }}
                   transition={{ duration: 0.45, delay: 0.1 + i * 0.08 }}>
@@ -413,15 +413,15 @@ export default function Solutions() {
 
       {/* Ambient orbs */}
       <motion.div className="absolute -top-40 -right-40 w-150 h-150 rounded-full pointer-events-none"
-        style={{ background: 'radial-gradient(circle, rgba(13,148,136,0.06) 0%, transparent 65%)' }}
+        style={{ background: 'radial-gradient(circle, rgba(28,150,191,0.06) 0%, transparent 65%)' }}
         animate={{ scale: [1, 1.15, 1] }} transition={{ duration: 10, repeat: Infinity, ease: 'easeInOut' }} />
       <motion.div className="absolute -bottom-32 -left-32 w-120 h-120 rounded-full pointer-events-none"
-        style={{ background: 'radial-gradient(circle, rgba(13,148,136,0.04) 0%, transparent 65%)' }}
+        style={{ background: 'radial-gradient(circle, rgba(28,150,191,0.04) 0%, transparent 65%)' }}
         animate={{ scale: [1, 1.2, 1] }} transition={{ duration: 13, repeat: Infinity, ease: 'easeInOut', delay: 4 }} />
 
       {/* Sliding light beam */}
       <motion.div className="absolute top-0 bottom-0 w-32 pointer-events-none"
-        style={{ background: 'linear-gradient(90deg,transparent,rgba(13,148,136,0.04),transparent)', filter: 'blur(20px)' }}
+        style={{ background: 'linear-gradient(90deg,transparent,rgba(28,150,191,0.04),transparent)', filter: 'blur(20px)' }}
         animate={{ x: [-128, 1600] }}
         transition={{ duration: 9, repeat: Infinity, ease: 'linear', repeatDelay: 8 }} />
 
@@ -463,9 +463,9 @@ export default function Solutions() {
                 onClick={() => { switchTab(i); setPaused(true); }}
                 className="relative px-6 py-2.5 rounded-full text-sm font-bold cursor-pointer select-none overflow-hidden"
                 animate={{
-                  background: on ? '#0d9488' : '#f3f4f6',
+                  background: on ? '#1C96BF' : '#f3f4f6',
                   color: on ? '#ffffff' : '#9ca3af',
-                  boxShadow: on ? '0 4px 20px rgba(13,148,136,0.28)' : 'none',
+                  boxShadow: on ? '0 4px 20px rgba(28,150,191,0.28)' : 'none',
                 }}
                 whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}
                 transition={{ duration: 0.22 }}>
@@ -527,7 +527,7 @@ export default function Solutions() {
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ duration: 0.35, delay: pi * 0.07 }}>
                       <motion.span className="shrink-0 mt-0.5 w-5 h-5 rounded-full bg-teal-100 flex items-center justify-center"
-                        whileHover={{ scale: 1.2, background: '#0d9488' }}>
+                        whileHover={{ scale: 1.2, background: '#1C96BF' }}>
                         <svg className="w-2.5 h-2.5 text-teal-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
                           <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                         </svg>
@@ -556,8 +556,8 @@ export default function Solutions() {
                   <div className="flex items-center gap-3 flex-wrap">
                     <motion.a href="#contact"
                       className="inline-flex items-center gap-2.5 px-7 py-3.5 rounded-xl text-white font-bold text-sm"
-                      style={{ background: 'linear-gradient(135deg,#0d9488,#14b8a6)', boxShadow: '0 4px 20px rgba(13,148,136,0.26)' }}
-                      whileHover={{ scale: 1.04, boxShadow: '0 8px 32px rgba(13,148,136,0.42)' }}
+                      style={{ background: 'linear-gradient(135deg,#1C96BF,#14b8a6)', boxShadow: '0 4px 20px rgba(28,150,191,0.26)' }}
+                      whileHover={{ scale: 1.04, boxShadow: '0 8px 32px rgba(28,150,191,0.42)' }}
                       whileTap={{ scale: 0.97 }}
                       transition={{ duration: 0.2 }}>
                       {sol.cta}
