@@ -59,7 +59,7 @@ function StatRow({ stat, index, trigger }) {
         <span
           className="font-black leading-none tracking-tight tabular-nums"
           style={{
-            fontSize: 'clamp(52px, 6vw, 88px)',
+            fontSize: 'clamp(30px, 3.5vw, 54px)',
             color: hovered ? '#1C96BF' : '#111827',
             transition: 'color 0.3s',
           }}

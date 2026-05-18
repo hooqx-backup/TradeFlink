@@ -427,14 +427,12 @@ export default function Investors() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.9, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
               className="font-black text-white leading-[1.05] mb-7"
-              style={{ fontSize: 'clamp(36px, 5.5vw, 76px)' }}
+              style={{ fontSize: 'clamp(26px, 3.8vw, 52px)', fontWeight: 900 }}
             >
               Invest in{' '}
               <span className="text-gradient">Global Trade.</span>
-              <br />
-              Earn Predictable
-              <br />
-              Returns.
+       
+              
             </motion.h1>
 
             <motion.p
@@ -590,7 +588,7 @@ export default function Investors() {
             className="text-center mb-14"
           >
             <Eyebrow>Why Tradeflink</Eyebrow>
-            <h2 className="text-4xl lg:text-5xl font-black text-[#0f172a] leading-tight">
+            <h2 className="text-3xl lg:text-4xl font-black text-[#0f172a] leading-tight">
               Built for the modern{' '}
               <span className="text-gradient">alternative investor</span>
             </h2>
@@ -700,7 +698,7 @@ export default function Investors() {
                 <span className="text-teal-400 text-[10px] font-black uppercase tracking-[0.3em]">Consistent Performance</span>
               </motion.div>
               <motion.h2 variants={fadeUp}
-                className="text-4xl lg:text-5xl font-black text-white leading-tight mb-6">
+                className="text-3xl lg:text-4xl font-black text-white leading-tight mb-6">
                 Returns that outperform<br />
                 <span className="text-gradient">traditional fixed income</span>
               </motion.h2>
@@ -749,7 +747,7 @@ export default function Investors() {
             className="text-center mb-16"
           >
             <Eyebrow dark>The Process</Eyebrow>
-            <h2 className="text-4xl lg:text-5xl font-black text-white leading-tight">
+            <h2 className="text-3xl lg:text-4xl font-black text-white leading-tight">
               Start earning in{' '}
               <span className="text-gradient">4 simple steps</span>
             </h2>
@@ -835,7 +833,7 @@ export default function Investors() {
             className="text-center mb-14"
           >
             <Eyebrow>Products</Eyebrow>
-            <h2 className="text-4xl lg:text-5xl font-black text-[#0f172a] leading-tight">
+            <h2 className="text-3xl lg:text-4xl font-black text-[#0f172a] leading-tight">
               Choose your{' '}
               <span className="text-gradient">investment structure</span>
             </h2>
@@ -972,7 +970,7 @@ export default function Investors() {
             className="text-center mb-12"
           >
             <Eyebrow dark>Why Trust Us</Eyebrow>
-            <h2 className="text-3xl lg:text-4xl font-black text-white leading-tight">
+            <h2 className="text-2xl lg:text-3xl font-black text-white leading-tight">
               Institutional-grade{' '}
               <span className="text-gradient">protection</span>
             </h2>
@@ -1017,7 +1015,7 @@ export default function Investors() {
             className="text-center mb-14"
           >
             <Eyebrow>Investor Stories</Eyebrow>
-            <h2 className="text-4xl lg:text-5xl font-black text-[#0f172a] leading-tight">
+            <h2 className="text-3xl lg:text-4xl font-black text-[#0f172a] leading-tight">
               Trusted by{' '}
               <span className="text-gradient">global investors</span>
             </h2>
@@ -1105,7 +1103,7 @@ export default function Investors() {
             className="text-center mb-14"
           >
             <Eyebrow dark>Investor FAQ</Eyebrow>
-            <h2 className="text-4xl lg:text-5xl font-black text-white leading-tight">
+            <h2 className="text-3xl lg:text-4xl font-black text-white leading-tight">
               Questions{' '}
               <span className="text-gradient">answered</span>
             </h2>
@@ -1168,7 +1166,7 @@ export default function Investors() {
             <motion.h2
               variants={fadeUp}
               className="font-black text-white leading-tight mb-6"
-              style={{ fontSize: 'clamp(36px, 5vw, 72px)' }}
+              style={{ fontSize: 'clamp(26px, 3.5vw, 50px)' }}
             >
               Unlock access to{' '}
               <span className="text-gradient">global trade</span>

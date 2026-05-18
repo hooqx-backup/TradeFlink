@@ -453,7 +453,7 @@ export default function CaseStudies() {
               </motion.div>
 
               {/* Word-by-word headline */}
-              <motion.h1 className="mt-7 text-5xl sm:text-6xl lg:text-7xl font-black leading-[0.92] tracking-[-0.04em] text-white">
+              <motion.h1 className="mt-7 text-3xl sm:text-4xl font-black leading-[0.92] tracking-[-0.04em] text-white">
                 {['Real', 'businesses,'].map((word, i) => (
                   <motion.span
                     key={word}
@@ -629,7 +629,7 @@ export default function CaseStudies() {
 
             <div className="relative">
               <Eyebrow>Get Started</Eyebrow>
-              <h2 className="mt-7 text-4xl sm:text-5xl font-black leading-[0.95] tracking-[-0.04em] text-white">
+              <h2 className="mt-7 text-3xl sm:text-4xl font-black leading-[0.95] tracking-[-0.04em] text-white">
                 Ready to write{' '}
                 <motion.span
                   className="bg-clip-text text-transparent"

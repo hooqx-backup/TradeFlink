@@ -19,7 +19,7 @@ const SERVICES = [
   {
     title: 'Export Factoring',
     desc: 'Instant cash on export invoices',
-    href: '/#services',
+    href: '/export-factoring',
     icon: (
       <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth={1.8} viewBox="0 0 24 24">
         <path strokeLinecap="round" strokeLinejoin="round"
@@ -88,23 +88,31 @@ function ServiceDropdown({ visible }) {
 
       {/* Items grid */}
       <div className="grid grid-cols-2 gap-px bg-gray-100">
-        {SERVICES.map((s) => (
-          <a
-            key={s.title}
-            href={s.href}
-            className="group flex items-start gap-3 bg-white px-5 py-4 hover:bg-teal-50 transition-colors"
-          >
-            <span className="flex-shrink-0 mt-0.5 w-9 h-9 rounded-xl bg-teal-50 text-teal-600 flex items-center justify-center group-hover:bg-teal-600 group-hover:text-white transition-all duration-200">
-              {s.icon}
-            </span>
-            <div>
-              <p className="text-sm font-semibold text-gray-900 group-hover:text-teal-700 transition-colors leading-snug">
-                {s.title}
-              </p>
-              <p className="text-xs text-gray-400 mt-0.5">{s.desc}</p>
-            </div>
-          </a>
-        ))}
+        {SERVICES.map((s) => {
+          const isPage = s.href.startsWith('/') && !s.href.includes('#');
+          const inner = (
+            <>
+              <span className="flex-shrink-0 mt-0.5 w-9 h-9 rounded-xl bg-teal-50 text-teal-600 flex items-center justify-center group-hover:bg-teal-600 group-hover:text-white transition-all duration-200">
+                {s.icon}
+              </span>
+              <div>
+                <p className="text-sm font-semibold text-gray-900 group-hover:text-teal-700 transition-colors leading-snug">
+                  {s.title}
+                </p>
+                <p className="text-xs text-gray-400 mt-0.5">{s.desc}</p>
+              </div>
+            </>
+          );
+          return isPage ? (
+            <Link key={s.title} to={s.href} className="group flex items-start gap-3 bg-white px-5 py-4 hover:bg-teal-50 transition-colors">
+              {inner}
+            </Link>
+          ) : (
+            <a key={s.title} href={s.href} className="group flex items-start gap-3 bg-white px-5 py-4 hover:bg-teal-50 transition-colors">
+              {inner}
+            </a>
+          );
+        })}
       </div>
 
       {/* Footer CTA */}
@@ -327,22 +335,31 @@ export default function Navbar() {
                   }`}
                 >
                   <div className="ml-3 mt-1 mb-2 pl-4 border-l-2 border-teal-100 space-y-1">
-                    {link.dropdown.map((s) => (
-                      <a
-                        key={s.title}
-                        href={s.href}
-                        onClick={() => setMobileOpen(false)}
-                        className="flex items-center gap-3 py-3 text-[13px] font-medium text-gray-600 hover:text-teal-600 transition"
-                      >
-                        <span className="flex-shrink-0 w-8 h-8 rounded-lg bg-teal-50 text-teal-600 flex items-center justify-center">
-                          {s.icon}
-                        </span>
-                        <div>
-                          <p className="font-semibold text-gray-800">{s.title}</p>
-                          <p className="text-xs text-gray-400">{s.desc}</p>
-                        </div>
-                      </a>
-                    ))}
+                    {link.dropdown.map((s) => {
+                      const isPage = s.href.startsWith('/') && !s.href.includes('#');
+                      const inner = (
+                        <>
+                          <span className="flex-shrink-0 w-8 h-8 rounded-lg bg-teal-50 text-teal-600 flex items-center justify-center">
+                            {s.icon}
+                          </span>
+                          <div>
+                            <p className="font-semibold text-gray-800">{s.title}</p>
+                            <p className="text-xs text-gray-400">{s.desc}</p>
+                          </div>
+                        </>
+                      );
+                      return isPage ? (
+                        <Link key={s.title} to={s.href} onClick={() => setMobileOpen(false)}
+                          className="flex items-center gap-3 py-3 text-[13px] font-medium text-gray-600 hover:text-teal-600 transition">
+                          {inner}
+                        </Link>
+                      ) : (
+                        <a key={s.title} href={s.href} onClick={() => setMobileOpen(false)}
+                          className="flex items-center gap-3 py-3 text-[13px] font-medium text-gray-600 hover:text-teal-600 transition">
+                          {inner}
+                        </a>
+                      );
+                    })}
                   </div>
                 </div>
               </div>

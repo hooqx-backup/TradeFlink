@@ -37,7 +37,7 @@ export default function FAQ() {
             transition={{ duration: 0.6 }}
           >
             <p className="text-xs font-bold uppercase tracking-[0.22em] text-teal-600 mb-2">Got Questions?</p>
-            <h2 className="text-4xl lg:text-5xl font-black text-gray-900">FAQ</h2>
+            <h2 className="text-3xl lg:text-4xl font-black text-gray-900">FAQ</h2>
           </motion.div>
           <motion.div
             className="flex-1 h-px bg-gray-100 hidden lg:block"

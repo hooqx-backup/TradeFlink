@@ -27,6 +27,11 @@ const InstagramIcon = () => (
     <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
   </svg>
 );
+const WhatsAppIcon = ({ size = 20 }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor">
+    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+  </svg>
+);
 
 /* ── Framer variants ──────────────────────────────────────────────── */
 const fadeUp = {
@@ -104,13 +109,15 @@ const PARTICLES = Array.from({ length: 48 }, (_, i) => {
 });
 
 /* ── Data ─────────────────────────────────────────────────────────── */
+const WA_HREF = 'https://wa.me/917003634890?text=Hello%20TradeFlink%2C%20I%27d%20like%20to%20know%20more%20about%20your%20services.';
+
 const CONTACT_CARDS = [
   {
-    Icon: MessageSquare, title: 'Live Chat',
-    desc: 'Chat with our team in real time during business hours.',
-    action: 'Start a conversation', href: '#form',
-    accent: '#1C96BF', light: 'rgba(28,150,191,0.1)',
-    glow: 'rgba(28,150,191,0.25)', badge: 'Usually replies instantly',
+    Icon: WhatsAppIcon, title: 'WhatsApp Us',
+    desc: 'Message us instantly on WhatsApp. Our team responds within minutes during business hours.',
+    action: '+91 70036 34890', href: WA_HREF, external: true,
+    accent: '#25D366', light: 'rgba(37,211,102,0.1)',
+    glow: 'rgba(37,211,102,0.25)', badge: 'Usually replies in minutes',
   },
   {
     Icon: Mail, title: 'Email Us',
@@ -122,9 +129,9 @@ const CONTACT_CARDS = [
   {
     Icon: Phone, title: 'Call Us',
     desc: 'Speak directly with a trade finance specialist.',
-    action: '+971 4 000 0000', href: 'tel:+97140000000',
+    action: '+91 70036 34890', href: 'tel:+917003634890',
     accent: '#6366f1', light: 'rgba(99,102,241,0.1)',
-    glow: 'rgba(99,102,241,0.25)', badge: 'Mon – Fri, 9am – 6pm GST',
+    glow: 'rgba(99,102,241,0.25)', badge: 'Mon – Fri, 9am – 6pm IST',
   },
 ];
 
@@ -552,7 +559,24 @@ export default function Contact() {
   const handleSubmit = e => {
     e.preventDefault();
     setSending(true);
-    setTimeout(() => { setSending(false); setSubmitted(true); }, 1800);
+    const text = [
+      `Hello TradeFlink,`,
+      ``,
+      `*Name:* ${form.name}`,
+      `*Email:* ${form.email}`,
+      form.company ? `*Company:* ${form.company}` : null,
+      form.subject ? `*Subject:* ${form.subject}` : null,
+      ``,
+      `*Message:*`,
+      form.message,
+    ].filter(l => l !== null).join('\n');
+
+    const url = `https://wa.me/917003634890?text=${encodeURIComponent(text)}`;
+    setTimeout(() => {
+      setSending(false);
+      setSubmitted(true);
+      window.open(url, '_blank', 'noopener,noreferrer');
+    }, 800);
   };
 
   return (
@@ -672,7 +696,7 @@ export default function Contact() {
             </motion.div>
 
             {/* Headline with split-word animation */}
-            <h1 className="font-black text-white leading-[1.02] mb-7 text-left" style={{ fontSize: 'clamp(38px,6vw,82px)' }}>
+            <h1 className="font-black text-white leading-[1.02] mb-7 text-left" style={{ fontSize: 'clamp(26px, 3.8vw, 52px)', fontWeight: 900 }}>
               <SplitWords text="We'd love to" delay={0.15} />
               <br />
               <span className="text-gradient" style={{ textShadow: '0 0 80px rgba(28,150,191,0.4)' }}>
@@ -777,6 +801,8 @@ export default function Contact() {
               <TiltCard key={card.title} intensity={6}>
                 <motion.a
                   href={card.href}
+                  target={card.external ? '_blank' : undefined}
+                  rel={card.external ? 'noopener noreferrer' : undefined}
                   custom={i} variants={floatUp}
                   onMouseEnter={() => setHoveredCard(i)}
                   onMouseLeave={() => setHoveredCard(null)}
@@ -1024,22 +1050,26 @@ export default function Contact() {
               >
                 <p className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-400 mb-2">Direct Lines</p>
                 {[
-                  { Icon: Mail,  v: 'info@tradeflink.com',    l: 'General',  href: 'mailto:info@tradeflink.com' },
-                  { Icon: Mail,  v: 'support@tradeflink.com', l: 'Support',  href: 'mailto:support@tradeflink.com' },
-                  { Icon: Phone, v: '+971 4 000 0000',        l: 'Dubai HQ', href: 'tel:+97140000000' },
-                ].map(({ Icon, v, l, href }) => (
+                  { Icon: Mail,         v: 'info@tradeflink.com',    l: 'General',   href: 'mailto:info@tradeflink.com' },
+                  { Icon: Mail,         v: 'support@tradeflink.com', l: 'Support',   href: 'mailto:support@tradeflink.com' },
+                  { Icon: Phone,        v: '+91 70036 34890',        l: 'Phone',     href: 'tel:+917003634890' },
+                  { Icon: WhatsAppIcon, v: 'Chat on WhatsApp',       l: 'WhatsApp',  href: WA_HREF, external: true, color: '#25D366' },
+                ].map(({ Icon, v, l, href, external, color }) => (
                   <motion.a
                     key={v} href={href}
+                    target={external ? '_blank' : undefined}
+                    rel={external ? 'noopener noreferrer' : undefined}
                     className="flex items-center gap-3 group"
                     style={{ textDecoration: 'none' }}
                     whileHover={{ x: 4 }}
                     transition={{ type: 'spring', stiffness: 400 }}
                   >
-                    <div className="w-9 h-9 rounded-xl bg-slate-50 flex items-center justify-center flex-shrink-0 group-hover:bg-teal-50 transition-colors">
-                      <Icon size={14} className="text-slate-400 group-hover:text-teal-600 transition-colors" />
+                    <div className="w-9 h-9 rounded-xl bg-slate-50 flex items-center justify-center flex-shrink-0 group-hover:bg-teal-50 transition-colors"
+                      style={color ? { background: `${color}15` } : {}}>
+                      <Icon size={14} className="text-slate-400 transition-colors" style={color ? { color } : {}} />
                     </div>
                     <div>
-                      <p className="text-[#0f172a] text-sm font-semibold group-hover:text-teal-600 transition-colors">{v}</p>
+                      <p className="text-[#0f172a] text-sm font-semibold transition-colors" style={color ? {} : {}}>{v}</p>
                       <p className="text-slate-400 text-[10px] uppercase tracking-widest">{l}</p>
                     </div>
                   </motion.a>

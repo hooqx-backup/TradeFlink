@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import {
   ArrowRight, Eye, Lightbulb, Heart, Rocket,
   Globe, Link2, Building2, ShieldCheck, Zap,
-  Star, MapPin,
+  Star, MapPin, Users, Network, TrendingUp,
 } from 'lucide-react';
 
 // ── Images ───────────────────────────────────────────────────────────
@@ -53,12 +53,12 @@ const STATS = [
 ];
 
 const MILESTONES = [
-  { year: '2019', title: 'The Idea',          desc: 'Founded in Dubai with a single mission — remove the payment barriers holding back global SMEs.' },
-  { year: '2020', title: 'First 100 Clients', desc: 'Onboarded our first 100 businesses across India, UAE, and Bangladesh within 12 months of launch.' },
-  { year: '2021', title: 'Global Expansion',  desc: 'Opened offices in London, Istanbul, and Delaware. Crossed $500M in trade facilitated.' },
-  { year: '2022', title: '70+ Countries',     desc: 'Our network grew to 70+ countries, connecting exporters, importers, and investors worldwide.' },
-  { year: '2023', title: 'Platform 2.0',      desc: 'Launched real-time analytics dashboard, AI-powered risk scoring, and instant invoice financing.' },
-  { year: '2024', title: 'Series B & Beyond', desc: 'Raised Series B to accelerate technology investment and expand into Southeast Asia and Africa.' },
+  { year: '2019', title: 'The Idea',          desc: 'Founded in Dubai with a single mission — remove the payment barriers holding back global SMEs.', color: '#1C96BF', icon: Lightbulb },
+  { year: '2020', title: 'First 100 Clients', desc: 'Onboarded our first 100 businesses across India, UAE, and Bangladesh within 12 months of launch.', color: '#0891b2', icon: Users },
+  { year: '2021', title: 'Global Expansion',  desc: 'Opened offices in London, Istanbul, and Delaware. Crossed $500M in trade facilitated.', color: '#06b6d4', icon: Globe },
+  { year: '2022', title: '70+ Countries',     desc: 'Our network grew to 70+ countries, connecting exporters, importers, and investors worldwide.', color: '#14b8a6', icon: Network },
+  { year: '2023', title: 'Platform 2.0',      desc: 'Launched real-time analytics dashboard, AI-powered risk scoring, and instant invoice financing.', color: '#0ea5e9', icon: Zap },
+  { year: '2024', title: 'Series B & Beyond', desc: 'Raised Series B to accelerate technology investment and expand into Southeast Asia and Africa.', color: '#06d6a0', icon: TrendingUp },
 ];
 
 const VALUES = [
@@ -244,7 +244,7 @@ export default function About() {
         </div>
 
         {/* Left copy */}
-        <div className="relative z-10 flex items-center w-full lg:w-1/2 px-6 sm:px-12 lg:px-20 py-40 lg:py-32">
+        <div className="relative z-10 flex items-center w-full lg:w-1/2 px-6 sm:px-12 lg:px-20 py-40 lg:py-32 mt-16">
           <div className="max-w-lg">
             <motion.div initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.5 }}
               className="flex items-center gap-2.5 mb-8">
@@ -256,7 +256,7 @@ export default function About() {
               initial={{ opacity: 0, y: 40 }} animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
               className="font-black text-white leading-[1.0] mb-7"
-              style={{ fontSize: 'clamp(40px,6vw,80px)' }}>
+              style={{ fontSize: 'clamp(26px,3.8vw,52px)' }}>
               Bridging the Gap<br />
               in <span className="text-gradient">Global Trade</span>
             </motion.h1>
@@ -369,7 +369,7 @@ export default function About() {
                 <span className="text-teal-600 text-[10px] font-black uppercase tracking-[0.3em]">How We Started</span>
               </motion.div>
               <motion.h2 variants={fadeUp}
-                className="text-4xl lg:text-5xl font-black text-[#0f172a] leading-tight mb-6">
+                className="text-3xl lg:text-4xl font-black text-[#0f172a] leading-tight mb-6">
                 Built to solve a <span className="text-gradient">real problem</span>
               </motion.h2>
               <motion.p variants={fadeUp} className="text-slate-500 text-lg leading-relaxed mb-4">
@@ -403,7 +403,7 @@ export default function About() {
           <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, margin: '-60px' }}
             variants={fadeUp} className="text-center mb-14">
             <Eyebrow>What We Do</Eyebrow>
-            <h2 className="text-4xl lg:text-5xl font-black text-[#0f172a] leading-tight">
+            <h2 className="text-3xl lg:text-4xl font-black text-[#0f172a] leading-tight">
               Everything you need to<br />
               <span className="text-gradient">trade without limits</span>
             </h2>
@@ -522,7 +522,7 @@ export default function About() {
           <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, margin: '-60px' }}
             variants={fadeUp} className="text-center mb-14">
             <Eyebrow>Our Direction</Eyebrow>
-            <h2 className="text-4xl lg:text-5xl font-black text-white leading-tight">
+            <h2 className="text-3xl lg:text-4xl font-black text-white leading-tight">
               Purpose-driven from day <span className="text-gradient">one</span>
             </h2>
           </motion.div>
@@ -570,22 +570,49 @@ export default function About() {
       {/* ══════════════════════════════════════════════════════════
           CORE VALUES
       ══════════════════════════════════════════════════════════ */}
-      <section className="section bg-white">
-        <div className="container-xl">
+      <section className="section bg-white relative overflow-hidden">
+        {/* Animated background elements */}
+        <motion.div 
+          className="absolute -top-20 -left-20 w-72 h-72 rounded-full pointer-events-none"
+          style={{ background: 'radial-gradient(circle, rgba(28,150,191,0.05) 0%, transparent 70%)' }}
+          animate={{ scale: [1, 1.2, 1], opacity: [0.3, 0.6, 0.3] }}
+          transition={{ duration: 15, repeat: Infinity, ease: 'easeInOut' }}
+        />
+        <motion.div 
+          className="absolute -bottom-20 -right-20 w-96 h-96 rounded-full pointer-events-none"
+          style={{ background: 'radial-gradient(circle, rgba(244,63,94,0.04) 0%, transparent 70%)' }}
+          animate={{ scale: [1, 1.15, 1], opacity: [0.2, 0.5, 0.2], x: [0, 40, 0], y: [0, -30, 0] }}
+          transition={{ duration: 18, repeat: Infinity, ease: 'easeInOut', delay: 3 }}
+        />
+
+        <div className="container-xl relative z-10">
           <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, margin: '-60px' }}
-            variants={fadeUp} className="text-center mb-14">
-            <Eyebrow light>Our DNA</Eyebrow>
-            <h2 className="text-4xl lg:text-5xl font-black text-[#0f172a] leading-tight">
+            variants={fadeUp} className="text-center mb-16">
+            <motion.div
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.1 }}
+            >
+              <Eyebrow light>Our DNA</Eyebrow>
+            </motion.div>
+            <motion.h2 
+              className="text-3xl lg:text-4xl font-black text-[#0f172a] leading-tight"
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.7, delay: 0.15 }}
+            >
               Values that drive<br />everything we <span className="text-gradient">build</span>
-            </h2>
+            </motion.h2>
           </motion.div>
 
           <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, margin: '-60px' }}
-            variants={stagger} className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
+            variants={stagger} className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {VALUES.map((v, i) => (
               <motion.div key={v.title} custom={i} variants={fadeUp}>
                 <PremiumCard
-                  className="group p-7 rounded-3xl border border-gray-100 bg-white cursor-default overflow-hidden hover:shadow-2xl hover:border-transparent transition-shadow duration-300 h-full"
+                  className="group p-8 rounded-3xl border border-gray-100 bg-white cursor-default overflow-hidden hover:shadow-2xl hover:border-transparent transition-all duration-300 h-full flex flex-col"
                   spotColor={`${v.accent}14`}
                 >
                   {/* Top shimmer */}
@@ -599,25 +626,26 @@ export default function About() {
                     />
                   </motion.div>
 
-                  <div className="relative z-10">
+                  <div className="relative z-10 flex-grow">
                     {/* Animated icon */}
                     <motion.div
-                      className="w-12 h-12 rounded-2xl flex items-center justify-center mb-5"
+                      className="w-14 h-14 rounded-2xl flex items-center justify-center mb-6"
                       style={{ background: v.light }}
-                      animate={{ scale: [1, 1.1, 1], rotate: [0, 6, -6, 0] }}
-                      transition={{ duration: 3.5 + i * 0.4, repeat: Infinity, ease: 'easeInOut', delay: i * 0.5 }}
+                      whileHover={{ scale: 1.1, rotate: 8 }}
+                      transition={{ type: 'spring', stiffness: 300 }}
                     >
-                      <v.Icon size={22} style={{ color: v.accent }} />
+                      <v.Icon size={26} style={{ color: v.accent }} />
                     </motion.div>
 
                     {/* Animated accent bar */}
-                    <motion.div className="h-0.5 rounded-full mb-4"
+                    <motion.div className="h-1 rounded-full mb-5"
                       style={{ background: v.accent }}
-                      animate={{ width: ['2rem', '3.5rem', '2rem'] }}
-                      transition={{ duration: 2.5, repeat: Infinity, ease: 'easeInOut', delay: i * 0.4 }}
+                      initial={{ width: '2rem' }}
+                      whileHover={{ width: '100%' }}
+                      transition={{ duration: 0.3, ease: 'easeOut' }}
                     />
 
-                    <h3 className="text-lg font-black text-[#0f172a] mb-3">{v.title}</h3>
+                    <h3 className="text-xl font-black text-[#0f172a] mb-3">{v.title}</h3>
                     <p className="text-sm text-slate-500 leading-relaxed">{v.desc}</p>
                   </div>
 
@@ -627,7 +655,7 @@ export default function About() {
                   />
 
                   {/* Pulsing corner glow */}
-                  <motion.div className="absolute bottom-4 right-4 w-8 h-8 rounded-full pointer-events-none"
+                  <motion.div className="absolute bottom-4 right-4 w-10 h-10 rounded-full pointer-events-none"
                     style={{ background: `radial-gradient(circle,${v.accent}30 0%,transparent 70%)` }}
                     animate={{ scale: [1, 1.6, 1], opacity: [0.4, 0.9, 0.4] }}
                     transition={{ duration: 2.5 + i * 0.3, repeat: Infinity, ease: 'easeInOut', delay: i * 0.4 }}
@@ -642,58 +670,185 @@ export default function About() {
       {/* ══════════════════════════════════════════════════════════
           MILESTONES TIMELINE
       ══════════════════════════════════════════════════════════ */}
-      <section className="section bg-slate-50">
-        <div className="container-xl">
+      <section className="section bg-gradient-to-b from-slate-50 to-white relative overflow-hidden">
+        {/* Animated background orbs */}
+        <motion.div
+          className="absolute top-20 left-10 w-72 h-72 rounded-full pointer-events-none"
+          style={{ background: 'radial-gradient(circle, rgba(28,150,191,0.06) 0%, transparent 70%)' }}
+          animate={{ scale: [1, 1.2, 1], opacity: [0.3, 0.6, 0.3] }}
+          transition={{ duration: 15, repeat: Infinity, ease: 'easeInOut' }}
+        />
+        <motion.div
+          className="absolute bottom-32 right-20 w-96 h-96 rounded-full pointer-events-none"
+          style={{ background: 'radial-gradient(circle, rgba(6,182,212,0.05) 0%, transparent 70%)' }}
+          animate={{ scale: [1, 1.15, 1], opacity: [0.2, 0.5, 0.2], x: [0, 40, 0], y: [0, -30, 0] }}
+          transition={{ duration: 18, repeat: Infinity, ease: 'easeInOut', delay: 3 }}
+        />
+
+        <div className="container-xl relative z-10">
           <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, margin: '-60px' }}
-            variants={fadeUp} className="text-center mb-16">
-            <Eyebrow light>Our Journey</Eyebrow>
-            <h2 className="text-4xl lg:text-5xl font-black text-[#0f172a] leading-tight">
+            variants={fadeUp} className="text-center mb-20">
+            <motion.div
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.1 }}
+            >
+              <Eyebrow light>Our Journey</Eyebrow>
+            </motion.div>
+            <motion.h2 
+              className="text-3xl lg:text-4xl font-black text-[#0f172a] leading-tight"
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.7, delay: 0.15 }}
+            >
               From idea to <span className="text-gradient">global platform</span>
-            </h2>
+            </motion.h2>
           </motion.div>
 
           <div className="relative">
-            <div className="hidden lg:block absolute left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-teal-500 via-sky-400 to-transparent -translate-x-1/2" />
+            {/* Animated timeline line */}
+            <div className="hidden lg:block absolute left-1/2 top-0 bottom-0 w-px -translate-x-1/2">
+              <motion.div
+                className="absolute inset-0 bg-gradient-to-b from-teal-500 via-sky-400 to-transparent"
+                initial={{ scaleY: 0 }}
+                whileInView={{ scaleY: 1 }}
+                viewport={{ once: true, margin: '-200px' }}
+                transition={{ duration: 1.2, ease: 'easeOut', delay: 0.2 }}
+                style={{ transformOrigin: 'top' }}
+              />
+              
+              {/* Animated shimmer along the line */}
+              <motion.div
+                className="absolute inset-x-0 w-px h-20 bg-gradient-to-b from-white to-transparent blur-sm"
+                animate={{ y: ['0%', '100%'] }}
+                transition={{ duration: 3, repeat: Infinity, ease: 'linear', repeatDelay: 2 }}
+                style={{ top: '0%' }}
+              />
+            </div>
+
             <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, margin: '-60px' }}
-              variants={stagger} className="space-y-10">
-              {MILESTONES.map((m, i) => (
-                <motion.div key={m.year} custom={i} variants={fadeUp}
-                  className={`flex items-center gap-8 ${i % 2 === 0 ? 'lg:flex-row' : 'lg:flex-row-reverse'}`}>
-                  <div className={`flex-1 ${i % 2 === 0 ? 'lg:text-right' : 'lg:text-left'}`}>
-                    <PremiumCard className="inline-block p-6 rounded-2xl bg-white border border-gray-100 shadow-sm hover:shadow-xl transition-shadow duration-300 max-w-sm text-left w-full" spotColor="rgba(28,150,191,0.07)">
+              variants={stagger} className="space-y-12 lg:space-y-16">
+              {MILESTONES.map((m, i) => {
+                const Icon = m.icon;
+                return (
+                  <motion.div key={m.year} custom={i} variants={fadeUp}
+                    className={`flex items-center gap-6 lg:gap-12 group`}>
+                    
+                    {/* Left content - alternates */}
+                    <div className={`flex-1 ${i % 2 === 0 ? 'lg:text-right' : 'lg:text-left'} ${i % 2 === 1 ? 'lg:order-3' : ''}`}>
+                      <PremiumCard className="inline-block p-8 rounded-2xl bg-white border border-gray-100 shadow-sm hover:shadow-2xl transition-all duration-300 max-w-sm text-left w-full hover:border-teal-200 relative overflow-hidden" spotColor={`${m.color}15`}>
+                        
+                        {/* Top shimmer effect */}
                         <motion.div className="absolute top-0 left-0 right-0 h-px overflow-hidden"
-                          style={{ background: 'linear-gradient(90deg,transparent,rgba(28,150,191,0.5),transparent)' }}
+                          style={{ background: `linear-gradient(90deg,transparent,${m.color}80,transparent)` }}
                         >
-                          <motion.div className="absolute inset-y-0 w-16 blur-sm"
-                            style={{ background: 'linear-gradient(90deg,transparent,rgba(28,150,191,0.9),transparent)' }}
-                            animate={{ x: ['-20%','120%'] }}
-                            transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut', repeatDelay: 3 + i * 0.4 }}
+                          <motion.div className="absolute inset-y-0 w-20 blur-sm"
+                            style={{ background: `linear-gradient(90deg,transparent,${m.color},transparent)` }}
+                            animate={{ x: ['-30%','130%'] }}
+                            transition={{ duration: 2.5, repeat: Infinity, ease: 'easeInOut', repeatDelay: 4 + i * 0.5 }}
                           />
                         </motion.div>
+
+                        {/* Background gradient overlay on hover */}
+                        <motion.div
+                          className="absolute inset-0 pointer-events-none opacity-0"
+                          style={{ background: `linear-gradient(135deg, ${m.color}08 0%, transparent 100%)` }}
+                          animate={{ opacity: [0, 0.8, 0] }}
+                          transition={{ duration: 0.5, times: [0, 0.5, 1] }}
+                          initial={false}
+                        />
+
                         <div className="relative z-10">
-                          <motion.p className="text-[10px] font-black text-teal-500 uppercase tracking-[0.25em] mb-2"
-                            animate={{ opacity: [0.7,1,0.7] }} transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut', delay: i * 0.3 }}
-                          >{m.year}</motion.p>
-                          <h4 className="text-lg font-black text-[#0f172a] mb-2">{m.title}</h4>
+                          {/* Year with animated color */}
+                          <motion.p 
+                            className="text-[10px] font-black uppercase tracking-[0.25em] mb-3"
+                            style={{ color: m.color }}
+                            animate={{ opacity: [0.6, 1, 0.6] }} 
+                            transition={{ duration: 2.5, repeat: Infinity, ease: 'easeInOut', delay: i * 0.3 }}
+                          >
+                            {m.year}
+                          </motion.p>
+                          
+                          {/* Title */}
+                          <h4 className="text-xl font-black text-[#0f172a] mb-2 leading-tight">{m.title}</h4>
+                          
+                          {/* Description */}
                           <p className="text-sm text-slate-500 leading-relaxed">{m.desc}</p>
                         </div>
+
+                        {/* Bottom accent line animation */}
                         <motion.div className="absolute bottom-0 left-0 right-0 h-0.5 origin-left"
-                          style={{ background: 'linear-gradient(90deg,#1C96BF,#2dd4bf)' }}
+                          style={{ background: `linear-gradient(90deg,${m.color},rgba(45,212,191,0.5))` }}
                           initial={{ scaleX: 0 }} whileInView={{ scaleX: 1 }} viewport={{ once: true }}
-                          transition={{ duration: 0.7, delay: 0.1 + i * 0.1, ease: [0.22,1,0.36,1] }}
+                          transition={{ duration: 0.8, delay: 0.1 + i * 0.12, ease: [0.22,1,0.36,1] }}
                         />
                       </PremiumCard>
-                  </div>
-                  <div className="hidden lg:flex items-center justify-center w-10 h-10 rounded-full bg-gradient-to-br from-teal-400 to-sky-500 shadow-lg flex-shrink-0 z-10">
-                    <div className="w-3 h-3 rounded-full bg-white" />
-                  </div>
-                  <div className="flex-1 hidden lg:flex">
-                    <p className={`text-5xl font-black opacity-10 text-[#0f172a] ${i % 2 === 0 ? 'text-left' : 'text-right w-full'}`}>
-                      {m.year}
-                    </p>
-                  </div>
-                </motion.div>
-              ))}
+                    </div>
+
+                    {/* Center dot - animated */}
+                    <div className="hidden lg:flex items-center justify-center flex-shrink-0 z-20">
+                      <motion.div 
+                        className="relative w-12 h-12 flex items-center justify-center"
+                        initial={{ scale: 0, opacity: 0 }}
+                        whileInView={{ scale: 1, opacity: 1 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.5, delay: 0.2 + i * 0.1, ease: 'easeOut' }}
+                      >
+                        {/* Outer pulsing ring */}
+                        <motion.div
+                          className="absolute inset-0 rounded-full border-2"
+                          style={{ borderColor: m.color }}
+                          animate={{ 
+                            scale: [1, 1.4, 1],
+                            opacity: [1, 0, 1]
+                          }}
+                          transition={{ duration: 2.5, repeat: Infinity, ease: 'easeOut', delay: i * 0.3 }}
+                        />
+
+                        {/* Inner circle with gradient */}
+                        <motion.div
+                          className="w-6 h-6 rounded-full flex items-center justify-center relative z-10"
+                          style={{ background: `linear-gradient(135deg, ${m.color}, rgba(45,212,191,0.8))` }}
+                          whileHover={{ scale: 1.2 }}
+                          transition={{ duration: 0.2 }}
+                        >
+                          <motion.div className="w-2 h-2 rounded-full bg-white" />
+                        </motion.div>
+
+                        {/* Glow shadow */}
+                        <motion.div
+                          className="absolute inset-0 rounded-full blur-md"
+                          style={{ background: m.color, opacity: 0.2 }}
+                          animate={{ scale: [1, 1.3, 1] }}
+                          transition={{ duration: 2.5, repeat: Infinity, ease: 'easeInOut', delay: i * 0.3 }}
+                        />
+                      </motion.div>
+                    </div>
+
+                    {/* Right side - year display */}
+                    <div className={`flex-1 hidden lg:flex ${i % 2 === 1 ? 'lg:order-2' : ''}`}>
+                      <motion.div
+                        className="flex items-center gap-3"
+                        animate={{ x: [0, 8, 0] }}
+                        transition={{ duration: 2.5, repeat: Infinity, ease: 'easeInOut', delay: i * 0.3 }}
+                      >
+                        <motion.div
+                          className="p-3 rounded-full flex-shrink-0"
+                          style={{ background: `${m.color}15`, color: m.color }}
+                          whileHover={{ scale: 1.1, background: `${m.color}25` }}
+                        >
+                          <Icon size={20} />
+                        </motion.div>
+                        <p className={`text-6xl font-black opacity-8 text-[#0f172a]`}>
+                          {m.year}
+                        </p>
+                      </motion.div>
+                    </div>
+                  </motion.div>
+                );
+              })}
             </motion.div>
           </div>
         </div>
@@ -707,7 +862,7 @@ export default function About() {
           <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, margin: '-60px' }}
             variants={fadeUp} className="text-center mb-14">
             <Eyebrow light>Where We Operate</Eyebrow>
-            <h2 className="text-4xl lg:text-5xl font-black text-[#0f172a] leading-tight">
+            <h2 className="text-3xl lg:text-4xl font-black text-[#0f172a] leading-tight">
               A global network,<br />a local <span className="text-gradient">touch</span>
             </h2>
             <p className="text-slate-400 text-lg mt-5 max-w-xl mx-auto">
@@ -763,27 +918,52 @@ export default function About() {
           TESTIMONIALS
       ══════════════════════════════════════════════════════════ */}
       <section className="section bg-[#060f1e] relative overflow-hidden">
+        {/* Animated background elements */}
         <div className="absolute inset-0 bg-dots opacity-30 pointer-events-none" />
-        <div className="absolute -top-40 left-1/2 -translate-x-1/2 w-[600px] h-[600px] rounded-full opacity-[0.08] pointer-events-none"
-          style={{ background: 'radial-gradient(circle,#1C96BF 0%,transparent 70%)' }} />
+        <motion.div 
+          className="absolute -top-40 left-1/2 -translate-x-1/2 w-[600px] h-[600px] rounded-full opacity-[0.08] pointer-events-none"
+          style={{ background: 'radial-gradient(circle,#1C96BF 0%,transparent 70%)' }}
+          animate={{ scale: [1, 1.1, 1], opacity: [0.08, 0.12, 0.08] }}
+          transition={{ duration: 10, repeat: Infinity, ease: 'easeInOut' }}
+        />
+        <motion.div 
+          className="absolute -bottom-60 -right-40 w-[500px] h-[500px] rounded-full opacity-[0.06] pointer-events-none"
+          style={{ background: 'radial-gradient(circle,#2dd4bf 0%,transparent 70%)' }}
+          animate={{ scale: [1, 1.15, 1], x: [0, -30, 0] }}
+          transition={{ duration: 12, repeat: Infinity, ease: 'easeInOut', delay: 2 }}
+        />
 
         <div className="container-xl relative z-10">
           <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, margin: '-60px' }}
-            variants={fadeUp} className="text-center mb-14">
-            <Eyebrow>Real Stories</Eyebrow>
-            <h2 className="text-4xl lg:text-5xl font-black text-white leading-tight">
+            variants={fadeUp} className="text-center mb-16">
+            <motion.div
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.1 }}
+            >
+              <Eyebrow>Real Stories</Eyebrow>
+            </motion.div>
+            <motion.h2 
+              className="text-3xl lg:text-4xl font-black text-white leading-tight"
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.7, delay: 0.15 }}
+            >
               Businesses that trust <span className="text-gradient">Tradeflink</span>
-            </h2>
+            </motion.h2>
           </motion.div>
 
           <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, margin: '-60px' }}
-            variants={stagger} className="grid lg:grid-cols-3 gap-5">
+            variants={stagger} className="grid lg:grid-cols-3 gap-6">
             {TESTIMONIALS.map((t, i) => (
               <motion.div key={t.name} custom={i} variants={fadeUp}>
-                <PremiumCard className="glass rounded-3xl p-7 cursor-default group h-full" spotColor="rgba(28,150,191,0.08)">
+                <PremiumCard className="glass rounded-3xl p-8 cursor-default group h-full flex flex-col" spotColor={`${t.gradient.split('-')[1]}500/10`}>
+                  
                   {/* Top shimmer */}
                   <div className="absolute top-0 left-0 right-0 h-px overflow-hidden"
-                    style={{ background: 'linear-gradient(90deg,transparent,rgba(28,150,191,0.5),rgba(45,212,191,0.4),transparent)' }}
+                    style={{ background: `linear-gradient(90deg,transparent,${t.gradient.split(' ')[0].replace('from-','')}500/50,${t.gradient.split(' ')[1].replace('to-','')}500/40,transparent)` }}
                   >
                     <motion.div className="absolute inset-y-0 w-24 blur-sm"
                       style={{ background: 'linear-gradient(90deg,transparent,rgba(255,255,255,0.7),transparent)' }}
@@ -794,47 +974,53 @@ export default function About() {
 
                   {/* Animated quote mark */}
                   <motion.div className="absolute -top-4 -right-2 text-[120px] font-black leading-none select-none pointer-events-none"
-                    style={{ color: 'rgba(28,150,191,0.07)' }}
-                    animate={{ scale: [1, 1.08, 1], opacity: [0.07, 0.14, 0.07] }}
+                    style={{ color: `${t.gradient.split('-')[1]}500/10` }}
+                    animate={{ scale: [1, 1.08, 1], opacity: [0.1, 0.18, 0.1] }}
                     transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut', delay: i * 0.8 }}
                   >&ldquo;</motion.div>
 
-                  {/* Stars with staggered entry */}
-                  <div className="flex gap-1 mb-5">
-                    {[...Array(5)].map((_, k) => (
-                      <motion.div key={k}
-                        initial={{ opacity: 0, scale: 0, rotate: -30 }}
-                        whileInView={{ opacity: 1, scale: 1, rotate: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ delay: 0.1 + k * 0.07, type: 'spring', stiffness: 300 }}
-                      >
-                        <Star size={14} className="text-amber-400 fill-amber-400" />
-                      </motion.div>
-                    ))}
+                  <div className="flex-grow">
+                    {/* Stars with staggered entry */}
+                    <div className="flex gap-1 mb-6">
+                      {[...Array(5)].map((_, k) => (
+                        <motion.div key={k}
+                          initial={{ opacity: 0, scale: 0, rotate: -30 }}
+                          whileInView={{ opacity: 1, scale: 1, rotate: 0 }}
+                          viewport={{ once: true }}
+                          transition={{ delay: 0.2 + (i * 0.1) + k * 0.07, type: 'spring', stiffness: 300, damping: 12 }}
+                        >
+                          <Star size={16} className="text-amber-400 fill-amber-400" />
+                        </motion.div>
+                      ))}
+                    </div>
+
+                    <p className="text-white/85 text-base leading-relaxed mb-8 relative z-10">&ldquo;{t.quote}&rdquo;</p>
                   </div>
 
-                  <p className="text-white/85 text-sm leading-relaxed mb-7 relative z-10">&ldquo;{t.quote}&rdquo;</p>
-
-                  <div className="flex items-center gap-3 relative z-10">
+                  <div className="flex items-center gap-4 relative z-10 mt-auto">
                     <div className="relative flex-shrink-0">
-                      <div className={`w-10 h-10 rounded-2xl bg-gradient-to-br ${t.gradient} flex items-center justify-center text-white text-xs font-black`}>
+                      <motion.div 
+                        className={`w-12 h-12 rounded-2xl bg-gradient-to-br ${t.gradient} flex items-center justify-center text-white text-sm font-black shadow-lg`}
+                        whileHover={{ scale: 1.1, rotate: 5 }}
+                        transition={{ type: 'spring', stiffness: 300 }}
+                      >
                         {t.initials}
-                      </div>
+                      </motion.div>
                       {/* Pulsing ring */}
                       <motion.div className="absolute inset-0 rounded-2xl pointer-events-none"
-                        style={{ border: '2px solid rgba(28,150,191,0.5)' }}
-                        animate={{ scale: [1, 1.55, 1], opacity: [0.6, 0, 0.6] }}
+                        style={{ border: `2px solid ${t.gradient.split('-')[1]}500/50` }}
+                        animate={{ scale: [1, 1.6, 1], opacity: [0.6, 0, 0.6] }}
                         transition={{ duration: 2.2, repeat: Infinity, ease: 'easeOut', delay: i * 0.5 }}
                       />
                     </div>
                     <div>
-                      <p className="text-white font-bold text-sm">{t.name}</p>
-                      <p className="text-white/40 text-[10px] mt-0.5">{t.role}</p>
+                      <p className="text-white font-bold text-base">{t.name}</p>
+                      <p className="text-white/40 text-xs mt-0.5">{t.role}</p>
                     </div>
-                    <motion.div className="ml-auto flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/8 text-white/50 text-[10px] font-semibold"
-                      animate={{ borderColor: ['rgba(255,255,255,0.05)','rgba(28,150,191,0.25)','rgba(255,255,255,0.05)'] }}
-                      style={{ border: '1px solid rgba(255,255,255,0.05)' }}
-                      transition={{ duration: 3, repeat: Infinity, ease: 'easeInOut', delay: i * 0.6 }}
+                    <motion.div 
+                      className="ml-auto flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/8 text-white/50 text-xs font-semibold border border-white/10"
+                      whileHover={{ background: 'rgba(255,255,255,0.15)', borderColor: 'rgba(255,255,255,0.2)' }}
+                      transition={{ duration: 0.2 }}
                     >
                       <span>{t.flag}</span><span>{t.location}</span>
                     </motion.div>
@@ -842,7 +1028,7 @@ export default function About() {
 
                   {/* Animated bottom border */}
                   <motion.div className="absolute bottom-0 left-0 right-0 h-0.5 origin-left"
-                    style={{ background: 'linear-gradient(90deg,#1C96BF,#2dd4bf)' }}
+                    style={{ background: `linear-gradient(90deg,${t.gradient.split(' ')[0].replace('from-','')}500,${t.gradient.split(' ')[1].replace('to-','')}500)` }}
                     initial={{ scaleX: 0 }} whileInView={{ scaleX: 1 }} viewport={{ once: true }}
                     transition={{ duration: 0.8, delay: 0.2 + i * 0.15, ease: [0.22,1,0.36,1] }}
                   />
@@ -873,7 +1059,7 @@ export default function About() {
             </motion.div>
 
             <motion.h2 variants={fadeUp}
-              className="text-4xl lg:text-6xl font-black text-white leading-tight mb-6">
+              className="text-3xl lg:text-4xl font-black text-white leading-tight mb-6">
               Ready to transform<br />your trade finance?
             </motion.h2>
 

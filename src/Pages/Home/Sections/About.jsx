@@ -89,7 +89,7 @@ export default function About() {
           {/* Headline */}
           <div className="overflow-hidden mb-6">
             <motion.h2
-              className="text-4xl lg:text-5xl xl:text-6xl font-black text-gray-900 leading-none"
+              className="text-3xl lg:text-4xl font-black text-gray-900 leading-none"
               initial={{ y: '100%' }}
               animate={inView ? { y: 0 } : {}}
               transition={{ duration: 1.6, delay: 0.12, ease: [0.22, 1, 0.36, 1] }}
