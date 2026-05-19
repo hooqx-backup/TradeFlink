@@ -29,7 +29,7 @@ export default function Partners({ title = 'Our Partners' }) {
       <div className="container-xl mx-auto">
         <div className="mb-6 text-center">
           <h3 className="mb-2 text-sm font-semibold uppercase tracking-wider text-slate-200">Trusted By</h3>
-          <h2 className="text-5xl font-extrabold text-white">{title}</h2>
+          <h2 className="text-3xl font-extrabold text-white">{title}</h2>
         </div>
 
         <div className="relative mx-auto w-full">

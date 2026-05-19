@@ -94,8 +94,11 @@ const SOCIALS = [
 /* ── Animation variants ─────────────────────────────────────── */
 const fadeUp = (delay = 0) => ({
   initial: { opacity: 0, y: 28 },
-  animate: { opacity: 1, y: 0 },
-  transition: { duration: 0.7, delay, ease: [0.22, 1, 0.36, 1] },
+  animate: { 
+    opacity: 1, 
+    y: 0,
+    transition: { duration: 0.8, delay, ease: [0.22, 1, 0.36, 1] }
+  },
 });
 
 const containerVar = {
@@ -121,15 +124,15 @@ function NavLink({ link }) {
       {...props}
       className="group relative inline-flex items-center gap-2 pb-2 text-sm text-white/55 transition-colors"
       whileHover={{ x: 6, color: '#ffffff' }}
-      transition={{ duration: 0.28, ease: 'easeOut' }}
+      transition={{ duration: 0.3, ease: 'easeOut' }}
     >
       <span className="relative z-10">{link.label}</span>
       <motion.span
         aria-hidden="true"
         className="relative z-10 ml-1 flex h-5 w-5 items-center justify-center rounded-full bg-teal-400/15 text-teal-200"
         initial={{ opacity: 0, x: -6 }}
-        whileHover={{ opacity: 1, x: 4, scale: 1.08, backgroundColor: 'rgba(45,212,191,0.24)' }}
-        transition={{ duration: 0.28, ease: 'easeOut' }}
+        whileHover={{ opacity: 1, x: 4, scale: 1.1, backgroundColor: 'rgba(45,212,191,0.24)' }}
+        transition={{ duration: 0.3, ease: 'easeOut' }}
       >
         <svg className="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
           <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
@@ -140,14 +143,14 @@ function NavLink({ link }) {
         className="absolute left-0 bottom-0 h-px w-full origin-left bg-white/70"
         initial={{ scaleX: 0, opacity: 0.35 }}
         whileHover={{ scaleX: 1, opacity: 1 }}
-        transition={{ duration: 0.32, ease: 'easeOut' }}
+        transition={{ duration: 0.35, ease: 'easeOut' }}
       />
       <motion.span
         aria-hidden="true"
         className="absolute -inset-x-2 -bottom-1 h-5 rounded-full bg-teal-400/12 blur-md"
         initial={{ opacity: 0, scale: 0.9 }}
         whileHover={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 0.32, ease: 'easeOut' }}
+        transition={{ duration: 0.35, ease: 'easeOut' }}
       />
     </Tag>
   );
@@ -205,7 +208,7 @@ export default function Footer() {
           className="absolute inset-y-0 w-32 blur-sm"
           style={{ background: 'linear-gradient(90deg, transparent, rgba(255,255,255,0.9), transparent)' }}
           animate={{ x: ['-10%', '110%'] }}
-          transition={{ duration: 3.5, repeat: Infinity, ease: 'easeInOut', repeatDelay: 2 }}
+          transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut', repeatDelay: 2 }}
         />
       </div>
 
@@ -223,8 +226,8 @@ export default function Footer() {
           }}
           animate={{
             y:       [0, -120, -240],
-            opacity: [0, p.opacity * 1.6, 0],
-            scale:   [0.5, 1, 0.3],
+            opacity: [0, p.opacity * 1.8, 0],
+            scale:   [0.5, 1.2, 0.3],
           }}
           transition={{
             duration:   p.duration,
@@ -239,20 +242,20 @@ export default function Footer() {
       {/* ── Ambient orbs ────────────────────────────────────── */}
       <motion.div
         className="absolute pointer-events-none rounded-full"
-        style={{ width: 600, height: 600, top: -300, left: -200, background: 'radial-gradient(circle, rgba(28,150,191,0.1) 0%, transparent 70%)' }}
-        animate={{ scale: [1, 1.22, 1], opacity: [0.7, 1, 0.7] }}
+        style={{ width: 600, height: 600, top: -300, left: -200, background: 'radial-gradient(circle, rgba(28,150,191,0.12) 0%, transparent 70%)' }}
+        animate={{ scale: [1, 1.25, 1], opacity: [0.7, 1, 0.7] }}
         transition={{ duration: 12, repeat: Infinity, ease: 'easeInOut' }}
       />
       <motion.div
         className="absolute pointer-events-none rounded-full"
-        style={{ width: 400, height: 400, bottom: -150, right: -100, background: 'radial-gradient(circle, rgba(20,184,166,0.08) 0%, transparent 70%)' }}
-        animate={{ scale: [1, 1.18, 1], opacity: [0.6, 1, 0.6] }}
+        style={{ width: 400, height: 400, bottom: -150, right: -100, background: 'radial-gradient(circle, rgba(20,184,166,0.1) 0%, transparent 70%)' }}
+        animate={{ scale: [1, 1.2, 1], opacity: [0.6, 1, 0.6] }}
         transition={{ duration: 14, repeat: Infinity, ease: 'easeInOut', delay: 5 }}
       />
       {/* Third orb — mid-right, slow drift */}
       <motion.div
         className="absolute pointer-events-none rounded-full"
-        style={{ width: 300, height: 300, top: '40%', right: '20%', background: 'radial-gradient(circle, rgba(99,102,241,0.07) 0%, transparent 70%)' }}
+        style={{ width: 300, height: 300, top: '40%', right: '20%', background: 'radial-gradient(circle, rgba(99,102,241,0.08) 0%, transparent 70%)' }}
         animate={{ scale: [1, 1.3, 1], x: [0, 30, 0], y: [0, -20, 0] }}
         transition={{ duration: 18, repeat: Infinity, ease: 'easeInOut', delay: 2 }}
       />

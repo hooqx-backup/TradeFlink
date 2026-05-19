@@ -333,7 +333,7 @@ export default function VisionMissionValues() {
           {/* Masked headline */}
           <div className="overflow-hidden mb-4">
             <motion.h2
-              className="text-5xl lg:text-6xl font-black text-gray-900"
+              className="text-3xl lg:text-4xl font-black text-gray-900"
               initial={{ y: '100%' }}
               animate={inView ? { y: 0 } : {}}
               transition={{ duration: 1.62, delay: 0.18, ease: [0.22, 1, 0.36, 1] }}

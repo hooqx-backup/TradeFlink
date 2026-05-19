@@ -116,6 +116,183 @@ function ShimmerLine() {
   );
 }
 
+/* ─────────────────── Benefit card ──────────────────────────────── */
+function BenefitCard({ icon: Icon, title, desc, color, idx }) {
+  const ref = useRef(null);
+  const rx = useMotionValue(0), ry = useMotionValue(0);
+  const srx = useSpring(rx, { stiffness: 300, damping: 25 });
+  const sry = useSpring(ry, { stiffness: 300, damping: 25 });
+  const mx = useMotionValue(0), my = useMotionValue(0);
+  const spot = useMotionTemplate`radial-gradient(220px circle at ${mx}px ${my}px, ${color}18, transparent 80%)`;
+  const [hov, setHov] = useState(false);
+
+  const onMove = (e) => {
+    if (!ref.current) return;
+    const b = ref.current.getBoundingClientRect();
+    rx.set(((e.clientY - b.top  - b.height / 2) / b.height) * -14);
+    ry.set(((e.clientX - b.left - b.width  / 2) / b.width)  *  14);
+    mx.set(e.clientX - b.left);
+    my.set(e.clientY - b.top);
+  };
+
+  return (
+    <motion.div
+      ref={ref}
+      onMouseMove={onMove}
+      onMouseLeave={() => { rx.set(0); ry.set(0); setHov(false); }}
+      onMouseEnter={() => setHov(true)}
+      style={{ rotateX: srx, rotateY: sry, transformPerspective: 1000 }}
+      variants={fadeUp}
+      className="relative h-full"
+    >
+      <motion.div
+        className="relative overflow-hidden rounded-2xl border bg-white p-7 h-full flex flex-col cursor-default"
+        animate={{
+          borderColor: hov ? `${color}55` : 'rgba(226,232,240,1)',
+          boxShadow: hov
+            ? `0 0 0 1px ${color}22, 0 28px 72px ${color}18, 0 8px 24px rgba(0,0,0,0.07)`
+            : '0 1px 6px rgba(0,0,0,0.05)',
+          y: hov ? -12 : 0,
+        }}
+        transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+      >
+        {/* Cursor spotlight */}
+        <motion.div className="pointer-events-none absolute inset-0 z-10 rounded-2xl" style={{ background: spot }} />
+
+        {/* Shimmer sweep */}
+        <motion.div
+          className="absolute inset-0 pointer-events-none z-20"
+          style={{ background: 'linear-gradient(105deg,transparent 30%,rgba(255,255,255,0.75) 50%,transparent 70%)' }}
+          animate={{ x: ['-100%', '200%'] }}
+          transition={{ duration: 2.5, repeat: Infinity, ease: 'easeInOut', repeatDelay: 3.5 + idx * 0.5 }}
+        />
+
+        {/* Background color flood on hover */}
+        <motion.div
+          className="absolute inset-0 pointer-events-none"
+          animate={{ opacity: hov ? 1 : 0 }}
+          transition={{ duration: 0.5 }}
+          style={{ background: `radial-gradient(ellipse at 50% 0%, ${color}08 0%, transparent 70%)` }}
+        />
+
+        {/* Top animated line */}
+        <div className="absolute top-0 inset-x-0 h-px overflow-hidden">
+          <motion.div className="absolute inset-0"
+            style={{ background: `linear-gradient(90deg, transparent, ${color}, transparent)` }}
+            animate={{ opacity: hov ? 1 : 0.3 }}
+            transition={{ duration: 0.4 }}
+          />
+          <motion.div className="absolute inset-y-0 w-20 blur-sm"
+            style={{ background: `linear-gradient(90deg, transparent, ${color}dd, transparent)` }}
+            animate={{ x: ['-100%', '300%'] }}
+            transition={{ duration: hov ? 1.0 : 3.5, repeat: Infinity, ease: 'easeInOut', repeatDelay: hov ? 0.2 : 2 }}
+          />
+        </div>
+
+        {/* Icon area */}
+        <div className="relative mb-6 z-20" style={{ width: 56, height: 56 }}>
+          {/* Pulse rings */}
+          <motion.div className="absolute inset-0 rounded-2xl pointer-events-none"
+            style={{ border: `1.5px solid ${color}` }}
+            animate={{ scale: [1, 1.8], opacity: [0.45, 0] }}
+            transition={{ duration: 2.2 + idx * 0.25, repeat: Infinity, ease: 'easeOut', delay: idx * 0.4 }}
+          />
+          <motion.div className="absolute inset-0 rounded-2xl pointer-events-none"
+            style={{ border: `1px solid ${color}` }}
+            animate={{ scale: [1, 1.4], opacity: [0.25, 0] }}
+            transition={{ duration: 2.2 + idx * 0.25, repeat: Infinity, ease: 'easeOut', delay: idx * 0.4 + 0.7 }}
+          />
+
+          {/* Orbiting dot (visible on hover) */}
+          <div style={{ position: 'absolute', top: 28, left: 28, width: 0, height: 0, pointerEvents: 'none' }}>
+            <motion.div
+              animate={{ rotate: [0, 360] }}
+              transition={{ duration: 2.2, repeat: Infinity, ease: 'linear' }}
+            >
+              <motion.div
+                style={{ position: 'absolute', width: 7, height: 7, borderRadius: '50%', background: color, top: -32, left: -3.5 }}
+                animate={{ opacity: hov ? 0.9 : 0, scale: hov ? 1 : 0 }}
+                transition={{ duration: 0.3 }}
+              />
+            </motion.div>
+          </div>
+
+          {/* Icon box */}
+          <motion.div
+            className="relative flex h-14 w-14 items-center justify-center rounded-2xl overflow-hidden"
+            style={{ background: `${color}10`, border: `1.5px solid ${color}30` }}
+            animate={hov ? { scale: 1.06, borderColor: `${color}60` } : { scale: 1 }}
+            transition={{ duration: 0.3 }}
+          >
+            <motion.div
+              animate={hov
+                ? { rotate: [0, -10, 10, 0], scale: [1, 1.12, 1] }
+                : { y: [0, -3, 0] }
+              }
+              transition={{ duration: hov ? 0.55 : 3.5 + idx * 0.4, repeat: Infinity, ease: 'easeInOut', delay: idx * 0.3 }}
+            >
+              <Icon size={22} style={{ color }} />
+            </motion.div>
+            {/* Inner glow burst on hover */}
+            <motion.div
+              className="absolute inset-0"
+              style={{ background: `radial-gradient(circle, ${color}30 0%, transparent 70%)` }}
+              animate={{ opacity: hov ? 1 : 0 }}
+              transition={{ duration: 0.35 }}
+            />
+          </motion.div>
+        </div>
+
+        {/* Title */}
+        <motion.h3
+          className="text-[16px] font-extrabold mb-3 z-20 relative leading-snug"
+          animate={{ color: hov ? color : '#1e293b' }}
+          transition={{ duration: 0.35 }}
+        >
+          {title}
+        </motion.h3>
+
+        {/* Description */}
+        <p className="text-[13px] text-slate-500 leading-relaxed flex-1 z-20 relative">{desc}</p>
+
+        {/* Bottom accent */}
+        <div className="mt-6 z-20 relative">
+          <motion.div
+            className="h-[2px] rounded-full"
+            style={{ background: `linear-gradient(90deg, ${color}, ${color}25)`, originX: 0 }}
+            animate={{ scaleX: hov ? 1 : 0.18, opacity: hov ? 1 : 0.35 }}
+            transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
+          />
+          <motion.div
+            className="flex items-center gap-1.5 mt-2.5 text-[11px] font-bold"
+            style={{ color }}
+            animate={{ opacity: hov ? 1 : 0, y: hov ? 0 : 8 }}
+            transition={{ duration: 0.3, delay: hov ? 0.08 : 0 }}
+          >
+            Learn more <ArrowRight size={10} />
+          </motion.div>
+        </div>
+
+        {/* Corner glow */}
+        <motion.div
+          className="absolute -bottom-10 -right-10 w-48 h-48 pointer-events-none rounded-full"
+          style={{ background: `radial-gradient(circle, ${color}18, transparent 70%)` }}
+          animate={{ opacity: hov ? 1 : 0.25, scale: hov ? 1.2 : 1 }}
+          transition={{ duration: 0.5 }}
+        />
+
+        {/* Bottom right pulsing dot */}
+        <motion.div
+          className="absolute bottom-5 right-5 pointer-events-none"
+          style={{ width: 6, height: 6, borderRadius: '50%', background: color }}
+          animate={{ scale: [1, 1.9, 1], opacity: [0.35, 0.85, 0.35] }}
+          transition={{ duration: 2.2 + idx * 0.3, repeat: Infinity, ease: 'easeInOut', delay: idx * 0.25 }}
+        />
+      </motion.div>
+    </motion.div>
+  );
+}
+
 /* ─────────────────── Section label ─────────────────────────────── */
 function SectionLabel({ text }) {
   return (
@@ -215,7 +392,7 @@ export default function Exporters() {
           </motion.div>
 
           {/* Headline */}
-          <motion.h1 className="text-5xl sm:text-7xl font-black leading-[1.05] tracking-tight text-white mb-6"
+          <motion.h1 className="text-4xl sm:text-5xl font-black leading-[1.05] tracking-tight text-white mb-6"
             initial="hidden" animate="show"
             variants={{ hidden:{}, show:{ transition:{ staggerChildren:0.08, delayChildren:0.2 } } }}
           >
@@ -366,7 +543,7 @@ export default function Exporters() {
         <div className="max-w-5xl mx-auto relative">
           <motion.div className="text-center mb-16" variants={stagger(0)} initial="hidden" animate={stepsInView ? 'show':'hidden'}>
             <SectionLabel text="How It Works" />
-            <motion.h2 variants={fadeUp} className="text-4xl sm:text-5xl font-black tracking-tight text-slate-900">
+            <motion.h2 variants={fadeUp} className="text-3xl sm:text-4xl font-black tracking-tight text-slate-900">
               Four steps to <span style={{ backgroundImage:'linear-gradient(90deg,#1C96BF,#2dd4bf)', WebkitBackgroundClip:'text', WebkitTextFillColor:'transparent' }}>get funded</span>
             </motion.h2>
             <motion.p variants={fadeUp} className="mt-4 text-slate-500 max-w-xl mx-auto text-sm leading-relaxed">
@@ -381,13 +558,13 @@ export default function Exporters() {
             >
               <motion.div className="absolute inset-y-0 w-24 blur-sm"
                 style={{ background:'linear-gradient(90deg,transparent,rgba(28,150,191,0.8),transparent)' }}
-                animate={{ x:['-20%','110%'] }} transition={{ duration:3, repeat:Infinity, ease:'easeInOut', repeatDelay:0.5 }}
+                animate={{ x:['-20%','110%'] }} transition={{ duration:2.5, repeat:Infinity, ease:'easeInOut', repeatType:'reverse' }}
               />
             </div>
 
             {/* Moving dot along line */}
             <motion.div className="absolute top-9.5 hidden lg:block w-3 h-3 rounded-full border-2 border-teal-400 bg-white z-10"
-              animate={{ left:['8%','88%'] }} transition={{ duration:3, repeat:Infinity, ease:'easeInOut', repeatDelay:0.5 }}
+              animate={{ left:['8%','88%'] }} transition={{ duration:2.5, repeat:Infinity, ease:'easeInOut', repeatType:'reverse' }}
             >
               <motion.div className="absolute inset-0.5 rounded-full bg-teal-400"
                 animate={{ scale:[1,1.5,1], opacity:[1,0.4,1] }} transition={{ duration:1, repeat:Infinity }}
@@ -464,49 +641,45 @@ export default function Exporters() {
       </section>
 
       {/* ══════════════════ BENEFITS ══════════════════ */}
-      <section ref={benefitRef} className="relative py-24 px-6 bg-white overflow-hidden">
-        {/* Floating orb */}
+      <section ref={benefitRef} className="relative py-28 px-6 overflow-hidden"
+        style={{ background: 'linear-gradient(180deg,#ffffff 0%,#f8fafc 55%,#f0f9ff 100%)' }}
+      >
+        {/* Soft orbs */}
         <motion.div className="absolute pointer-events-none rounded-full"
-          style={{ width:500, height:500, top:'30%', right:'-15%', background:'radial-gradient(circle,rgba(28,150,191,0.05) 0%,transparent 70%)' }}
-          animate={{ scale:[1,1.15,1], x:[0,20,0] }} transition={{ duration:10, repeat:Infinity, ease:'easeInOut' }}
+          style={{ width:700, height:700, top:'10%', left:'-18%', background:'radial-gradient(circle,rgba(28,150,191,0.05) 0%,transparent 65%)' }}
+          animate={{ scale:[1,1.18,1], x:[0,30,0] }} transition={{ duration:13, repeat:Infinity, ease:'easeInOut' }}
+        />
+        <motion.div className="absolute pointer-events-none rounded-full"
+          style={{ width:500, height:500, bottom:'5%', right:'-12%', background:'radial-gradient(circle,rgba(45,212,191,0.05) 0%,transparent 65%)' }}
+          animate={{ scale:[1,1.12,1], x:[0,-20,0] }} transition={{ duration:11, repeat:Infinity, ease:'easeInOut', delay:3 }}
         />
 
+        {/* Animated horizontal sweep lines */}
+        {[12, 38, 62, 88].map((top, i) => (
+          <motion.div key={i} className="absolute inset-x-0 h-px pointer-events-none"
+            style={{ top:`${top}%`, background:'linear-gradient(90deg,transparent,rgba(28,150,191,0.07),rgba(45,212,191,0.05),transparent)' }}
+            animate={{ x:['-100%','100%'] }}
+            transition={{ duration:9+i*2, repeat:Infinity, ease:'linear', delay:i*1.8 }}
+          />
+        ))}
+
         <div className="max-w-6xl mx-auto relative">
-          <motion.div className="text-center mb-16" variants={stagger(0)} initial="hidden" animate={benefitInView ? 'show':'hidden'}>
+          <motion.div className="text-center mb-20" variants={stagger(0)} initial="hidden" animate={benefitInView ? 'show':'hidden'}>
             <SectionLabel text="Why TradeFlink" />
-            <motion.h2 variants={fadeUp} className="text-4xl sm:text-5xl font-black tracking-tight text-slate-900">
+            <motion.h2 variants={fadeUp} className="text-3xl sm:text-4xl font-black tracking-tight text-slate-900 mt-3">
               Built for <span style={{ backgroundImage:'linear-gradient(90deg,#1C96BF,#2dd4bf)', WebkitBackgroundClip:'text', WebkitTextFillColor:'transparent' }}>exporters</span>
             </motion.h2>
+            <motion.p variants={fadeUp} className="mt-4 text-slate-500 max-w-xl mx-auto text-sm leading-relaxed">
+              Six reasons why thousands of exporters choose TradeFlink over traditional bank financing.
+            </motion.p>
           </motion.div>
 
-          <motion.div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5"
-            variants={stagger(0.08)} initial="hidden" animate={benefitInView ? 'show':'hidden'}
+          <motion.div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"
+            variants={stagger(0.1)} initial="hidden" animate={benefitInView ? 'show':'hidden'}
           >
-            {BENEFITS.map(({ icon:Icon, title, desc, color }, idx) => (
-              <motion.div key={title} variants={fadeUp}>
-                <TiltCard className="group relative h-full overflow-hidden rounded-2xl border border-slate-100 bg-white p-6 shadow-sm hover:shadow-lg transition-shadow cursor-default">
-                  <ShimmerLine />
-                  <div className="relative z-10">
-                    <motion.div className="mb-4 flex h-12 w-12 items-center justify-center rounded-xl border"
-                      style={{ background:`${color}12`, borderColor:`${color}28` }}
-                      animate={{ y:[0,-4,0], rotate:[0,5,-5,0] }}
-                      transition={{ duration:3+idx*0.4, repeat:Infinity, ease:'easeInOut', delay:idx*0.35 }}
-                    >
-                      <Icon size={20} style={{ color }} />
-                    </motion.div>
-                    <h3 className="text-[15px] font-bold text-slate-800 mb-2">{title}</h3>
-                    <p className="text-xs text-slate-500 leading-relaxed">{desc}</p>
-                  </div>
-                  <div className="absolute top-0 left-6 right-6 h-px"
-                    style={{ background:`linear-gradient(90deg,transparent,${color}40,transparent)` }}
-                  />
-                  {/* Pulsing corner dot */}
-                  <motion.div className="absolute bottom-4 right-4 w-2 h-2 rounded-full pointer-events-none"
-                    style={{ background: color }}
-                    animate={{ scale:[1,1.8,1], opacity:[0.4,0.9,0.4] }}
-                    transition={{ duration:2+idx*0.3, repeat:Infinity, ease:'easeInOut', delay:idx*0.25 }}
-                  />
-                </TiltCard>
+            {BENEFITS.map(({ icon, title, desc, color }, idx) => (
+              <motion.div key={title} variants={fadeUp} className="h-full">
+                <BenefitCard icon={icon} title={title} desc={desc} color={color} idx={idx} />
               </motion.div>
             ))}
           </motion.div>
@@ -528,7 +701,7 @@ export default function Exporters() {
         <div className="max-w-6xl mx-auto relative">
           <motion.div className="text-center mb-16" variants={stagger(0)} initial="hidden" animate={servicesInView ? 'show':'hidden'}>
             <SectionLabel text="Our Solutions" />
-            <motion.h2 variants={fadeUp} className="text-4xl sm:text-5xl font-black tracking-tight text-slate-900">
+            <motion.h2 variants={fadeUp} className="text-3xl sm:text-4xl font-black tracking-tight text-slate-900">
               One platform, <span style={{ backgroundImage:'linear-gradient(90deg,#1C96BF,#2dd4bf)', WebkitBackgroundClip:'text', WebkitTextFillColor:'transparent' }}>every solution</span>
             </motion.h2>
             <motion.p variants={fadeUp} className="mt-4 text-slate-500 max-w-2xl mx-auto text-sm leading-relaxed">
@@ -626,7 +799,7 @@ export default function Exporters() {
         <div className="max-w-4xl mx-auto">
           <motion.div className="text-center mb-16" variants={stagger(0)} initial="hidden" animate={testInView ? 'show':'hidden'}>
             <SectionLabel text="Testimonials" />
-            <motion.h2 variants={fadeUp} className="text-4xl sm:text-5xl font-black tracking-tight text-slate-900">
+            <motion.h2 variants={fadeUp} className="text-3xl sm:text-4xl font-black tracking-tight text-slate-900">
               Trusted by <span style={{ backgroundImage:'linear-gradient(90deg,#1C96BF,#2dd4bf)', WebkitBackgroundClip:'text', WebkitTextFillColor:'transparent' }}>traders worldwide</span>
             </motion.h2>
           </motion.div>

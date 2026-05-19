@@ -105,7 +105,7 @@ function PillarRow({ p, i, inView }) {
         className="relative z-10 shrink-0 font-black tabular-nums leading-none font-mono"
         animate={{ color: hovered ? '#14b8a6' : '#e5e7eb' }}
         transition={{ duration: 0.2 }}
-        style={{ fontSize: 'clamp(48px, 5.5vw, 80px)', lineHeight: 0.85 }}
+        style={{ fontSize: 'clamp(28px, 3.2vw, 48px)', lineHeight: 0.85 }}
       >
         {glitchNum}
       </motion.span>
@@ -208,7 +208,7 @@ export default function Mission() {
             {/* Label on image */}
             <div className="absolute bottom-14 left-12">
               <p className="text-white/40 text-xs uppercase tracking-[0.28em] font-bold mb-2">02 Mission</p>
-              <p className="text-white font-black leading-tight" style={{ fontSize: 'clamp(28px, 3.5vw, 48px)' }}>
+              <p className="text-white font-black leading-tight" style={{ fontSize: 'clamp(18px, 2.2vw, 32px)' }}>
                 Empowering<br />SMEs<br />Globally
               </p>
             </div>

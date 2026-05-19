@@ -438,7 +438,7 @@ export default function Solutions() {
           </motion.div>
 
           <motion.h2 className="font-black text-gray-900 leading-none"
-            style={{ fontSize: 'clamp(44px, 7vw, 96px)', letterSpacing: '-0.03em' }}
+            style={{ fontSize: 'clamp(26px, 3.5vw, 54px)', letterSpacing: '-0.03em' }}
             initial={{ opacity: 0, y: 24 }} animate={inView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.7, delay: 0.1 }}>
             One platform.<br />

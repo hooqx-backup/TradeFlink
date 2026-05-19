@@ -46,7 +46,7 @@ export default function CTA() {
 
         {/* The main enormous headline — word by word masked reveal */}
         <h2 className="font-black text-white leading-[0.88] tracking-tighter mb-12 lg:mb-16"
-          style={{ fontSize: 'clamp(52px, 11vw, 150px)' }}>
+          style={{ fontSize: 'clamp(30px, 5vw, 72px)' }}>
           {WORDS.map((word, i) => (
             <div key={word} className="overflow-hidden block">
               <motion.span

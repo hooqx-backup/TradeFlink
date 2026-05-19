@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { Link } from 'react-router-dom';
 import img1 from '../../../assets/images/1896.jpg';
 import img2 from '../../../assets/images/6533.jpg';
 import img3 from '../../../assets/images/117180.jpg';
@@ -117,8 +118,8 @@ export default function Hero() {
           <AnimatePresence mode="wait">
             <motion.h1
               key={cur}
-              className="font-black text-white leading-[0.86] tracking-tighter mb-6 lg:mb-8"
-              style={{ fontSize: 'clamp(48px, 9.5vw, 124px)' }}
+              className="font-black text-white leading-[1.35] tracking-wide mb-6 lg:mb-8"
+              style={{ fontSize: 'clamp(30px, 3.8vw, 52px)', fontWeight: 900 }}
             >
               {HEADLINES[cur].map((word, i) => (
                 <div key={word} className="overflow-hidden">
@@ -145,10 +146,10 @@ export default function Hero() {
                 Trade without borders, limits, or delays. Empowering SMEs with fast and inclusive global finance.
               </p>
               <div className="flex items-center gap-3 flex-wrap">
-                <a href="#contact"
+                <Link to="/contact"
                   className="px-6 py-2.5 bg-teal-500 text-white text-[11px] font-bold uppercase tracking-widest rounded-full hover:bg-teal-400 active:scale-95 transition-all">
                   Contact Us
-                </a>
+                </Link>
                 <a href="#services"
                   className="group px-6 py-2.5 border border-white/20 text-white text-[11px] font-bold uppercase tracking-widest rounded-full hover:border-white/50 hover:bg-white/5 active:scale-95 transition-all flex items-center gap-2">
                   Explore

@@ -121,7 +121,7 @@ function ServiceRow({ service, index }) {
       <div className="relative z-10 flex flex-col items-center justify-center px-10 py-12">
         <motion.p
           className="font-black text-teal-400 leading-none mb-3"
-          style={{ fontSize: 'clamp(52px, 7vw, 88px)' }}
+          style={{ fontSize: 'clamp(28px, 3.5vw, 52px)' }}
           animate={{ scale: hovered ? 1.06 : 1 }}
           transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
         >
@@ -155,7 +155,7 @@ function ServiceRow({ service, index }) {
       <div className="overflow-hidden mb-4">
         <motion.h3
           className="font-black text-gray-900 leading-tight"
-          style={{ fontSize: 'clamp(26px, 2.8vw, 44px)' }}
+          style={{ fontSize: 'clamp(18px, 2vw, 30px)' }}
           animate={{ x: hovered ? 6 : 0 }}
           transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
         >
@@ -230,7 +230,7 @@ export default function Services() {
             transition={{ duration: 0.7 }}
           >
             <p className="text-xs font-bold uppercase tracking-[0.25em] text-teal-600 mb-3">What We Offer</p>
-            <h2 className="font-black text-gray-900 leading-none" style={{ fontSize: 'clamp(40px, 6vw, 80px)' }}>
+            <h2 className="font-black text-gray-900 leading-none" style={{ fontSize: 'clamp(26px, 3.8vw, 52px)' }}>
               Core <span className="text-teal-600">Services</span>
             </h2>
           </motion.div>

@@ -63,7 +63,7 @@ export default function Vision() {
           <div className="overflow-hidden">
             <motion.h2
               className="font-black text-white leading-[0.88]"
-              style={{ fontSize: 'clamp(56px, 9.5vw, 144px)', letterSpacing: '-0.02em' }}
+              style={{ fontSize: 'clamp(32px, 5vw, 80px)', letterSpacing: '-0.02em' }}
               initial={{ y: '110%' }}
               animate={inView ? { y: 0 } : {}}
               transition={{ duration: 1.8, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
@@ -95,7 +95,7 @@ export default function Vision() {
           <div className="overflow-hidden flex justify-end">
             <motion.h2
               className="font-black text-teal-400 leading-[0.88] text-right"
-              style={{ fontSize: 'clamp(56px, 9.5vw, 144px)', letterSpacing: '-0.02em' }}
+              style={{ fontSize: 'clamp(32px, 5vw, 80px)', letterSpacing: '-0.02em' }}
               initial={{ y: '110%' }}
               animate={inView ? { y: 0 } : {}}
               transition={{ duration: 1.8, delay: 0.38, ease: [0.22, 1, 0.36, 1] }}
