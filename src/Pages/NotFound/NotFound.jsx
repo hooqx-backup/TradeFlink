@@ -59,8 +59,8 @@ export default function NotFound() {
         <motion.span
           className="relative leading-none"
           style={{
-            fontFamily: '"Bebas Neue", sans-serif',
-            fontWeight: 400,
+            fontFamily: "'Clash Display', sans-serif",
+            fontWeight: 600,
             fontSize: 'clamp(120px, 22vw, 280px)',
             color: 'transparent',
             backgroundImage: 'linear-gradient(180deg, #ffffff 0%, #c8deff 35%, #6aaeff 70%, #1a6fff 100%)',

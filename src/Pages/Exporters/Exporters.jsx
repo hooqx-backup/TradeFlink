@@ -1,11 +1,11 @@
 import { useRef, useState, useEffect } from 'react';
 import { motion, AnimatePresence, useInView, useMotionValue, useSpring, useMotionTemplate } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import exporterBanner from '../../assets/images/exporterbanner.jpg';
-import exporter1 from '../../assets/images/exporter1.jpg';
-import exporter2 from '../../assets/images/exporter2.jpg';
-import exporter3 from '../../assets/images/exporter3.jpg';
-import exporter4 from '../../assets/images/exporter4.jpg';
+import exporterBanner from '../../assets/images/exporterbanner.webp';
+import exporter1 from '../../assets/images/exporter1.webp';
+import exporter2 from '../../assets/images/exporter2.webp';
+import exporter3 from '../../assets/images/exporter3.webp';
+import exporter4 from '../../assets/images/exporter4.webp';
 import {
   ArrowRight, Zap, Shield, TrendingUp, Globe, CheckCircle2,
   Package, FileText, Banknote, RefreshCcw, Star, ChevronDown,
@@ -392,7 +392,7 @@ export default function Exporters() {
           </motion.div>
 
           {/* Headline */}
-          <motion.h1 className="text-4xl sm:text-5xl font-black leading-[1.05] tracking-tight text-white mb-6"
+          <motion.h1 className="text-4xl sm:text-5xl font-clash font-semibold leading-[1.05] tracking-tight text-white mb-6"
             initial="hidden" animate="show"
             variants={{ hidden:{}, show:{ transition:{ staggerChildren:0.08, delayChildren:0.2 } } }}
           >

@@ -696,7 +696,7 @@ export default function Contact() {
             </motion.div>
 
             {/* Headline with split-word animation */}
-            <h1 className="font-black text-white leading-[1.02] mb-7 text-left" style={{ fontSize: 'clamp(26px, 3.8vw, 52px)', fontWeight: 900 }}>
+            <h1 className="font-clash font-semibold text-white leading-[1.02] mb-7 text-left" style={{ fontSize: 'clamp(26px, 3.8vw, 52px)' }}>
               <SplitWords text="We'd love to" delay={0.15} />
               <br />
               <span className="text-gradient" style={{ textShadow: '0 0 80px rgba(28,150,191,0.4)' }}>

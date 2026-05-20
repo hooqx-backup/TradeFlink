@@ -71,7 +71,7 @@ function WhiteTextarea({ label, name, value, onChange, required, placeholder }) 
         <textarea
           name={name} value={value} onChange={onChange}
           onFocus={() => setFocused(true)} onBlur={() => setFocused(false)}
-          required={required} rows={4} placeholder={placeholder}
+          required={required} rows={3} placeholder={placeholder}
           className="w-full bg-transparent px-4 py-3 text-sm text-slate-800 placeholder:text-slate-400 focus:outline-none resize-none"
           style={{ fontFamily: 'inherit' }}
         />
@@ -280,7 +280,7 @@ export default function ContactModal({ open, onClose }) {
 
           {/* ── Panel ── */}
           <motion.div
-            className="relative w-full max-w-3xl overflow-hidden rounded-3xl shadow-[0_32px_80px_rgba(0,0,0,0.22)]"
+            className="relative w-full max-w-3xl overflow-y-auto sm:overflow-hidden rounded-3xl shadow-[0_32px_80px_rgba(0,0,0,0.22)] max-h-[92svh] sm:max-h-none"
             style={{ background: 'rgba(255,255,255,0.82)', backdropFilter: 'blur(48px) saturate(180%)' }}
             initial={{ opacity: 0, scale: 0.88, y: 36, filter: 'blur(8px)' }}
             animate={{ opacity: 1, scale: 1,    y: 0,  filter: 'blur(0px)' }}
@@ -317,9 +317,9 @@ export default function ContactModal({ open, onClose }) {
             {/* ── Inner grid ── */}
             <div className="relative z-10 grid sm:grid-cols-[252px_1fr]">
 
-              {/* ── LEFT PANEL ── */}
+              {/* ── LEFT PANEL — hidden on mobile ── */}
               <div
-                className="relative flex flex-col justify-between gap-8 overflow-hidden border-b border-black/6 p-8 sm:border-b-0 sm:border-r"
+                className="relative hidden sm:flex flex-col justify-between gap-8 overflow-hidden border-b border-black/6 p-8 sm:border-b-0 sm:border-r"
                 style={{ background: 'linear-gradient(150deg, #0c1e3a 0%, #0e3a5c 55%, #0a2d4a 100%)' }}
               >
                 {/* Ambient orb */}
@@ -435,7 +435,7 @@ export default function ContactModal({ open, onClose }) {
               </div>
 
               {/* ── RIGHT FORM PANEL ── */}
-              <div className="p-7 sm:p-8">
+              <div className="p-5 sm:p-8">
                 <AnimatePresence mode="wait">
                   {submitted ? (
                     <SuccessState
@@ -455,14 +455,23 @@ export default function ContactModal({ open, onClose }) {
                       exit={{ opacity: 0, y: -12, transition: { duration: 0.2 } }}
                       className="space-y-4"
                     >
+                      {/* Mobile-only header */}
+                      <motion.div variants={fieldVariant} className="sm:hidden mb-1">
+                        <p className="text-[9px] font-bold uppercase tracking-[0.28em] text-teal-500 mb-1">TradeFlink</p>
+                        <h2 className="text-xl font-black text-slate-800 leading-tight">
+                          Get in <span className="bg-clip-text text-transparent" style={{ backgroundImage: 'linear-gradient(90deg,#1C96BF,#2dd4bf)' }}>touch</span>
+                        </h2>
+                        <p className="text-[12px] text-slate-400 mt-1 mb-3">Our team is ready to help — real people, real answers.</p>
+                      </motion.div>
+
                       <motion.p
                         variants={fieldVariant}
-                        className="text-[9px] font-bold uppercase tracking-[0.3em] text-slate-400 mb-1"
+                        className="hidden sm:block text-[9px] font-bold uppercase tracking-[0.3em] text-slate-400 mb-1"
                       >
                         Send a Message
                       </motion.p>
 
-                      <motion.div variants={fieldVariant} className="grid grid-cols-2 gap-3">
+                      <motion.div variants={fieldVariant} className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                         <WhiteInput
                           label="Full Name" name="name" value={form.name}
                           onChange={handleChange} required placeholder="Sarah Johnson"

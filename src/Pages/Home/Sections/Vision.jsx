@@ -1,6 +1,6 @@
 import React, { useRef } from 'react';
 import { motion, useScroll, useTransform, useInView } from 'framer-motion';
-import visionImg from '../../../assets/images/18459.jpg';
+import visionImg from '../../../assets/images/18459.webp';
 
 const FACTS = [
   { val: '$4.5T+', label: 'Trade Finance Gap' },

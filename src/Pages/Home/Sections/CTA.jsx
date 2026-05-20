@@ -1,5 +1,8 @@
 import React, { useRef } from 'react';
+import { Link } from 'react-router-dom';
 import { motion, useInView } from 'framer-motion';
+
+const MotionLink = motion(Link);
 
 const WORDS = ['TRADE', 'WITHOUT', 'BORDERS.'];
 
@@ -78,23 +81,23 @@ export default function CTA() {
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.7, delay: 0.68 }}
         >
-          <motion.a
-            href="#services"
+          <MotionLink
+            to="/contact"
             className="px-10 py-4 rounded-full text-white text-sm font-bold uppercase tracking-widest"
             style={{ background: 'linear-gradient(135deg, #1C96BF, #14b8a6)' }}
             whileHover={{ scale: 1.04, boxShadow: '0 16px 40px rgba(28,150,191,0.45)' }}
             whileTap={{ scale: 0.97 }}
           >
             Start Trading Now
-          </motion.a>
-          <motion.a
-            href="#contact"
+          </MotionLink>
+          <MotionLink
+            to="/contact"
             className="px-10 py-4 rounded-full border border-white/20 text-white text-sm font-bold uppercase tracking-widest"
             whileHover={{ scale: 1.04, borderColor: 'rgba(255,255,255,0.45)', backgroundColor: 'rgba(255,255,255,0.05)' }}
             whileTap={{ scale: 0.97 }}
           >
             Contact Us
-          </motion.a>
+          </MotionLink>
         </motion.div>
 
         {/* Office tags */}

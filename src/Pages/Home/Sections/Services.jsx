@@ -1,4 +1,5 @@
 import React, { useRef, useState } from 'react';
+import { Link } from 'react-router-dom';
 import { motion, useInView } from 'framer-motion';
 
 const SERVICES = [
@@ -10,6 +11,7 @@ const SERVICES = [
       'Support your suppliers with early payments while preserving your own working capital. Keep your supply chain healthy and your partners loyal across every corridor.',
     metric: '48h',
     metricLabel: 'Average funding speed',
+    path: '/supply-chain-finance',
     flip: false,
   },
   {
@@ -20,6 +22,7 @@ const SERVICES = [
       "Get immediate payment for your export invoices. TradeFlink steps in and waits for your buyer's payment — so you can keep moving without the wait.",
     metric: '90%',
     metricLabel: 'Invoice advance rate',
+    path: '/export-factoring',
     flip: true,
   },
   {
@@ -30,6 +33,7 @@ const SERVICES = [
       "Unlock liquidity from unpaid invoices without new debt or dilution. Access the capital you've already earned — on your terms, on your timeline.",
     metric: '$2B+',
     metricLabel: 'Trade financed to date',
+    path: '/invoice-financing',
     flip: false,
   },
   {
@@ -40,6 +44,7 @@ const SERVICES = [
       'Offer flexible payment terms to buyers worldwide with full protection against defaults. Grow confidently across 70+ countries without taking on the risk yourself.',
     metric: '70+',
     metricLabel: 'Countries covered',
+    path: '/open-account-trade',
     flip: true,
   },
 ];
@@ -169,27 +174,29 @@ function ServiceRow({ service, index }) {
       </p>
 
       {/* CTA link */}
-      <motion.div
-        className="inline-flex items-center gap-2 text-sm font-bold uppercase tracking-widest"
-        animate={{ color: hovered ? '#1C96BF' : '#d1d5db' }}
-        transition={{ duration: 0.3 }}
-      >
-        <span>Explore Service</span>
-        <motion.svg
-          className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}
-          animate={{ x: hovered ? 6 : 0 }}
-          transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+      <Link to={service.path} className="inline-flex items-center gap-2 no-underline">
+        <motion.div
+          className="inline-flex items-center gap-2 text-sm font-bold uppercase tracking-widest"
+          animate={{ color: hovered ? '#1C96BF' : '#d1d5db' }}
+          transition={{ duration: 0.3 }}
         >
-          <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
-        </motion.svg>
-      </motion.div>
+          <span>Explore Service</span>
+          <motion.svg
+            className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}
+            animate={{ x: hovered ? 6 : 0 }}
+            transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+          >
+            <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+          </motion.svg>
+        </motion.div>
+      </Link>
     </div>
   );
 
   return (
     <motion.div
       ref={rowRef}
-      className="grid grid-cols-1 lg:grid-cols-2 border-b border-gray-100 last:border-0 cursor-default"
+      className="grid grid-cols-1 lg:grid-cols-2 border-b border-gray-100 last:border-0 cursor-pointer"
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
       initial={{ opacity: 0, y: 40 }}

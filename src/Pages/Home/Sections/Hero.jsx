@@ -1,9 +1,9 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import img1 from '../../../assets/images/1896.jpg';
-import img2 from '../../../assets/images/6533.jpg';
-import img3 from '../../../assets/images/117180.jpg';
+import img1 from '../../../assets/images/1896.webp';
+import img2 from '../../../assets/images/6533.webp';
+import img3 from '../../../assets/images/117180.webp';
 
 const SLIDES   = [img1, img2, img3];
 const DURATION = 1000;
@@ -118,8 +118,8 @@ export default function Hero() {
           <AnimatePresence mode="wait">
             <motion.h1
               key={cur}
-              className="font-black text-white leading-[1.35] tracking-wide mb-6 lg:mb-8"
-              style={{ fontSize: 'clamp(30px, 3.8vw, 52px)', fontWeight: 900 }}
+              className="font-clash font-semibold text-white leading-[1.35] tracking-wide mb-6 lg:mb-8"
+              style={{ fontSize: 'clamp(30px, 3.8vw, 52px)' }}
             >
               {HEADLINES[cur].map((word, i) => (
                 <div key={word} className="overflow-hidden">

@@ -2,8 +2,7 @@ import React, { useState, useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import logo from '../../assets/logos/logo4.png';
-import footerBg from '../../assets/images/18459.jpg';
-import footerTopGlow from '../../assets/images/footertopglow.png';
+import footerBg from '../../assets/images/18459.webp';
 
 const MotionLink = motion(Link);
 
@@ -30,10 +29,10 @@ const NAV = [
   {
     title: 'Legal',
     links: [
-      { label: 'Privacy Policy',   href: '#' },
-      { label: 'Terms of Service', href: '#' },
-      { label: 'Cookie Policy',    href: '#' },
-      { label: 'Compliance',       href: '#' },
+      { label: 'Privacy Policy',   to: '/privacy-policy' },
+      { label: 'Terms and Conditions', to: '/terms-and-conditions' },
+      { label: 'Cookie Policy',    to: '/cookie-policy' },
+      
     ],
   },
 ];
@@ -179,19 +178,6 @@ export default function Footer() {
 
   return (
     <>
-      {/* ── Top glow band ────────────────────────────────────── */}
-      <div
-        className="w-full pointer-events-none select-none"
-        style={{
-          backgroundImage: `url(${footerTopGlow})`,
-          backgroundSize: 'cover',
-          backgroundPosition: 'center bottom',
-          backgroundRepeat: 'no-repeat',
-          height: '180px',
-          marginBottom: '-2px',
-        }}
-      />
-
       <footer
         ref={ref}
         className="relative w-full text-white overflow-hidden"
