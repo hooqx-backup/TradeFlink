@@ -1,4 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import { motion, AnimatePresence, useInView } from 'framer-motion';
 
 /* ── Data ─────────────────────────────────────────────────────── */
@@ -554,23 +555,20 @@ export default function Solutions() {
                   <div className="w-px h-10 bg-gray-100 hidden sm:block" />
 
                   <div className="flex items-center gap-3 flex-wrap">
-                    <motion.a href="#contact"
-                      className="inline-flex items-center gap-2.5 px-7 py-3.5 rounded-xl text-white font-bold text-sm"
-                      style={{ background: 'linear-gradient(135deg,#1C96BF,#14b8a6)', boxShadow: '0 4px 20px rgba(28,150,191,0.26)' }}
-                      whileHover={{ scale: 1.04, boxShadow: '0 8px 32px rgba(28,150,191,0.42)' }}
-                      whileTap={{ scale: 0.97 }}
-                      transition={{ duration: 0.2 }}>
-                      {sol.cta}
-                      <motion.svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}
-                        animate={{ x: [0, 3, 0] }} transition={{ duration: 1.8, repeat: Infinity, ease: 'easeInOut' }}>
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                      </motion.svg>
-                    </motion.a>
-                    <motion.a href="#contact"
-                      className="text-sm font-semibold text-gray-400 hover:text-teal-600 transition-colors duration-200"
-                      whileHover={{ x: 2 }} transition={{ duration: 0.18 }}>
-                      Learn more →
-                    </motion.a>
+                    <Link to="/contact">
+                      <motion.span
+                        className="inline-flex items-center gap-2.5 px-7 py-3.5 rounded-xl text-white font-bold text-sm"
+                        style={{ background: 'linear-gradient(135deg,#1C96BF,#14b8a6)', boxShadow: '0 4px 20px rgba(28,150,191,0.26)' }}
+                        whileHover={{ scale: 1.04, boxShadow: '0 8px 32px rgba(28,150,191,0.42)' }}
+                        whileTap={{ scale: 0.97 }}
+                        transition={{ duration: 0.2 }}>
+                        {sol.cta}
+                        <motion.svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}
+                          animate={{ x: [0, 3, 0] }} transition={{ duration: 1.8, repeat: Infinity, ease: 'easeInOut' }}>
+                          <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                        </motion.svg>
+                      </motion.span>
+                    </Link>
                   </div>
                 </motion.div>
 

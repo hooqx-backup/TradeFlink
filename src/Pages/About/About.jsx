@@ -8,13 +8,13 @@ import {
 } from 'lucide-react';
 
 // ── Images ───────────────────────────────────────────────────────────
-import missionImg from '../../assets/images/mission.jpg';
-import visionImg  from '../../assets/images/vision.jpg';
-import about1     from '../../assets/images/about1.jpg';
-import about2     from '../../assets/images/about2.jpg';
-import about3     from '../../assets/images/about3.jpg';
-import about4     from '../../assets/images/about4.jpg';
-import about5     from '../../assets/images/about5.jpg';
+import missionImg from '../../assets/images/mission.webp';
+import visionImg  from '../../assets/images/vision.webp';
+import about1     from '../../assets/images/about1.webp';
+import about2     from '../../assets/images/about2.webp';
+import about3     from '../../assets/images/about3.webp';
+import about4     from '../../assets/images/about4.webp';
+import about5     from '../../assets/images/about5.webp';
 
 // ── Animated counter ─────────────────────────────────────────────────
 function useCounter(target, duration = 1800, start = false) {
@@ -255,7 +255,7 @@ export default function About() {
             <motion.h1
               initial={{ opacity: 0, y: 40 }} animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
-              className="font-black text-white leading-[1.0] mb-7"
+              className="font-clash font-semibold text-white leading-[1.0] mb-7"
               style={{ fontSize: 'clamp(26px,3.8vw,52px)' }}>
               Bridging the Gap<br />
               in <span className="text-gradient">Global Trade</span>
@@ -1070,14 +1070,14 @@ export default function About() {
 
             <motion.div variants={fadeUp}
               className="flex flex-col sm:flex-row items-center justify-center gap-4">
-              <Link to="/" className="btn-brand text-sm px-10 py-4">
+              <Link to="/contact" className="btn-brand text-sm px-10 py-4">
                 Get Started Today
                 <ArrowRight size={16} />
               </Link>
-              <a href="mailto:info@tradeflink.com"
+              <Link to="/contact"
                 className="inline-flex items-center gap-2 px-10 py-4 rounded-full border border-white/20 text-white text-sm font-bold uppercase tracking-wider hover:bg-white/10 transition-all duration-200">
                 Talk to Us
-              </a>
+              </Link>
             </motion.div>
           </motion.div>
         </div>

@@ -8,12 +8,12 @@ import {
   ShieldCheck, Eye, Activity,
 } from 'lucide-react';
 
-import heroBg   from '../../assets/images/export1.jpg';
-import img2     from '../../assets/images/export2.jpg';
-import img3     from '../../assets/images/export3.jpg';
-import img4     from '../../assets/images/export4.jpg';
-import img5     from '../../assets/images/export5.jpg';
-import img6     from '../../assets/images/export6.jpg';
+import heroBg   from '../../assets/images/export1.webp';
+import img2     from '../../assets/images/export2.webp';
+import img3     from '../../assets/images/export3.webp';
+import img4     from '../../assets/images/export4.webp';
+import img5     from '../../assets/images/export5.webp';
+import img6     from '../../assets/images/export6.webp';
 
 /* ── Animation variants ────────────────────────────────────────── */
 const fadeUp = {
@@ -380,8 +380,8 @@ export default function ExportFactoring() {
             initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.9, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
-            className="font-black text-white leading-[1.05] mb-7 max-w-3xl"
-            style={{ fontSize: 'clamp(26px, 3.8vw, 52px)', fontWeight: 900 }}
+            className="font-clash font-semibold text-white leading-[1.05] mb-7 max-w-3xl"
+            style={{ fontSize: 'clamp(26px, 3.8vw, 52px)' }}
           >
             Export Factoring{' '}
             <span className="text-gradient">Services</span>

@@ -6,8 +6,14 @@ import Contact        from "../Pages/Contact/Contact";
 import Investors      from "../Pages/Investors/Investors";
 import CaseStudies    from "../Pages/CaseStudies/CaseStudies";
 import Exporters      from "../Pages/Exporters/Exporters";
-import ExportFactoring from "../Pages/ExportFactoring/ExportFactoring";
-import NotFound       from "../Pages/NotFound/NotFound";
+import ExportFactoring    from "../Pages/ExportFactoring/ExportFactoring";
+import SupplyChainFinance from "../Pages/SupplyChainFinance/SupplyChainFinance";
+import OpenAccountTrade   from "../Pages/OpenAccountTrade/OpenAccountTrade";
+import InvoiceFinancing   from "../Pages/InvoiceFinancing/InvoiceFinancing";
+import PrivacyPolicy        from "../Pages/PrivacyPolicy/PrivacyPolicy";
+import TermsAndConditions   from "../Pages/TermsAndConditions/TermsAndConditions";
+import CookiePolicy         from "../Pages/CookiePolicy/CookiePolicy";
+import NotFound           from "../Pages/NotFound/NotFound";
 
 // Add new pages here — one line per route.
 const LAYOUT_ROUTES = [
@@ -17,7 +23,13 @@ const LAYOUT_ROUTES = [
   { path: "/investors",       element: <Investors /> },
   { path: "/case-studies",    element: <CaseStudies /> },
   { path: "/exporters",       element: <Exporters /> },
-  { path: "/export-factoring", element: <ExportFactoring /> },
+  { path: "/export-factoring",      element: <ExportFactoring /> },
+  { path: "/supply-chain-finance",  element: <SupplyChainFinance /> },
+  { path: "/open-account-trade",    element: <OpenAccountTrade /> },
+  { path: "/invoice-financing",     element: <InvoiceFinancing /> },
+  { path: "/privacy-policy",        element: <PrivacyPolicy /> },
+  { path: "/terms-and-conditions",  element: <TermsAndConditions /> },
+  { path: "/cookie-policy",         element: <CookiePolicy /> },
 ];
 
 export default function AppRoutes() {

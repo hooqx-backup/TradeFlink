@@ -1,4 +1,5 @@
 import React, { useState, useRef } from 'react';
+import { Link } from 'react-router-dom';
 import { motion, AnimatePresence, useInView } from 'framer-motion';
 
 const FAQS = [
@@ -129,17 +130,18 @@ export default function FAQ() {
                 {/* Still have questions? */}
                 <div className="mt-10 pt-8 border-t border-gray-100 flex items-center justify-between">
                   <p className="text-sm text-gray-400">Still have questions?</p>
-                  <motion.a
-                    href="#contact"
-                    className="inline-flex items-center gap-2 text-sm font-bold text-teal-600"
-                    whileHover={{ gap: '12px' }}
-                    transition={{ duration: 0.2 }}
-                  >
-                    Talk to our team
-                    <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                    </svg>
-                  </motion.a>
+                  <Link to="/contact">
+                    <motion.span
+                      className="inline-flex items-center gap-2 text-sm font-bold text-teal-600"
+                      whileHover={{ gap: '12px' }}
+                      transition={{ duration: 0.2 }}
+                    >
+                      Talk to our team
+                      <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                      </svg>
+                    </motion.span>
+                  </Link>
                 </div>
               </motion.div>
             </AnimatePresence>

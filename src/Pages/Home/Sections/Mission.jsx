@@ -1,6 +1,6 @@
 import React, { useRef, useState, useEffect } from 'react';
 import { motion, useInView } from 'framer-motion';
-import missionImg from '../../../assets/images/mission.jpg';
+import missionImg from '../../../assets/images/mission.webp';
 
 const GLITCH_CHARS = '0123456789ABCDEF#@!?><';
 

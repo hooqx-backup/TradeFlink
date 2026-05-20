@@ -1,9 +1,10 @@
 import React, { useRef, useState } from 'react';
+import { Link } from 'react-router-dom';
 import { motion, useInView } from 'framer-motion';
-import transparencyImg from '../../../assets/images/values.jpg';
-import speedImg from '../../../assets/images/817045.jpg';
-import inclusionImg from '../../../assets/images/2151884873.jpg';
-import resilienceImg from '../../../assets/images/2151883556.jpg';
+import transparencyImg from '../../../assets/images/values.webp';
+import speedImg from '../../../assets/images/817045.webp';
+import inclusionImg from '../../../assets/images/2151884873.webp';
+import resilienceImg from '../../../assets/images/2151883556.webp';
 
 const VALUES = [
   {
@@ -327,12 +328,12 @@ export default function Values() {
         >
           TradeFlink · Est. 2014
         </motion.p>
-        <motion.a
-          href="#services"
-          className="inline-flex items-center gap-2 text-xs font-bold text-teal-500 uppercase tracking-widest relative overflow-hidden"
+        <motion.div
+          className="inline-flex items-center gap-2 text-xs font-bold text-teal-500 uppercase tracking-widest relative overflow-hidden cursor-pointer"
           whileHover={{ gap: '14px', color: '#ffffff' }}
           transition={{ duration: 0.2 }}
         >
+          <Link to="/about" className="absolute inset-0 z-20" aria-label="See how we work" />
           {/* Background shimmer on hover */}
           <motion.span
             className="absolute inset-0 pointer-events-none"
@@ -353,7 +354,7 @@ export default function Values() {
           >
             <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
           </motion.svg>
-        </motion.a>
+        </motion.div>
       </motion.div>
 
     </section>

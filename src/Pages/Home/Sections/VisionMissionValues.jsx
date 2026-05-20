@@ -1,8 +1,8 @@
 import React, { useRef, useState, useCallback } from 'react';
 import { motion, useInView, useMotionValue, useTransform, useSpring, AnimatePresence } from 'framer-motion';
-import visionImg from '../../../assets/images/vision.jpg';
-import missionImg from '../../../assets/images/mission.jpg';
-import valuesImg from '../../../assets/images/values.jpg';
+import visionImg from '../../../assets/images/vision.webp';
+import missionImg from '../../../assets/images/mission.webp';
+import valuesImg from '../../../assets/images/values.webp';
 
 const CARDS = [
   {

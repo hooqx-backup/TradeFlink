@@ -9,10 +9,10 @@ import {
 } from 'framer-motion';
 import { Link } from 'react-router-dom';
 
-import investor1 from '../../assets/images/investor1.jpg';
-import investor2 from '../../assets/images/investor2.jpg';
-import investor3 from '../../assets/images/investor3.jpg';
-import investor4 from '../../assets/images/investor4.jpg';
+import investor1 from '../../assets/images/investor1.webp';
+import investor2 from '../../assets/images/investor2.webp';
+import investor3 from '../../assets/images/investor3.webp';
+import investor4 from '../../assets/images/investor4.webp';
 import {
   ArrowRight,
   ShieldCheck,
@@ -426,8 +426,8 @@ export default function Investors() {
               initial={{ opacity: 0, y: 50 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.9, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
-              className="font-black text-white leading-[1.05] mb-7"
-              style={{ fontSize: 'clamp(26px, 3.8vw, 52px)', fontWeight: 900 }}
+              className="font-clash font-semibold text-white leading-[1.05] mb-7"
+              style={{ fontSize: 'clamp(26px, 3.8vw, 52px)' }}
             >
               Invest in{' '}
               <span className="text-gradient">Global Trade.</span>

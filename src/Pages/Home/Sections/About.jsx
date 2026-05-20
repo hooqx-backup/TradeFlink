@@ -1,6 +1,6 @@
 import React, { useRef } from 'react';
 import { motion, useInView, useScroll, useTransform } from 'framer-motion';
-import aboutImg from '../../../assets/images/2151884873.jpg';
+import aboutImg from '../../../assets/images/2151884873.webp';
 
 const PILLARS = [
   'Invoice discounting in under 48 hours',

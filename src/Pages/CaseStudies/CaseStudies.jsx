@@ -453,7 +453,7 @@ export default function CaseStudies() {
               </motion.div>
 
               {/* Word-by-word headline */}
-              <motion.h1 className="mt-7 text-3xl sm:text-4xl font-black leading-[0.92] tracking-[-0.04em] text-white">
+              <motion.h1 className="mt-7 text-3xl sm:text-4xl font-clash font-semibold leading-[0.92] tracking-[-0.04em] text-white">
                 {['Real', 'businesses,'].map((word, i) => (
                   <motion.span
                     key={word}
