@@ -25,7 +25,7 @@ export default function Partners({ title = 'Our Partners' }) {
   // No hover interactions — slider auto-plays continuously.
 
   return (
-    <section className="w-full overflow-hidden py-20">
+    <section className="w-full overflow-hidden py-10">
       <div className="container-xl mx-auto">
         <div className="mb-6 text-center">
           <h3 className="mb-2 text-sm font-semibold uppercase tracking-wider text-slate-200">Trusted By</h3>

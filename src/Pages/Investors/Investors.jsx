@@ -439,7 +439,7 @@ export default function Investors() {
               initial={{ opacity: 0, y: 24 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.4 }}
-              className="text-slate-400 text-lg leading-relaxed mb-10"
+              className="text-slate-400 text-md leading-relaxed mb-10"
             >
               Participate in credit-insured, short-term trade receivables
               diversified across industries and geographies — with full
@@ -1089,7 +1089,7 @@ export default function Investors() {
       {/* ══════════════════════════════════════════════════════════
           FAQ
       ══════════════════════════════════════════════════════════ */}
-      <section className="section bg-[#060f1e] relative overflow-hidden">
+      <section className="section bg-[#060f1e] relative overflow-hidden -mb-14">
         <div className="absolute inset-0 bg-dots opacity-25 pointer-events-none" />
         <FloatingOrb className="-top-20 left-1/3" color="#1C96BF" size="500px" delay={1} />
         <FloatingOrb className="bottom-0 right-0"  color="#a78bfa" size="350px" delay={3} />
@@ -1123,7 +1123,7 @@ export default function Investors() {
       {/* ══════════════════════════════════════════════════════════
           CTA  — investor4 boardroom background
       ══════════════════════════════════════════════════════════ */}
-      <section className="section relative overflow-hidden bg-[#050d18]">
+      <section className="section relative overflow-hidden  bg-[#050d18]">
         {/* Boardroom image as atmosphere */}
         <img
           src={investor4}
@@ -1144,7 +1144,7 @@ export default function Investors() {
           <div className="w-[900px] h-[900px] rounded-full border border-teal-500/6" />
         </motion.div>
 
-        <div className="container-xl relative z-10">
+        <div className="container-xl relative z-10 ">
           <motion.div
             initial="hidden"
             whileInView="visible"

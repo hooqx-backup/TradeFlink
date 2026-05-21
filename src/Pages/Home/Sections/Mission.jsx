@@ -1,6 +1,7 @@
 import React, { useRef, useState, useEffect } from 'react';
 import { motion, useInView } from 'framer-motion';
 import missionImg from '../../../assets/images/mission.webp';
+import about3 from '../../../assets/images/about3.webp';
 
 const GLITCH_CHARS = '0123456789ABCDEF#@!?><';
 
@@ -198,28 +199,44 @@ export default function Mission() {
       {/* ══ Desktop: sticky-left image + scrolling-right content ══ */}
       <div className="hidden lg:flex">
 
-        {/* Left: sticky image panel */}
-        <div className="w-[42%] shrink-0 relative">
+        {/* Left: stacked image panels */}
+        <div className="w-[42%] shrink-0 flex flex-col">
+
+          {/* First image */}
           <div className="sticky top-0 h-screen overflow-hidden">
             <img src={missionImg} alt="Our Mission" className="w-full h-full object-cover" />
-            {/* Gradient overlay */}
             <div className="absolute inset-0"
               style={{ background: 'linear-gradient(to right, transparent 50%, white 100%), linear-gradient(to bottom, rgba(0,0,0,0.25) 0%, transparent 35%)' }} />
-            {/* Label on image */}
             <div className="absolute bottom-14 left-12">
               <p className="text-white/40 text-xs uppercase tracking-[0.28em] font-bold mb-2">02 Mission</p>
               <p className="text-white font-black leading-tight" style={{ fontSize: 'clamp(18px, 2.2vw, 32px)' }}>
                 Empowering<br />SMEs<br />Globally
               </p>
             </div>
-            {/* Top-left teal accent */}
             <div className="absolute top-12 left-12 flex items-center gap-3">
               <span className="h-px w-8 bg-teal-400/80" />
               <span className="text-teal-300 text-xs font-bold uppercase tracking-[0.22em]">Our Mission</span>
             </div>
           </div>
-        </div>
 
+          {/* Second image (below the first) */}
+          <div className="relative h-screen overflow-hidden">
+            <img src={about3} alt="Our Mission" className="w-full h-full object-cover" />
+            <div className="absolute inset-0"
+              style={{ background: 'linear-gradient(to right, transparent 50%, white 100%), linear-gradient(to bottom, rgba(0,0,0,0.25) 0%, transparent 35%)' }} />
+            <div className="absolute bottom-14 left-12">
+              <p className="text-white/40 text-xs uppercase tracking-[0.28em] font-bold mb-2">02 Mission</p>
+              <p className="text-white font-black leading-tight" style={{ fontSize: 'clamp(18px, 2.2vw, 32px)' }}>
+                Empowering<br />SMEs<br />Globally
+              </p>
+            </div>
+            <div className="absolute top-12 left-12 flex items-center gap-3">
+              <span className="h-px w-8 bg-teal-400/80" />
+              <span className="text-teal-300 text-xs font-bold uppercase tracking-[0.22em]">Our Mission</span>
+            </div>
+          </div>
+
+        </div>
         {/* Right: scrolling content */}
         <div className="flex-1 px-14 xl:px-20 pt-24 pb-28">
 

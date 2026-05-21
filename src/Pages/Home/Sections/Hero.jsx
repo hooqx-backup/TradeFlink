@@ -142,7 +142,7 @@ export default function Hero() {
 
             {/* Description + buttons */}
             <div className="shrink-0">
-              <p className="text-gray-300/80 text-sm leading-relaxed max-w-xs mb-5">
+              <p className="text-gray-300/80 text-md leading-relaxed max-w-xs mb-5">
                 Trade without borders, limits, or delays. Empowering SMEs with fast and inclusive global finance.
               </p>
               <div className="flex items-center gap-3 flex-wrap">

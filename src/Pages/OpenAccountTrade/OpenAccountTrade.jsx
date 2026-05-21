@@ -277,7 +277,7 @@ const FOR_WHOM = [
     Icon: Package,
     who: 'For Exporters',
     headline: 'Offer open terms. Get paid in days.',
-    desc: 'Tradeflink lets you win competitive deals by offering flexible buyer terms — while guaranteeing your payment and protecting your cash flow throughout.',
+    desc: 'Tradeflink lets you win competitive deals by offering flexible buyer terms while guaranteeing your payment and protecting your cash flow throughout.',
     rating: '4.5',
     gradient: 'from-teal-500 to-teal-600',
     accent: '#1C96BF',
@@ -287,7 +287,7 @@ const FOR_WHOM = [
     Icon: Users,
     who: 'For Importers',
     headline: 'Extended terms. Stronger supplier ties.',
-    desc: 'Negotiate the payment terms you need to manage your working capital cycle — while Tradeflink ensures your suppliers always get paid on time, preserving your relationships.',
+    desc: 'Negotiate the payment terms you need to manage your working capital cycle while Tradeflink ensures your suppliers always get paid on time',
     rating: '4.5',
     gradient: 'from-sky-500 to-sky-600',
     accent: '#0ea5e9',
@@ -297,7 +297,7 @@ const FOR_WHOM = [
     Icon: BarChart3,
     who: 'For Investors',
     headline: 'Insured, short-duration trade returns.',
-    desc: 'Fund verified open account receivables insured against default — earning transparent, short-duration returns backed by real commercial shipments and creditworthy buyers.',
+    desc: 'Fund verified open account receivables insured against default earning transparent, short-duration returns backed by real commercial shipments',
     rating: '4.5',
     gradient: 'from-violet-500 to-violet-600',
     accent: '#a78bfa',
@@ -392,7 +392,7 @@ export default function OpenAccountTrade() {
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.4 }}
-            className="text-slate-300 text-lg leading-relaxed mb-10 max-w-xl"
+            className="text-slate-300 text-md leading-relaxed mb-10 max-w-xl"
           >
             Offer your international buyers the flexible open account terms they demand —
             while Tradeflink guarantees your payment, absorbs the risk, and keeps your
@@ -404,7 +404,7 @@ export default function OpenAccountTrade() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.55 }}
-            className="flex flex-wrap gap-3 mb-16"
+            className="flex flex-wrap gap-3 mb-5"
           >
             <Link to="/contact" className="btn-brand text-xs px-8 py-3.5">
               Get Protected Today <ArrowRight size={15} />
@@ -852,7 +852,7 @@ export default function OpenAccountTrade() {
       {/* ════════════════════════════════════════════════════════
           WHO IT'S FOR
       ════════════════════════════════════════════════════════ */}
-      <section className="section bg-white">
+      <section className="section bg-white -mt-17">
         <div className="container-xl">
           <motion.div
             initial="hidden" whileInView="visible"
@@ -1051,7 +1051,7 @@ export default function OpenAccountTrade() {
       {/* ════════════════════════════════════════════════════════
           FAQ
       ════════════════════════════════════════════════════════ */}
-      <section className="section bg-[#060f1e] relative overflow-hidden">
+      <section className="section bg-[#060f1e] relative overflow-hidden -mb-15">
         <div className="absolute inset-0 bg-dots opacity-25 pointer-events-none" />
         <FloatingOrb className="-top-20 left-1/3" color="#1C96BF" size="500px" delay={1} />
         <FloatingOrb className="bottom-0 right-0"  color="#a78bfa" size="350px" delay={3} />

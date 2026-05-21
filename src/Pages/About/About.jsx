@@ -263,7 +263,7 @@ export default function About() {
 
             <motion.p initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.25 }}
-              className="text-slate-400 text-lg leading-relaxed mb-10">
+              className="text-slate-400 text-md leading-relaxed mb-10">
               We were built on one belief — no good business should struggle because of delayed payments.
               Tradeflink connects exporters, importers, and investors across{' '}
               <span className="text-teal-400 font-semibold">70+ countries</span>.
@@ -933,7 +933,7 @@ export default function About() {
           transition={{ duration: 12, repeat: Infinity, ease: 'easeInOut', delay: 2 }}
         />
 
-        <div className="container-xl relative z-10">
+        <div className="container-xl relative z-10 -mb-13">
           <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, margin: '-60px' }}
             variants={fadeUp} className="text-center mb-16">
             <motion.div
@@ -1042,7 +1042,7 @@ export default function About() {
       {/* ══════════════════════════════════════════════════════════
           CTA
       ══════════════════════════════════════════════════════════ */}
-      <section className="section relative overflow-hidden bg-[#060f1e]">
+      <section className="section relative overflow-hidden bg-[#060f1e] ">
         <img src={about5} alt="" aria-hidden
           className="absolute inset-0 w-full h-full object-cover opacity-20" />
         <div className="absolute inset-0"
@@ -1053,7 +1053,7 @@ export default function About() {
           <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }}
             variants={stagger} className="text-center max-w-3xl mx-auto">
             <motion.div variants={fadeUp}
-              className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-teal-500/30 bg-teal-500/10 text-teal-400 text-[10px] font-black uppercase tracking-[0.2em] mb-8">
+              className="inline-flex items-center gap-2 px-4  rounded-full border border-teal-500/30 bg-teal-500/10 text-teal-400 text-[10px] font-black uppercase tracking-[0.2em] mb-8">
               <span className="w-1.5 h-1.5 rounded-full bg-teal-400 animate-pulse" />
               Join Tradeflink
             </motion.div>

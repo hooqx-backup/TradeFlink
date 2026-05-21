@@ -287,7 +287,7 @@ const FOR_WHOM = [
   {
     Icon: Package,
     who: 'For Suppliers',
-    headline: 'Get paid in days, not months.',
+    headline: 'Get paid in very days, not months.',
     desc: 'SME suppliers access early payment on approved invoices without taking on debt or going through lengthy credit processes — just fast, frictionless liquidity.',
     rating: '4.5',
     gradient: 'from-sky-500 to-sky-600',
@@ -298,7 +298,7 @@ const FOR_WHOM = [
     Icon: BarChart3,
     who: 'For Investors',
     headline: 'Short-duration returns backed by buyer credit.',
-    desc: 'Invest in verified, buyer-approved payables and earn transparent returns on short-duration assets — underpinned by the credit of investment-grade anchor buyers.',
+    desc: 'Invest in verified, buyer-approved payables and earn transparent returns on short-duration assets underpinned by the credit of investment-grade buyers.',
     rating: '4.5',
     gradient: 'from-violet-500 to-violet-600',
     accent: '#a78bfa',
@@ -393,10 +393,10 @@ export default function SupplyChainFinance() {
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.4 }}
-            className="text-slate-300 text-lg leading-relaxed mb-10 max-w-xl"
+            className="text-slate-300 text-md leading-relaxed mb-10 max-w-xl"
           >
             Tradeflink connects buyers and suppliers through a buyer-led early-payment
-            programme — so suppliers get paid in days and buyers optimise their working
+            programme .so suppliers get paid in days and buyers optimise their working
             capital without taking on new debt.
           </motion.p>
 
@@ -405,7 +405,7 @@ export default function SupplyChainFinance() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.55 }}
-            className="flex flex-wrap gap-3 mb-16"
+            className="flex flex-wrap gap-3 mb-5"
           >
             <Link to="/contact" className="btn-brand text-xs px-8 py-3.5">
               Get Started Today <ArrowRight size={15} />
@@ -854,7 +854,7 @@ export default function SupplyChainFinance() {
       {/* ════════════════════════════════════════════════════════
           WHO IT'S FOR
       ════════════════════════════════════════════════════════ */}
-      <section className="section bg-white">
+      <section className="section bg-white -mt-17">
         <div className="container-xl">
           <motion.div
             initial="hidden" whileInView="visible"
@@ -1053,7 +1053,7 @@ export default function SupplyChainFinance() {
       {/* ════════════════════════════════════════════════════════
           FAQ
       ════════════════════════════════════════════════════════ */}
-      <section className="section bg-[#060f1e] relative overflow-hidden">
+      <section className="section bg-[#060f1e] relative overflow-hidden -mb-15">
         <div className="absolute inset-0 bg-dots opacity-25 pointer-events-none" />
         <FloatingOrb className="-top-20 left-1/3" color="#1C96BF" size="500px" delay={1} />
         <FloatingOrb className="bottom-0 right-0"  color="#a78bfa" size="350px" delay={3} />

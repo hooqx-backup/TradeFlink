@@ -292,7 +292,7 @@ export default function Footer() {
                 </motion.a>
 
                 <div className="space-y-4">
-                  <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black leading-[0.95] tracking-[-0.04em] text-white">
+                  <h2 className="text-3xl sm:text-4xl lg:text-5xl font-semibold leading-[0.95] tracking-[0.02em] text-white/75">
                     Faster capital for global trade.
                   </h2>
                   <p className="max-w-lg text-sm sm:text-base leading-relaxed text-white/55">
@@ -346,7 +346,7 @@ export default function Footer() {
 
                 {/* Social icons */}
                 <div className="rounded-2xl border border-white/10 bg-white/5 px-4 py-4">
-                  <p className="text-[10px] uppercase tracking-[0.25em] text-teal-300/80">Follow</p>
+                  <p className="text-xs font-bold uppercase tracking-[0.22em] text-teal-300">Follow</p>
                   <div className="mt-3 flex items-center gap-2">
                     {SOCIALS.map((s, i) => (
                       <motion.a
