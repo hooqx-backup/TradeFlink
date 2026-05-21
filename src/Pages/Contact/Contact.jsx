@@ -708,7 +708,7 @@ export default function Contact() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.65 }}
-              className="text-slate-400 text-lg leading-relaxed mb-12 max-w-xl"
+              className="text-slate-400 text-md leading-relaxed mb-12 max-w-xl"
             >
               Whether you're exploring trade finance, looking for a demo, or just have a question —
               our team across{' '}

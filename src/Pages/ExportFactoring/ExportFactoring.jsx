@@ -287,8 +287,8 @@ const FOR_WHOM = [
   {
     Icon: Users,
     who: 'For Importers',
-    headline: 'Improve supplier relationships and negotiate better terms.',
-    desc: 'Working capital support from Tradeflink lets you pay suppliers on time — or early — while preserving your own cash.',
+    headline: 'Improve supplier relationships',
+    desc: 'Working capital support from Tradeflink lets you pay suppliers on time or early while preserving your own cash.',
     rating: '4.5',
     gradient: 'from-sky-500 to-sky-600',
     accent: '#0ea5e9',
@@ -298,7 +298,7 @@ const FOR_WHOM = [
     Icon: BarChart3,
     who: 'For Investors',
     headline: 'Participate in global trade with consistent returns.',
-    desc: 'Fund verified, insured invoices that generate transparent, short-duration returns — backed by real commercial transactions.',
+    desc: 'Fund verified, insured invoices that generate transparent, short-duration returns ',
     rating: '4.5',
     gradient: 'from-violet-500 to-violet-600',
     accent: '#a78bfa',
@@ -393,9 +393,9 @@ export default function ExportFactoring() {
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.4 }}
-            className="text-slate-300 text-lg leading-relaxed mb-10 max-w-xl"
+            className="text-slate-300 text-md leading-relaxed mb-10 max-w-xl"
           >
-            For years, our clients — mainly small and medium-sized companies — have used
+            For years, our clients mainly small and medium-sized companies have used
             our export factoring solutions to unlock capital and experience growth without
             the wait.
           </motion.p>
@@ -405,7 +405,7 @@ export default function ExportFactoring() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.55 }}
-            className="flex flex-wrap gap-3 mb-16"
+            className="flex flex-wrap gap-3 mb-5"
           >
             <Link to="/contact" className="btn-brand text-xs px-8 py-3.5">
               Get Started Today <ArrowRight size={15} />
@@ -852,7 +852,7 @@ export default function ExportFactoring() {
       {/* ════════════════════════════════════════════════════════
           WHO IT'S FOR
       ════════════════════════════════════════════════════════ */}
-      <section className="section bg-white">
+      <section className="section bg-white -mt-17">
         <div className="container-xl">
           <motion.div
             initial="hidden" whileInView="visible"
@@ -1051,7 +1051,7 @@ export default function ExportFactoring() {
       {/* ════════════════════════════════════════════════════════
           FAQ
       ════════════════════════════════════════════════════════ */}
-      <section className="section bg-[#060f1e] relative overflow-hidden">
+      <section className="section bg-[#060f1e] relative overflow-hidden -mb-15">
         <div className="absolute inset-0 bg-dots opacity-25 pointer-events-none" />
         <FloatingOrb className="-top-20 left-1/3" color="#1C96BF" size="500px" delay={1} />
         <FloatingOrb className="bottom-0 right-0"  color="#a78bfa" size="350px" delay={3} />

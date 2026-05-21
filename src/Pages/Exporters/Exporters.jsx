@@ -406,7 +406,7 @@ export default function Exporters() {
 
           <motion.p initial={{ opacity:0, y:24 }} animate={{ opacity:1, y:0 }}
             transition={{ delay:0.7, duration:0.7, ease:[0.22,1,0.36,1] }}
-            className="text-lg sm:text-xl text-white/65 max-w-2xl mx-auto leading-relaxed mb-10"
+            className="text-md sm:text-md text-white/65 max-w-2xl mx-auto leading-relaxed mb-10"
           >
             Get up to <span className="text-teal-300 font-bold">90% of invoice value</span> upfront on eligible export receivables and reinvest immediately in production and sales.
           </motion.p>

@@ -358,7 +358,7 @@ const FOR_WHOM = [
     Icon: Package,
     who: 'For Exporters',
     headline: 'Ship globally. Get paid instantly.',
-    desc: 'Finance your export invoices regardless of where your buyers are — eliminating the cash flow gap that slows international growth.',
+    desc: 'Finance your export invoices regardless of where your buyers are eliminating the cash flow gap that slows growth.',
     rating: '4.8',
     gradient: 'from-teal-500 to-teal-600',
     accent: '#1C96BF',
@@ -368,7 +368,7 @@ const FOR_WHOM = [
     Icon: Building2,
     who: 'For SMEs',
     headline: 'Big-order confidence. Small-business speed.',
-    desc: 'Accept large purchase orders without worrying about the working capital gap — Tradeflink bridges the funding until your buyer pays.',
+    desc: 'Accept large purchase orders without worrying about the working capital gap Tradeflink funds until your buyer pays.',
     rating: '4.8',
     gradient: 'from-sky-500 to-sky-600',
     accent: '#0ea5e9',
@@ -525,7 +525,7 @@ export default function InvoiceFinancing() {
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.4 }}
-            className="text-slate-300 text-lg leading-relaxed mb-10 max-w-xl"
+            className="text-slate-300 text-md leading-relaxed mb-10 max-w-xl"
           >
             Stop waiting 90 days for buyers to pay. Tradeflink advances up to 95%
             of your invoice value within 24 hours — giving you the cash flow to
@@ -537,7 +537,7 @@ export default function InvoiceFinancing() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.55 }}
-            className="flex flex-wrap gap-3 mb-16"
+            className="flex flex-wrap gap-3 mb-5"
           >
             <Link to="/contact" className="btn-brand text-xs px-8 py-3.5">
               Get Funded Today <ArrowRight size={15} />
@@ -1009,7 +1009,7 @@ export default function InvoiceFinancing() {
       {/* ════════════════════════════════════════════════════════
           WHO IT'S FOR
       ════════════════════════════════════════════════════════ */}
-      <section className="section bg-white">
+      <section className="section bg-white -mt-17">
         <div className="container-xl">
           <motion.div
             initial="hidden" whileInView="visible"
@@ -1217,7 +1217,7 @@ export default function InvoiceFinancing() {
       {/* ════════════════════════════════════════════════════════
           FAQ
       ════════════════════════════════════════════════════════ */}
-      <section className="section bg-[#060f1e] relative overflow-hidden">
+      <section className="section bg-[#060f1e] relative overflow-hidden -mb-15">
         <div className="absolute inset-0 bg-dots opacity-25 pointer-events-none" />
         <FloatingOrb className="-top-20 left-1/3" color="#1C96BF" size="500px" delay={1} />
         <FloatingOrb className="bottom-0 right-0"  color="#a78bfa" size="350px" delay={3} />

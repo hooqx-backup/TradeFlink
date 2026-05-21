@@ -23,7 +23,7 @@ export default function FAQ() {
   const inView = useInView(sectionRef, { once: true, margin: '-80px' });
 
   return (
-    <section ref={sectionRef} className="w-full bg-white" style={{ overflow: 'clip' }}>
+    <section ref={sectionRef} className="w-full -mb-20 bg-white" style={{ overflow: 'clip' }}>
 
       {/* Top rule */}
       <div className="border-t border-gray-100" />

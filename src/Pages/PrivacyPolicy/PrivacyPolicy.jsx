@@ -1,12 +1,11 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { motion, useInView, useScroll, useTransform, useSpring } from 'framer-motion';
+import { motion, useInView, useScroll, useSpring } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import {
   Shield, Lock, Eye, Database, Globe, Mail, ArrowRight,
   FileText, Users, AlertCircle, RefreshCw, ChevronRight,
   CheckCircle2, ExternalLink,
 } from 'lucide-react';
-import heroBg from '../../assets/images/privacybanner.jpg';
 
 /* ── Animation variants ────────────────────────────────────────── */
 const fadeUp = {
@@ -461,67 +460,9 @@ export default function PrivacyPolicy() {
   const sectionIds = SECTIONS.map((s) => s.id);
   const activeId   = useActiveSection(sectionIds);
 
-  const heroRef = useRef(null);
-  const { scrollYProgress: heroScroll } = useScroll({ target: heroRef, offset: ['start start', 'end start'] });
-  const heroImgY = useTransform(heroScroll, [0, 1], ['0%', '28%']);
-
   return (
     <div className="bg-white overflow-x-hidden">
       <ReadingProgress />
-
-      {/* ════════════════════════════════════════════════════════
-          HERO — parallax + floating orbs + title overlay
-      ════════════════════════════════════════════════════════ */}
-      <section ref={heroRef} className="relative h-[62vh] overflow-hidden">
-        {/* Parallax image */}
-        <motion.div className="absolute inset-0 scale-110" style={{ y: heroImgY }}>
-          <img src={heroBg} alt="" className="w-full h-full object-cover" />
-        </motion.div>
-
-        {/* Dark gradient overlay */}
-        <div
-          className="absolute inset-0 pointer-events-none"
-          style={{ background: 'linear-gradient(to bottom, rgba(5,13,24,0.25) 0%, rgba(5,13,24,0.72) 100%)' }}
-        />
-
-        {/* Floating orbs */}
-        <FloatingOrb color="#1C96BF" size={420} style={{ top: '5%', left: '-5%' }}  duration={10} delay={0} />
-        <FloatingOrb color="#10b981" size={300} style={{ bottom: '10%', right: '-2%' }} duration={8} delay={2} />
-        <FloatingOrb color="#6366f1" size={200} style={{ top: '40%', right: '20%' }} duration={12} delay={1} />
-
-        {/* Title overlay */}
-        <div className="absolute inset-0 flex items-center justify-center">
-          <motion.div
-            className="text-center px-6"
-            initial="hidden"
-            animate="visible"
-            variants={staggerFast}
-          >
-            <motion.p
-              variants={blurUp}
-              className="text-teal-400 text-[10px] font-black uppercase tracking-[0.45em] mb-4"
-            >
-              Legal Document
-            </motion.p>
-            <motion.h1
-              variants={blurUp}
-              className="text-5xl lg:text-7xl font-black text-white leading-none mb-5"
-            >
-              Privacy&nbsp;<span style={{ color: '#1C96BF' }}>Policy</span>
-            </motion.h1>
-            <motion.p
-              variants={blurUp}
-              className="text-slate-300 text-sm max-w-md mx-auto leading-relaxed"
-            >
-              How Tradeflink collects, uses, and protects your personal information.
-            </motion.p>
-          </motion.div>
-        </div>
-
-        {/* Bottom glow line */}
-        <div className="absolute bottom-0 left-0 right-0 h-px pointer-events-none"
-          style={{ background: 'linear-gradient(90deg,transparent,rgba(28,150,191,0.6),rgba(14,165,233,0.6),transparent)' }} />
-      </section>
 
       {/* ════════════════════════════════════════════════════════
           INTRO STRIP
