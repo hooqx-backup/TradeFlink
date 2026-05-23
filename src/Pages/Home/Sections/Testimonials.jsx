@@ -138,7 +138,7 @@ export default function Testimonials() {
 
         {/* Bottom stats strip */}
         <div className="mt-14 lg:mt-20 pt-8 border-t border-white/08 grid grid-cols-3 gap-8">
-          {[['1000+', 'Businesses trusted us'], ['70+', 'Countries'], ['98%', 'Client satisfaction']].map(([val, label]) => (
+          {[['300+', 'Businesses trusted us'], ['70+', 'Countries'], ['98%', 'Client satisfaction']].map(([val, label]) => (
             <div key={label}>
               <p className="text-2xl font-black text-teal-400 mb-1">{val}</p>
               <p className="text-xs text-white/25 uppercase tracking-widest">{label}</p>

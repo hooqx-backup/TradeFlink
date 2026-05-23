@@ -534,7 +534,7 @@ export default function CaseStudies() {
             {[
               { metric: '70+',  label: 'Countries Served' },
               { metric: '500+', label: 'SMEs Financed' },
-              { metric: '$2B+', label: 'Trade Facilitated' },
+              { metric: '$250M+', label: 'Trade Facilitated' },
               { metric: '98%',  label: 'Client Satisfaction' },
             ].map((s, i) => (
               <StatPill key={s.label} {...s} colors={STAT_COLORS[i]} delay={i * 0.6} />

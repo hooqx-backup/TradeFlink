@@ -4,8 +4,8 @@ import { motion, useInView } from 'framer-motion';
 const STATS = [
   { num: 4.5,  suffix: 'T+', prefix: '$', label: 'Global Trade Finance Gap',  sub: 'Addressable market — the problem we exist to solve', decimals: 1 },
   { num: 70,   suffix: '+',  prefix: '',  label: 'Countries Served',           sub: 'Every major trade corridor, covered' },
-  { num: 1000, suffix: '+',  prefix: '',  label: 'Businesses Funded',          sub: 'SMEs empowered to trade without limits' },
-  { num: 2,    suffix: 'B+', prefix: '$', label: 'Invoices Financed',          sub: 'Capital deployed across global supply chains' },
+  { num: 500,  suffix: '+',  prefix: '',  label: 'Businesses Funded',          sub: 'SMEs empowered to trade without limits' },
+  { num: 250,  suffix: 'M+', prefix: '$', label: 'Trade Financed',             sub: 'Capital deployed across global supply chains' },
 ];
 
 function useCountUp(target, decimals = 0, trigger) {

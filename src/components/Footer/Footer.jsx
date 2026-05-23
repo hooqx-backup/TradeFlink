@@ -296,7 +296,7 @@ export default function Footer() {
                     Faster capital for global trade.
                   </h2>
                   <p className="max-w-lg text-sm sm:text-base leading-relaxed text-white/55">
-                    Empowering SMEs worldwide with transparent, fast, and technology-driven trade finance solutions across 70+ countries.
+                    Fast, honest trade finance for businesses that can't afford to wait — built for SMEs, active across 70+ countries.
                   </p>
                 </div>
 

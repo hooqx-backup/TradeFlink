@@ -326,7 +326,7 @@ export default function Values() {
           whileHover={{ color: 'rgba(255,255,255,0.35)' }}
           transition={{ duration: 0.3 }}
         >
-          TradeFlink · Est. 2014
+          TradeFlink · Est. 2019
         </motion.p>
         <motion.div
           className="inline-flex items-center gap-2 text-xs font-bold text-teal-500 uppercase tracking-widest relative overflow-hidden cursor-pointer"

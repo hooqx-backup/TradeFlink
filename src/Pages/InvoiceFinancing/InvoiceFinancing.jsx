@@ -1125,8 +1125,8 @@ export default function InvoiceFinancing() {
                 className="grid grid-cols-2 gap-4"
               >
                 {[
-                  { val: '$2B+',  label: 'Invoices Financed',  sub: 'Since inception' },
-                  { val: '500+',  label: 'SME Partners',       sub: 'Vetted & verified' },
+                  { val: '$250M+', label: 'Invoices Financed',  sub: 'Since inception' },
+                  { val: '300+',  label: 'SME Partners',       sub: 'Vetted & verified' },
                   { val: '24h',   label: 'Avg. Disbursement',  sub: 'From submission' },
                   { val: '95%',   label: 'Advance Rate',       sub: 'On approved invoices' },
                 ].map((s, i) => (

@@ -8,7 +8,7 @@ const SERVICES = [
     title: 'Supply Chain Finance',
     tagline: 'Strengthen every link',
     description:
-      'Support your suppliers with early payments while preserving your own working capital. Keep your supply chain healthy and your partners loyal across every corridor.',
+      'Pay your suppliers early while keeping your own cash. Everyone wins — suppliers get cash fast, you get loyalty and flexibility.',
     metric: '48h',
     metricLabel: 'Average funding speed',
     path: '/supply-chain-finance',
@@ -19,7 +19,7 @@ const SERVICES = [
     title: 'Export Factoring',
     tagline: 'Get paid, not promises',
     description:
-      "Get immediate payment for your export invoices. TradeFlink steps in and waits for your buyer's payment — so you can keep moving without the wait.",
+      "Stop waiting 60–90 days for your buyer to pay. Submit your invoice, get cash within 48 hours, and let us chase the payment.",
     metric: '90%',
     metricLabel: 'Invoice advance rate',
     path: '/export-factoring',
@@ -28,10 +28,10 @@ const SERVICES = [
   {
     num: '03',
     title: 'Invoice Financing',
-    tagline: "Unlock what you've earned",
+    tagline: 'Cash from day one',
     description:
-      "Unlock liquidity from unpaid invoices without new debt or dilution. Access the capital you've already earned — on your terms, on your timeline.",
-    metric: '$2B+',
+      "Your invoices represent money you've already earned. We fund them now — no loans, no equity, no collateral needed.",
+    metric: '$250M+',
     metricLabel: 'Trade financed to date',
     path: '/invoice-financing',
     flip: false,
@@ -41,7 +41,7 @@ const SERVICES = [
     title: 'Open Account Trade',
     tagline: 'Expand into every market',
     description:
-      'Offer flexible payment terms to buyers worldwide with full protection against defaults. Grow confidently across 70+ countries without taking on the risk yourself.',
+      'Offer buyers flexible payment terms and sell into 70+ countries — without worrying about what happens if they pay late or not at all.',
     metric: '70+',
     metricLabel: 'Countries covered',
     path: '/open-account-trade',
@@ -248,7 +248,7 @@ export default function Services() {
             animate={inView ? { opacity: 1 } : {}}
             transition={{ duration: 0.7, delay: 0.3 }}
           >
-            Flexible, transparent, and technology-driven trade finance built for the real world.
+            Simple, honest trade finance — designed for businesses that don't have time for slow banks.
           </motion.p>
         </div>
       </div>

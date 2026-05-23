@@ -155,7 +155,7 @@ const STATS = [
   { value: 12, suffix: '%',  prefix: '',  label: 'Target Annual Returns', sublabel: 'Net of fees' },
   { value: 90, suffix: 'd',  prefix: '<', label: 'Average Tenor',         sublabel: 'Short-duration assets' },
   { value: 70, suffix: '+',  prefix: '',  label: 'Countries Diversified',  sublabel: 'Across geographies' },
-  { value: 2,  suffix: 'B+', prefix: '$', label: 'Trade Financed',         sublabel: 'Since inception' },
+  { value: 250, suffix: 'M+', prefix: '$', label: 'Trade Financed',        sublabel: 'Since inception' },
 ];
 
 const PILLARS = [
@@ -472,7 +472,7 @@ export default function Investors() {
               transition={{ delay: 0.8, duration: 0.6 }}
               className="flex gap-8 mt-12 pt-10 border-t border-white/8"
             >
-              {[['8–12%', 'Target Returns'], ['<90d', 'Avg Tenor'], ['$2B+', 'Financed']].map(([v, l]) => (
+              {[['8–12%', 'Target Returns'], ['<90d', 'Avg Tenor'], ['$250M+', 'Financed']].map(([v, l]) => (
                 <div key={l}>
                   <p className="text-2xl font-black text-white">{v}</p>
                   <p className="text-[9px] text-white/30 uppercase tracking-[0.22em] mt-0.5">{l}</p>

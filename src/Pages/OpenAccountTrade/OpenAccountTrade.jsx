@@ -960,8 +960,8 @@ export default function OpenAccountTrade() {
                 className="grid grid-cols-2 gap-4"
               >
                 {[
-                  { val: '$2B+', label: 'Trade Financed',     sub: 'Since inception' },
-                  { val: '500+', label: 'SME Partners',       sub: 'Vetted & verified' },
+                  { val: '$250M+', label: 'Trade Financed',     sub: 'Since inception' },
+                  { val: '300+',  label: 'SME Partners',       sub: 'Vetted & verified' },
                   { val: '0',    label: 'Defaults Unpaid',    sub: 'In programme history' },
                   { val: '0%',   label: 'Seller Risk',        sub: 'Fully absorbed' },
                 ].map((s, i) => (

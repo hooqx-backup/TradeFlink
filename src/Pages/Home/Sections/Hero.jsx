@@ -18,7 +18,7 @@ const HEADLINES = [
 const STATS = [
   { val: '$4.5T+', label: 'Finance gap' },
   { val: '70+',    label: 'Countries' },
-  { val: '$2B+',   label: 'Trade funded' },
+  { val: '$250M+', label: 'Trade funded' },
   { val: '48h',    label: 'Funding speed' },
 ];
 
