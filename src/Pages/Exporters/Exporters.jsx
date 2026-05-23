@@ -28,7 +28,7 @@ const STEPS = [
 ];
 
 const BENEFITS = [
-  { icon: Zap,        title: 'Shorter Cash Cycle',      desc: 'Dramatically reduce Days Sales Outstanding and reinvest capital into production and new orders immediately.', color: '#f59e0b' },
+  { icon: Zap,        title: 'Shorter Cash Cycle',      desc: 'Stop waiting 30–90 days to get paid. We advance your invoice value so you can restock, rehire, and take on the next order right away.', color: '#f59e0b' },
   { icon: TrendingUp, title: 'Continuous Production',   desc: 'Keep factories running and fulfil larger purchase orders without waiting for buyer payment cycles.',           color: '#1C96BF' },
   { icon: Shield,     title: 'Non-Recourse Protection', desc: 'Client non-payment risk is transferred to TradeFlink. Your receivables are insured — you keep the advance.',  color: '#2dd4bf' },
   { icon: Lock,       title: 'No Collateral Required',  desc: 'Your invoice is the collateral. No property, no guarantees, no long-winded bank approvals.',                  color: '#a78bfa' },
@@ -670,7 +670,7 @@ export default function Exporters() {
               Built for <span style={{ backgroundImage:'linear-gradient(90deg,#1C96BF,#2dd4bf)', WebkitBackgroundClip:'text', WebkitTextFillColor:'transparent' }}>exporters</span>
             </motion.h2>
             <motion.p variants={fadeUp} className="mt-4 text-slate-500 max-w-xl mx-auto text-sm leading-relaxed">
-              Six reasons why thousands of exporters choose TradeFlink over traditional bank financing.
+              Six reasons why exporters choose TradeFlink over going back to their bank.
             </motion.p>
           </motion.div>
 
@@ -705,7 +705,7 @@ export default function Exporters() {
               One platform, <span style={{ backgroundImage:'linear-gradient(90deg,#1C96BF,#2dd4bf)', WebkitBackgroundClip:'text', WebkitTextFillColor:'transparent' }}>every solution</span>
             </motion.h2>
             <motion.p variants={fadeUp} className="mt-4 text-slate-500 max-w-2xl mx-auto text-sm leading-relaxed">
-              TradeFlink provides flexible, transparent, and technology-driven trade finance solutions designed for the real world.
+              One platform for all your trade finance needs — fast approvals, clear fees, no bank queues.
             </motion.p>
           </motion.div>
 
@@ -933,7 +933,7 @@ export default function Exporters() {
             </h2>
 
             <p className="text-white/45 text-base leading-relaxed max-w-xl mx-auto mb-10">
-              Join thousands of exporters who've replaced slow bank transfers with same-week advances. Your next shipment deserves better financing.
+              Join hundreds of exporters who've replaced slow bank transfers with same-week advances. Your next shipment deserves better financing.
             </p>
 
             <motion.div whileHover={{ scale:1.05 }} whileTap={{ scale:0.95 }}>

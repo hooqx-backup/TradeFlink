@@ -226,7 +226,7 @@ const FEATURES = [
   {
     Icon: Banknote,
     title: 'Financing',
-    desc: 'We eliminate credit risk by acting as an intermediary between buyer and seller, covering the shortfall of payment and ensuring you always get paid.',
+    desc: 'Submit your invoice and we advance up to 95% of its value the same day — then chase the buyer ourselves. Zero credit risk stays with you.',
     accent: '#1C96BF', light: 'rgba(28,150,191,0.08)',
     badge: 'Up to 95% Advance',
   },
@@ -250,7 +250,7 @@ const BENEFITS = [
   {
     Icon: Clock,
     title: 'No More Late Payments',
-    desc: 'Instead of waiting up to 6 months for customers to pay their invoices, you receive payment right away with our factoring services.',
+    desc: 'Stop waiting 60–90 days for buyers to settle. Submit an invoice, get your advance the same day — no chasing, no delays.',
     color: '#1C96BF',
   },
   {
@@ -960,9 +960,9 @@ export default function ExportFactoring() {
                 className="grid grid-cols-2 gap-4"
               >
                 {[
-                  { val: '$2B+', label: 'Trade Financed', sub: 'Since inception' },
-                  { val: '500+', label: 'SME Partners',   sub: 'Vetted & verified' },
-                  { val: '48h',  label: 'Avg Funding',    sub: 'Industry-fastest' },
+                  { val: '$250M+', label: 'Trade Financed', sub: 'Since inception' },
+                  { val: '300+',  label: 'SME Partners',   sub: 'Vetted & verified' },
+                  { val: '48h',   label: 'Avg Funding',    sub: 'Fast & transparent' },
                   { val: '0%',   label: 'Seller Risk',    sub: 'Fully absorbed' },
                 ].map((s, i) => (
                   <motion.div

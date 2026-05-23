@@ -48,7 +48,7 @@ export default function About() {
             transition={{ duration: 1.2, delay: 0.5 }}
           >
             <p className="text-white/50 text-xs uppercase tracking-[0.2em] font-bold mb-1">Founded</p>
-            <p className="text-white font-black text-5xl leading-none">2014</p>
+            <p className="text-white font-black text-5xl leading-none">2019</p>
           </motion.div>
 
           {/* Live badge */}
@@ -72,7 +72,7 @@ export default function About() {
             className="absolute right-0 top-1/2 -translate-y-1/2 font-black leading-none pointer-events-none select-none opacity-[0.035] text-gray-900"
             style={{ fontSize: 'clamp(120px, 14vw, 200px)' }}
           >
-            2014
+            2019
           </div>
 
           {/* Eyebrow */}
@@ -94,8 +94,8 @@ export default function About() {
               animate={inView ? { y: 0 } : {}}
               transition={{ duration: 1.6, delay: 0.12, ease: [0.22, 1, 0.36, 1] }}
             >
-              Leading the Way<br />
-              in <span className="text-teal-600">Global Trading</span>
+              Rethinking<br />
+              <span className="text-teal-600">Global Trade Finance</span>
             </motion.h2>
           </div>
 
@@ -149,7 +149,7 @@ export default function About() {
             animate={inView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 1.08, delay: 0.6 }}
           >
-            {[['$2B+', 'Trade Financed'], ['5000+', 'Businesses'], ['10+', 'Years']].map(([val, label]) => (
+            {[['$250M+', 'Trade Financed'], ['500+', 'Businesses'], ['5+', 'Years']].map(([val, label]) => (
               <div key={label}>
                 <p className="text-2xl font-black text-teal-600 leading-none">{val}</p>
                 <p className="text-xs text-gray-400 mt-1 uppercase tracking-widest">{label}</p>

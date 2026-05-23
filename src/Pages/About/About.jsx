@@ -55,10 +55,10 @@ const STATS = [
 const MILESTONES = [
   { year: '2019', title: 'The Idea',          desc: 'Founded in Dubai with a single mission — remove the payment barriers holding back global SMEs.', color: '#1C96BF', icon: Lightbulb },
   { year: '2020', title: 'First 100 Clients', desc: 'Onboarded our first 100 businesses across India, UAE, and Bangladesh within 12 months of launch.', color: '#0891b2', icon: Users },
-  { year: '2021', title: 'Global Expansion',  desc: 'Opened offices in London, Istanbul, and Delaware. Crossed $500M in trade facilitated.', color: '#06b6d4', icon: Globe },
+  { year: '2021', title: 'Global Expansion',  desc: 'Opened offices in London, Istanbul, and Delaware. Crossed $50M in trade facilitated.', color: '#06b6d4', icon: Globe },
   { year: '2022', title: '70+ Countries',     desc: 'Our network grew to 70+ countries, connecting exporters, importers, and investors worldwide.', color: '#14b8a6', icon: Network },
   { year: '2023', title: 'Platform 2.0',      desc: 'Launched real-time analytics dashboard, AI-powered risk scoring, and instant invoice financing.', color: '#0ea5e9', icon: Zap },
-  { year: '2024', title: 'Series B & Beyond', desc: 'Raised Series B to accelerate technology investment and expand into Southeast Asia and Africa.', color: '#06d6a0', icon: TrendingUp },
+  { year: '2024', title: 'Scaling Up',         desc: 'Secured institutional backing to accelerate product development and expand into Southeast Asia and Africa.', color: '#06d6a0', icon: TrendingUp },
 ];
 
 const VALUES = [
@@ -257,8 +257,8 @@ export default function About() {
               transition={{ duration: 0.8, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
               className="font-clash font-semibold text-white leading-[1.0] mb-7"
               style={{ fontSize: 'clamp(26px,3.8vw,52px)' }}>
-              Bridging the Gap<br />
-              in <span className="text-gradient">Global Trade</span>
+              Built for businesses<br />
+              banks <span className="text-gradient">keep ignoring</span>
             </motion.h1>
 
             <motion.p initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}
@@ -357,7 +357,7 @@ export default function About() {
                 initial={{ opacity: 0, x: 30 }} whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }} transition={{ delay: 0.4, duration: 0.6 }}
                 className="absolute -right-6 -bottom-6 bg-white rounded-2xl shadow-2xl p-5 max-w-[180px] border border-gray-100">
-                <p className="text-3xl font-black text-[#0f172a]">$2B+</p>
+                <p className="text-3xl font-black text-[#0f172a]">$250M+</p>
                 <p className="text-[10px] text-slate-400 uppercase tracking-[0.2em] mt-1 font-bold">Trade Facilitated</p>
               </motion.div>
             </motion.div>

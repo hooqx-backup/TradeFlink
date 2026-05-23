@@ -240,7 +240,7 @@ const FEATURES = [
   {
     Icon: Activity,
     title: 'Dynamic Discounting',
-    desc: 'Suppliers choose exactly when to draw early payment — the earlier they draw, the lower the net proceeds, allowing full flexibility to optimise their own cash flow timing.',
+    desc: 'Suppliers pick their own draw date — earlier means a smaller discount, later means more cash. No pressure, fully flexible.',
     accent: '#a78bfa', light: 'rgba(167,139,250,0.08)',
     badge: 'Flexible Draw Dates',
   },
@@ -268,7 +268,7 @@ const BENEFITS = [
   {
     Icon: Truck,
     title: 'Reduce Supply Chain Risk',
-    desc: 'Financially healthy suppliers fulfil orders on time, accept larger volumes, and invest in quality — SCF transforms your supply chain from a liability into a competitive advantage.',
+    desc: 'Suppliers who get paid on time deliver on time — and they take on bigger orders. A healthier chain benefits everyone in it.',
     color: '#f59e0b',
   },
 ];
@@ -962,9 +962,9 @@ export default function SupplyChainFinance() {
                 className="grid grid-cols-2 gap-4"
               >
                 {[
-                  { val: '$2B+', label: 'Trade Financed',    sub: 'Since inception' },
-                  { val: '500+', label: 'Supply Chains',     sub: 'Fully onboarded' },
-                  { val: '3d',   label: 'Avg Supplier Pay',  sub: 'Industry-fastest' },
+                  { val: '$250M+', label: 'Trade Financed',    sub: 'Since inception' },
+                  { val: '300+',  label: 'Supply Chains',     sub: 'Fully onboarded' },
+                  { val: '3d',    label: 'Avg Supplier Pay',  sub: 'Fast settlement' },
                   { val: '0%',   label: 'Supplier Risk',     sub: 'Fully absorbed' },
                 ].map((s, i) => (
                   <motion.div

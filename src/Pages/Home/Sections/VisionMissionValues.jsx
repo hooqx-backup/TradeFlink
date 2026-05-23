@@ -10,7 +10,7 @@ const CARDS = [
     tag: 'Vision',
     title: ['Global Trade', 'for All'],
     description:
-      'To make global trade accessible and sustainable for every business, regardless of size or geography.',
+      'Make global trade work for every business — not just the multinationals with armies of bankers.',
     image: visionImg,
     accent: '#1C96BF',
   },
@@ -19,7 +19,7 @@ const CARDS = [
     tag: 'Mission',
     title: ['Empower', 'Every SME'],
     description:
-      'Empower SMEs worldwide with technology-driven trade finance solutions that are transparent, fast, and genuinely inclusive.',
+      'Give every SME fast, honest access to trade finance — no legacy bank gatekeeping, no opaque fees, no waiting months to hear back.',
     image: missionImg,
     accent: '#157ea3',
   },
@@ -28,7 +28,7 @@ const CARDS = [
     tag: 'Values',
     title: ['What', 'Drives Us'],
     description:
-      'Transparency, Innovation, Empathy, and Empowerment — core principles that uplift communities and build lasting connections.',
+      'We build in the open, move fast, listen to our customers, and put SMEs first in every decision we make.',
     image: valuesImg,
     accent: '#14b8a6',
     values: ['Transparency', 'Innovation', 'Empathy', 'Empowerment'],

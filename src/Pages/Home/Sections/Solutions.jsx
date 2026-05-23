@@ -16,7 +16,7 @@ const SOLUTIONS = [
       'Works across 70+ countries',
       'No collateral or paperwork',
     ],
-    metric: '$2B+',
+    metric: '$250M+',
     metricLabel: 'Trade financed',
     cta: 'Start Exporting Smarter',
   },
@@ -55,14 +55,14 @@ const SOLUTIONS = [
 ];
 
 const TICKER = [
-  { val: '$2B+', label: 'Trade Financed' },
-  { val: '70+',  label: 'Countries Covered' },
-  { val: '48h',  label: 'Avg. Funding Speed' },
-  { val: '5K+',  label: 'Transactions Vetted' },
-  { val: '98%',  label: 'Supplier Satisfaction' },
-  { val: '8.5%', label: 'Avg. Annual Return' },
-  { val: '180d', label: 'Max Payment Terms' },
-  { val: '85%',  label: 'Invoice Advance Rate' },
+  { val: '$250M+', label: 'Trade Financed' },
+  { val: '70+',    label: 'Countries Covered' },
+  { val: '48h',    label: 'Avg. Funding Speed' },
+  { val: '500+',   label: 'Transactions Vetted' },
+  { val: '98%',    label: 'Supplier Satisfaction' },
+  { val: '8.5%',   label: 'Avg. Annual Return' },
+  { val: '180d',   label: 'Max Payment Terms' },
+  { val: '85%',    label: 'Invoice Advance Rate' },
 ];
 
 /* ── Animated card top bar ────────────────────────────────────── */
@@ -341,7 +341,7 @@ function InvestorVisual() {
       </FloatBadge>
       <FloatBadge className="bottom-8 left-0" floatY={6} delay={0.7} enterX={-16}>
         <p className="text-[10px] text-gray-400 mb-0.5">Transactions vetted</p>
-        <p className="text-teal-600 font-black text-xl leading-none">5,000+</p>
+        <p className="text-teal-600 font-black text-xl leading-none">500+</p>
       </FloatBadge>
     </div>
   );
