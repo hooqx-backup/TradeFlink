@@ -1,4 +1,4 @@
-import { Routes, Route } from "react-router-dom";
+﻿import { Routes, Route } from "react-router-dom";
 import MainLayout from "../layouts/MainLayout";
 import Home           from "../Pages/Home/Home";
 import About          from "../Pages/About/About";
@@ -15,7 +15,7 @@ import TermsAndConditions   from "../Pages/TermsAndConditions/TermsAndConditions
 import CookiePolicy         from "../Pages/CookiePolicy/CookiePolicy";
 import NotFound           from "../Pages/NotFound/NotFound";
 
-// Add new pages here — one line per route.
+// Add new pages here, one line per route.
 const LAYOUT_ROUTES = [
   { path: "/",                element: <Home /> },
   { path: "/about",           element: <About /> },

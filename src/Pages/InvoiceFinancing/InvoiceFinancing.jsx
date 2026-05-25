@@ -1,4 +1,4 @@
-import React, { useRef, useState, useEffect } from 'react';
+﻿import React, { useRef, useState, useEffect } from 'react';
 import { motion, useInView, useScroll, useTransform, AnimatePresence } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import {
@@ -110,7 +110,7 @@ function Eyebrow({ children, dark = false }) {
 }
 
 /* ── Stat Card ─────────────────────────────────────────────────── */
-function StatCard({ value, suffix = '', prefix = '', label, sublabel, index }) {
+function StatCard({ value, suffix = '', prefix = '', text, label, sublabel, index }) {
   const ref    = useRef(null);
   const inView = useInView(ref, { once: true, margin: '-80px' });
   const count  = useCounter(value, 2000, inView);
@@ -123,8 +123,8 @@ function StatCard({ value, suffix = '', prefix = '', label, sublabel, index }) {
       variants={scaleIn}
       className="text-center"
     >
-      <div className="text-5xl lg:text-6xl font-black text-white tabular-nums leading-none mb-1">
-        {prefix}{count}{suffix}
+      <div className="text-5xl lg:text-6xl font-black text-white uppercase leading-none mb-1">
+        {text ?? `${prefix}${count}${suffix}`}
       </div>
       <div className="text-teal-200 text-sm font-semibold mt-2">{label}</div>
       {sublabel && <div className="text-teal-200/50 text-[10px] uppercase tracking-widest mt-0.5">{sublabel}</div>}
@@ -157,14 +157,14 @@ function FloatingInvoiceCard() {
             <span className="text-[10px] font-black uppercase tracking-[0.3em] text-teal-400">Invoice #TF-2024-0891</span>
             <span className="text-[9px] font-bold text-emerald-400 bg-emerald-400/15 px-2 py-0.5 rounded-full">APPROVED</span>
           </div>
-          <div className="text-2xl font-black text-white">$124,500</div>
-          <div className="text-white/40 text-[10px] mt-0.5">Due in 90 days</div>
+          <div className="text-2xl font-black text-white">Sample Invoice</div>
+          <div className="text-white/40 text-[10px] mt-0.5">Due on maturity</div>
         </div>
         {/* Progress bar */}
         <div className="px-5 py-3 border-t border-white/10">
           <div className="flex justify-between text-[10px] text-white/40 mb-1.5">
             <span>Advance funded</span>
-            <span className="text-teal-400 font-bold">95%</span>
+            <span className="text-teal-400 font-bold">High</span>
           </div>
           <div className="h-1.5 rounded-full bg-white/10 overflow-hidden">
             <motion.div
@@ -179,9 +179,9 @@ function FloatingInvoiceCard() {
         {/* Line items */}
         <div className="px-5 pb-4 space-y-2">
           {[
-            { label: 'Advance received',  val: '$118,275', color: 'text-white' },
-            { label: 'Disbursed in',      val: '< 24 hrs', color: 'text-teal-400' },
-            { label: 'Remaining at maturity', val: '$6,225',   color: 'text-white/50' },
+            { label: 'Advance received',      val: 'High',     color: 'text-teal-400' },
+            { label: 'Disbursed in',          val: 'Fast',     color: 'text-teal-400' },
+            { label: 'Remaining at maturity', val: 'Minimal',  color: 'text-white/50' },
           ].map((r) => (
             <div key={r.label} className="flex justify-between items-center">
               <span className="text-[10px] text-white/40">{r.label}</span>
@@ -202,7 +202,7 @@ function FloatingInvoiceCard() {
         </div>
         <div>
           <p className="text-white text-xs font-bold">Funds Released</p>
-          <p className="text-white/40 text-[10px]">2 minutes ago</p>
+          <p className="text-white/40 text-[10px]">Just now</p>
         </div>
       </motion.div>
     </motion.div>
@@ -213,23 +213,23 @@ function FloatingInvoiceCard() {
 const FAQS = [
   {
     q: 'What is invoice financing?',
-    a: 'Invoice financing (also called invoice discounting or receivables financing) lets you unlock the cash tied up in your outstanding invoices before buyers pay. Rather than waiting 30–120 days for a buyer to settle, you sell or pledge the invoice to Tradeflink and receive up to 95% of its face value immediately. We collect payment from your buyer on the due date and remit the remaining balance, minus a small facility fee.',
+    a: 'Invoice financing (also called invoice discounting or receivables financing) lets you unlock the cash tied up in your outstanding invoices before buyers pay. Rather than waiting weeks or months for a buyer to settle, you sell or pledge the invoice to Tradeflink and receive the majority of its face value immediately. We collect payment from your buyer on the due date and remit the remaining balance, minus a small facility fee.',
   },
   {
     q: 'How quickly can I receive funds after submitting an invoice?',
-    a: 'For approved clients, Tradeflink typically disburses funds within 24 hours of invoice submission and verification. First-time applicants go through an onboarding review that usually takes 2–3 business days, after which subsequent advances are released same-day or next-day as a rule.',
+    a: 'For approved clients, Tradeflink typically disburses funds quickly after invoice submission and verification. First-time applicants go through an onboarding review that usually takes a few business days, after which subsequent advances are released same-day or next-day as a rule.',
   },
   {
     q: 'Does invoice financing affect my relationship with buyers?',
-    a: 'With our confidential facility, your buyer is never notified that the invoice has been financed — they continue to pay you on their normal terms and you redirect those funds to us. If you prefer a disclosed arrangement (where Tradeflink collects directly), we offer that too. Either way, your buyer relationship is fully protected.',
+    a: 'With our confidential facility, your buyer is never notified that the invoice has been financed, they continue to pay you on their normal terms and you redirect those funds to us. If you prefer a disclosed arrangement (where Tradeflink collects directly), we offer that too. Either way, your buyer relationship is fully protected.',
   },
   {
     q: 'What types of invoices are eligible?',
-    a: 'Tradeflink finances B2B invoices raised against creditworthy domestic or international buyers. Invoices must be for goods delivered or services rendered — not proforma or disputed invoices. We cover single invoices as well as whole-ledger facilities, and we support invoices in USD, EUR, GBP, AED, INR, and other major trade currencies.',
+    a: 'Tradeflink finances B2B invoices raised against creditworthy domestic or international buyers. Invoices must be for goods delivered or services rendered, not proforma or disputed invoices. We cover single invoices as well as whole-ledger facilities, and we support invoices in USD, EUR, GBP, AED, INR, and other major trade currencies.',
   },
   {
     q: 'Is invoice financing the same as a loan?',
-    a: 'No. Invoice financing is a sale or pledge of your receivable — not a loan. It does not add debt to your balance sheet, does not require fixed repayment schedules, and does not affect your credit rating in the way a traditional loan would. The advance is repaid automatically when your buyer pays the invoice on the due date.',
+    a: 'No. Invoice financing is a sale or pledge of your receivable, not a loan. It does not add debt to your balance sheet, does not require fixed repayment schedules, and does not affect your credit rating in the way a traditional loan would. The advance is repaid automatically when your buyer pays the invoice on the due date.',
   },
 ];
 
@@ -278,27 +278,27 @@ function FaqItem({ item, index }) {
 
 /* ── Data ──────────────────────────────────────────────────────── */
 const STATS = [
-  { value: 95,  suffix: '%', prefix: '', label: 'Invoice Advance Rate',  sublabel: 'Of face value funded' },
-  { value: 24,  suffix: 'h', prefix: '',        label: 'Funding Speed',         sublabel: 'From submission to cash' },
-  { value: 70,  suffix: '+', prefix: '',        label: 'Countries Covered',     sublabel: 'Global reach' },
-  { value: 0,   suffix: '%', prefix: '',        label: 'Balance Sheet Impact',  sublabel: 'Off-balance-sheet finance' },
+  { value: 95,  text: 'High',   suffix: '%', prefix: '', label: 'Invoice Advance Rate',  sublabel: 'Of face value funded' },
+  { value: 24,  text: 'Fast',   suffix: 'h', prefix: '', label: 'Funding Speed',         sublabel: 'From submission to cash' },
+  { value: 70,  text: 'Wide',   suffix: '+', prefix: '', label: 'Countries Covered',     sublabel: 'Global reach' },
+  { value: 0,   text: 'Clean',  suffix: '%', prefix: '', label: 'Balance Sheet Impact',  sublabel: 'Off-balance-sheet finance' },
 ];
 
 const HOW_IT_WORKS = [
   {
-    step: '01', Icon: Upload, color: '#1C96BF',
+    step: 'A', Icon: Upload, color: '#1C96BF',
     title: 'Submit Your Invoice',
-    desc: 'Upload your verified B2B invoice directly to Tradeflink\'s platform. Our system instantly validates the invoice details against your buyer\'s credit profile and your facility limits — the whole process takes minutes, not days.',
+    desc: 'Upload your verified B2B invoice directly to Tradeflink\'s platform. Our system instantly validates the invoice details against your buyer\'s credit profile and your facility limits, the whole process takes minutes, not days.',
   },
   {
-    step: '02', Icon: BadgeCheck, color: '#0ea5e9',
+    step: 'B', Icon: BadgeCheck, color: '#0ea5e9',
     title: 'Get Instant Approval',
-    desc: 'Once verified, Tradeflink approves the advance — typically up to 95% of the invoice face value. You\'ll receive a clear breakdown of the advance amount, the small facility fee, and the exact disbursement timeline.',
+    desc: 'Once verified, Tradeflink approves the advance, the majority of the invoice face value. You\'ll receive a clear breakdown of the advance amount, the small facility fee, and the exact disbursement timeline.',
   },
   {
-    step: '03', Icon: Wallet, color: '#a78bfa',
-    title: 'Receive Funds in 24 Hours',
-    desc: 'The approved advance hits your account within 24 hours. When your buyer pays on the invoice due date, Tradeflink remits the remaining balance to you. No chasing, no waiting — just predictable cash flow on every transaction.',
+    step: 'C', Icon: Wallet, color: '#a78bfa',
+    title: 'Receive Funds Quickly',
+    desc: 'The approved advance hits your account fast. When your buyer pays on the invoice due date, Tradeflink remits the remaining balance to you. No chasing, no waiting, just predictable cash flow on every transaction.',
   },
 ];
 
@@ -306,21 +306,21 @@ const FEATURES = [
   {
     Icon: Zap,
     title: 'Instant Liquidity',
-    desc: 'Stop waiting 60–120 days for buyers to pay. Tradeflink converts your outstanding invoices into immediate working capital — letting you reinvest, restock, and grow without interruption.',
+    desc: 'Stop waiting weeks or months for buyers to pay. Tradeflink converts your outstanding invoices into immediate working capital, letting you reinvest, restock, and grow without interruption.',
     accent: '#1C96BF', light: 'rgba(28,150,191,0.08)',
-    badge: '24-Hr Disbursement',
+    badge: 'Rapid Disbursement',
   },
   {
     Icon: PieChart,
     title: 'Flexible, Scalable Limits',
-    desc: 'Your facility grows with your business. As your invoice volumes increase, so does your available funding. No fixed loan caps, no renegotiation — just seamless access to capital that scales at your pace.',
+    desc: 'Your facility grows with your business. As your invoice volumes increase, so does your available funding. No fixed loan caps, no renegotiation, just seamless access to capital that scales at your pace.',
     accent: '#0ea5e9', light: 'rgba(14,165,233,0.08)',
     badge: 'Scales With You',
   },
   {
     Icon: Layers,
     title: 'Zero Debt, Zero Collateral',
-    desc: 'Invoice financing isn\'t a loan — it\'s a receivable advance. It doesn\'t appear on your balance sheet as debt, doesn\'t require physical assets as collateral, and doesn\'t affect your existing banking relationships.',
+    desc: 'Invoice financing isn\'t a loan, it\'s a receivable advance. It doesn\'t appear on your balance sheet as debt, doesn\'t require physical assets as collateral, and doesn\'t affect your existing banking relationships.',
     accent: '#a78bfa', light: 'rgba(167,139,250,0.08)',
     badge: 'Off-Balance-Sheet',
   },
@@ -330,7 +330,7 @@ const BENEFITS = [
   {
     Icon: TrendingUp,
     title: 'Accelerate Growth',
-    desc: 'With predictable cash flow, you can take on larger orders, expand into new markets, and scale operations — without waiting on slow-paying buyers to fund your next move.',
+    desc: 'With predictable cash flow, you can take on larger orders, expand into new markets, and scale operations, without waiting on slow-paying buyers to fund your next move.',
     color: '#1C96BF',
   },
   {
@@ -342,13 +342,13 @@ const BENEFITS = [
   {
     Icon: Clock,
     title: 'End the Cash Flow Gap',
-    desc: 'The mismatch between shipping goods and receiving payment is the #1 killer of SME growth. Invoice financing eliminates that gap permanently — every invoice turns into same-day cash.',
+    desc: 'The mismatch between shipping goods and receiving payment is the #1 killer of SME growth. Invoice financing eliminates that gap permanently, every invoice turns into same-day cash.',
     color: '#a78bfa',
   },
   {
     Icon: Globe,
     title: 'Finance Cross-Border Trade',
-    desc: 'Tradeflink finances invoices raised against buyers in 70+ countries, in all major currencies. Whether you\'re selling locally or across continents, your invoices convert to cash just as fast.',
+    desc: 'Tradeflink finances invoices raised against buyers across many countries, in all major currencies. Whether you\'re selling locally or across continents, your invoices convert to cash just as fast.',
     color: '#f59e0b',
   },
 ];
@@ -359,7 +359,7 @@ const FOR_WHOM = [
     who: 'For Exporters',
     headline: 'Ship globally. Get paid instantly.',
     desc: 'Finance your export invoices regardless of where your buyers are eliminating the cash flow gap that slows growth.',
-    rating: '4.8',
+    rating: 'Top Rated',
     gradient: 'from-teal-500 to-teal-600',
     accent: '#1C96BF',
     light: 'rgba(28,150,191,0.07)',
@@ -369,7 +369,7 @@ const FOR_WHOM = [
     who: 'For SMEs',
     headline: 'Big-order confidence. Small-business speed.',
     desc: 'Accept large purchase orders without worrying about the working capital gap Tradeflink funds until your buyer pays.',
-    rating: '4.8',
+    rating: 'Top Rated',
     gradient: 'from-sky-500 to-sky-600',
     accent: '#0ea5e9',
     light: 'rgba(14,165,233,0.07)',
@@ -378,8 +378,8 @@ const FOR_WHOM = [
     Icon: Factory,
     who: 'For Manufacturers',
     headline: 'Fund production. Not debt.',
-    desc: 'Turn your invoices into the raw material budget you need — keeping production lines running and orders flowing without bank loans.',
-    rating: '4.8',
+    desc: 'Turn your invoices into the raw material budget you need, keeping production lines running and orders flowing without bank loans.',
+    rating: 'Top Rated',
     gradient: 'from-violet-500 to-violet-600',
     accent: '#a78bfa',
     light: 'rgba(167,139,250,0.07)',
@@ -388,7 +388,7 @@ const FOR_WHOM = [
 
 const TESTIMONIALS = [
   {
-    quote: 'Before Tradeflink, every large export order meant a three-month cash flow crunch. Now we submit the invoice on shipping day and the advance lands in 24 hours. We\'ve been able to double our order book without touching our bank credit lines.',
+    quote: 'Before Tradeflink, every large export order meant a lengthy cash flow crunch. Now we submit the invoice on shipping day and the advance lands quickly. We\'ve been able to significantly grow our order book without touching our bank credit lines.',
     name: 'Priya Mehta',
     role: 'CFO, Textile Exporter',
     location: 'Mumbai, India',
@@ -504,7 +504,7 @@ export default function InvoiceFinancing() {
               animate={{ scale: [1, 1.6, 1], opacity: [1, 0.4, 1] }}
               transition={{ duration: 2, repeat: Infinity }}
             />
-            <span className="text-teal-400 text-[10px] font-black uppercase tracking-[0.25em]">Invoice Finance · Funds in 24 Hours</span>
+            <span className="text-teal-400 text-[10px] font-black uppercase tracking-[0.25em]">Invoice Finance · Funds Fast</span>
           </motion.div>
 
           {/* Headline */}
@@ -527,8 +527,8 @@ export default function InvoiceFinancing() {
             transition={{ duration: 0.7, delay: 0.4 }}
             className="text-slate-300 text-md leading-relaxed mb-10 max-w-xl"
           >
-            Stop waiting 90 days for buyers to pay. Tradeflink advances up to 95%
-            of your invoice value within 24 hours — giving you the cash flow to
+            Stop waiting on buyers to pay. Tradeflink advances the majority
+            of your invoice value quickly, giving you the cash flow to
             grow without debt, delays, or disruption.
           </motion.p>
 
@@ -558,7 +558,7 @@ export default function InvoiceFinancing() {
             className="flex flex-wrap gap-8 pt-8"
             style={{ borderTop: '1px solid rgba(255,255,255,0.06)' }}
           >
-            {[['95%', 'Advance Rate'], ['24h', 'Disbursement'], ['70+', 'Countries'], ['0%', 'Balance Sheet']].map(([v, l]) => (
+            {[['High', 'Advance Rate'], ['Fast', 'Disbursement'], ['Global', 'Countries'], ['Clean', 'Balance Sheet']].map(([v, l]) => (
               <div key={l}>
                 <p className="text-2xl font-black text-white">{v}</p>
                 <p className="text-[9px] text-white/30 uppercase tracking-[0.22em] mt-0.5">{l}</p>
@@ -611,7 +611,7 @@ export default function InvoiceFinancing() {
             {STATS.map((s, i) => (
               <StatCard
                 key={s.label} value={s.value} suffix={s.suffix}
-                prefix={s.prefix} label={s.label} sublabel={s.sublabel} index={i}
+                prefix={s.prefix} text={s.text} label={s.label} sublabel={s.sublabel} index={i}
               />
             ))}
           </div>
@@ -640,23 +640,23 @@ export default function InvoiceFinancing() {
                 <span className="text-gradient">cash today.</span>
               </motion.h2>
               <motion.p variants={fadeUp} className="text-slate-500 leading-relaxed mb-5 text-lg">
-                Invoice financing — also known as invoice discounting or receivables
-                financing — lets you advance up to 95% of the face value of any
+                Invoice financing, also known as invoice discounting or receivables
+                financing, lets you advance the majority of the face value of any
                 outstanding invoice, the day you raise it. You stop waiting on slow-paying
                 buyers and start growing with the capital you've already earned.
               </motion.p>
               <motion.p variants={fadeUp} className="text-slate-400 leading-relaxed mb-8">
                 Tradeflink's fully digital platform handles everything from invoice
-                verification and approval to buyer collections — so you can focus on
+                verification and approval to buyer collections, so you can focus on
                 running your business while we manage the cash flow.
               </motion.p>
 
               <motion.div variants={stagger} className="space-y-4">
                 {[
-                  'Advance up to 95% of invoice face value — same or next business day',
+                  'High advance on invoice face value, same or next business day',
                   'Confidential facility: your buyers never know you\'ve financed the invoice',
-                  'No fixed repayment schedule — the invoice pays itself on the due date',
-                  'No physical collateral required — your invoices are the security',
+                  'No fixed repayment schedule, the invoice pays itself on the due date',
+                  'No physical collateral required, your invoices are the security',
                   'Non-recourse option available: Tradeflink absorbs buyer insolvency risk',
                 ].map((item, i) => (
                   <motion.div key={i} custom={i} variants={fadeUp} className="flex items-start gap-3">
@@ -699,7 +699,7 @@ export default function InvoiceFinancing() {
                 transition={{ delay: 0.5, duration: 0.6 }}
                 className="absolute -right-5 -bottom-5 glass rounded-2xl shadow-2xl p-5 max-w-48 border border-white/10"
               >
-                <p className="text-3xl font-black text-white">95%</p>
+                <p className="text-3xl font-black text-white">High</p>
                 <p className="text-[10px] text-teal-400/80 uppercase tracking-[0.2em] mt-1 font-bold">Advance Rate</p>
               </motion.div>
 
@@ -713,7 +713,7 @@ export default function InvoiceFinancing() {
               >
                 <Zap size={18} className="text-teal-400 shrink-0" />
                 <div>
-                  <p className="text-white text-xs font-bold">Funds in 24 Hours</p>
+                  <p className="text-white text-xs font-bold">Funds Fast</p>
                   <p className="text-white/40 text-[10px]">After invoice submission</p>
                 </div>
               </motion.div>
@@ -738,7 +738,7 @@ export default function InvoiceFinancing() {
           >
             <Eyebrow dark>The Process</Eyebrow>
             <h2 className="text-3xl lg:text-4xl font-black text-white leading-tight">
-              Three steps from invoice{' '}
+              Simple steps from invoice{' '}
               <span className="text-gradient">to funded</span>
             </h2>
             <p className="text-slate-400 text-lg mt-5 max-w-xl mx-auto">
@@ -863,7 +863,7 @@ export default function InvoiceFinancing() {
       </section>
 
       {/* ════════════════════════════════════════════════════════
-          CORE FEATURES — 3 cards
+          CORE FEATURES, 3 cards
       ════════════════════════════════════════════════════════ */}
       <section className="section bg-slate-50">
         <div className="container-xl">
@@ -878,7 +878,7 @@ export default function InvoiceFinancing() {
               <span className="text-gradient">how you trade</span>
             </h2>
             <p className="text-slate-400 text-lg mt-5 max-w-xl mx-auto">
-              Tradeflink's invoice financing is designed around the real-world needs of SMEs and exporters — fast, flexible, and completely digital.
+              Tradeflink's invoice financing is designed around the real-world needs of SMEs and exporters, fast, flexible, and completely digital.
             </p>
           </motion.div>
 
@@ -930,7 +930,7 @@ export default function InvoiceFinancing() {
       </section>
 
       {/* ════════════════════════════════════════════════════════
-          KEY BENEFITS — image + benefit list
+          KEY BENEFITS, image + benefit list
       ════════════════════════════════════════════════════════ */}
       <section className="section bg-white relative overflow-hidden">
         <div className="container-xl relative z-10">
@@ -972,7 +972,7 @@ export default function InvoiceFinancing() {
                 transition={{ delay: 0.5, duration: 0.6 }}
                 className="absolute -left-5 -bottom-5 bg-white rounded-2xl shadow-2xl p-5 border border-gray-100"
               >
-                <p className="text-3xl font-black text-[#0f172a]">24 hours</p>
+                <p className="text-3xl font-black text-[#0f172a]">Fast</p>
                 <p className="text-[10px] text-teal-600 uppercase tracking-[0.2em] mt-1 font-bold">From invoice to cash</p>
               </motion.div>
             </motion.div>
@@ -1110,11 +1110,11 @@ export default function InvoiceFinancing() {
                   className="text-3xl lg:text-4xl font-black text-white leading-tight mb-6"
                 >
                   Trusted by traders across{' '}
-                  <span className="text-gradient">70+ countries</span>
+                  <span className="text-gradient">many countries</span>
                 </motion.h2>
                 <motion.p variants={fadeUp} className="text-slate-300 text-lg leading-relaxed">
                   Every day, SMEs and exporters around the world use Tradeflink's
-                  invoice financing to bridge the gap between shipping and payment —
+                  invoice financing to bridge the gap between shipping and payment,
                   closing more deals and growing faster than their competitors.
                 </motion.p>
               </motion.div>
@@ -1125,10 +1125,10 @@ export default function InvoiceFinancing() {
                 className="grid grid-cols-2 gap-4"
               >
                 {[
-                  { val: '$250M+', label: 'Invoices Financed',  sub: 'Since inception' },
-                  { val: '300+',  label: 'SME Partners',       sub: 'Vetted & verified' },
-                  { val: '24h',   label: 'Avg. Disbursement',  sub: 'From submission' },
-                  { val: '95%',   label: 'Advance Rate',       sub: 'On approved invoices' },
+                  { val: 'Active',  label: 'Invoices Financed',  sub: 'Since inception' },
+                  { val: 'Growing', label: 'SME Partners',       sub: 'Vetted & verified' },
+                  { val: 'Fast',    label: 'Avg. Disbursement',  sub: 'From submission' },
+                  { val: 'High',    label: 'Advance Rate',       sub: 'On approved invoices' },
                 ].map((s, i) => (
                   <motion.div
                     key={s.label} custom={i} variants={scaleIn}
@@ -1298,7 +1298,7 @@ export default function InvoiceFinancing() {
               style={{ fontSize: 'clamp(26px, 3.5vw, 52px)', fontWeight: 900 }}
             >
               Submit an invoice.{' '}
-              <span className="text-gradient">Get paid in 24 hours.</span>
+              <span className="text-gradient">Get paid fast.</span>
             </motion.h2>
 
             <motion.p variants={fadeUp} className="text-slate-400 text-xl max-w-lg mx-auto mb-12 leading-relaxed">
@@ -1328,7 +1328,7 @@ export default function InvoiceFinancing() {
               {[
                 { Icon: ShieldCheck, label: 'Non-Recourse Option' },
                 { Icon: Lock,        label: 'Confidential Facility' },
-                { Icon: Globe,       label: '70+ Countries' },
+                { Icon: Globe,       label: 'Global Reach' },
               ].map(({ Icon, label }) => (
                 <div key={label} className="flex items-center gap-2 text-white/40 text-xs font-semibold">
                   <Icon size={14} className="text-teal-500" />

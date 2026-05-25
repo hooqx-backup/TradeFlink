@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react';
+﻿import { useState, useEffect, useRef } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import logo from '../../assets/logos/logo3.png';
@@ -61,7 +61,7 @@ const NAV_LINKS = [
   { label: 'Contact',   route: '/contact' },
 ];
 
-/* ── Service mega-dropdown (desktop — untouched) ────────────────── */
+/* ── Service mega-dropdown (desktop, untouched) ────────────────── */
 function ServiceDropdown({ visible }) {
   return (
     <div

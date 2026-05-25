@@ -1,4 +1,4 @@
-import React, { useRef, useState, useEffect } from 'react';
+﻿import React, { useRef, useState, useEffect } from 'react';
 import { motion, useInView } from 'framer-motion';
 import missionImg from '../../../assets/images/mission.webp';
 import about3 from '../../../assets/images/about3.webp';
@@ -64,7 +64,7 @@ function PillarRow({ p, i, inView }) {
         }}
       />
 
-      {/* Scan line — fires on hover */}
+      {/* Scan line, fires on hover */}
       <motion.div
         className="absolute inset-x-0 h-px pointer-events-none"
         style={{
@@ -166,25 +166,25 @@ const PILLARS = [
   {
     num: '01',
     title: 'Access',
-    body: 'Tear down the walls blocking SMEs from global capital — starting with instant digital onboarding and zero paperwork.',
-    accent: 'Invoice discounting in under 48 hours',
+    body: 'Tear down the walls blocking SMEs from global capital, starting with instant digital onboarding and zero paperwork.',
+    accent: 'Invoice discounting in days',
   },
   {
     num: '02',
     title: 'Speed',
-    body: 'Compress weeks of approval cycles into 48 hours or less through intelligent, data-driven decisioning.',
+    body: 'Compress weeks of approval cycles into days through intelligent, data-driven decisioning.',
     accent: 'AI-powered risk assessment',
   },
   {
     num: '03',
     title: 'Trust',
-    body: 'Build transparent relationships between exporters, importers, and investors — every fee visible, every step trackable.',
+    body: 'Build transparent relationships between exporters, importers, and investors, every fee visible, every step trackable.',
     accent: 'Complete fee transparency',
   },
   {
     num: '04',
     title: 'Scale',
-    body: 'Grow with every business we touch — from first invoice to multi-market expansion across 70+ countries.',
+    body: 'Grow with every business we touch, from first invoice to multi-market expansion worldwide.',
     accent: 'Dedicated relationship manager',
   },
 ];
@@ -208,7 +208,7 @@ export default function Mission() {
             <div className="absolute inset-0"
               style={{ background: 'linear-gradient(to right, transparent 50%, white 100%), linear-gradient(to bottom, rgba(0,0,0,0.25) 0%, transparent 35%)' }} />
             <div className="absolute bottom-14 left-12">
-              <p className="text-white/40 text-xs uppercase tracking-[0.28em] font-bold mb-2">02 Mission</p>
+              <p className="text-white/40 text-xs uppercase tracking-[0.28em] font-bold mb-2">Our Mission</p>
               <p className="text-white font-black leading-tight" style={{ fontSize: 'clamp(18px, 2.2vw, 32px)' }}>
                 Empowering<br />SMEs<br />Globally
               </p>
@@ -225,7 +225,7 @@ export default function Mission() {
             <div className="absolute inset-0"
               style={{ background: 'linear-gradient(to right, transparent 50%, white 100%), linear-gradient(to bottom, rgba(0,0,0,0.25) 0%, transparent 35%)' }} />
             <div className="absolute bottom-14 left-12">
-              <p className="text-white/40 text-xs uppercase tracking-[0.28em] font-bold mb-2">02 Mission</p>
+              <p className="text-white/40 text-xs uppercase tracking-[0.28em] font-bold mb-2">Our Mission</p>
               <p className="text-white font-black leading-tight" style={{ fontSize: 'clamp(18px, 2.2vw, 32px)' }}>
                 Empowering<br />SMEs<br />Globally
               </p>

@@ -1,11 +1,11 @@
-import React, { useRef } from 'react';
+﻿import React, { useRef } from 'react';
 import { motion, useScroll, useTransform, useInView } from 'framer-motion';
 import visionImg from '../../../assets/images/18459.webp';
 
 const FACTS = [
-  { val: '$4.5T+', label: 'Trade Finance Gap' },
-  { val: '3.5B+',  label: 'Underserved People' },
-  { val: '2030',   label: 'Our Horizon' },
+  { val: 'Vast',    label: 'Trade Finance Gap' },
+  { val: 'Billions', label: 'Underserved People' },
+  { val: 'Near',    label: 'Our Horizon' },
 ];
 
 export default function Vision() {
@@ -38,12 +38,12 @@ export default function Vision() {
         <div className="h-20 w-px bg-linear-to-b from-transparent via-teal-500/50 to-transparent" />
         <span className="text-teal-400/60 text-[10px] font-bold uppercase tracking-[0.35em]"
           style={{ writingMode: 'vertical-rl', transform: 'rotate(180deg)', letterSpacing: '0.35em' }}>
-          01 Vision
+          Vision
         </span>
         <div className="h-20 w-px bg-linear-to-b from-transparent via-white/10 to-transparent" />
       </motion.div>
 
-      {/* Main content — parallaxes with scroll */}
+      {/* Main content, parallaxes with scroll */}
       <motion.div className="relative z-10 flex flex-col min-h-screen" style={{ y: textY }}>
 
         {/* Top eyebrow */}
@@ -56,10 +56,10 @@ export default function Vision() {
           </div>
         </motion.div>
 
-        {/* Headline + description — center fill */}
+        {/* Headline + description, center fill */}
         <div className="flex-1 flex flex-col justify-center px-12 lg:px-20 xl:px-28 py-12">
 
-          {/* GLOBAL TRADE — left, white */}
+          {/* GLOBAL TRADE, left, white */}
           <div className="overflow-hidden">
             <motion.h2
               className="font-black text-white leading-[0.88]"
@@ -87,11 +87,11 @@ export default function Vision() {
               transition={{ duration: 1.44, delay: 0.6 }}
             />
             <p className="text-white/45 text-sm lg:text-base max-w-md leading-relaxed">
-              A world where every business — regardless of size, country, or capital — competes freely on the global stage.
+              A world where every business, regardless of size, country, or capital, competes freely on the global stage.
             </p>
           </motion.div>
 
-          {/* FOR ALL. — right-aligned, teal */}
+          {/* FOR ALL., right-aligned, teal */}
           <div className="overflow-hidden flex justify-end">
             <motion.h2
               className="font-black text-teal-400 leading-[0.88] text-right"

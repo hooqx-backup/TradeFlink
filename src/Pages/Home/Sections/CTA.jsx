@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+﻿import React, { useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { motion, useInView } from 'framer-motion';
 
@@ -16,7 +16,7 @@ export default function CTA() {
       className="relative w-full flex flex-col items-center justify-center overflow-hidden"
       style={{ background: 'linear-gradient(160deg, #040c1e 0%, #071426 55%, #040c1e 100%)', minHeight: '88vh' }}
     >
-      {/* Animated gradient orb — dead center */}
+      {/* Animated gradient orb, dead center */}
       <motion.div
         className="absolute rounded-full pointer-events-none"
         style={{ width: 800, height: 400, background: 'radial-gradient(ellipse, rgba(28,150,191,0.18) 0%, transparent 70%)', top: '50%', left: '50%', transform: 'translate(-50%,-50%)' }}
@@ -47,7 +47,7 @@ export default function CTA() {
           <span className="h-px w-8 bg-teal-500" />
         </motion.div>
 
-        {/* The main enormous headline — word by word masked reveal */}
+        {/* The main enormous headline, word by word masked reveal */}
         <h2 className="font-black text-white leading-[0.88] tracking-tighter mb-12 lg:mb-16"
           style={{ fontSize: 'clamp(30px, 5vw, 72px)' }}>
           {WORDS.map((word, i) => (

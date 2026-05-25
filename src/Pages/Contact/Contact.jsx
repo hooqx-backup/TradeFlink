@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from 'react';
+﻿import { useState, useRef, useEffect } from 'react';
 import { AnimatePresence, motion, useInView, useMotionValue, useSpring, animate } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import contactBanner from '../../assets/images/contactpagebanner.jpg';
@@ -109,7 +109,7 @@ const PARTICLES = Array.from({ length: 48 }, (_, i) => {
 });
 
 /* ── Data ─────────────────────────────────────────────────────────── */
-const WA_HREF = 'https://wa.me/917003634890?text=Hello%20TradeFlink%2C%20I%27d%20like%20to%20know%20more%20about%20your%20services.';
+const WA_HREF = `https://wa.me/917003634890?text=${encodeURIComponent('*TRADEFLINK, INQUIRY*\n\n──────────────────────\n\nI would like to learn more about your trade finance services.\n\n──────────────────────\n_Sent via tradeflink.com_')}`;
 
 const CONTACT_CARDS = [
   {
@@ -121,17 +121,17 @@ const CONTACT_CARDS = [
   },
   {
     Icon: Mail, title: 'Email Us',
-    desc: "Drop us an email and we'll get back to you within 24 hours.",
+    desc: "Drop us an email and we'll get back to you promptly on business days.",
     action: 'info@tradeflink.com', href: 'mailto:info@tradeflink.com',
     accent: '#0ea5e9', light: 'rgba(14,165,233,0.1)',
-    glow: 'rgba(14,165,233,0.25)', badge: 'Within 24 hours',
+    glow: 'rgba(14,165,233,0.25)', badge: 'Prompt Response',
   },
   {
     Icon: Phone, title: 'Call Us',
     desc: 'Speak directly with a trade finance specialist.',
     action: '+91 70036 34890', href: 'tel:+917003634890',
     accent: '#6366f1', light: 'rgba(99,102,241,0.1)',
-    glow: 'rgba(99,102,241,0.25)', badge: 'Mon – Fri, 9am – 6pm IST',
+    glow: 'rgba(99,102,241,0.25)', badge: 'Mon – Fri, Business Hours',
   },
 ];
 
@@ -147,7 +147,7 @@ const OFFICES = [
 const FAQS = [
   {
     q: 'How quickly can I expect a response?',
-    a: 'For general inquiries via email, we respond within 24 hours on business days. Live chat responses are usually instant. Phone lines are open Monday to Friday, 9am–6pm GST.',
+    a: 'For general inquiries via email, we respond promptly on business days. Live chat responses are usually instant. Phone lines are open Monday to Friday during business hours.',
   },
   {
     q: 'Which office should I contact for my region?',
@@ -476,7 +476,7 @@ function SuccessState({ onReset }) {
         transition={{ delay: 0.5 }}
         className="text-slate-500 leading-relaxed max-w-sm mb-8"
       >
-        Thank you for reaching out. One of our specialists will get back to you within 24 hours.
+        Thank you for reaching out. One of our specialists will get back to you promptly.
       </motion.p>
       <motion.button
         initial={{ opacity: 0 }}
@@ -513,7 +513,7 @@ function FaqItem({ q, a, index }) {
             className="text-[10px] font-black tabular-nums w-6 h-6 rounded-full flex items-center justify-center shrink-0"
             style={{ background: open ? 'linear-gradient(135deg,#1C96BF,#0ea5e9)' : '#f1f5f9', color: open ? '#fff' : '#94a3b8' }}
           >
-            {String(index + 1).padStart(2, '0')}
+            {['A','B','C','D'][index]}
           </span>
           <span className="font-bold text-[#0f172a] text-base leading-snug">{q}</span>
         </div>
@@ -560,15 +560,23 @@ export default function Contact() {
     e.preventDefault();
     setSending(true);
     const text = [
-      `Hello TradeFlink,`,
+      `*TRADEFLINK, NEW INQUIRY*`,
       ``,
-      `*Name:* ${form.name}`,
-      `*Email:* ${form.email}`,
+      `──────────────────────`,
+      ``,
+      `*From:*    ${form.name}`,
+      `*Email:*   ${form.email}`,
       form.company ? `*Company:* ${form.company}` : null,
-      form.subject ? `*Subject:* ${form.subject}` : null,
+      form.subject ? `*Re:*      ${form.subject}` : null,
       ``,
-      `*Message:*`,
+      `──────────────────────`,
+      ``,
+      `${form.name} writes:`,
+      ``,
       form.message,
+      ``,
+      `──────────────────────`,
+      `_Sent via tradeflink.com_`,
     ].filter(l => l !== null).join('\n');
 
     const url = `https://wa.me/917003634890?text=${encodeURIComponent(text)}`;
@@ -710,9 +718,9 @@ export default function Contact() {
               transition={{ duration: 0.7, delay: 0.65 }}
               className="text-slate-400 text-md leading-relaxed mb-12 max-w-xl"
             >
-              Whether you're exploring trade finance, looking for a demo, or just have a question —
+              Whether you're exploring trade finance, looking for a demo, or just have a question,
               our team across{' '}
-              <span className="text-teal-400 font-bold">6 global offices</span> is ready to help.
+              <span className="text-teal-400 font-bold">global offices</span> is ready to help.
             </motion.p>
 
             {/* CTA buttons */}
@@ -749,10 +757,10 @@ export default function Contact() {
               style={{ borderTop: '1px solid rgba(255,255,255,0.06)' }}
             >
               {[
-                { Icon: Clock,  value: '24', suffix: 'h', prefix: '<', label: 'Response Time' },
-                { Icon: Globe,  value: '6',  suffix: '',  prefix: '', label: 'Global Offices' },
-                { Icon: Shield, value: '100', suffix: '%', prefix: '', label: 'Confidential' },
-              ].map(({ Icon, value, suffix, prefix, label }, idx) => (
+                { Icon: Clock,  text: 'Fast',   label: 'Response Time' },
+                { Icon: Globe,  text: 'Global', label: 'Offices' },
+                { Icon: Shield, text: 'Full',   label: 'Confidential' },
+              ].map(({ Icon, text, label }, idx) => (
                 <div key={label} className="flex flex-col items-center gap-1.5">
                   <motion.div
                     animate={{ scale: [1, 1.2, 1] }}
@@ -761,8 +769,8 @@ export default function Contact() {
                   >
                     <Icon size={18} />
                   </motion.div>
-                  <p className="text-2xl font-black text-white tabular-nums">
-                    <AnimatedCounter target={value} suffix={suffix} prefix={prefix} />
+                  <p className="text-2xl font-black text-white uppercase">
+                    {text}
                   </p>
                   <p className="text-[9px] text-white/30 uppercase tracking-[0.25em]">{label}</p>
                 </div>
@@ -1005,10 +1013,10 @@ export default function Contact() {
                     </div>
                   </div>
                   <p className="text-slate-400 text-sm leading-relaxed mb-5">
-                    Our team reviews every message personally. No bots, no auto-replies — real people ready to help.
+                    Our team reviews every message personally. No bots, no auto-replies, real people ready to help.
                   </p>
                   <div className="flex gap-5">
-                    {[['< 1h','Live Chat'],['< 24h','Email'],['Instant','Phone']].map(([v, l]) => (
+                    {[['Fast','Live Chat'],['Prompt','Email'],['Instant','Phone']].map(([v, l]) => (
                       <div key={l} className="text-center">
                         <p className="text-teal-400 font-black text-sm">{v}</p>
                         <p className="text-white/30 text-[9px] uppercase tracking-widest mt-0.5">{l}</p>
@@ -1110,7 +1118,7 @@ export default function Contact() {
           >
             <Eyebrow light>Our Presence</Eyebrow>
             <h2 className="text-4xl lg:text-5xl font-black text-[#0f172a] leading-tight">
-              Six offices,<br />one <span className="text-gradient">connected team</span>
+              Global offices,<br />one <span className="text-gradient">connected team</span>
             </h2>
             <p className="text-slate-400 text-lg mt-5 max-w-xl mx-auto">
               Wherever you are, there's a Tradeflink team member close by.
@@ -1303,7 +1311,7 @@ export default function Contact() {
             <motion.p variants={fadeUp}
               className="text-slate-400 text-xl max-w-lg mx-auto mb-12 leading-relaxed"
             >
-              Join hundreds of SMEs across 70+ countries who've already transformed their trade finance with Tradeflink.
+              Join a growing community of SMEs across many countries who've already transformed their trade finance with Tradeflink.
             </motion.p>
 
             <motion.div variants={fadeUp}

@@ -1,43 +1,43 @@
-import React, { useState, useRef, useEffect } from 'react';
+﻿import React, { useState, useRef, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { motion, AnimatePresence, useInView } from 'framer-motion';
 
 /* ── Data ─────────────────────────────────────────────────────── */
 const SOLUTIONS = [
   {
-    num: '01',
+    num: 'A',
     tab: 'Exporters',
     headline: 'Get Paid\nOn Your Terms',
     description:
-      'Stop waiting 60–90 days for payment. TradeFlink converts export invoices into immediate cash — so you reinvest, grow, and ship more.',
+      'Stop waiting weeks for payment. TradeFlink converts export invoices into immediate cash, so you reinvest, grow, and ship more.',
     points: [
       'Immediate payment on approved invoices',
       'Protection against buyer default risk',
-      'Works across 70+ countries',
+      'Works across many countries',
       'No collateral or paperwork',
     ],
-    metric: '$250M+',
+    metric: 'Active',
     metricLabel: 'Trade financed',
     cta: 'Start Exporting Smarter',
   },
   {
-    num: '02',
+    num: 'B',
     tab: 'Importers',
     headline: 'Scale Imports\nWithout Strain',
     description:
       'Access extended payment terms and supply chain tools that let you import more, pay later, and keep supplier relationships strong.',
     points: [
-      'Payment terms up to 180 days',
+      'Extended payment terms',
       'Strengthen supplier relationships',
       'Protect against supply disruptions',
       'Grow import volumes confidently',
     ],
-    metric: '180d',
+    metric: 'Extended',
     metricLabel: 'Max payment terms',
     cta: 'Optimize Your Imports',
   },
   {
-    num: '03',
+    num: 'C',
     tab: 'Investors',
     headline: 'Earn Stable Returns\nFrom Real Trade',
     description:
@@ -48,21 +48,21 @@ const SOLUTIONS = [
       'Transparent dashboards',
       'Consistent risk-adjusted returns',
     ],
-    metric: '8.5%',
+    metric: 'Strong',
     metricLabel: 'Avg. annual return',
     cta: 'Explore Investments',
   },
 ];
 
 const TICKER = [
-  { val: '$250M+', label: 'Trade Financed' },
-  { val: '70+',    label: 'Countries Covered' },
-  { val: '48h',    label: 'Avg. Funding Speed' },
-  { val: '500+',   label: 'Transactions Vetted' },
-  { val: '98%',    label: 'Supplier Satisfaction' },
-  { val: '8.5%',   label: 'Avg. Annual Return' },
-  { val: '180d',   label: 'Max Payment Terms' },
-  { val: '85%',    label: 'Invoice Advance Rate' },
+  { val: 'Active',   label: 'Trade Financed' },
+  { val: 'Global',   label: 'Countries Covered' },
+  { val: 'Fast',     label: 'Avg. Funding Speed' },
+  { val: 'Growing',  label: 'Transactions Vetted' },
+  { val: 'High',     label: 'Supplier Satisfaction' },
+  { val: 'Strong',   label: 'Avg. Annual Return' },
+  { val: 'Extended', label: 'Max Payment Terms' },
+  { val: 'Top',      label: 'Invoice Advance Rate' },
 ];
 
 /* ── Animated card top bar ────────────────────────────────────── */
@@ -134,7 +134,7 @@ function ExporterVisual() {
           <div className="flex justify-between items-start mb-4">
             <div>
               <p className="text-[10px] text-gray-400 uppercase tracking-widest font-medium mb-1">Invoice</p>
-              <p className="text-gray-800 font-bold text-sm">#TF-2024-0892</p>
+              <p className="text-gray-800 font-bold text-sm">#TF-EXPORT</p>
             </div>
             <motion.div className="flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[10px] font-bold text-teal-700 bg-teal-50"
               animate={{ opacity: [0.7, 1, 0.7] }} transition={{ duration: 2.5, repeat: Infinity }}>
@@ -145,7 +145,7 @@ function ExporterVisual() {
           </div>
 
           {/* Rows */}
-          {[['Buyer','Acme Corp, US'],['Amount','$48,500.00'],['Advance','85%']].map(([k,v]) => (
+          {[['Buyer','Acme Corp, US'],['Amount','Funded'],['Advance','High']].map(([k,v]) => (
             <div key={k} className="flex justify-between py-2 border-b border-gray-50 last:border-0 text-sm">
               <span className="text-gray-400">{k}</span>
               <span className="text-gray-700 font-semibold">{v}</span>
@@ -165,7 +165,7 @@ function ExporterVisual() {
                       color: step >= i ? '#fff' : '#9ca3af',
                     }}
                     transition={{ duration: 0.3 }}>
-                    {step > i ? '✓' : i + 1}
+                    {step > i ? '✓' : ['I','II','III'][i]}
                   </motion.span>
                   <span className="text-[9px] text-gray-400 font-medium">{s}</span>
                 </motion.div>
@@ -188,15 +188,15 @@ function ExporterVisual() {
         </div>
 
         {/* Live toast */}
-        <LiveToast text="+$12,400 just funded" repeatDelay={5} />
+        <LiveToast text="Invoice just funded" repeatDelay={5} />
       </motion.div>
 
       <FloatBadge className="top-4 right-0" floatY={-6} delay={0.5}>
-        <p className="text-gray-700 text-xs font-bold">Funded in 24h</p>
+        <p className="text-gray-700 text-xs font-bold">Funded Fast</p>
       </FloatBadge>
       <FloatBadge className="bottom-8 left-0" floatY={6} delay={0.7} enterX={-16}>
         <p className="text-[10px] text-gray-400 mb-0.5">Countries covered</p>
-        <p className="text-teal-600 font-black text-xl leading-none">70+</p>
+        <p className="text-teal-600 font-black text-xl leading-none">Wide</p>
       </FloatBadge>
     </div>
   );
@@ -204,11 +204,6 @@ function ExporterVisual() {
 
 function ImporterVisual() {
   const bars = [38, 52, 44, 68, 58, 86, 65];
-  const [savings, setSavings] = useState(320);
-  useEffect(() => {
-    const id = setInterval(() => setSavings(s => s + Math.floor(Math.random() * 3 + 1)), 2200);
-    return () => clearInterval(id);
-  }, []);
 
   return (
     <div className="relative w-full h-full flex items-center justify-center">
@@ -243,15 +238,11 @@ function ImporterVisual() {
           <div className="flex justify-between pt-3 border-t border-gray-50">
             <div>
               <p className="text-[10px] text-gray-400 mb-0.5">Terms</p>
-              <p className="text-teal-600 font-black text-xl leading-none">180d</p>
+              <p className="text-teal-600 font-black text-xl leading-none">Extended</p>
             </div>
             <div className="text-right">
               <p className="text-[10px] text-gray-400 mb-0.5">Cash preserved</p>
-              <motion.p className="text-gray-700 font-bold text-lg leading-none"
-                key={savings} initial={{ y: -8, opacity: 0 }} animate={{ y: 0, opacity: 1 }}
-                transition={{ duration: 0.3 }}>
-                ${savings}K
-              </motion.p>
+              <p className="text-gray-700 font-bold text-lg leading-none">Growing</p>
             </div>
           </div>
         </div>
@@ -264,20 +255,15 @@ function ImporterVisual() {
       </FloatBadge>
       <FloatBadge className="bottom-8 left-0" floatY={6} delay={0.7} enterX={-16}>
         <p className="text-[10px] text-gray-400 mb-0.5">Supplier satisfaction</p>
-        <p className="text-teal-600 font-black text-xl leading-none">98%</p>
+        <p className="text-teal-600 font-black text-xl leading-none">High</p>
       </FloatBadge>
     </div>
   );
 }
 
 function InvestorVisual() {
-  const base   = [6.2, 7.1, 6.8, 8.0, 8.3, 8.5];
-  const mos    = ['J','F','M','A','M','J'];
-  const [pct, setPct] = useState(8.5);
-  useEffect(() => {
-    const id = setInterval(() => setPct(p => +(p + (Math.random() * 0.06 - 0.02)).toFixed(2)), 2500);
-    return () => clearInterval(id);
-  }, []);
+  const base = [6.2, 7.1, 6.8, 8.0, 8.3, 8.5];
+  const mos  = ['J','F','M','A','M','J'];
 
   return (
     <div className="relative w-full h-full flex items-center justify-center">
@@ -293,16 +279,12 @@ function InvestorVisual() {
           <div className="flex justify-between items-start mb-4">
             <div>
               <p className="text-[10px] text-teal-600 uppercase tracking-widest font-bold mb-1">Live Returns</p>
-              <motion.p className="text-gray-900 font-black text-3xl leading-none"
-                key={pct} initial={{ y: -6, opacity: 0 }} animate={{ y: 0, opacity: 1 }}
-                transition={{ duration: 0.3 }}>
-                {pct}%
-              </motion.p>
+              <p className="text-gray-900 font-black text-3xl leading-none">Strong</p>
               <p className="text-gray-400 text-xs mt-1">avg. annual</p>
             </div>
             <motion.div className="px-2.5 py-1 rounded-lg text-xs font-bold text-teal-700 bg-teal-50"
               animate={{ scale: [1, 1.06, 1] }} transition={{ duration: 2.5, repeat: Infinity }}>
-              ↑ +0.3%
+              ↑ Growing
             </motion.div>
           </div>
 
@@ -341,7 +323,7 @@ function InvestorVisual() {
       </FloatBadge>
       <FloatBadge className="bottom-8 left-0" floatY={6} delay={0.7} enterX={-16}>
         <p className="text-[10px] text-gray-400 mb-0.5">Transactions vetted</p>
-        <p className="text-teal-600 font-black text-xl leading-none">500+</p>
+        <p className="text-teal-600 font-black text-xl leading-none">Growing</p>
       </FloatBadge>
     </div>
   );
@@ -496,7 +478,7 @@ export default function Solutions() {
         {/* ── Main content ── */}
         <div className="grid grid-cols-1 lg:grid-cols-5 gap-12 lg:gap-16 items-start">
 
-          {/* Left — 3 cols */}
+          {/* Left, 3 cols */}
           <div className="lg:col-span-3">
             <AnimatePresence mode="wait">
               <motion.div key={active + '-left'}
@@ -519,7 +501,7 @@ export default function Solutions() {
 
                 <p className="text-gray-400 text-lg leading-relaxed mb-10 max-w-lg">{sol.description}</p>
 
-                {/* Feature chips — 2×2 */}
+                {/* Feature chips, 2×2 */}
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-12">
                   {sol.points.map((point, pi) => (
                     <motion.div key={point}
@@ -576,7 +558,7 @@ export default function Solutions() {
             </AnimatePresence>
           </div>
 
-          {/* Right — 2 cols */}
+          {/* Right, 2 cols */}
           <div className="lg:col-span-2">
             <AnimatePresence mode="wait">
               <motion.div key={active + '-right'} className="relative h-80 lg:h-96"

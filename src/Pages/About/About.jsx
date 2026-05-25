@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+﻿import React, { useEffect, useRef, useState } from 'react';
 import { motion, useInView, useMotionValue, useSpring, useMotionTemplate, AnimatePresence } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import {
@@ -46,33 +46,33 @@ const stagger = { hidden: {}, visible: { transition: { staggerChildren: 0.1 } } 
 
 // ── Data ──────────────────────────────────────────────────────────────
 const STATS = [
-  { value: 70,  suffix: '+', label: 'Countries' },
-  { value: 500, suffix: '+', label: 'SMEs Served' },
-  { value: 6,   suffix: '',  label: 'Global Offices' },
-  { value: 98,  suffix: '%', label: 'Satisfaction' },
+  { value: 70,  text: 'Global',  suffix: '+', label: 'Countries' },
+  { value: 500, text: 'Grow', suffix: '+', label: 'SMEs Served' },
+  { value: 6,   text: 'Wide',    suffix: '',  label: 'Global Offices' },
+  { value: 98,  text: 'Trusted', suffix: '%', label: 'Satisfaction' },
 ];
 
 const MILESTONES = [
-  { year: '2019', title: 'The Idea',          desc: 'Founded in Dubai with a single mission — remove the payment barriers holding back global SMEs.', color: '#1C96BF', icon: Lightbulb },
-  { year: '2020', title: 'First 100 Clients', desc: 'Onboarded our first 100 businesses across India, UAE, and Bangladesh within 12 months of launch.', color: '#0891b2', icon: Users },
-  { year: '2021', title: 'Global Expansion',  desc: 'Opened offices in London, Istanbul, and Delaware. Crossed $50M in trade facilitated.', color: '#06b6d4', icon: Globe },
-  { year: '2022', title: '70+ Countries',     desc: 'Our network grew to 70+ countries, connecting exporters, importers, and investors worldwide.', color: '#14b8a6', icon: Network },
-  { year: '2023', title: 'Platform 2.0',      desc: 'Launched real-time analytics dashboard, AI-powered risk scoring, and instant invoice financing.', color: '#0ea5e9', icon: Zap },
-  { year: '2024', title: 'Scaling Up',         desc: 'Secured institutional backing to accelerate product development and expand into Southeast Asia and Africa.', color: '#06d6a0', icon: TrendingUp },
+  { year: 'ORIGIN', title: 'The Idea',          desc: 'Founded in Dubai with a single mission, remove the payment barriers holding back global SMEs.', color: '#1C96BF', icon: Lightbulb },
+  { year: 'EARLY',  title: 'First Clients',     desc: 'Onboarded our first businesses across India, UAE, and Bangladesh within our first year of launch.', color: '#0891b2', icon: Users },
+  { year: 'GROWTH', title: 'Global Expansion',  desc: 'Opened offices in London, Istanbul, and Delaware. Crossed significant milestones in trade facilitated.', color: '#06b6d4', icon: Globe },
+  { year: 'GLOBAL', title: 'Wide Reach',        desc: 'Our network grew to span many countries, connecting exporters, importers, and investors worldwide.', color: '#14b8a6', icon: Network },
+  { year: 'TECH',   title: 'Platform 2.0',      desc: 'Launched real-time analytics dashboard, AI-powered risk scoring, and instant invoice financing.', color: '#0ea5e9', icon: Zap },
+  { year: 'SCALE',  title: 'Scaling Up',        desc: 'Secured institutional backing to accelerate product development and expand into Southeast Asia and Africa.', color: '#06d6a0', icon: TrendingUp },
 ];
 
 const VALUES = [
   {
     Icon: Eye,
     title: 'Transparency',
-    desc: 'Every transaction, every rate, every term — visible and verifiable. Trust is built through radical openness.',
+    desc: 'Every transaction, every rate, every term, visible and verifiable. Trust is built through radical openness.',
     accent: '#1C96BF',
     light: 'rgba(28,150,191,0.08)',
   },
   {
     Icon: Lightbulb,
     title: 'Innovation',
-    desc: 'We constantly reimagine trade finance — leveraging real-time data and technology to create solutions that never existed before.',
+    desc: 'We constantly reimagine trade finance, leveraging real-time data and technology to create solutions that never existed before.',
     accent: '#0ea5e9',
     light: 'rgba(14,165,233,0.08)',
   },
@@ -86,7 +86,7 @@ const VALUES = [
   {
     Icon: Rocket,
     title: 'Empowerment',
-    desc: "We don't just provide liquidity — we unlock potential. Every business we serve grows stronger and competes globally.",
+    desc: "We don't just provide liquidity, we unlock potential. Every business we serve grows stronger and competes globally.",
     accent: '#f59e0b',
     light: 'rgba(245,158,11,0.08)',
   },
@@ -115,7 +115,7 @@ const BENTO = [
   {
     Icon: Globe,
     title: 'Cross-border Partnerships',
-    desc: 'Connect with verified investors and partners in 70+ countries.',
+    desc: 'Connect with verified investors and partners across many countries.',
     bg: null,
     light: true,
   },
@@ -147,20 +147,20 @@ const OFFICES = [
 
 const TESTIMONIALS = [
   { quote: 'Tradeflink transformed how we operate. Our payment cycles accelerated dramatically, giving us the capital to expand into markets we never thought possible.', name: 'Aisha Rahman', role: 'Textile Exporter',  location: 'Bangladesh', flag: '🇧🇩', initials: 'AR', gradient: 'from-teal-500 to-teal-600'   },
-  { quote: 'The supply chain financing changed everything. Better supplier relationships, improved cash flow — we doubled our import volume within a year.',             name: 'Omar Khalid',  role: 'FMCG Importer',    location: 'UAE',        flag: '🇦🇪', initials: 'OK', gradient: 'from-sky-500 to-sky-600'    },
+  { quote: 'The supply chain financing changed everything. Better supplier relationships, improved cash flow, we doubled our import volume within a year.',             name: 'Omar Khalid',  role: 'FMCG Importer',    location: 'UAE',        flag: '🇦🇪', initials: 'OK', gradient: 'from-sky-500 to-sky-600'    },
   { quote: 'Finally a platform built for businesses like ours. Fast, transparent, and the team actually understands the challenges of cross-border trade.',              name: 'Priya Nair',   role: 'Pharma Exporter',  location: 'India',      flag: '🇮🇳', initials: 'PN', gradient: 'from-indigo-500 to-indigo-600' },
 ];
 
 // ── Sub-components ────────────────────────────────────────────────────
-function StatBlock({ value, suffix = '', label, index }) {
+function StatBlock({ value, suffix = '', text, label, index }) {
   const ref    = useRef(null);
   const inView = useInView(ref, { once: true, margin: '-80px' });
   const count  = useCounter(value, 1800, inView);
   return (
     <motion.div ref={ref} custom={index} initial="hidden" animate={inView ? 'visible' : 'hidden'} variants={fadeUp}
       className="text-center">
-      <div className="text-5xl lg:text-6xl font-black text-white tabular-nums leading-none mb-2">
-        {count}{suffix}
+      <div className="text-5xl lg:text-6xl font-black text-white uppercase leading-none mb-2">
+        {text ?? `${count}${suffix}`}
       </div>
       <div className="text-teal-200/70 text-[10px] font-bold uppercase tracking-[0.25em]">{label}</div>
     </motion.div>
@@ -264,9 +264,9 @@ export default function About() {
             <motion.p initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.25 }}
               className="text-slate-400 text-md leading-relaxed mb-10">
-              We were built on one belief — no good business should struggle because of delayed payments.
+              We were built on one belief, no good business should struggle because of delayed payments.
               Tradeflink connects exporters, importers, and investors across{' '}
-              <span className="text-teal-400 font-semibold">70+ countries</span>.
+              <span className="text-teal-400 font-semibold">many countries</span>.
             </motion.p>
 
             <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }}
@@ -284,7 +284,7 @@ export default function About() {
 
             <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.7, duration: 0.5 }}
               className="flex gap-8 mt-14 pt-10 border-t border-white/8">
-              {[['70+','Countries'], ['500+','SMEs'], ['6','Offices']].map(([v, l]) => (
+              {[['Global','Countries'], ['Growing','SMEs'], ['Wide','Offices']].map(([v, l]) => (
                 <div key={l}>
                   <p className="text-2xl font-black text-white">{v}</p>
                   <p className="text-[9px] text-white/30 uppercase tracking-[0.25em] mt-0.5">{l}</p>
@@ -333,7 +333,7 @@ export default function About() {
         <div className="container-xl relative z-10">
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-12 divide-x divide-white/15">
             {STATS.map((s, i) => (
-              <StatBlock key={s.label} value={s.value} suffix={s.suffix} label={s.label} index={i} />
+              <StatBlock key={s.label} value={s.value} suffix={s.suffix} text={s.text} label={s.label} index={i} />
             ))}
           </div>
         </div>
@@ -357,7 +357,7 @@ export default function About() {
                 initial={{ opacity: 0, x: 30 }} whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }} transition={{ delay: 0.4, duration: 0.6 }}
                 className="absolute -right-6 -bottom-6 bg-white rounded-2xl shadow-2xl p-5 max-w-[180px] border border-gray-100">
-                <p className="text-3xl font-black text-[#0f172a]">$250M+</p>
+                <p className="text-3xl font-black text-[#0f172a]">Active</p>
                 <p className="text-[10px] text-slate-400 uppercase tracking-[0.2em] mt-1 font-bold">Trade Facilitated</p>
               </motion.div>
             </motion.div>
@@ -374,12 +374,12 @@ export default function About() {
               </motion.h2>
               <motion.p variants={fadeUp} className="text-slate-500 text-lg leading-relaxed mb-4">
                 Tradeflink was established to address one of the most persistent challenges in
-                international commerce — payment delays that quietly cripple the growth of small
+                international commerce, payment delays that quietly cripple the growth of small
                 and medium enterprises.
               </motion.p>
               <motion.p variants={fadeUp} className="text-slate-400 leading-relaxed mb-8">
                 Traditional financial institutions have long excluded smaller players from the
-                trade finance ecosystem. We set out to change that — creating a platform where
+                trade finance ecosystem. We set out to change that, creating a platform where
                 every entrepreneur, regardless of geography or size, can access the capital they
                 need to compete globally.
               </motion.p>
@@ -388,7 +388,7 @@ export default function About() {
                 <p className="text-xl font-bold text-[#0f172a] italic leading-snug">
                   "No good business should struggle because of delayed payments."
                 </p>
-                <p className="text-xs text-slate-400 mt-2 font-semibold">— Tradeflink Founding Principle</p>
+                <p className="text-xs text-slate-400 mt-2 font-semibold">Tradeflink Founding Principle</p>
               </motion.blockquote>
             </motion.div>
           </div>
@@ -1065,7 +1065,7 @@ export default function About() {
 
             <motion.p variants={fadeUp}
               className="text-slate-400 text-xl max-w-lg mx-auto mb-12 leading-relaxed">
-              Join hundreds of SMEs across 70+ countries who've unlocked new growth with Tradeflink.
+              Join hundreds of SMEs across many countries who've unlocked new growth with Tradeflink.
             </motion.p>
 
             <motion.div variants={fadeUp}

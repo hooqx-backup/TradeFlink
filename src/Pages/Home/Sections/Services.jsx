@@ -1,48 +1,48 @@
-import React, { useRef, useState } from 'react';
+﻿import React, { useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { motion, useInView } from 'framer-motion';
 
 const SERVICES = [
   {
-    num: '01',
+    num: 'A',
     title: 'Supply Chain Finance',
     tagline: 'Strengthen every link',
     description:
-      'Pay your suppliers early while keeping your own cash. Everyone wins — suppliers get cash fast, you get loyalty and flexibility.',
-    metric: '48h',
+      'Pay your suppliers early while keeping your own cash. Everyone wins, suppliers get cash fast, you get loyalty and flexibility.',
+    metric: 'Fast',
     metricLabel: 'Average funding speed',
     path: '/supply-chain-finance',
     flip: false,
   },
   {
-    num: '02',
+    num: 'B',
     title: 'Export Factoring',
     tagline: 'Get paid, not promises',
     description:
-      "Stop waiting 60–90 days for your buyer to pay. Submit your invoice, get cash within 48 hours, and let us chase the payment.",
-    metric: '90%',
+      'Stop waiting weeks for your buyer to pay. Submit your invoice, get cash within days, and let us chase the payment.',
+    metric: 'High',
     metricLabel: 'Invoice advance rate',
     path: '/export-factoring',
     flip: true,
   },
   {
-    num: '03',
+    num: 'C',
     title: 'Invoice Financing',
     tagline: 'Cash from day one',
     description:
-      "Your invoices represent money you've already earned. We fund them now — no loans, no equity, no collateral needed.",
-    metric: '$250M+',
+      "Your invoices represent money you've already earned. We fund them now, no loans, no equity, no collateral needed.",
+    metric: 'Active',
     metricLabel: 'Trade financed to date',
     path: '/invoice-financing',
     flip: false,
   },
   {
-    num: '04',
+    num: 'D',
     title: 'Open Account Trade',
     tagline: 'Expand into every market',
     description:
-      'Offer buyers flexible payment terms and sell into 70+ countries — without worrying about what happens if they pay late or not at all.',
-    metric: '70+',
+      'Offer buyers flexible payment terms and sell into many countries, without worrying about what happens if they pay late or not at all.',
+    metric: 'Wide',
     metricLabel: 'Countries covered',
     path: '/open-account-trade',
     flip: true,
@@ -70,7 +70,7 @@ function ServiceRow({ service, index }) {
         }}
       />
 
-      {/* Teal radial glow — brightens on hover */}
+      {/* Teal radial glow, brightens on hover */}
       <motion.div
         className="absolute inset-0 pointer-events-none"
         animate={{ opacity: hovered ? 1 : 0.4 }}
@@ -248,7 +248,7 @@ export default function Services() {
             animate={inView ? { opacity: 1 } : {}}
             transition={{ duration: 0.7, delay: 0.3 }}
           >
-            Simple, honest trade finance — designed for businesses that don't have time for slow banks.
+            Simple, honest trade finance, designed for businesses that don't have time for slow banks.
           </motion.p>
         </div>
       </div>

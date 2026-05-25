@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+﻿import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, Send, CheckCircle2, Shield, Mail, Phone, ChevronDown } from 'lucide-react';
 
@@ -170,7 +170,7 @@ function SuccessState({ onReset }) {
         transition={{ delay: 0.45 }}
         className="text-slate-500 text-sm leading-relaxed max-w-xs mb-8"
       >
-        Our specialists will get back to you within 24 hours. No bots — real people, real answers.
+        Our specialists will get back to you within 24 hours. No bots, real people, real answers.
       </motion.p>
 
       <motion.button
@@ -240,14 +240,22 @@ export default function ContactModal({ open, onClose }) {
     e.preventDefault();
     setSending(true);
     const text = [
-      `Hello TradeFlink,`,
+      `*TRADEFLINK, NEW INQUIRY*`,
       ``,
-      `*Name:* ${form.name}`,
-      `*Email:* ${form.email}`,
-      form.subject ? `*Subject:* ${form.subject}` : null,
+      `──────────────────────`,
       ``,
-      `*Message:*`,
+      `*From:*    ${form.name}`,
+      `*Email:*   ${form.email}`,
+      form.subject ? `*Re:*      ${form.subject}` : null,
+      ``,
+      `──────────────────────`,
+      ``,
+      `${form.name} writes:`,
+      ``,
       form.message,
+      ``,
+      `──────────────────────`,
+      `_Sent via tradeflink.com_`,
     ].filter(l => l !== null).join('\n');
 
     const url = `https://wa.me/917003634890?text=${encodeURIComponent(text)}`;
@@ -268,7 +276,7 @@ export default function ContactModal({ open, onClose }) {
           exit={{ opacity: 0 }}
           transition={{ duration: 0.28 }}
         >
-          {/* Backdrop — page visible through it */}
+          {/* Backdrop, page visible through it */}
           <motion.div
             className="absolute inset-0 cursor-pointer"
             style={{ background: 'rgba(15,23,42,0.45)', backdropFilter: 'blur(10px)' }}
@@ -317,7 +325,7 @@ export default function ContactModal({ open, onClose }) {
             {/* ── Inner grid ── */}
             <div className="relative z-10 grid sm:grid-cols-[252px_1fr]">
 
-              {/* ── LEFT PANEL — hidden on mobile ── */}
+              {/* ── LEFT PANEL, hidden on mobile ── */}
               <div
                 className="relative hidden sm:flex flex-col justify-between gap-8 overflow-hidden border-b border-black/6 p-8 sm:border-b-0 sm:border-r"
                 style={{ background: 'linear-gradient(150deg, #0c1e3a 0%, #0e3a5c 55%, #0a2d4a 100%)' }}
@@ -414,7 +422,7 @@ export default function ContactModal({ open, onClose }) {
                   {[
                     { Icon: Mail,         text: 'info@tradeflink.com',  href: 'mailto:info@tradeflink.com' },
                     { Icon: Phone,        text: '+91 70036 34890',       href: 'tel:+917003634890' },
-                    { Icon: WhatsAppIcon, text: 'Chat on WhatsApp',      href: 'https://wa.me/917003634890?text=Hello%20TradeFlink%2C%20I%27d%20like%20to%20know%20more%20about%20your%20services.', color: '#25D366' },
+                    { Icon: WhatsAppIcon, text: 'Chat on WhatsApp',      href: `https://wa.me/917003634890?text=${encodeURIComponent('*TRADEFLINK, INQUIRY*\n\n──────────────────────\n\nI would like to learn more about your trade finance services.\n\n──────────────────────\n_Sent via tradeflink.com_')}`, color: '#25D366' },
                   ].map(({ Icon, text, href, color }) => (
                     <motion.a
                       key={text}
@@ -461,7 +469,7 @@ export default function ContactModal({ open, onClose }) {
                         <h2 className="text-xl font-black text-slate-800 leading-tight">
                           Get in <span className="bg-clip-text text-transparent" style={{ backgroundImage: 'linear-gradient(90deg,#1C96BF,#2dd4bf)' }}>touch</span>
                         </h2>
-                        <p className="text-[12px] text-slate-400 mt-1 mb-3">Our team is ready to help — real people, real answers.</p>
+                        <p className="text-[12px] text-slate-400 mt-1 mb-3">Our team is ready to help, real people, real answers.</p>
                       </motion.div>
 
                       <motion.p

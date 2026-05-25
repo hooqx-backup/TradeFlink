@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+﻿import React, { useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { motion, useInView } from 'framer-motion';
 import transparencyImg from '../../../assets/images/values.webp';
@@ -11,7 +11,7 @@ const VALUES = [
     num: '01',
     name: 'Transparency',
     tagline: 'No hidden fees. No fine print.',
-    body: "Every fee, rate, and condition is surfaced upfront — before you commit to anything. We built our platform on one rule: if you can't see it, we don't charge it.",
+    body: "Every fee, rate, and condition is surfaced upfront, before you commit to anything. We built our platform on one rule: if you can't see it, we don't charge it.",
     indent: '0px',
     img: transparencyImg,
     color: '#1c96bf',
@@ -20,7 +20,7 @@ const VALUES = [
     num: '02',
     name: 'Speed',
     tagline: '48-hour decisions. Days, not months.',
-    body: "Time is capital. We've rebuilt every step of the finance process to eliminate delays — from application to funds hitting your account.",
+    body: "Time is capital. We've rebuilt every step of the finance process to eliminate delays, from application to funds hitting your account.",
     indent: '6vw',
     img: speedImg,
     color: '#06b6d4',
@@ -89,7 +89,7 @@ export default function Values() {
         }}
       />
 
-      {/* Background image — faint, right half */}
+      {/* Background image, faint, right half */}
       <div className="absolute right-0 top-0 w-1/2 h-full pointer-events-none overflow-hidden">
         <motion.img 
           src={transparencyImg} 
@@ -186,7 +186,7 @@ export default function Values() {
               style={{ background: 'linear-gradient(105deg, rgba(28,150,191,0.10) 0%, rgba(28,150,191,0.04) 40%, transparent 70%)' }}
             />
 
-            {/* Image reveal — slides in from right on hover */}
+            {/* Image reveal, slides in from right on hover */}
             <motion.div
               className="absolute right-0 top-0 bottom-0 w-1/3 pointer-events-none overflow-hidden"
               animate={{ 
@@ -272,7 +272,7 @@ export default function Values() {
                 />
               </div>
 
-              {/* Right: tagline + body — desktop only */}
+              {/* Right: tagline + body, desktop only */}
               <motion.div
                 className="hidden lg:flex flex-col items-end text-right max-w-xs shrink-0 mr-4"
                 animate={{ 
