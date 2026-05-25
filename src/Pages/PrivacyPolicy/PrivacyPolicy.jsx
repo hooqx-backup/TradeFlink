@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react';
+﻿import React, { useState, useRef, useEffect } from 'react';
 import { motion, useInView, useScroll, useSpring } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import {
@@ -152,7 +152,7 @@ const SECTIONS = [
     content: [
       {
         heading: 'Service Providers & Partners',
-        body: 'We share data with carefully vetted third parties who help us deliver our services — including cloud infrastructure providers, identity verification services, credit bureaus, banking partners, and payment processors. All processors operate under strict data processing agreements aligned with applicable law.',
+        body: 'We share data with carefully vetted third parties who help us deliver our services, including cloud infrastructure providers, identity verification services, credit bureaus, banking partners, and payment processors. All processors operate under strict data processing agreements aligned with applicable law.',
       },
       {
         heading: 'Financial Counterparties',
@@ -160,7 +160,7 @@ const SECTIONS = [
       },
       {
         heading: 'Regulatory & Legal Disclosure',
-        body: 'We may disclose your information to regulators, law enforcement agencies, or courts when legally required — for example, under anti-money laundering legislation, court orders, or national security obligations. We will notify you where permitted by law.',
+        body: 'We may disclose your information to regulators, law enforcement agencies, or courts when legally required, for example, under anti-money laundering legislation, court orders, or national security obligations. We will notify you where permitted by law.',
       },
       {
         heading: 'Business Transfers',
@@ -219,7 +219,7 @@ const SECTIONS = [
       },
       {
         heading: 'Correction & Erasure',
-        body: 'You may request correction of inaccurate data at any time. You may also request erasure ("right to be forgotten") where we have no overriding legal basis to retain it — such as an ongoing regulatory obligation or legitimate dispute.',
+        body: 'You may request correction of inaccurate data at any time. You may also request erasure ("right to be forgotten") where we have no overriding legal basis to retain it, such as an ongoing regulatory obligation or legitimate dispute.',
       },
       {
         heading: 'Restriction & Objection',
@@ -257,7 +257,7 @@ const SECTIONS = [
     content: [
       {
         heading: 'Essential Cookies',
-        body: 'These cookies are strictly necessary for the platform to function — managing sessions, maintaining security tokens, and enabling core platform features. They cannot be disabled without breaking core functionality.',
+        body: 'These cookies are strictly necessary for the platform to function, managing sessions, maintaining security tokens, and enabling core platform features. They cannot be disabled without breaking core functionality.',
       },
       {
         heading: 'Analytics Cookies',
@@ -265,7 +265,7 @@ const SECTIONS = [
       },
       {
         heading: 'Preference Cookies',
-        body: "Preference cookies remember your settings — such as language, currency display, and dashboard layout — so you don't have to reconfigure them each visit.",
+        body: "Preference cookies remember your settings, such as language, currency display, and dashboard layout, so you don't have to reconfigure them each visit.",
       },
       {
         heading: 'Managing Cookies',
@@ -286,7 +286,7 @@ const SECTIONS = [
       },
       {
         heading: 'Supervisory Authority',
-        body: 'If you are in the EEA or UK and believe we have not handled your data lawfully, you have the right to lodge a complaint with your local supervisory authority — for example, the ICO in the United Kingdom or your national Data Protection Authority within the EU.',
+        body: 'If you are in the EEA or UK and believe we have not handled your data lawfully, you have the right to lodge a complaint with your local supervisory authority, for example, the ICO in the United Kingdom or your national Data Protection Authority within the EU.',
       },
       {
         heading: 'General Enquiries',
@@ -506,13 +506,13 @@ export default function PrivacyPolicy() {
       </section>
 
       {/* ════════════════════════════════════════════════════════
-          MAIN CONTENT — sticky sidebar + content
+          MAIN CONTENT, sticky sidebar + content
       ════════════════════════════════════════════════════════ */}
       <section className="py-16">
         <div className="container-xl">
           <div className="flex gap-12 items-start">
 
-            {/* Sticky sidebar — slide in from left */}
+            {/* Sticky sidebar, slide in from left */}
             <motion.aside
               className="hidden xl:block w-72 shrink-0 sticky top-24 self-start"
               initial={{ opacity: 0, x: -30 }}
@@ -604,7 +604,7 @@ export default function PrivacyPolicy() {
                 </div>
               </motion.div>
 
-              {/* Key highlights — pop-in stagger */}
+              {/* Key highlights, pop-in stagger */}
               <motion.div
                 initial="hidden"
                 animate="visible"
@@ -694,7 +694,7 @@ export default function PrivacyPolicy() {
             </motion.h2>
             <motion.p variants={fadeUp} className="text-slate-400 text-lg leading-relaxed mb-10 max-w-lg mx-auto">
               Our Data Protection Officer is here to help. Whether you want to exercise
-              your rights, ask about our practices, or raise a concern — we're listening.
+              your rights, ask about our practices, or raise a concern, we're listening.
             </motion.p>
             <motion.div variants={fadeUp} className="flex flex-col sm:flex-row items-center justify-center gap-4">
               <motion.a

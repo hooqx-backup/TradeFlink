@@ -1,4 +1,4 @@
-import React, { useRef, useState, useCallback } from 'react';
+﻿import React, { useRef, useState, useCallback } from 'react';
 import { motion, useInView, useMotionValue, useTransform, useSpring, AnimatePresence } from 'framer-motion';
 import visionImg from '../../../assets/images/vision.webp';
 import missionImg from '../../../assets/images/mission.webp';
@@ -10,7 +10,7 @@ const CARDS = [
     tag: 'Vision',
     title: ['Global Trade', 'for All'],
     description:
-      'Make global trade work for every business — not just the multinationals with armies of bankers.',
+      'Make global trade work for every business, not just the multinationals with armies of bankers.',
     image: visionImg,
     accent: '#1C96BF',
   },
@@ -19,7 +19,7 @@ const CARDS = [
     tag: 'Mission',
     title: ['Empower', 'Every SME'],
     description:
-      'Give every SME fast, honest access to trade finance — no legacy bank gatekeeping, no opaque fees, no waiting months to hear back.',
+      'Give every SME fast, honest access to trade finance, no legacy bank gatekeeping, no opaque fees, no waiting months to hear back.',
     image: missionImg,
     accent: '#157ea3',
   },
@@ -79,7 +79,7 @@ function Card({ card, index }) {
         onMouseEnter={() => setHovered(true)}
         onMouseLeave={handleMouseLeave}
       >
-        {/* Background image — zooms on hover */}
+        {/* Background image, zooms on hover */}
         <motion.div
           className="absolute inset-0 bg-cover bg-center"
           style={{ backgroundImage: `url(${card.image})` }}
@@ -96,7 +96,7 @@ function Card({ card, index }) {
           }}
         />
 
-        {/* Accent colour overlay — fades in on hover */}
+        {/* Accent colour overlay, fades in on hover */}
         <motion.div
           className="absolute inset-0"
           style={{
@@ -128,7 +128,7 @@ function Card({ card, index }) {
         {/* Content */}
         <div className="relative z-10 flex flex-col justify-between h-full p-7 lg:p-8">
 
-          {/* Top row — decorative number + tag pill */}
+          {/* Top row, decorative number + tag pill */}
           <div className="flex items-start justify-between">
             <motion.span
               className="font-black leading-none"
@@ -152,7 +152,7 @@ function Card({ card, index }) {
             </motion.div>
           </div>
 
-          {/* Bottom text block — lifts on hover */}
+          {/* Bottom text block, lifts on hover */}
           <motion.div
             animate={{ y: hovered ? -10 : 0 }}
             transition={{ duration: 0.81, ease: 'easeOut' }}
@@ -165,7 +165,7 @@ function Card({ card, index }) {
               transition={{ duration: 0.72, ease: 'easeOut' }}
             />
 
-            {/* Title — each line masked-reveals from below */}
+            {/* Title, each line masked-reveals from below */}
             <h3 className="text-3xl lg:text-4xl font-black text-white leading-tight mb-3">
               {card.title.map((line, i) => (
                 <div key={i} className="overflow-hidden">
@@ -259,7 +259,7 @@ export default function VisionMissionValues() {
       className="relative w-full py-28 bg-gray-50"
       style={{ overflow: 'clip' }}
     >
-      {/* Ambient glow — top-right */}
+      {/* Ambient glow, top-right */}
       <motion.div
         className="absolute rounded-full pointer-events-none"
         style={{
@@ -274,7 +274,7 @@ export default function VisionMissionValues() {
         transition={{ duration: 16, repeat: Infinity, ease: 'easeInOut' }}
       />
 
-      {/* Ambient glow — bottom-left */}
+      {/* Ambient glow, bottom-left */}
       <motion.div
         className="absolute rounded-full pointer-events-none"
         style={{
@@ -289,7 +289,7 @@ export default function VisionMissionValues() {
         transition={{ duration: 20, repeat: Infinity, ease: 'easeInOut', delay: 4 }}
       />
 
-      {/* Dot grid texture — masked so it fades in from top */}
+      {/* Dot grid texture, masked so it fades in from top */}
       <div
         className="absolute inset-0 pointer-events-none"
         style={{

@@ -1,20 +1,20 @@
-import React, { useState, useRef } from 'react';
+﻿import React, { useState, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { motion, AnimatePresence, useInView } from 'framer-motion';
 
 const FAQS = [
   { q: 'How quickly can I get funded after applying?',
-    a: 'Most applications are reviewed within 24–48 hours. Once approved, funds can be transferred within 1–3 business days depending on your bank and country.' },
+    a: 'Most applications are reviewed within a day or two. Once approved, funds can be transferred within a few business days depending on your bank and country.' },
   { q: 'What documents do I need to apply?',
     a: 'Typically: business registration, recent invoices, bank statements, and tax documents. Our team guides you through the exact requirements for your country.' },
   { q: 'Are there any hidden fees?',
-    a: 'No. We believe in complete transparency. All fees are clearly outlined upfront before you commit to any transaction — no surprises, ever.' },
+    a: 'No. We believe in complete transparency. All fees are clearly outlined upfront before you commit to any transaction, no surprises, ever.' },
   { q: 'Which countries do you operate in?',
-    a: 'We currently serve SMEs in over 70 countries across Asia, Europe, Africa, and the Americas. We have offices in Dubai, Delhi, Kolkata, Delaware, London, and Istanbul.' },
+    a: 'We currently serve SMEs across many countries spanning Asia, Europe, Africa, and the Americas. We have offices in Dubai, Delhi, Kolkata, Delaware, London, and Istanbul.' },
   { q: 'What is the minimum funding amount?',
-    a: "There's no strict minimum. We work with businesses of all sizes, though most services have a practical starting point of $1,000 equivalent." },
+    a: "There's no strict minimum. We work with businesses of all sizes, from small invoices to large trade deals, across a wide range of sectors." },
   { q: 'How is my data kept secure?',
-    a: 'We use bank-level 256-bit SSL encryption and comply with international data protection standards including GDPR, ensuring your data is always protected.' },
+    a: 'We use bank-level SSL encryption and comply with international data protection standards including GDPR, ensuring your data is always protected.' },
 ];
 
 export default function FAQ() {
@@ -84,7 +84,7 @@ export default function FAQ() {
                       color: active === i ? '#1C96BF' : '#e5e7eb',
                     }}
                   >
-                    {String(i + 1).padStart(2, '0')}
+                    {['01','02','03','04','05','06'][i]}
                   </span>
 
                   {/* Question text */}
@@ -114,7 +114,7 @@ export default function FAQ() {
                 {/* Ghost number */}
                 <p className="font-black leading-none text-gray-100 mb-6 select-none"
                   style={{ fontSize: 'clamp(64px, 8vw, 96px)' }}>
-                  {String(active + 1).padStart(2, '0')}
+                  {['01','02','03','04','05','06'][active]}
                 </p>
 
                 {/* Question repeated */}

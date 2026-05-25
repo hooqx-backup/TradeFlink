@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+﻿import React, { useRef } from 'react';
 import { motion, useInView, useScroll, useTransform } from 'framer-motion';
 import aboutImg from '../../../assets/images/2151884873.webp';
 
@@ -36,11 +36,11 @@ export default function About() {
             className="absolute inset-0 w-full h-full object-cover"
             style={{ y: imageY }}
           />
-          {/* Gradient overlay — darkens bottom and right edges for reading legibility */}
+          {/* Gradient overlay, darkens bottom and right edges for reading legibility */}
           <div className="absolute inset-0"
             style={{ background: 'linear-gradient(to right, transparent 60%, #fff 100%), linear-gradient(to top, rgba(0,0,0,0.3) 0%, transparent 50%)' }} />
 
-          {/* Founded year — floats over image bottom-left */}
+          {/* Founded year, floats over image bottom-left */}
           <motion.div
             className="absolute bottom-8 left-8"
             initial={{ opacity: 0, y: 20 }}
@@ -48,7 +48,7 @@ export default function About() {
             transition={{ duration: 1.2, delay: 0.5 }}
           >
             <p className="text-white/50 text-xs uppercase tracking-[0.2em] font-bold mb-1">Founded</p>
-            <p className="text-white font-black text-5xl leading-none">2019</p>
+            <p className="text-white font-black text-5xl leading-none">Est.</p>
           </motion.div>
 
           {/* Live badge */}
@@ -67,12 +67,12 @@ export default function About() {
         {/* ── Right: magazine column layout ── */}
         <div className="relative px-10 lg:px-14 xl:px-20 py-16 lg:py-20 flex flex-col justify-center">
 
-          {/* Ghost year behind content */}
+          {/* Ghost text behind content */}
           <div
             className="absolute right-0 top-1/2 -translate-y-1/2 font-black leading-none pointer-events-none select-none opacity-[0.035] text-gray-900"
             style={{ fontSize: 'clamp(120px, 14vw, 200px)' }}
           >
-            2019
+            TF
           </div>
 
           {/* Eyebrow */}
@@ -99,7 +99,7 @@ export default function About() {
             </motion.h2>
           </div>
 
-          {/* Pull quote — breaks out of normal flow */}
+          {/* Pull quote, breaks out of normal flow */}
           <motion.blockquote
             className="border-l-4 border-teal-500 pl-5 my-7 text-xl font-black text-gray-800 leading-snug"
             initial={{ opacity: 0, x: -16 }}
@@ -116,10 +116,10 @@ export default function About() {
             animate={inView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 1.08, delay: 0.35 }}
           >
-            Tradeflink was founded on a simple belief. For too long, SMEs have been left behind in global trade because traditional finance institutions see them as "too small" or "too risky." We're changing that through smart financial technology — connecting exporters, importers, and investors across <strong className="text-gray-800">70+ countries</strong> seamlessly.
+            Tradeflink was founded on a simple belief. For too long, SMEs have been left behind in global trade because traditional finance institutions see them as "too small" or "too risky." We're changing that through smart financial technology, connecting exporters, importers, and investors across <strong className="text-gray-800">many countries</strong> seamlessly.
           </motion.p>
 
-          {/* Checklist — staggered */}
+          {/* Checklist, staggered */}
           <ul className="space-y-3 mb-10">
             {PILLARS.map((p, i) => (
               <motion.li
@@ -149,7 +149,7 @@ export default function About() {
             animate={inView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 1.08, delay: 0.6 }}
           >
-            {[['$250M+', 'Trade Financed'], ['500+', 'Businesses'], ['5+', 'Years']].map(([val, label]) => (
+            {[['Funded', 'Trade Financed'], ['Growing', 'Businesses'], ['Est.', 'Years Active']].map(([val, label]) => (
               <div key={label}>
                 <p className="text-2xl font-black text-teal-600 leading-none">{val}</p>
                 <p className="text-xs text-gray-400 mt-1 uppercase tracking-widest">{label}</p>

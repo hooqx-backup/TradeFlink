@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef, useCallback } from 'react';
+﻿import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import img1 from '../../../assets/images/1896.webp';
@@ -16,10 +16,10 @@ const HEADLINES = [
 ];
 
 const STATS = [
-  { val: '$4.5T+', label: 'Finance gap' },
-  { val: '70+',    label: 'Countries' },
-  { val: '$250M+', label: 'Trade funded' },
-  { val: '48h',    label: 'Funding speed' },
+  { val: 'Vast',   label: 'Finance gap' },
+  { val: 'Global', label: 'Countries' },
+  { val: 'Active', label: 'Trade funded' },
+  { val: 'Fast',   label: 'Funding speed' },
 ];
 
 export default function Hero() {
@@ -98,7 +98,7 @@ export default function Hero() {
       <div className="absolute inset-0 z-10 pointer-events-none"
         style={{ background: 'linear-gradient(to right, rgba(0,0,0,0.6) 0%, transparent 55%)' }} />
 
-      {/* ── Main content — bottom-left anchored ── */}
+      {/* ── Main content, bottom-left anchored ── */}
       <div className="absolute inset-x-0 bottom-0 z-20 px-6 sm:px-10 lg:px-16 pb-8 lg:pb-12">
         <div className="max-w-7xl mx-auto">
 
@@ -114,7 +114,7 @@ export default function Hero() {
             </span>
           </div>
 
-          {/* ── Enormous stacked headline — changes per slide ── */}
+          {/* ── Enormous stacked headline, changes per slide ── */}
           <AnimatePresence mode="wait">
             <motion.h1
               key={cur}
@@ -186,7 +186,7 @@ export default function Hero() {
               ))}
             </div>
             <span className="text-white/20 text-[10px] font-mono tabular-nums">
-              {String(active + 1).padStart(2, '0')} / {String(SLIDES.length).padStart(2, '0')}
+              {['I','II','III'][active]} / III
             </span>
             <div className="flex-1 h-px bg-white/10 overflow-hidden">
               <div className="h-full bg-teal-400 transition-none" style={{ width: `${progress}%` }} />
@@ -207,7 +207,7 @@ export default function Hero() {
         </div>
       </div>
 
-      {/* ── Scroll indicator — right edge ── */}
+      {/* ── Scroll indicator, right edge ── */}
       <div className="absolute right-8 top-1/2 -translate-y-1/2 z-20 flex-col items-center gap-3 hidden lg:flex">
         <div className="relative h-20 w-px bg-white/15 overflow-hidden">
           <motion.div className="absolute top-0 left-0 right-0 bg-teal-400"

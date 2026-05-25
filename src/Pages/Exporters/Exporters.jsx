@@ -1,4 +1,4 @@
-import { useRef, useState, useEffect } from 'react';
+﻿import { useRef, useState, useEffect } from 'react';
 import { motion, AnimatePresence, useInView, useMotionValue, useSpring, useMotionTemplate } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import exporterBanner from '../../assets/images/exporterbanner.webp';
@@ -14,25 +14,25 @@ import {
 
 /* ─────────────────── Data ──────────────────────────────────────── */
 const STATS = [
-  { value: 90,  suffix: '%', label: 'Invoice Advance Rate',    icon: Banknote, color: '#1C96BF' },
-  { value: 3,   suffix: 'd', label: 'Average Days to Funding', icon: Clock,    color: '#2dd4bf' },
-  { value: 50,  suffix: '+', label: 'Countries Supported',     icon: Globe,    color: '#a78bfa' },
-  { value: 100, suffix: '%', label: 'Non-Recourse Protection', icon: Shield,   color: '#f59e0b' },
+  { value: 90,  text: 'High',   suffix: '%', label: 'Invoice Advance Rate',    icon: Banknote, color: '#1C96BF' },
+  { value: 3,   text: 'Fast',   suffix: 'd', label: 'Average Days to Funding', icon: Clock,    color: '#2dd4bf' },
+  { value: 50,  text: 'Global', suffix: '+', label: 'Countries Supported',     icon: Globe,    color: '#a78bfa' },
+  { value: 100, text: 'Full',   suffix: '%', label: 'Non-Recourse Protection', icon: Shield,   color: '#f59e0b' },
 ];
 
 const STEPS = [
-  { icon: Package,    num: '01', title: 'Ship & Invoice',         desc: 'Export your goods and raise an invoice against your overseas buyer as you normally would.' },
-  { icon: FileText,   num: '02', title: 'Submit on Platform',     desc: 'Upload your invoice and supporting trade documents directly on the TradeFlink platform in minutes.' },
-  { icon: Banknote,   num: '03', title: 'Receive Up to 90%',      desc: 'Get up to 90% of your invoice value advanced to your account within days — not months.' },
-  { icon: RefreshCcw, num: '04', title: 'Buyer Pays at Maturity', desc: 'Your buyer settles the invoice directly with TradeFlink on the agreed due date. No chasing required.' },
+  { icon: Package,    num: 'A', title: 'Ship & Invoice',         desc: 'Export your goods and raise an invoice against your overseas buyer as you normally would.' },
+  { icon: FileText,   num: 'B', title: 'Submit on Platform',     desc: 'Upload your invoice and supporting trade documents directly on the TradeFlink platform in minutes.' },
+  { icon: Banknote,   num: 'C', title: 'Receive Your Advance',   desc: 'Get the majority of your invoice value advanced to your account within days, not months.' },
+  { icon: RefreshCcw, num: 'D', title: 'Buyer Pays at Maturity', desc: 'Your buyer settles the invoice directly with TradeFlink on the agreed due date. No chasing required.' },
 ];
 
 const BENEFITS = [
-  { icon: Zap,        title: 'Shorter Cash Cycle',      desc: 'Stop waiting 30–90 days to get paid. We advance your invoice value so you can restock, rehire, and take on the next order right away.', color: '#f59e0b' },
+  { icon: Zap,        title: 'Shorter Cash Cycle',      desc: 'Stop waiting weeks or months to get paid. We advance your invoice value so you can restock, rehire, and take on the next order right away.', color: '#f59e0b' },
   { icon: TrendingUp, title: 'Continuous Production',   desc: 'Keep factories running and fulfil larger purchase orders without waiting for buyer payment cycles.',           color: '#1C96BF' },
-  { icon: Shield,     title: 'Non-Recourse Protection', desc: 'Client non-payment risk is transferred to TradeFlink. Your receivables are insured — you keep the advance.',  color: '#2dd4bf' },
+  { icon: Shield,     title: 'Non-Recourse Protection', desc: 'Client non-payment risk is transferred to TradeFlink. Your receivables are insured, you keep the advance.',  color: '#2dd4bf' },
   { icon: Lock,       title: 'No Collateral Required',  desc: 'Your invoice is the collateral. No property, no guarantees, no long-winded bank approvals.',                  color: '#a78bfa' },
-  { icon: Globe,      title: 'Global Buyer Network',    desc: 'Finance receivables from buyers in over 50 countries across Asia, Europe, the Middle East, and Africa.',      color: '#ec4899' },
+  { icon: Globe,      title: 'Global Buyer Network',    desc: 'Finance receivables from buyers across Asia, Europe, the Middle East, and Africa.',      color: '#ec4899' },
   { icon: BarChart3,  title: 'Real-Time Dashboard',     desc: 'Track every invoice, advance, and repayment in one transparent, real-time platform built for exporters.',     color: '#10b981' },
 ];
 
@@ -41,12 +41,12 @@ const TESTIMONIALS = [
   { name: 'Aisha Rahman', role: 'Textile Exporter, Bangladesh', avatar: 'AR', color: '#1C96BF',
     quote: 'Before TradeFlink, we waited months to receive payments from our overseas buyers. Now, we get paid within days. That stability has allowed us to take on bigger orders and grow our team.', stars: 5 },
   { name: 'Omar Khalid',  role: 'FMCG Importer, UAE',          avatar: 'OK', color: '#2dd4bf',
-    quote: "We used to struggle with paying our suppliers on time. TradeFlink's supply chain finance changed everything — our partners trust us more, and we've doubled our import volume.", stars: 5 },
+    quote: "We used to struggle with paying our suppliers on time. TradeFlink's supply chain finance changed everything, our partners trust us more, and we've doubled our import volume.", stars: 5 },
 ];
 
 const MARQUEE_ITEMS = [
-  'Up to 90% Advance','Non-Recourse Protection','Funded Within Days',
-  'No Collateral','50+ Countries','Real-Time Dashboard',
+  'High Advance Rate','Non-Recourse Protection','Funded Within Days',
+  'No Collateral','Global Countries','Real-Time Dashboard',
   'Zero Hidden Fees','Insured Receivables','Digital-First Platform',
 ];
 
@@ -408,7 +408,7 @@ export default function Exporters() {
             transition={{ delay:0.7, duration:0.7, ease:[0.22,1,0.36,1] }}
             className="text-md sm:text-md text-white/65 max-w-2xl mx-auto leading-relaxed mb-10"
           >
-            Get up to <span className="text-teal-300 font-bold">90% of invoice value</span> upfront on eligible export receivables and reinvest immediately in production and sales.
+            Get a <span className="text-teal-300 font-bold">high advance rate</span> upfront on eligible export receivables and reinvest immediately in production and sales.
           </motion.p>
 
           {/* CTAs */}
@@ -444,7 +444,7 @@ export default function Exporters() {
           <motion.div initial={{ opacity:0 }} animate={{ opacity:1 }} transition={{ delay:1.1 }}
             className="flex flex-wrap justify-center gap-3"
           >
-            {['Up to 90% advance','Funded in 3 days','No collateral','Non-recourse'].map((t,i) => (
+            {['High advance rate','Funded quickly','No collateral','Non-recourse'].map((t,i) => (
               <motion.span key={t}
                 className="inline-flex items-center gap-1.5 rounded-full border border-white/15 bg-white/10 px-4 py-2 text-[11px] font-semibold text-white/70 backdrop-blur-sm"
                 animate={{ y:[0,-6,0] }}
@@ -495,7 +495,7 @@ export default function Exporters() {
           <motion.div className="grid grid-cols-2 lg:grid-cols-4 gap-5"
             variants={stagger(0)} initial="hidden" animate={statsInView ? 'show':'hidden'}
           >
-            {STATS.map(({ value, suffix, label, icon:Icon, color }, idx) => (
+            {STATS.map(({ value, suffix, text, label, icon:Icon, color }, idx) => (
               <motion.div key={label} variants={fadeUp}>
                 <TiltCard className="relative overflow-hidden rounded-2xl border border-slate-100 bg-white p-6 text-center shadow-md shadow-slate-100/80 group">
                   {/* Continuous top shimmer */}
@@ -509,10 +509,10 @@ export default function Exporters() {
                     >
                       <Icon size={20} style={{ color }} />
                     </motion.div>
-                    <div className="text-4xl font-black mb-1"
+                    <div className="text-4xl font-black mb-1 uppercase"
                       style={{ backgroundImage:'linear-gradient(90deg,#1C96BF,#2dd4bf)', WebkitBackgroundClip:'text', WebkitTextFillColor:'transparent' }}
                     >
-                      <Counter to={value} suffix={suffix} />
+                      {text ?? <Counter to={value} suffix={suffix} />}
                     </div>
                     <p className="text-[11px] font-semibold text-slate-400 uppercase tracking-wider">{label}</p>
                   </div>
@@ -544,10 +544,10 @@ export default function Exporters() {
           <motion.div className="text-center mb-16" variants={stagger(0)} initial="hidden" animate={stepsInView ? 'show':'hidden'}>
             <SectionLabel text="How It Works" />
             <motion.h2 variants={fadeUp} className="text-3xl sm:text-4xl font-black tracking-tight text-slate-900">
-              Four steps to <span style={{ backgroundImage:'linear-gradient(90deg,#1C96BF,#2dd4bf)', WebkitBackgroundClip:'text', WebkitTextFillColor:'transparent' }}>get funded</span>
+              Simple steps to <span style={{ backgroundImage:'linear-gradient(90deg,#1C96BF,#2dd4bf)', WebkitBackgroundClip:'text', WebkitTextFillColor:'transparent' }}>get funded</span>
             </motion.h2>
             <motion.p variants={fadeUp} className="mt-4 text-slate-500 max-w-xl mx-auto text-sm leading-relaxed">
-              From shipment to cash in your account — fast, transparent, and fully digital.
+              From shipment to cash in your account, fast, transparent, and fully digital.
             </motion.p>
           </motion.div>
 
@@ -670,7 +670,7 @@ export default function Exporters() {
               Built for <span style={{ backgroundImage:'linear-gradient(90deg,#1C96BF,#2dd4bf)', WebkitBackgroundClip:'text', WebkitTextFillColor:'transparent' }}>exporters</span>
             </motion.h2>
             <motion.p variants={fadeUp} className="mt-4 text-slate-500 max-w-xl mx-auto text-sm leading-relaxed">
-              Six reasons why exporters choose TradeFlink over going back to their bank.
+              Why exporters choose TradeFlink over going back to their bank.
             </motion.p>
           </motion.div>
 
@@ -705,7 +705,7 @@ export default function Exporters() {
               One platform, <span style={{ backgroundImage:'linear-gradient(90deg,#1C96BF,#2dd4bf)', WebkitBackgroundClip:'text', WebkitTextFillColor:'transparent' }}>every solution</span>
             </motion.h2>
             <motion.p variants={fadeUp} className="mt-4 text-slate-500 max-w-2xl mx-auto text-sm leading-relaxed">
-              One platform for all your trade finance needs — fast approvals, clear fees, no bank queues.
+              One platform for all your trade finance needs, fast approvals, clear fees, no bank queues.
             </motion.p>
           </motion.div>
 
@@ -713,7 +713,7 @@ export default function Exporters() {
             variants={stagger(0.1)} initial="hidden" animate={servicesInView ? 'show':'hidden'}
           >
             {[
-              { title:'Export Factoring',     desc:'Turn invoices into immediate working capital. Up to 90% advance within days.', icon:Banknote, accent:'#1C96BF', img:exporter1 },
+              { title:'Export Factoring',     desc:'Turn invoices into immediate working capital. High advance rate within days.', icon:Banknote, accent:'#1C96BF', img:exporter1 },
               { title:'Supply Chain Finance', desc:'Optimise your supply chain from raw materials to finished goods with flexible finance.', icon:Layers,   accent:'#2dd4bf', img:exporter2 },
               { title:'Invoice Financing',    desc:'Unlock cash in unpaid invoices without new debt. Fast, flexible, fully digital.',        icon:FileText, accent:'#a78bfa', img:exporter3 },
               { title:'Open Account Trade',   desc:'Offer open account terms confidently. We manage the risk so you win more contracts.',    icon:Globe,    accent:'#f59e0b', img:exporter4 },

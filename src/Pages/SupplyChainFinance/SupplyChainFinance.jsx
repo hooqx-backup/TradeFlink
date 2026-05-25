@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+﻿import React, { useRef, useState } from 'react';
 import { motion, useInView, AnimatePresence } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import {
@@ -107,7 +107,7 @@ function Eyebrow({ children, dark = false }) {
   );
 }
 
-function StatCard({ value, suffix = '', prefix = '', label, sublabel, index }) {
+function StatCard({ value, suffix = '', prefix = '', text, label, sublabel, index }) {
   const ref    = useRef(null);
   const inView = useInView(ref, { once: true, margin: '-80px' });
   const count  = useCounter(value, 2000, inView);
@@ -120,8 +120,8 @@ function StatCard({ value, suffix = '', prefix = '', label, sublabel, index }) {
       variants={scaleIn}
       className="text-center"
     >
-      <div className="text-5xl lg:text-6xl font-black text-white tabular-nums leading-none mb-1">
-        {prefix}{count}{suffix}
+      <div className="text-5xl lg:text-6xl font-black text-white uppercase leading-none mb-1">
+        {text ?? `${prefix}${count}${suffix}`}
       </div>
       <div className="text-teal-200 text-sm font-semibold mt-2">{label}</div>
       {sublabel && <div className="text-teal-200/50 text-[10px] uppercase tracking-widest mt-0.5">{sublabel}</div>}
@@ -133,11 +133,11 @@ function StatCard({ value, suffix = '', prefix = '', label, sublabel, index }) {
 const FAQS = [
   {
     q: 'What is supply chain finance?',
-    a: 'Supply chain finance (SCF) is a buyer-led program where Tradeflink pays your approved suppliers early — on the buyer\'s behalf. The supplier gets cash in as little as 3 days, while the buyer continues to pay Tradeflink on the original invoice due date. Everyone wins: suppliers get liquidity, buyers strengthen their supply chain without touching their credit lines.',
+    a: 'Supply chain finance (SCF) is a buyer-led program where Tradeflink pays your approved suppliers early, on the buyer\'s behalf. The supplier gets cash quickly, while the buyer continues to pay Tradeflink on the original invoice due date. Everyone wins: suppliers get liquidity, buyers strengthen their supply chain without touching their credit lines.',
   },
   {
-    q: 'Who initiates the program — the buyer or the supplier?',
-    a: 'The anchor buyer initiates and approves the program. Once the buyer approves an invoice, the supplier can then choose to request early payment at any time before the due date. The supplier\'s decision to draw early is entirely optional — they can take the full term if they prefer.',
+    q: 'Who initiates the program, the buyer or the supplier?',
+    a: 'The anchor buyer initiates and approves the program. Once the buyer approves an invoice, the supplier can then choose to request early payment at any time before the due date. The supplier\'s decision to draw early is entirely optional, they can take the full term if they prefer.',
   },
   {
     q: 'Does this increase the buyer\'s debt burden?',
@@ -145,11 +145,11 @@ const FAQS = [
   },
   {
     q: 'How fast do suppliers receive funds?',
-    a: 'Once the buyer approves the invoice and the supplier requests early payment, Tradeflink transfers funds within 24–72 hours. Our digital-first platform eliminates paperwork delays and manual verification steps.',
+    a: 'Once the buyer approves the invoice and the supplier requests early payment, Tradeflink transfers funds quickly. Our digital-first platform eliminates paperwork delays and manual verification steps.',
   },
   {
     q: 'Which industries and geographies does the program cover?',
-    a: 'Tradeflink\'s supply chain finance program serves buyers and suppliers across manufacturing, FMCG, retail, agriculture, and more — in 70+ countries. Our offices in Dubai, Delhi, Kolkata, Delaware, London, and Istanbul provide local expertise globally.',
+    a: 'Tradeflink\'s supply chain finance program serves buyers and suppliers across manufacturing, FMCG, retail, agriculture, and more, across many countries. Our offices in Dubai, Delhi, Kolkata, Delaware, London, and Istanbul provide local expertise globally.',
   },
 ];
 
@@ -198,27 +198,27 @@ function FaqItem({ item, index }) {
 
 /* ── Data ──────────────────────────────────────────────────────── */
 const STATS = [
-  { value: 3,  suffix: '', prefix: '< ', label: 'Supplier Funding Speed',  sublabel: 'After buyer approval' },
-  { value: 70, suffix: '+',     prefix: '',  label: 'Countries Covered',        sublabel: 'Global reach' },
-  { value: 100,suffix: '%',     prefix: '',  label: 'Off-Balance-Sheet',        sublabel: 'For suppliers' },
-  { value: 0,  suffix: '%',     prefix: '',  label: 'Supplier Credit Risk',     sublabel: 'Fully absorbed' },
+  { value: 3,   text: 'Fast',  suffix: '', prefix: '< ', label: 'Supplier Funding Speed',  sublabel: 'After buyer approval' },
+  { value: 70,  text: 'Wide',  suffix: '+', prefix: '',  label: 'Countries Covered',        sublabel: 'Global reach' },
+  { value: 100, text: 'Clean', suffix: '%', prefix: '',  label: 'Off-Balance-Sheet',        sublabel: 'For suppliers' },
+  { value: 0,   text: 'Zero',  suffix: '%', prefix: '',  label: 'Supplier Credit Risk',     sublabel: 'Fully absorbed' },
 ];
 
 const HOW_IT_WORKS = [
   {
-    step: '01', Icon: FileText, color: '#1C96BF',
+    step: 'A', Icon: FileText, color: '#1C96BF',
     title: 'Buyer Approves Invoices',
-    desc: 'The anchor buyer reviews and approves supplier invoices on Tradeflink\'s digital platform — confirming payment obligation and unlocking early-payment eligibility for each invoice.',
+    desc: 'The anchor buyer reviews and approves supplier invoices on Tradeflink\'s digital platform, confirming payment obligation and unlocking early-payment eligibility for each invoice.',
   },
   {
-    step: '02', Icon: Banknote, color: '#0ea5e9',
+    step: 'B', Icon: Banknote, color: '#0ea5e9',
     title: 'Supplier Requests Early Payment',
-    desc: 'The supplier selects approved invoices and requests early payment at any time before the due date. Tradeflink transfers funds to the supplier\'s account within 24–72 hours.',
+    desc: 'The supplier selects approved invoices and requests early payment at any time before the due date. Tradeflink transfers funds to the supplier\'s account rapidly.',
   },
   {
-    step: '03', Icon: RefreshCw, color: '#a78bfa',
+    step: 'C', Icon: RefreshCw, color: '#a78bfa',
     title: 'Buyer Settles on Original Terms',
-    desc: 'On the original invoice due date, the buyer pays Tradeflink directly — with no change to their existing payment cycle. Suppliers enjoy early liquidity; buyers stay on schedule.',
+    desc: 'On the original invoice due date, the buyer pays Tradeflink directly, with no change to their existing payment cycle. Suppliers enjoy early liquidity; buyers stay on schedule.',
   },
 ];
 
@@ -226,21 +226,21 @@ const FEATURES = [
   {
     Icon: Building2,
     title: 'Buyer-Driven Programme',
-    desc: 'Anchor buyers approve invoices on our platform, granting their entire supplier base access to early-payment liquidity — powered by the buyer\'s creditworthiness, not the supplier\'s.',
+    desc: 'Anchor buyers approve invoices on our platform, granting their entire supplier base access to early-payment liquidity, powered by the buyer\'s creditworthiness, not the supplier\'s.',
     accent: '#1C96BF', light: 'rgba(28,150,191,0.08)',
     badge: 'Buyer-Led',
   },
   {
     Icon: Zap,
     title: 'Rapid Supplier Funding',
-    desc: 'Suppliers access approved funds in as little as 24–72 hours through our digital-first portal. No paper, no delays, no relationship banking required — just fast, reliable liquidity.',
+    desc: 'Suppliers access approved funds quickly through our digital-first portal. No paper, no delays, no relationship banking required, just fast, reliable liquidity.',
     accent: '#0ea5e9', light: 'rgba(14,165,233,0.08)',
-    badge: '24–72h Disbursement',
+    badge: 'Rapid Disbursement',
   },
   {
     Icon: Activity,
     title: 'Dynamic Discounting',
-    desc: 'Suppliers pick their own draw date — earlier means a smaller discount, later means more cash. No pressure, fully flexible.',
+    desc: 'Suppliers pick their own draw date, earlier means a smaller discount, later means more cash. No pressure, fully flexible.',
     accent: '#a78bfa', light: 'rgba(167,139,250,0.08)',
     badge: 'Flexible Draw Dates',
   },
@@ -250,25 +250,25 @@ const BENEFITS = [
   {
     Icon: Network,
     title: 'Strengthen Supplier Relationships',
-    desc: 'By giving suppliers predictable, early access to cash, buyers build deeper loyalty and resilience across their entire supply chain — reducing the risk of disruption.',
+    desc: 'By giving suppliers predictable, early access to cash, buyers build deeper loyalty and resilience across their entire supply chain, reducing the risk of disruption.',
     color: '#1C96BF',
   },
   {
     Icon: TrendingUp,
     title: 'Extend Payment Terms Freely',
-    desc: 'Buyers can negotiate longer payment terms with suppliers without creating financial pressure downstream — Tradeflink bridges the gap so everyone operates on their ideal timeline.',
+    desc: 'Buyers can negotiate longer payment terms with suppliers without creating financial pressure downstream, Tradeflink bridges the gap so everyone operates on their ideal timeline.',
     color: '#0ea5e9',
   },
   {
     Icon: Shield,
     title: 'Off-Balance-Sheet for Suppliers',
-    desc: 'Because Tradeflink\'s advances are based on confirmed buyer payables — not supplier credit — the funding remains off the supplier\'s balance sheet and preserves their borrowing headroom.',
+    desc: 'Because Tradeflink\'s advances are based on confirmed buyer payables, not supplier credit, the funding remains off the supplier\'s balance sheet and preserves their borrowing headroom.',
     color: '#a78bfa',
   },
   {
     Icon: Truck,
     title: 'Reduce Supply Chain Risk',
-    desc: 'Suppliers who get paid on time deliver on time — and they take on bigger orders. A healthier chain benefits everyone in it.',
+    desc: 'Suppliers who get paid on time deliver on time, and they take on bigger orders. A healthier chain benefits everyone in it.',
     color: '#f59e0b',
   },
 ];
@@ -279,7 +279,7 @@ const FOR_WHOM = [
     who: 'For Buyers',
     headline: 'Extend terms. Strengthen suppliers. Zero new debt.',
     desc: 'Large corporates and anchor buyers use Tradeflink\'s SCF programme to optimise working capital while ensuring their suppliers never face a liquidity crunch.',
-    rating: '4.5',
+    rating: 'Top Rated',
     gradient: 'from-teal-500 to-teal-600',
     accent: '#1C96BF',
     light: 'rgba(28,150,191,0.07)',
@@ -287,9 +287,9 @@ const FOR_WHOM = [
   {
     Icon: Package,
     who: 'For Suppliers',
-    headline: 'Get paid in very days, not months.',
-    desc: 'SME suppliers access early payment on approved invoices without taking on debt or going through lengthy credit processes — just fast, frictionless liquidity.',
-    rating: '4.5',
+    headline: 'Get paid quickly, not months away.',
+    desc: 'SME suppliers access early payment on approved invoices without taking on debt or going through lengthy credit processes, just fast, frictionless liquidity.',
+    rating: 'Top Rated',
     gradient: 'from-sky-500 to-sky-600',
     accent: '#0ea5e9',
     light: 'rgba(14,165,233,0.07)',
@@ -299,7 +299,7 @@ const FOR_WHOM = [
     who: 'For Investors',
     headline: 'Short-duration returns backed by buyer credit.',
     desc: 'Invest in verified, buyer-approved payables and earn transparent returns on short-duration assets underpinned by the credit of investment-grade buyers.',
-    rating: '4.5',
+    rating: 'Top Rated',
     gradient: 'from-violet-500 to-violet-600',
     accent: '#a78bfa',
     light: 'rgba(167,139,250,0.07)',
@@ -308,7 +308,7 @@ const FOR_WHOM = [
 
 const TESTIMONIALS = [
   {
-    quote: 'Tradeflink\'s supply chain finance programme transformed how we manage our supplier base. Our partners get paid within days of invoice approval, and we\'ve seen zero supply disruptions since we onboarded — a game-changer for our procurement team.',
+    quote: 'Tradeflink\'s supply chain finance programme transformed how we manage our supplier base. Our partners get paid within days of invoice approval, and we\'ve seen zero supply disruptions since we onboarded, a game-changer for our procurement team.',
     name: 'Priya Mehta',
     role: 'Head of Procurement',
     location: 'Mumbai, India',
@@ -318,7 +318,7 @@ const TESTIMONIALS = [
     stars: 5,
   },
   {
-    quote: 'As a manufacturer supplying large retailers, waiting 90 days for payment was crippling our growth. With Tradeflink, we choose when to draw early — sometimes we take the full term, sometimes we draw in 3 days. That flexibility is everything.',
+    quote: 'As a manufacturer supplying large retailers, waiting months for payment was crippling our growth. With Tradeflink, we choose when to draw early, sometimes we take the full term, sometimes we draw right away. That flexibility is everything.',
     name: 'Khalid Al-Farsi',
     role: 'Manufacturing Supplier',
     location: 'Dubai, UAE',
@@ -426,7 +426,7 @@ export default function SupplyChainFinance() {
             className="flex flex-wrap gap-8 pt-8"
             style={{ borderTop: '1px solid rgba(255,255,255,0.06)' }}
           >
-            {[['3', 'Supplier Funding'], ['70+', 'Countries'], ['100%', 'Off-Balance-Sheet'], ['0%', 'Supplier Risk']].map(([v, l]) => (
+            {[['Fast', 'Supplier Funding'], ['Global', 'Countries'], ['Clean', 'Off-Balance-Sheet'], ['Zero', 'Supplier Risk']].map(([v, l]) => (
               <div key={l}>
                 <p className="text-2xl font-black text-white">{v}</p>
                 <p className="text-[9px] text-white/30 uppercase tracking-[0.22em] mt-0.5">{l}</p>
@@ -466,7 +466,7 @@ export default function SupplyChainFinance() {
             {STATS.map((s, i) => (
               <StatCard
                 key={s.label} value={s.value} suffix={s.suffix}
-                prefix={s.prefix} label={s.label} sublabel={s.sublabel} index={i}
+                prefix={s.prefix} text={s.text} label={s.label} sublabel={s.sublabel} index={i}
               />
             ))}
           </div>
@@ -497,22 +497,22 @@ export default function SupplyChainFinance() {
               <motion.p variants={fadeUp} className="text-slate-500 leading-relaxed mb-5 text-lg">
                 Supply chain finance flips the traditional model: instead of suppliers
                 chasing buyers for payment, the buyer's approved invoices become the
-                key that unlocks early liquidity for every supplier in the chain —
+                key that unlocks early liquidity for every supplier in the chain,
                 without costing the buyer anything extra.
               </motion.p>
               <motion.p variants={fadeUp} className="text-slate-400 leading-relaxed mb-8">
-                Tradeflink acts as the financial intermediary — funding suppliers immediately
+                Tradeflink acts as the financial intermediary, funding suppliers immediately
                 on buyer-approved invoices, then collecting from the buyer on the original
                 due date. The result is a healthier supply chain for everyone.
               </motion.p>
 
               <motion.div variants={stagger} className="space-y-4">
                 {[
-                  'Suppliers funded within 24–72 hours of buyer approval',
-                  'Buyers pay on original terms — no change to their cash cycle',
-                  'Fully off-balance-sheet for suppliers — not a loan',
+                  'Suppliers funded quickly after buyer approval',
+                  'Buyers pay on original terms, no change to their cash cycle',
+                  'Fully off-balance-sheet for suppliers, not a loan',
                   'Onboard your entire supplier base in one programme',
-                  'Coverage across 70+ countries and all major currencies',
+                  'Coverage across many countries and all major currencies',
                 ].map((item, i) => (
                   <motion.div key={i} custom={i} variants={fadeUp} className="flex items-start gap-3">
                     <div className="shrink-0 w-5 h-5 rounded-full bg-teal-50 border border-teal-200 flex items-center justify-center mt-0.5">
@@ -554,7 +554,7 @@ export default function SupplyChainFinance() {
                 transition={{ delay: 0.5, duration: 0.6 }}
                 className="absolute -right-5 -bottom-5 glass rounded-2xl shadow-2xl p-5 max-w-45 border border-white/10"
               >
-                <p className="text-3xl font-black text-white">&lt;3 days</p>
+                <p className="text-3xl font-black text-white">Fast</p>
                 <p className="text-[10px] text-teal-400/80 uppercase tracking-[0.2em] mt-1 font-bold">Supplier Funded</p>
               </motion.div>
 
@@ -597,7 +597,7 @@ export default function SupplyChainFinance() {
               <span className="text-gradient">actually works</span>
             </h2>
             <p className="text-slate-400 text-lg mt-5 max-w-xl mx-auto">
-              Three steps from invoice approval to supplier payment — seamless for every party.
+              Simple steps from invoice approval to supplier payment, seamless for every party.
             </p>
           </motion.div>
 
@@ -661,7 +661,7 @@ export default function SupplyChainFinance() {
             <div className="grid lg:grid-cols-3 gap-6 items-center text-center">
               {[
                 { label: 'Buyer', sub: 'Approves invoices on platform', color: '#1C96BF' },
-                { label: 'Tradeflink', sub: 'Funds supplier in <3', color: '#0ea5e9', highlight: true },
+                { label: 'Tradeflink', sub: 'Funds supplier quickly', color: '#0ea5e9', highlight: true },
                 { label: 'Supplier', sub: 'Receives early payment, stress-free', color: '#a78bfa' },
               ].map((node, i) => (
                 <React.Fragment key={node.label}>
@@ -705,9 +705,9 @@ export default function SupplyChainFinance() {
               <div className="max-w-sm">
                 <p className="text-teal-400 text-[10px] font-black uppercase tracking-[0.3em] mb-3">The Result</p>
                 <p className="text-white text-2xl lg:text-3xl font-black leading-snug">
-                  Suppliers funded in{' '}
-                  <span className="text-gradient">under 3 days</span>
-                  {' '}— buyers pay on their original schedule.
+                  Suppliers funded{' '}
+                  <span className="text-gradient">fast</span>
+                  {' '}buyers pay on their original schedule.
                 </p>
               </div>
             </div>
@@ -716,7 +716,7 @@ export default function SupplyChainFinance() {
       </section>
 
       {/* ════════════════════════════════════════════════════════
-          CORE FEATURES — 3 cards
+          CORE FEATURES, 3 cards
       ════════════════════════════════════════════════════════ */}
       <section className="section bg-slate-50">
         <div className="container-xl">
@@ -775,7 +775,7 @@ export default function SupplyChainFinance() {
       </section>
 
       {/* ════════════════════════════════════════════════════════
-          KEY BENEFITS — image + benefit list
+          KEY BENEFITS, image + benefit list
       ════════════════════════════════════════════════════════ */}
       <section className="section bg-white relative overflow-hidden">
         <div className="container-xl relative z-10">
@@ -790,7 +790,7 @@ export default function SupplyChainFinance() {
               <span className="text-gradient">every party</span>
             </h2>
             <p className="text-slate-400 text-lg mt-5 max-w-xl mx-auto">
-              Tradeflink's SCF programme creates a genuine win-win — buyers preserve cash, suppliers access liquidity, and supply chains become resilient.
+              Tradeflink's SCF programme creates a genuine win-win, buyers preserve cash, suppliers access liquidity, and supply chains become resilient.
             </p>
           </motion.div>
 
@@ -817,7 +817,7 @@ export default function SupplyChainFinance() {
                 transition={{ delay: 0.5, duration: 0.6 }}
                 className="absolute -left-5 -bottom-5 bg-white rounded-2xl shadow-2xl p-5 border border-gray-100"
               >
-                <p className="text-3xl font-black text-[#0f172a]">90 days</p>
+                <p className="text-3xl font-black text-[#0f172a]">Extended</p>
                 <p className="text-[10px] text-teal-600 uppercase tracking-[0.2em] mt-1 font-bold">Wait time eliminated</p>
               </motion.div>
             </motion.div>
@@ -947,11 +947,11 @@ export default function SupplyChainFinance() {
                   className="text-3xl lg:text-4xl font-black text-white leading-tight mb-6"
                 >
                   Trusted by supply chains across{' '}
-                  <span className="text-gradient">70+ countries</span>
+                  <span className="text-gradient">many countries</span>
                 </motion.h2>
                 <motion.p variants={fadeUp} className="text-slate-300 text-lg leading-relaxed">
                   From anchor corporates to SME suppliers, Tradeflink's platform is
-                  transforming how working capital flows through global supply chains —
+                  transforming how working capital flows through global supply chains,
                   one approved invoice at a time.
                 </motion.p>
               </motion.div>
@@ -962,10 +962,10 @@ export default function SupplyChainFinance() {
                 className="grid grid-cols-2 gap-4"
               >
                 {[
-                  { val: '$250M+', label: 'Trade Financed',    sub: 'Since inception' },
-                  { val: '300+',  label: 'Supply Chains',     sub: 'Fully onboarded' },
-                  { val: '3d',    label: 'Avg Supplier Pay',  sub: 'Fast settlement' },
-                  { val: '0%',   label: 'Supplier Risk',     sub: 'Fully absorbed' },
+                  { val: 'Active',  label: 'Trade Financed',    sub: 'Since inception' },
+                  { val: 'Growing', label: 'Supply Chains',     sub: 'Fully onboarded' },
+                  { val: 'Fast',    label: 'Avg Supplier Pay',  sub: 'Fast settlement' },
+                  { val: 'Zero',    label: 'Supplier Risk',     sub: 'Fully absorbed' },
                 ].map((s, i) => (
                   <motion.div
                     key={s.label} custom={i} variants={scaleIn}
@@ -1156,7 +1156,7 @@ export default function SupplyChainFinance() {
               {[
                 { Icon: ShieldCheck, label: 'Buyer-Backed Security' },
                 { Icon: Lock,        label: 'KYC / AML Compliant' },
-                { Icon: Globe,       label: '70+ Countries' },
+                { Icon: Globe,       label: 'Global Reach' },
               ].map(({ Icon, label }) => (
                 <div key={label} className="flex items-center gap-2 text-white/40 text-xs font-semibold">
                   <Icon size={14} className="text-teal-500" />

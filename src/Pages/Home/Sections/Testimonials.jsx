@@ -1,9 +1,9 @@
-import React, { useState, useEffect, useRef } from 'react';
+﻿import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 const TESTIMONIALS = [
   {
-    quote: 'Before TradeFlink, we waited months for payment. It was crippling our growth. Now we receive funds within days of shipping — we expanded into three new markets.',
+    quote: 'Before TradeFlink, we waited months for payment. It was crippling our growth. Now we receive funds within days of shipping, we expanded into three new markets.',
     name: 'Aisha Rahman',
     role: 'Textile Exporter',
     location: 'Bangladesh',
@@ -113,7 +113,7 @@ export default function Testimonials() {
           <div className="flex items-center gap-5">
             {/* Counter */}
             <span className="text-white/20 text-xs font-mono tabular-nums">
-              {String(active + 1).padStart(2, '0')} / {String(TESTIMONIALS.length).padStart(2, '0')}
+              {['I','II','III'][active]} / III
             </span>
 
             {/* Progress */}
@@ -138,7 +138,7 @@ export default function Testimonials() {
 
         {/* Bottom stats strip */}
         <div className="mt-14 lg:mt-20 pt-8 border-t border-white/08 grid grid-cols-3 gap-8">
-          {[['300+', 'Businesses trusted us'], ['70+', 'Countries'], ['98%', 'Client satisfaction']].map(([val, label]) => (
+          {[['Growing', 'Businesses trusted us'], ['Global', 'Countries'], ['High', 'Client satisfaction']].map(([val, label]) => (
             <div key={label}>
               <p className="text-2xl font-black text-teal-400 mb-1">{val}</p>
               <p className="text-xs text-white/25 uppercase tracking-widest">{label}</p>

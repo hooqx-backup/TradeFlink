@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+﻿import React, { useRef, useState } from 'react';
 import { motion, useInView, AnimatePresence } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import {
@@ -107,7 +107,7 @@ function Eyebrow({ children, dark = false }) {
   );
 }
 
-function StatCard({ value, suffix = '', prefix = '', label, sublabel, index }) {
+function StatCard({ value, suffix = '', prefix = '', text, label, sublabel, index }) {
   const ref    = useRef(null);
   const inView = useInView(ref, { once: true, margin: '-80px' });
   const count  = useCounter(value, 2000, inView);
@@ -120,8 +120,8 @@ function StatCard({ value, suffix = '', prefix = '', label, sublabel, index }) {
       variants={scaleIn}
       className="text-center"
     >
-      <div className="text-5xl lg:text-6xl font-black text-white tabular-nums leading-none mb-1">
-        {prefix}{count}{suffix}
+      <div className="text-5xl lg:text-6xl font-black text-white uppercase leading-none mb-1">
+        {text ?? `${prefix}${count}${suffix}`}
       </div>
       <div className="text-teal-200 text-sm font-semibold mt-2">{label}</div>
       {sublabel && <div className="text-teal-200/50 text-[10px] uppercase tracking-widest mt-0.5">{sublabel}</div>}
@@ -133,11 +133,11 @@ function StatCard({ value, suffix = '', prefix = '', label, sublabel, index }) {
 const FAQS = [
   {
     q: 'What is export factoring?',
-    a: 'Export factoring is a financial service where Tradeflink purchases your outstanding export invoices at a discount, advancing you up to 95% of the invoice value within 24–48 hours. We then collect payment from your overseas buyer on the invoice maturity date — so you never have to chase payments again.',
+    a: 'Export factoring is a financial service where Tradeflink purchases your outstanding export invoices at a discount, advancing you the majority of the invoice value quickly. We then collect payment from your overseas buyer on the invoice maturity date, so you never have to chase payments again.',
   },
   {
     q: 'How quickly will I receive funds?',
-    a: 'Once your invoices are verified, we advance funds within 24–48 hours. Our streamlined digital process means you spend less time on paperwork and more time growing your business.',
+    a: 'Once your invoices are verified, we advance funds quickly. Our streamlined digital process means you spend less time on paperwork and more time growing your business.',
   },
   {
     q: 'Does export factoring show up as debt on my balance sheet?',
@@ -145,11 +145,11 @@ const FAQS = [
   },
   {
     q: 'Which countries and currencies do you support?',
-    a: 'We operate across 70+ countries and support major trade currencies including USD, EUR, GBP, AED, and more. Our global network of offices in Dubai, Delhi, Kolkata, Delaware, London, and Istanbul ensures local expertise wherever you trade.',
+    a: 'We operate across many countries and support major trade currencies including USD, EUR, GBP, AED, and more. Our global network of offices in Dubai, Delhi, Kolkata, Delaware, London, and Istanbul ensures local expertise wherever you trade.',
   },
   {
     q: 'Who handles collections from my buyers?',
-    a: 'Tradeflink handles all collections, dunning, and bookkeeping on your behalf. You get a fully streamlined workflow — so you can focus on fulfilling orders and growing relationships, not chasing payments.',
+    a: 'Tradeflink handles all collections, dunning, and bookkeeping on your behalf. You get a fully streamlined workflow, so you can focus on fulfilling orders and growing relationships, not chasing payments.',
   },
 ];
 
@@ -198,27 +198,27 @@ function FaqItem({ item, index }) {
 
 /* ── Data ──────────────────────────────────────────────────────── */
 const STATS = [
-  { value: 95, suffix: '%', prefix: '',  label: 'Max Invoice Advance',  sublabel: 'On verified invoices' },
-  { value: 48, suffix: 'h', prefix: '<', label: 'Funding Speed',        sublabel: 'After verification' },
-  { value: 70, suffix: '+', prefix: '',  label: 'Countries Covered',     sublabel: 'Global reach' },
-  { value: 0,  suffix: '%', prefix: '',  label: 'Seller Credit Risk',    sublabel: 'We absorb it all' },
+  { value: 95, text: 'High',   suffix: '%', prefix: '',  label: 'Max Invoice Advance',  sublabel: 'On verified invoices' },
+  { value: 48, text: 'Fast',   suffix: 'h', prefix: '<', label: 'Funding Speed',        sublabel: 'After verification' },
+  { value: 70, text: 'Wide',   suffix: '+', prefix: '',  label: 'Countries Covered',     sublabel: 'Global reach' },
+  { value: 0,  text: 'None',   suffix: '%', prefix: '',  label: 'Seller Credit Risk',    sublabel: 'We absorb it all' },
 ];
 
 const HOW_IT_WORKS = [
   {
-    step: '01', Icon: FileText, color: '#1C96BF',
+    step: 'A', Icon: FileText, color: '#1C96BF',
     title: 'Supplier Invoices Buyer',
     desc: 'You ship goods and raise an invoice against your overseas buyer. Submit the verified invoice to Tradeflink through our seamless digital portal.',
   },
   {
-    step: '02', Icon: DollarSign, color: '#0ea5e9',
+    step: 'B', Icon: DollarSign, color: '#0ea5e9',
     title: 'Tradeflink Advances Funds',
-    desc: 'We advance up to 95% of the invoice value within 24–48 hours of verification — directly to your account. No waiting, no chasing.',
+    desc: 'We advance the majority of the invoice value quickly after verification, directly to your account. No waiting, no chasing.',
   },
   {
-    step: '03', Icon: RefreshCw, color: '#a78bfa',
+    step: 'C', Icon: RefreshCw, color: '#a78bfa',
     title: 'Buyer Settles on Maturity',
-    desc: 'On the invoice due date, your buyer pays Tradeflink directly. We handle all collections and dunning on your behalf — completely hands-free.',
+    desc: 'On the invoice due date, your buyer pays Tradeflink directly. We handle all collections and dunning on your behalf, completely hands-free.',
   },
 ];
 
@@ -226,23 +226,23 @@ const FEATURES = [
   {
     Icon: Banknote,
     title: 'Financing',
-    desc: 'Submit your invoice and we advance up to 95% of its value the same day — then chase the buyer ourselves. Zero credit risk stays with you.',
+    desc: 'Submit your invoice and we advance the majority of its value quickly, then chase the buyer ourselves. Zero credit risk stays with you.',
     accent: '#1C96BF', light: 'rgba(28,150,191,0.08)',
-    badge: 'Up to 95% Advance',
+    badge: 'High Advance Rate',
   },
   {
     Icon: ShieldCheck,
     title: 'Credit Protection',
-    desc: 'You have a streamlined workflow as we perform collections, dunning, and bookkeeping on your behalf — so you focus on growing your business.',
+    desc: 'You have a streamlined workflow as we perform collections, dunning, and bookkeeping on your behalf, so you focus on growing your business.',
     accent: '#0ea5e9', light: 'rgba(14,165,233,0.08)',
     badge: 'Zero Collections Hassle',
   },
   {
     Icon: BarChart3,
     title: 'Collection & Reporting',
-    desc: 'We advance up to 95% of the invoice value and fund within 24–48 hours of verifying your invoices. Real-time reporting keeps you always informed.',
+    desc: 'We advance the majority of the invoice value and fund quickly after verifying your invoices. Real-time reporting keeps you always informed.',
     accent: '#a78bfa', light: 'rgba(167,139,250,0.08)',
-    badge: '24–48h Turnaround',
+    badge: 'Rapid Turnaround',
   },
 ];
 
@@ -250,13 +250,13 @@ const BENEFITS = [
   {
     Icon: Clock,
     title: 'No More Late Payments',
-    desc: 'Stop waiting 60–90 days for buyers to settle. Submit an invoice, get your advance the same day — no chasing, no delays.',
+    desc: 'Stop waiting weeks or months for buyers to settle. Submit an invoice, get your advance the same day, no chasing, no delays.',
     color: '#1C96BF',
   },
   {
     Icon: TrendingUp,
     title: 'Off Balance Sheet',
-    desc: 'Our finance services are not loans — for many companies, our financing doesn\'t show up on their balance sheet as debt, keeping ratios healthy.',
+    desc: 'Our finance services are not loans, for many companies, our financing doesn\'t show up on their balance sheet as debt, keeping ratios healthy.',
     color: '#0ea5e9',
   },
   {
@@ -268,7 +268,7 @@ const BENEFITS = [
   {
     Icon: Globe,
     title: 'Work With Larger Buyers',
-    desc: 'Flexibility in payment schedules lets you work with a greater variety of retailers and distributors — including major global names.',
+    desc: 'Flexibility in payment schedules lets you work with a greater variety of retailers and distributors, including major global names.',
     color: '#f59e0b',
   },
 ];
@@ -278,8 +278,8 @@ const FOR_WHOM = [
     Icon: Package,
     who: 'For Exporters',
     headline: 'Focus on your next shipment, not delayed payments.',
-    desc: 'Tradeflink keeps your cash flow steady and predictable — so you can scale your export business with confidence.',
-    rating: '4.5',
+    desc: 'Tradeflink keeps your cash flow steady and predictable, so you can scale your export business with confidence.',
+    rating: 'Top Rated',
     gradient: 'from-teal-500 to-teal-600',
     accent: '#1C96BF',
     light: 'rgba(28,150,191,0.07)',
@@ -289,7 +289,7 @@ const FOR_WHOM = [
     who: 'For Importers',
     headline: 'Improve supplier relationships',
     desc: 'Working capital support from Tradeflink lets you pay suppliers on time or early while preserving your own cash.',
-    rating: '4.5',
+    rating: 'Top Rated',
     gradient: 'from-sky-500 to-sky-600',
     accent: '#0ea5e9',
     light: 'rgba(14,165,233,0.07)',
@@ -299,7 +299,7 @@ const FOR_WHOM = [
     who: 'For Investors',
     headline: 'Participate in global trade with consistent returns.',
     desc: 'Fund verified, insured invoices that generate transparent, short-duration returns ',
-    rating: '4.5',
+    rating: 'Top Rated',
     gradient: 'from-violet-500 to-violet-600',
     accent: '#a78bfa',
     light: 'rgba(167,139,250,0.07)',
@@ -318,7 +318,7 @@ const TESTIMONIALS = [
     stars: 5,
   },
   {
-    quote: "We used to struggle with paying our suppliers on time. Tradeflink's supply chain finance changed everything — our partners trust us more, and we've doubled our import volume.",
+    quote: "We used to struggle with paying our suppliers on time. Tradeflink's supply chain finance changed everything, our partners trust us more, and we've doubled our import volume.",
     name: 'Omar Khalid',
     role: 'FMCG Importer',
     location: 'Dubai, UAE',
@@ -426,7 +426,7 @@ export default function ExportFactoring() {
             className="flex flex-wrap gap-8 pt-8"
             style={{ borderTop: '1px solid rgba(255,255,255,0.06)' }}
           >
-            {[['95%', 'Max Advance'], ['24–48h', 'Funding Speed'], ['70+', 'Countries'], ['0%', 'Seller Risk']].map(([v, l]) => (
+            {[['High', 'Max Advance'], ['Fast', 'Funding Speed'], ['Global', 'Countries'], ['None', 'Seller Risk']].map(([v, l]) => (
               <div key={l}>
                 <p className="text-2xl font-black text-white">{v}</p>
                 <p className="text-[9px] text-white/30 uppercase tracking-[0.22em] mt-0.5">{l}</p>
@@ -466,7 +466,7 @@ export default function ExportFactoring() {
             {STATS.map((s, i) => (
               <StatCard
                 key={s.label} value={s.value} suffix={s.suffix}
-                prefix={s.prefix} label={s.label} sublabel={s.sublabel} index={i}
+                prefix={s.prefix} text={s.text} label={s.label} sublabel={s.sublabel} index={i}
               />
             ))}
           </div>
@@ -497,21 +497,21 @@ export default function ExportFactoring() {
               <motion.p variants={fadeUp} className="text-slate-500 leading-relaxed mb-5 text-lg">
                 When we saw a gap in financing to address international needs, we stepped in
                 to fill it. Not only do our export factoring services provide funding for
-                cross-border sales — we also collect payment from your overseas buyers for you.
+                cross-border sales, we also collect payment from your overseas buyers for you.
               </motion.p>
               <motion.p variants={fadeUp} className="text-slate-400 leading-relaxed mb-8">
                 As your financial partner, you can trade with complete peace of mind. No more
-                chasing invoices, no more cash flow anxiety — just steady, predictable capital
+                chasing invoices, no more cash flow anxiety, just steady, predictable capital
                 to fund your next order.
               </motion.p>
 
               <motion.div variants={stagger} className="space-y-4">
                 {[
-                  'Up to 95% of invoice value advanced immediately',
-                  'Funds deposited within 24–48 hours of verification',
+                  'High advance on invoice value, transferred immediately',
+                  'Funds deposited quickly after verification',
                   'We handle all collections and dunning for you',
-                  'No debt on your balance sheet — it\'s not a loan',
-                  'Trade across 70+ countries with ease',
+                  'No debt on your balance sheet, it\'s not a loan',
+                  'Trade across many countries with ease',
                 ].map((item, i) => (
                   <motion.div key={i} custom={i} variants={fadeUp} className="flex items-start gap-3">
                     <div className="shrink-0 w-5 h-5 rounded-full bg-teal-50 border border-teal-200 flex items-center justify-center mt-0.5">
@@ -553,7 +553,7 @@ export default function ExportFactoring() {
                 transition={{ delay: 0.5, duration: 0.6 }}
                 className="absolute -right-5 -bottom-5 glass rounded-2xl shadow-2xl p-5 max-w-45 border border-white/10"
               >
-                <p className="text-3xl font-black text-white">95%</p>
+                <p className="text-3xl font-black text-white">High</p>
                 <p className="text-[10px] text-teal-400/80 uppercase tracking-[0.2em] mt-1 font-bold">Invoice Advanced</p>
               </motion.div>
 
@@ -567,7 +567,7 @@ export default function ExportFactoring() {
               >
                 <Clock size={18} className="text-teal-400 shrink-0" />
                 <div>
-                  <p className="text-white text-xs font-bold">Funded in 48h</p>
+                  <p className="text-white text-xs font-bold">Funded Fast</p>
                   <p className="text-white/40 text-[10px]">After verification</p>
                 </div>
               </motion.div>
@@ -596,7 +596,7 @@ export default function ExportFactoring() {
               <span className="text-gradient">actually works</span>
             </h2>
             <p className="text-slate-400 text-lg mt-5 max-w-xl mx-auto">
-              Three simple steps from invoice to cash — we handle everything in between.
+              Simple steps from invoice to cash, we handle everything in between.
             </p>
           </motion.div>
 
@@ -660,7 +660,7 @@ export default function ExportFactoring() {
             <div className="grid lg:grid-cols-3 gap-6 items-center text-center">
               {[
                 { label: 'Supplier', sub: 'Ships goods & raises invoice', color: '#1C96BF' },
-                { label: 'Tradeflink', sub: 'Advances 95% in 24–48h', color: '#0ea5e9', highlight: true },
+                { label: 'Tradeflink', sub: 'Advances funds fast', color: '#0ea5e9', highlight: true },
                 { label: 'Buyer', sub: 'Pays Tradeflink on maturity', color: '#a78bfa' },
               ].map((node, i) => (
                 <React.Fragment key={node.label}>
@@ -704,8 +704,8 @@ export default function ExportFactoring() {
               <div className="max-w-sm">
                 <p className="text-teal-400 text-[10px] font-black uppercase tracking-[0.3em] mb-3">The Result</p>
                 <p className="text-white text-2xl lg:text-3xl font-black leading-snug">
-                  Cash in your account within{' '}
-                  <span className="text-gradient">48 hours</span> of submitting your invoice.
+                  Cash in your account{' '}
+                  <span className="text-gradient">fast</span>{' '}after submitting your invoice.
                 </p>
               </div>
             </div>
@@ -714,7 +714,7 @@ export default function ExportFactoring() {
       </section>
 
       {/* ════════════════════════════════════════════════════════
-          CORE FEATURES — 3 cards
+          CORE FEATURES, 3 cards
       ════════════════════════════════════════════════════════ */}
       <section className="section bg-slate-50">
         <div className="container-xl">
@@ -773,7 +773,7 @@ export default function ExportFactoring() {
       </section>
 
       {/* ════════════════════════════════════════════════════════
-          KEY BENEFITS — image + text + 4 benefit cards
+          KEY BENEFITS, image + text + 4 benefit cards
       ════════════════════════════════════════════════════════ */}
       <section className="section bg-white relative overflow-hidden">
         <div className="container-xl relative z-10">
@@ -815,7 +815,7 @@ export default function ExportFactoring() {
                 transition={{ delay: 0.5, duration: 0.6 }}
                 className="absolute -left-5 -bottom-5 bg-white rounded-2xl shadow-2xl p-5 border border-gray-100"
               >
-                <p className="text-3xl font-black text-[#0f172a]">6 mo</p>
+                <p className="text-3xl font-black text-[#0f172a]">Extended</p>
                 <p className="text-[10px] text-teal-600 uppercase tracking-[0.2em] mt-1 font-bold">Wait time eliminated</p>
               </motion.div>
             </motion.div>
@@ -945,11 +945,11 @@ export default function ExportFactoring() {
                   className="text-3xl lg:text-4xl font-black text-white leading-tight mb-6"
                 >
                   Trusted by SMEs across{' '}
-                  <span className="text-gradient">70+ countries</span>
+                  <span className="text-gradient">many countries</span>
                 </motion.h2>
                 <motion.p variants={fadeUp} className="text-slate-300 text-lg leading-relaxed">
                   Every day, hundreds of entrepreneurs take bold steps into new markets.
-                  With Tradeflink by your side, you'll never walk alone — from your first
+                  With Tradeflink by your side, you'll never walk alone, from your first
                   invoice to your biggest export order.
                 </motion.p>
               </motion.div>
@@ -960,10 +960,10 @@ export default function ExportFactoring() {
                 className="grid grid-cols-2 gap-4"
               >
                 {[
-                  { val: '$250M+', label: 'Trade Financed', sub: 'Since inception' },
-                  { val: '300+',  label: 'SME Partners',   sub: 'Vetted & verified' },
-                  { val: '48h',   label: 'Avg Funding',    sub: 'Fast & transparent' },
-                  { val: '0%',   label: 'Seller Risk',    sub: 'Fully absorbed' },
+                  { val: 'Active',  label: 'Trade Financed', sub: 'Since inception' },
+                  { val: 'Growing', label: 'SME Partners',   sub: 'Vetted & verified' },
+                  { val: 'Fast',    label: 'Avg Funding',    sub: 'Fast & transparent' },
+                  { val: 'None',    label: 'Seller Risk',    sub: 'Fully absorbed' },
                 ].map((s, i) => (
                   <motion.div
                     key={s.label} custom={i} variants={scaleIn}
@@ -1154,7 +1154,7 @@ export default function ExportFactoring() {
               {[
                 { Icon: ShieldCheck, label: 'Credit Protected' },
                 { Icon: Lock,        label: 'KYC / AML Compliant' },
-                { Icon: Globe,       label: '70+ Countries' },
+                { Icon: Globe,       label: 'Global Reach' },
               ].map(({ Icon, label }) => (
                 <div key={label} className="flex items-center gap-2 text-white/40 text-xs font-semibold">
                   <Icon size={14} className="text-teal-500" />

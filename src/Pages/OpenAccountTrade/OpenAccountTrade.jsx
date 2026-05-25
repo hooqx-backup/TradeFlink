@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+﻿import React, { useRef, useState } from 'react';
 import { motion, useInView, AnimatePresence } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import {
@@ -106,7 +106,7 @@ function Eyebrow({ children, dark = false }) {
   );
 }
 
-function StatCard({ value, suffix = '', prefix = '', label, sublabel, index }) {
+function StatCard({ value, suffix = '', prefix = '', text, label, sublabel, index }) {
   const ref    = useRef(null);
   const inView = useInView(ref, { once: true, margin: '-80px' });
   const count  = useCounter(value, 2000, inView);
@@ -119,8 +119,8 @@ function StatCard({ value, suffix = '', prefix = '', label, sublabel, index }) {
       variants={scaleIn}
       className="text-center"
     >
-      <div className="text-5xl lg:text-6xl font-black text-white tabular-nums leading-none mb-1">
-        {prefix}{count}{suffix}
+      <div className="text-5xl lg:text-6xl font-black text-white uppercase leading-none mb-1">
+        {text ?? `${prefix}${count}${suffix}`}
       </div>
       <div className="text-teal-200 text-sm font-semibold mt-2">{label}</div>
       {sublabel && <div className="text-teal-200/50 text-[10px] uppercase tracking-widest mt-0.5">{sublabel}</div>}
@@ -132,23 +132,23 @@ function StatCard({ value, suffix = '', prefix = '', label, sublabel, index }) {
 const FAQS = [
   {
     q: 'What is open account trade?',
-    a: 'Open account trade is the most common form of international trade, where goods are shipped and delivered before payment is due — typically within 30 to 90 days. While it offers maximum flexibility for buyers, it exposes sellers to payment risk. Tradeflink bridges this gap by providing credit protection, payment guarantees, and working capital solutions so sellers can offer open terms with complete confidence.',
+    a: 'Open account trade is the most common form of international trade, where goods are shipped and delivered before payment is due on agreed terms. While it offers maximum flexibility for buyers, it exposes sellers to payment risk. Tradeflink bridges this gap by providing credit protection, payment guarantees, and working capital solutions so sellers can offer open terms with complete confidence.',
   },
   {
     q: 'How does Tradeflink protect sellers against non-payment?',
-    a: 'Tradeflink wraps your open account transactions with credit insurance and payment guarantees. If your buyer fails to pay on the agreed date — whether due to insolvency, political risk, or dispute — Tradeflink covers the shortfall. You ship with confidence, knowing your revenue is protected regardless of buyer behaviour.',
+    a: 'Tradeflink wraps your open account transactions with credit insurance and payment guarantees. If your buyer fails to pay on the agreed date, whether due to insolvency, political risk, or dispute, Tradeflink covers the shortfall. You ship with confidence, knowing your revenue is protected regardless of buyer behaviour.',
   },
   {
     q: 'Can buyers extend payment terms without affecting sellers?',
-    a: 'Yes. Tradeflink\'s open account programme lets buyers negotiate longer payment windows — up to 120 days — while paying Tradeflink as the intermediary. Sellers receive payment on their original terms, typically within a few days of shipment approval, so everyone operates on their preferred timeline.',
+    a: 'Yes. Tradeflink\'s open account programme lets buyers negotiate extended payment windows while paying Tradeflink as the intermediary. Sellers receive payment on their original terms, typically within a few days of shipment approval, so everyone operates on their preferred timeline.',
   },
   {
     q: 'Does open account financing appear on my balance sheet?',
-    a: 'No. Because Tradeflink\'s facility is structured as a trade receivable purchase — not a loan — it typically sits off your balance sheet. This keeps your financial ratios healthy, preserves your borrowing capacity, and improves your working capital metrics without adding conventional debt.',
+    a: 'No. Because Tradeflink\'s facility is structured as a trade receivable purchase, not a loan, it typically sits off your balance sheet. This keeps your financial ratios healthy, preserves your borrowing capacity, and improves your working capital metrics without adding conventional debt.',
   },
   {
     q: 'Which geographies and currencies does your programme support?',
-    a: 'Tradeflink supports open account trade across 70+ countries and all major trade currencies — USD, EUR, GBP, AED, INR, and more. Our offices in Dubai, Delhi, Kolkata, Delaware, London, and Istanbul provide on-the-ground expertise wherever your buyers are located.',
+    a: 'Tradeflink supports open account trade across many countries and all major trade currencies, USD, EUR, GBP, AED, INR, and more. Our offices in Dubai, Delhi, Kolkata, Delaware, London, and Istanbul provide on-the-ground expertise wherever your buyers are located.',
   },
 ];
 
@@ -197,27 +197,27 @@ function FaqItem({ item, index }) {
 
 /* ── Data ──────────────────────────────────────────────────────── */
 const STATS = [
-  { value: 120, suffix: 'd', prefix: '', label: 'Extended Buyer Terms',  sublabel: 'On approved programmes' },
-  { value: 100, suffix: '%',  prefix: '',       label: 'Default Protection',    sublabel: 'Seller coverage' },
-  { value: 70,  suffix: '+',  prefix: '',       label: 'Countries Covered',     sublabel: 'Global reach' },
-  { value: 0,   suffix: '%',  prefix: '',       label: 'Seller Credit Risk',    sublabel: 'We absorb it all' },
+  { value: 120, text: 'Extend', suffix: 'd', prefix: '', label: 'Extended Buyer Terms',  sublabel: 'On approved programmes' },
+  { value: 100, text: 'Full',     suffix: '%', prefix: '', label: 'Default Protection',    sublabel: 'Seller coverage' },
+  { value: 70,  text: 'Wide',     suffix: '+', prefix: '', label: 'Countries Covered',     sublabel: 'Global reach' },
+  { value: 0,   text: 'Zero',     suffix: '%', prefix: '', label: 'Seller Credit Risk',    sublabel: 'We absorb it all' },
 ];
 
 const HOW_IT_WORKS = [
   {
-    step: '01', Icon: FileText, color: '#1C96BF',
+    step: 'A', Icon: FileText, color: '#1C96BF',
     title: 'Seller Ships & Invoices',
-    desc: 'You ship goods and raise an invoice on open account terms. Upload the confirmed shipment documents to Tradeflink\'s platform — we verify and approve within hours.',
+    desc: 'You ship goods and raise an invoice on open account terms. Upload the confirmed shipment documents to Tradeflink\'s platform, we verify and approve within hours.',
   },
   {
-    step: '02', Icon: ShieldCheck, color: '#0ea5e9',
+    step: 'B', Icon: ShieldCheck, color: '#0ea5e9',
     title: 'Tradeflink Guarantees Payment',
-    desc: 'Once approved, Tradeflink issues a payment guarantee against your invoice. You can draw funds early or wait for the buyer\'s payment date — the choice is yours, the risk is ours.',
+    desc: 'Once approved, Tradeflink issues a payment guarantee against your invoice. You can draw funds early or wait for the buyer\'s payment date, the choice is yours, the risk is ours.',
   },
   {
-    step: '03', Icon: RefreshCw, color: '#a78bfa',
+    step: 'C', Icon: RefreshCw, color: '#a78bfa',
     title: 'Buyer Settles on Extended Terms',
-    desc: 'Your buyer pays Tradeflink on their agreed open account terms — up to 120 days. Tradeflink manages all collections, so you never have to chase a single invoice again.',
+    desc: 'Your buyer pays Tradeflink on their agreed open account terms with generous extension. Tradeflink manages all collections, so you never have to chase a single invoice again.',
   },
 ];
 
@@ -225,21 +225,21 @@ const FEATURES = [
   {
     Icon: ShieldCheck,
     title: 'Full Default Protection',
-    desc: 'Tradeflink absorbs 100% of the non-payment risk on every approved open account transaction — covering insolvency, protracted default, and political risks in 70+ markets.',
+    desc: 'Tradeflink absorbs all non-payment risk on every approved open account transaction, covering insolvency, protracted default, and political risks across many markets.',
     accent: '#1C96BF', light: 'rgba(28,150,191,0.08)',
-    badge: '100% Coverage',
+    badge: 'Full Coverage',
   },
   {
     Icon: CreditCard,
     title: 'Extended Buyer Terms',
-    desc: 'Offer your buyers the flexible payment terms they need — 30, 60, 90, or 120 days — while Tradeflink ensures you receive payment within days of shipment, not months.',
+    desc: 'Offer your buyers the flexible payment terms they need while Tradeflink ensures you receive payment within days of shipment, not months.',
     accent: '#0ea5e9', light: 'rgba(14,165,233,0.08)',
-    badge: 'Up to 120-Day Terms',
+    badge: 'Extended Terms',
   },
   {
     Icon: BarChart3,
     title: 'Seamless Reporting',
-    desc: 'Our digital platform gives you real-time visibility into every open account transaction — from shipment approval to final settlement — with automated dunning handled end-to-end.',
+    desc: 'Our digital platform gives you real-time visibility into every open account transaction, from shipment approval to final settlement, with automated dunning handled end-to-end.',
     accent: '#a78bfa', light: 'rgba(167,139,250,0.08)',
     badge: 'Real-Time Dashboard',
   },
@@ -249,25 +249,25 @@ const BENEFITS = [
   {
     Icon: Handshake,
     title: 'Win More Buyers',
-    desc: 'Open account terms are the preferred payment method for 80%+ of global buyers. Offering flexible terms with Tradeflink\'s protection lets you compete for deals you\'d otherwise lose.',
+    desc: 'Open account terms are the preferred payment method for the vast majority of global buyers. Offering flexible terms with Tradeflink\'s protection lets you compete for deals you\'d otherwise lose.',
     color: '#1C96BF',
   },
   {
     Icon: TrendingUp,
     title: 'Off Balance Sheet',
-    desc: 'Our facility is structured as a receivable purchase — not a loan — so it typically won\'t appear on your balance sheet, keeping your financial ratios clean and your credit lines free.',
+    desc: 'Our facility is structured as a receivable purchase, not a loan, so it typically won\'t appear on your balance sheet, keeping your financial ratios clean and your credit lines free.',
     color: '#0ea5e9',
   },
   {
     Icon: Clock,
     title: 'No More Payment Delays',
-    desc: 'Instead of waiting 90 or 120 days for buyers to pay, you access funds within days of shipment. Cash flow becomes predictable, and you can reinvest in the next order immediately.',
+    desc: 'Instead of waiting weeks or months for buyers to pay, you access funds within days of shipment. Cash flow becomes predictable, and you can reinvest in the next order immediately.',
     color: '#a78bfa',
   },
   {
     Icon: Globe,
     title: 'Trade Into New Markets',
-    desc: 'Expand into high-growth markets where open account is the norm — without taking on the associated political and credit risk. Tradeflink makes global ambitions genuinely risk-free.',
+    desc: 'Expand into high-growth markets where open account is the norm, without taking on the associated political and credit risk. Tradeflink makes global ambitions genuinely risk-free.',
     color: '#f59e0b',
   },
 ];
@@ -276,9 +276,9 @@ const FOR_WHOM = [
   {
     Icon: Package,
     who: 'For Exporters',
-    headline: 'Offer open terms. Get paid in days.',
+    headline: 'Offer open terms. Get paid quickly.',
     desc: 'Tradeflink lets you win competitive deals by offering flexible buyer terms while guaranteeing your payment and protecting your cash flow throughout.',
-    rating: '4.5',
+    rating: 'Top Rated',
     gradient: 'from-teal-500 to-teal-600',
     accent: '#1C96BF',
     light: 'rgba(28,150,191,0.07)',
@@ -288,7 +288,7 @@ const FOR_WHOM = [
     who: 'For Importers',
     headline: 'Extended terms. Stronger supplier ties.',
     desc: 'Negotiate the payment terms you need to manage your working capital cycle while Tradeflink ensures your suppliers always get paid on time',
-    rating: '4.5',
+    rating: 'Top Rated',
     gradient: 'from-sky-500 to-sky-600',
     accent: '#0ea5e9',
     light: 'rgba(14,165,233,0.07)',
@@ -298,7 +298,7 @@ const FOR_WHOM = [
     who: 'For Investors',
     headline: 'Insured, short-duration trade returns.',
     desc: 'Fund verified open account receivables insured against default earning transparent, short-duration returns backed by real commercial shipments',
-    rating: '4.5',
+    rating: 'Top Rated',
     gradient: 'from-violet-500 to-violet-600',
     accent: '#a78bfa',
     light: 'rgba(167,139,250,0.07)',
@@ -307,7 +307,7 @@ const FOR_WHOM = [
 
 const TESTIMONIALS = [
   {
-    quote: 'We always hesitated to offer open account terms to new international buyers because of the risk. Tradeflink changed that. Now we offer 60-day terms confidently — and we\'ve doubled our export pipeline in a year.',
+    quote: 'We always hesitated to offer open account terms to new international buyers because of the risk. Tradeflink changed that. Now we offer flexible terms confidently, and we\'ve significantly grown our export pipeline.',
     name: 'Rajiv Sharma',
     role: 'Export Manager',
     location: 'Delhi, India',
@@ -317,7 +317,7 @@ const TESTIMONIALS = [
     stars: 5,
   },
   {
-    quote: "With Tradeflink's open account programme, our European buyers get the 90-day terms they expect, and we receive payment within the week. It's been a game-changer for our cash flow and our ability to take on larger orders.",
+    quote: "With Tradeflink's open account programme, our European buyers get the flexible terms they expect, and we receive payment within the week. It's been a game-changer for our cash flow and our ability to take on larger orders.",
     name: 'Fatima Al-Rashidi',
     role: 'FMCG Exporter',
     location: 'Dubai, UAE',
@@ -394,7 +394,7 @@ export default function OpenAccountTrade() {
             transition={{ duration: 0.7, delay: 0.4 }}
             className="text-slate-300 text-md leading-relaxed mb-10 max-w-xl"
           >
-            Offer your international buyers the flexible open account terms they demand —
+            Offer your international buyers the flexible open account terms they demand,
             while Tradeflink guarantees your payment, absorbs the risk, and keeps your
             cash flow running without interruption.
           </motion.p>
@@ -425,7 +425,7 @@ export default function OpenAccountTrade() {
             className="flex flex-wrap gap-8 pt-8"
             style={{ borderTop: '1px solid rgba(255,255,255,0.06)' }}
           >
-            {[['120d', 'Buyer Terms'], ['100%', 'Default Cover'], ['70+', 'Countries'], ['0%', 'Seller Risk']].map(([v, l]) => (
+            {[['Extended', 'Buyer Terms'], ['Full', 'Default Cover'], ['Global', 'Countries'], ['Zero', 'Seller Risk']].map(([v, l]) => (
               <div key={l}>
                 <p className="text-2xl font-black text-white">{v}</p>
                 <p className="text-[9px] text-white/30 uppercase tracking-[0.22em] mt-0.5">{l}</p>
@@ -465,7 +465,7 @@ export default function OpenAccountTrade() {
             {STATS.map((s, i) => (
               <StatCard
                 key={s.label} value={s.value} suffix={s.suffix}
-                prefix={s.prefix} label={s.label} sublabel={s.sublabel} index={i}
+                prefix={s.prefix} text={s.text} label={s.label} sublabel={s.sublabel} index={i}
               />
             ))}
           </div>
@@ -494,24 +494,24 @@ export default function OpenAccountTrade() {
                 <span className="text-gradient">Never lose a payment.</span>
               </motion.h2>
               <motion.p variants={fadeUp} className="text-slate-500 leading-relaxed mb-5 text-lg">
-                Open account trade accounts for over 80% of all global trade — but without
+                Open account trade accounts for the majority of all global trade, but without
                 protection, it exposes sellers to catastrophic non-payment risk. Tradeflink
                 changes that equation entirely. We guarantee your payment while your buyers
                 enjoy the extended terms that close deals.
               </motion.p>
               <motion.p variants={fadeUp} className="text-slate-400 leading-relaxed mb-8">
                 Our platform wraps every open account transaction with credit insurance,
-                payment guarantees, and automated collections — so you can say "yes" to more
+                payment guarantees, and automated collections, so you can say "yes" to more
                 buyers, in more markets, without worrying about what happens if they don't pay.
               </motion.p>
 
               <motion.div variants={stagger} className="space-y-4">
                 {[
-                  '100% default protection on all approved open account transactions',
-                  'Offer buyers up to 120-day payment terms with zero seller risk',
-                  'Receive payment within days of shipment — not months',
-                  'Off-balance-sheet structure — it\'s not a loan or a liability',
-                  'Coverage across 70+ countries and all major trade currencies',
+                  'Full default protection on all approved open account transactions',
+                  'Offer buyers extended payment terms with zero seller risk',
+                  'Receive payment within days of shipment, not months',
+                  'Off-balance-sheet structure, it\'s not a loan or a liability',
+                  'Coverage across many countries and all major trade currencies',
                 ].map((item, i) => (
                   <motion.div key={i} custom={i} variants={fadeUp} className="flex items-start gap-3">
                     <div className="shrink-0 w-5 h-5 rounded-full bg-teal-50 border border-teal-200 flex items-center justify-center mt-0.5">
@@ -553,7 +553,7 @@ export default function OpenAccountTrade() {
                 transition={{ delay: 0.5, duration: 0.6 }}
                 className="absolute -right-5 -bottom-5 glass rounded-2xl shadow-2xl p-5 max-w-45 border border-white/10"
               >
-                <p className="text-3xl font-black text-white">100%</p>
+                <p className="text-3xl font-black text-white">Full</p>
                 <p className="text-[10px] text-teal-400/80 uppercase tracking-[0.2em] mt-1 font-bold">Default Protected</p>
               </motion.div>
 
@@ -596,7 +596,7 @@ export default function OpenAccountTrade() {
               <span className="text-gradient">actually works</span>
             </h2>
             <p className="text-slate-400 text-lg mt-5 max-w-xl mx-auto">
-              Three steps from shipment to guaranteed payment — Tradeflink handles everything in between.
+              Simple steps from shipment to guaranteed payment, Tradeflink handles everything in between.
             </p>
           </motion.div>
 
@@ -705,7 +705,7 @@ export default function OpenAccountTrade() {
                 <p className="text-teal-400 text-[10px] font-black uppercase tracking-[0.3em] mb-3">The Result</p>
                 <p className="text-white text-2xl lg:text-3xl font-black leading-snug">
                   Ship with confidence.{' '}
-                  <span className="text-gradient">Get paid — guaranteed.</span>
+                  <span className="text-gradient">Get paid, guaranteed.</span>
                 </p>
               </div>
             </div>
@@ -714,7 +714,7 @@ export default function OpenAccountTrade() {
       </section>
 
       {/* ════════════════════════════════════════════════════════
-          CORE FEATURES — 3 cards
+          CORE FEATURES, 3 cards
       ════════════════════════════════════════════════════════ */}
       <section className="section bg-slate-50">
         <div className="container-xl">
@@ -729,7 +729,7 @@ export default function OpenAccountTrade() {
               <span className="text-gradient">end-to-end</span>
             </h2>
             <p className="text-slate-400 text-lg mt-5 max-w-xl mx-auto">
-              Tradeflink's open account programme is built to remove every friction point — for sellers, buyers, and investors alike.
+              Tradeflink's open account programme is built to remove every friction point, for sellers, buyers, and investors alike.
             </p>
           </motion.div>
 
@@ -773,7 +773,7 @@ export default function OpenAccountTrade() {
       </section>
 
       {/* ════════════════════════════════════════════════════════
-          KEY BENEFITS — image + benefit list
+          KEY BENEFITS, image + benefit list
       ════════════════════════════════════════════════════════ */}
       <section className="section bg-white relative overflow-hidden">
         <div className="container-xl relative z-10">
@@ -788,7 +788,7 @@ export default function OpenAccountTrade() {
               <span className="text-gradient">real businesses</span>
             </h2>
             <p className="text-slate-400 text-lg mt-5 max-w-xl mx-auto">
-              Tradeflink's open account programme solves the fundamental tension between seller cash flow and buyer flexibility — permanently.
+              Tradeflink's open account programme solves the fundamental tension between seller cash flow and buyer flexibility, permanently.
             </p>
           </motion.div>
 
@@ -815,7 +815,7 @@ export default function OpenAccountTrade() {
                 transition={{ delay: 0.5, duration: 0.6 }}
                 className="absolute -left-5 -bottom-5 bg-white rounded-2xl shadow-2xl p-5 border border-gray-100"
               >
-                <p className="text-3xl font-black text-[#0f172a]">120 days</p>
+                <p className="text-3xl font-black text-[#0f172a]">Extended</p>
                 <p className="text-[10px] text-teal-600 uppercase tracking-[0.2em] mt-1 font-bold">Wait time eliminated</p>
               </motion.div>
             </motion.div>
@@ -945,11 +945,11 @@ export default function OpenAccountTrade() {
                   className="text-3xl lg:text-4xl font-black text-white leading-tight mb-6"
                 >
                   Trusted by traders across{' '}
-                  <span className="text-gradient">70+ countries</span>
+                  <span className="text-gradient">many countries</span>
                 </motion.h2>
                 <motion.p variants={fadeUp} className="text-slate-300 text-lg leading-relaxed">
                   Every day, SMEs around the world use Tradeflink to offer competitive
-                  open account terms — and close deals they would otherwise lose — without
+                  open account terms, and close deals they would otherwise lose, without
                   ever worrying about a late or missing payment.
                 </motion.p>
               </motion.div>
@@ -960,10 +960,10 @@ export default function OpenAccountTrade() {
                 className="grid grid-cols-2 gap-4"
               >
                 {[
-                  { val: '$250M+', label: 'Trade Financed',     sub: 'Since inception' },
-                  { val: '300+',  label: 'SME Partners',       sub: 'Vetted & verified' },
-                  { val: '0',    label: 'Defaults Unpaid',    sub: 'In programme history' },
-                  { val: '0%',   label: 'Seller Risk',        sub: 'Fully absorbed' },
+                  { val: 'Active',  label: 'Trade Financed',     sub: 'Since inception' },
+                  { val: 'Growing', label: 'SME Partners',       sub: 'Vetted & verified' },
+                  { val: 'Zero',    label: 'Defaults Unpaid',    sub: 'In programme history' },
+                  { val: 'None',    label: 'Seller Risk',        sub: 'Fully absorbed' },
                 ].map((s, i) => (
                   <motion.div
                     key={s.label} custom={i} variants={scaleIn}
@@ -1152,9 +1152,9 @@ export default function OpenAccountTrade() {
               className="flex flex-wrap items-center justify-center gap-6 mt-14 pt-10 border-t border-white/8"
             >
               {[
-                { Icon: ShieldCheck, label: '100% Default Protected' },
+                { Icon: ShieldCheck, label: 'Fully Default Protected' },
                 { Icon: Lock,        label: 'KYC / AML Compliant' },
-                { Icon: Globe,       label: '70+ Countries' },
+                { Icon: Globe,       label: 'Global Reach' },
               ].map(({ Icon, label }) => (
                 <div key={label} className="flex items-center gap-2 text-white/40 text-xs font-semibold">
                   <Icon size={14} className="text-teal-500" />

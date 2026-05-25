@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react';
+﻿import React, { useState, useRef, useEffect } from 'react';
 import { motion, useInView, useScroll, useTransform, useSpring } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import {
@@ -112,7 +112,7 @@ const SECTIONS = [
       },
       {
         heading: 'Updates to These Terms',
-        body: 'Tradeflink reserves the right to modify these Terms at any time. We will notify you of material changes via email and a prominent notice on our platform at least 30 days in advance. Continued use of our Services after the effective date of changes constitutes your acceptance of the revised Terms.',
+        body: 'Tradeflink reserves the right to modify these Terms at any time. We will notify you of material changes via email and a prominent notice on our platform with advance notice. Continued use of our Services after the effective date of changes constitutes your acceptance of the revised Terms.',
       },
     ],
   },
@@ -125,7 +125,7 @@ const SECTIONS = [
     content: [
       {
         heading: 'Scope of Services',
-        body: 'Tradeflink provides trade finance solutions including invoice financing, export factoring, supply chain finance, and open account trade protection. Our platform connects exporters, importers, and investors across 70+ countries. The specific services available to you depend on your jurisdiction, account type, and applicable regulatory approvals.',
+        body: 'Tradeflink provides trade finance solutions including invoice financing, export factoring, supply chain finance, and open account trade protection. Our platform connects exporters, importers, and investors across many countries. The specific services available to you depend on your jurisdiction, account type, and applicable regulatory approvals.',
       },
       {
         heading: 'Service Availability',
@@ -171,7 +171,7 @@ const SECTIONS = [
     content: [
       {
         heading: 'Fees & Charges',
-        body: "Tradeflink charges fees for its Services as set out in your specific facility agreement or as displayed on the platform at the time of transaction. All fees are exclusive of applicable taxes unless stated otherwise. We reserve the right to change our fee structure with 30 days' notice to existing clients.",
+        body: "Tradeflink charges fees for its Services as set out in your specific facility agreement or as displayed on the platform at the time of transaction. All fees are exclusive of applicable taxes unless stated otherwise. We reserve the right to change our fee structure with reasonable notice to existing clients.",
       },
       {
         heading: 'Transaction Processing',
@@ -242,7 +242,7 @@ const SECTIONS = [
       },
       {
         heading: 'Limitation of Damages',
-        body: "To the maximum extent permitted by applicable law, Tradeflink's total liability to you for any claims arising from or related to these Terms or our Services shall not exceed the fees you paid to Tradeflink in the 12 months preceding the claim. In no event shall Tradeflink be liable for indirect, incidental, special, consequential, or punitive damages.",
+        body: "To the maximum extent permitted by applicable law, Tradeflink's total liability to you for any claims arising from or related to these Terms or our Services shall not exceed the fees you paid to Tradeflink in the period preceding the claim. In no event shall Tradeflink be liable for indirect, incidental, special, consequential, or punitive damages.",
       },
       {
         heading: 'Indemnification',
@@ -263,7 +263,7 @@ const SECTIONS = [
       },
       {
         heading: 'Dispute Resolution',
-        body: 'In the event of a dispute, we encourage you to contact us first at legal@tradeflink.com to seek an informal resolution. If the dispute cannot be resolved informally within 30 days, it shall be submitted to binding arbitration under the DIFC-LCIA Arbitration Rules, conducted in English in Dubai.',
+        body: 'In the event of a dispute, we encourage you to contact us first at legal@tradeflink.com to seek an informal resolution. If the dispute cannot be resolved informally within a reasonable timeframe, it shall be submitted to binding arbitration under the DIFC-LCIA Arbitration Rules, conducted in English in Dubai.',
       },
       {
         heading: 'Class Action Waiver',
@@ -309,7 +309,7 @@ const SECTIONS = [
       },
       {
         heading: 'Contact Us',
-        body: 'For any questions about these Terms, please contact our legal team at legal@tradeflink.com or write to us at Tradeflink, Gate Avenue, Level 3, DIFC, Dubai, UAE. We aim to respond to all legal enquiries within 10 business days.',
+        body: 'For any questions about these Terms, please contact our legal team at legal@tradeflink.com or write to us at Tradeflink, Gate Avenue, DIFC, Dubai, UAE. We aim to respond to all legal enquiries promptly.',
       },
     ],
   },
@@ -488,7 +488,7 @@ export default function TermsAndConditions() {
       <ReadingProgress />
 
       {/* ════════════════════════════════════════════════════════
-          HERO — parallax + floating orbs + title overlay
+          HERO, parallax + floating orbs + title overlay
       ════════════════════════════════════════════════════════ */}
       <section ref={heroRef} className="relative h-[62vh] overflow-hidden">
         {/* Parallax image */}
@@ -540,7 +540,7 @@ export default function TermsAndConditions() {
             <motion.div variants={blurUp} className="flex flex-col gap-2 shrink-0">
               <div className="flex items-center gap-3 px-5 py-3 rounded-2xl bg-white border border-gray-100 text-xs text-slate-500 shadow-sm">
                 <RefreshCw size={13} className="text-teal-500" />
-                <span>Last updated: <strong className="text-[#0f172a] font-bold">20 May 2026</strong></span>
+                <span>Last updated: <strong className="text-[#0f172a] font-bold">Recently Updated</strong></span>
                 <span className="w-px h-3 bg-gray-200" />
                 <span>Version <strong className="text-[#0f172a] font-bold">3.0</strong></span>
               </div>
@@ -560,7 +560,7 @@ export default function TermsAndConditions() {
         <div className="container-xl">
           <div className="flex gap-12 items-start">
 
-            {/* Sticky sidebar — slide in from left */}
+            {/* Sticky sidebar, slide in from left */}
             <motion.aside
               className="hidden xl:block w-72 shrink-0 sticky top-24 self-start"
               initial={{ opacity: 0, x: -30 }}
@@ -587,7 +587,7 @@ export default function TermsAndConditions() {
                 </div>
                 <p className="font-black text-[#0f172a] text-sm mb-1">Legal Queries?</p>
                 <p className="text-slate-400 text-xs leading-relaxed mb-4">
-                  Our legal team responds within 10 business days.
+                  Our legal team responds promptly.
                 </p>
                 <a
                   href="mailto:legal@tradeflink.com"
@@ -657,7 +657,7 @@ export default function TermsAndConditions() {
                 </div>
               </motion.div>
 
-              {/* Key highlights — pop-in stagger */}
+              {/* Key highlights, pop-in stagger */}
               <motion.div
                 initial="hidden"
                 animate="visible"
@@ -666,8 +666,8 @@ export default function TermsAndConditions() {
               >
                 {[
                   { Icon: Globe,     label: 'DIFC Governed',  sub: 'Dubai, UAE law applies',      accent: '#1C96BF', light: 'rgba(28,150,191,0.08)'  },
-                  { Icon: FileText,  label: '10 Core Clauses', sub: 'Clear, plain-language terms', accent: '#0ea5e9', light: 'rgba(14,165,233,0.08)'   },
-                  { Icon: RefreshCw, label: 'Version 3.0',     sub: 'Effective 20 May 2026',       accent: '#10b981', light: 'rgba(16,185,129,0.08)'   },
+                  { Icon: FileText,  label: 'Clear Structure', sub: 'Plain-language terms',        accent: '#0ea5e9', light: 'rgba(14,165,233,0.08)'   },
+                  { Icon: RefreshCw, label: 'Version 3.0',     sub: 'Current Version',             accent: '#10b981', light: 'rgba(16,185,129,0.08)'   },
                 ].map((item, i) => (
                   <motion.div
                     key={item.label}
@@ -713,7 +713,7 @@ export default function TermsAndConditions() {
                   <div>
                     <h4 className="font-black text-[#0f172a] mb-2">Document Versioning</h4>
                     <p className="text-slate-400 text-sm leading-relaxed">
-                      This is version 3.0 of Tradeflink's Terms and Conditions, effective 20 May 2026,
+                      This is the current version of Tradeflink's Terms and Conditions, recently updated,
                       superseding all prior versions. Previous versions are available on request from
                       legal@tradeflink.com. If you accepted a prior version and wish to review what
                       has changed, please contact our legal team.
@@ -747,7 +747,7 @@ export default function TermsAndConditions() {
             </motion.h2>
             <motion.p variants={fadeUp} className="text-slate-400 text-lg leading-relaxed mb-10 max-w-lg mx-auto">
               Our legal team is happy to clarify any aspect of these Terms. Reach out
-              before you sign — we believe informed clients make better partners.
+              before you sign, we believe informed clients make better partners.
             </motion.p>
             <motion.div variants={fadeUp} className="flex flex-col sm:flex-row items-center justify-center gap-4">
               <motion.a

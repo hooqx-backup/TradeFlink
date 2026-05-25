@@ -1,4 +1,4 @@
-import React from 'react';
+﻿import React from 'react';
 import { motion, useReducedMotion } from 'framer-motion';
 import p1 from '../../assets/logos/partner1.webp';
 import p2 from '../../assets/logos/partner7.png';
@@ -22,7 +22,7 @@ export default function Partners({ title = 'Our Partners' }) {
     ? undefined
     : { x: { repeat: Infinity, repeatType: 'loop', duration: loopDuration, ease: 'linear' } };
 
-  // No hover interactions — slider auto-plays continuously.
+  // No hover interactions, slider auto-plays continuously.
 
   return (
     <section className="w-full overflow-hidden py-10">

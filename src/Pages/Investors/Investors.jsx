@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+﻿import React, { useEffect, useRef, useState } from 'react';
 import {
   motion,
   useInView,
@@ -99,7 +99,7 @@ function Eyebrow({ children, dark = false }) {
   );
 }
 
-function StatCard({ value, suffix = '', prefix = '', label, sublabel, index }) {
+function StatCard({ value, suffix = '', prefix = '', text, label, sublabel, index }) {
   const ref    = useRef(null);
   const inView = useInView(ref, { once: true, margin: '-80px' });
   const count  = useCounter(value, 2000, inView);
@@ -112,8 +112,8 @@ function StatCard({ value, suffix = '', prefix = '', label, sublabel, index }) {
       variants={scaleIn}
       className="text-center"
     >
-      <div className="text-5xl lg:text-6xl font-black text-white tabular-nums leading-none mb-1">
-        {prefix}{count}{suffix}
+      <div className="text-5xl lg:text-6xl font-black text-white uppercase leading-none mb-1">
+        {text ?? `${prefix}${count}${suffix}`}
       </div>
       <div className="text-teal-200 text-sm font-semibold mt-2">{label}</div>
       {sublabel && <div className="text-teal-200/50 text-[10px] uppercase tracking-widest mt-0.5">{sublabel}</div>}
@@ -152,33 +152,33 @@ function ParticleGrid() {
 
 // ── Data ───────────────────────────────────────────────────────────────────
 const STATS = [
-  { value: 12, suffix: '%',  prefix: '',  label: 'Target Annual Returns', sublabel: 'Net of fees' },
-  { value: 90, suffix: 'd',  prefix: '<', label: 'Average Tenor',         sublabel: 'Short-duration assets' },
-  { value: 70, suffix: '+',  prefix: '',  label: 'Countries Diversified',  sublabel: 'Across geographies' },
-  { value: 250, suffix: 'M+', prefix: '$', label: 'Trade Financed',        sublabel: 'Since inception' },
+  { value: 12,  text: 'Strong', suffix: '%',  prefix: '',  label: 'Target Annual Returns', sublabel: 'Net of fees' },
+  { value: 90,  text: 'Short',  suffix: 'd',  prefix: '<', label: 'Average Tenor',         sublabel: 'Short-duration assets' },
+  { value: 70,  text: 'Wide',   suffix: '+',  prefix: '',  label: 'Countries Diversified',  sublabel: 'Across geographies' },
+  { value: 250, text: 'Active', suffix: 'M+', prefix: '$', label: 'Trade Financed',        sublabel: 'Since inception' },
 ];
 
 const PILLARS = [
   {
     Icon: Clock,
     title: 'Short Duration',
-    desc: 'Most assets mature in 30–90 days. Your capital is never locked away for long periods — giving you liquidity and flexibility that traditional fixed-income cannot match.',
+    desc: 'Most assets mature quickly. Your capital is never locked away for long periods, giving you liquidity and flexibility that traditional fixed-income cannot match.',
     accent: '#1C96BF',
     light: 'rgba(28,150,191,0.08)',
-    badge: '30–90 Day Tenors',
+    badge: 'Short Duration',
   },
   {
     Icon: TrendingUp,
     title: 'Attractive Risk-Adjusted Yield',
-    desc: 'Earn 8–12% annualised net returns backed by real trade receivables. Every asset is collateralised and underpinned by actual commercial transactions.',
+    desc: 'Earn strong annualised net returns backed by real trade receivables. Every asset is collateralised and underpinned by actual commercial transactions.',
     accent: '#0ea5e9',
     light: 'rgba(14,165,233,0.08)',
-    badge: '8–12% Net Returns',
+    badge: 'Strong Returns',
   },
   {
     Icon: Eye,
     title: 'Full Transparency',
-    desc: 'Real-time dashboards let you track every receivable, repayment, and return. No black boxes — you see exactly where your capital is deployed at any moment.',
+    desc: 'Real-time dashboards let you track every receivable, repayment, and return. No black boxes, you see exactly where your capital is deployed at any moment.',
     accent: '#a78bfa',
     light: 'rgba(167,139,250,0.08)',
     badge: 'Live Dashboard',
@@ -195,28 +195,28 @@ const PILLARS = [
 
 const HOW_IT_WORKS = [
   {
-    step: '01',
+    step: '1',
     Icon: FileText,
     title: 'Register & KYC',
-    desc: 'Complete our streamlined onboarding — submit KYC/AML documentation and get verified within 48 hours by our compliance team.',
+    desc: 'Complete our streamlined onboarding, submit KYC/AML documentation and get verified quickly by our compliance team.',
     color: '#1C96BF',
   },
   {
-    step: '02',
+    step: '2',
     Icon: DollarSign,
     title: 'Fund Your Account',
-    desc: 'Transfer capital to your Tradeflink investor account in USD, EUR, or GBP. Minimum investment starts from $50,000.',
+    desc: 'Transfer capital to your Tradeflink investor account in USD, EUR, or GBP. Competitive minimum investment threshold.',
     color: '#0ea5e9',
   },
   {
-    step: '03',
+    step: '3',
     Icon: BarChart3,
     title: 'Select Receivables',
     desc: 'Browse a curated marketplace of verified trade receivables. Filter by geography, tenor, industry, and yield target.',
     color: '#a78bfa',
   },
   {
-    step: '04',
+    step: '4',
     Icon: Activity,
     title: 'Earn & Withdraw',
     desc: 'Receive repayments as invoices are settled. Reinvest or withdraw freely with no lock-in periods or exit penalties.',
@@ -228,9 +228,9 @@ const PRODUCTS = [
   {
     Icon: Zap,
     title: 'Export Factoring',
-    desc: 'Finance verified export invoices from SMEs across 70+ countries. Short tenors, credit-insured, with buyer risk mitigated.',
-    yield: '9–11%',
-    tenor: '30–60 days',
+    desc: 'Finance verified export invoices from SMEs across many countries. Short tenors, credit-insured, with buyer risk mitigated.',
+    yield: 'Strong',
+    tenor: 'Short',
     tag: 'Most Popular',
     dark: true,
     img: null, // investor3 injected in JSX
@@ -239,8 +239,8 @@ const PRODUCTS = [
     Icon: Layers,
     title: 'Supply Chain Finance',
     desc: 'Extend payment terms to anchor buyers while suppliers receive early settlement. Backed by corporate-grade counterparties.',
-    yield: '7–9%',
-    tenor: '30–90 days',
+    yield: 'Solid',
+    tenor: 'Short',
     tag: null,
     dark: false,
     img: null,
@@ -249,8 +249,8 @@ const PRODUCTS = [
     Icon: Building,
     title: 'Invoice Financing',
     desc: 'Invest in domestic and cross-border invoice pools. Diversified exposure across industries reduces concentration risk.',
-    yield: '8–10%',
-    tenor: '45–75 days',
+    yield: 'Good',
+    tenor: 'Medium',
     tag: null,
     dark: false,
     img: null,
@@ -259,8 +259,8 @@ const PRODUCTS = [
     Icon: Globe,
     title: 'Open Account Trade',
     desc: 'Participate in open account financing structures for established buyer-seller relationships with strong payment histories.',
-    yield: '10–13%',
-    tenor: '60–90 days',
+    yield: 'Premium',
+    tenor: 'Extended',
     tag: 'Higher Yield',
     dark: true,
     img: null, // investor2 injected in JSX
@@ -270,8 +270,8 @@ const PRODUCTS = [
 const TRUST = [
   { Icon: ShieldCheck, label: 'Credit Insured',       sub: 'Leading global insurance providers' },
   { Icon: Lock,        label: 'Regulated & Compliant', sub: 'AML / KYC verified onboarding' },
-  { Icon: Globe,       label: '70+ Countries',          sub: 'Geographic diversification' },
-  { Icon: Users,       label: '500+ SME Partners',      sub: 'Vetted exporter network' },
+  { Icon: Globe,       label: 'Global Reach',            sub: 'Geographic diversification' },
+  { Icon: Users,       label: 'Vetted SME Partners',    sub: 'Vetted exporter network' },
   { Icon: BarChart3,   label: 'Real-Time Analytics',   sub: 'Live portfolio dashboard' },
   { Icon: CheckCircle2,label: 'No Lock-in',             sub: 'Flexible withdrawal terms' },
 ];
@@ -283,7 +283,7 @@ const FAQS = [
   },
   {
     q: 'What documentation is required?',
-    a: 'You will need to provide government-issued ID, proof of address (dated within 3 months), source of funds declaration, and for entities — corporate registration documents, beneficial ownership details, and board resolution authorising investment. Our compliance team reviews submissions within 48 business hours.',
+    a: 'You will need to provide government-issued ID, a recently dated proof of address, source of funds declaration, and for entities, corporate registration documents, beneficial ownership details, and board resolution authorising investment. Our compliance team reviews submissions promptly.',
   },
   {
     q: 'How does trading in receivables work?',
@@ -291,21 +291,21 @@ const FAQS = [
   },
   {
     q: 'What returns can I expect?',
-    a: 'Our receivables portfolios have historically delivered 8–13% annualised net returns depending on the product type and risk tier selected. Returns are not guaranteed and are subject to market conditions, however the short tenor and insurance layer significantly mitigate downside risk.',
+    a: 'Our receivables portfolios have historically delivered strong annualised net returns depending on the product type and risk tier selected. Returns are not guaranteed and are subject to market conditions, however the short tenor and insurance layer significantly mitigate downside risk.',
   },
   {
     q: 'Is my investment protected?',
-    a: 'Yes — all receivables are covered by trade credit insurance from A-rated global insurers protecting against buyer insolvency and protracted default. Additionally, Tradeflink conducts rigorous KYB checks on all SME partners and maintains a diversified portfolio across geographies and industries.',
+    a: 'Yes, all receivables are covered by trade credit insurance from A-rated global insurers protecting against buyer insolvency and protracted default. Additionally, Tradeflink conducts rigorous KYB checks on all SME partners and maintains a diversified portfolio across geographies and industries.',
   },
   {
     q: 'What is the minimum investment amount?',
-    a: 'The minimum investment is $50,000 USD (or equivalent in EUR/GBP). There is no maximum cap. Institutional investors with larger mandates can access bespoke portfolio structures through our dedicated investor relations team.',
+    a: 'We have a competitive entry threshold, with investments accepted in USD, EUR, or GBP. There is no maximum cap. Institutional investors with larger mandates can access bespoke portfolio structures through our dedicated investor relations team.',
   },
 ];
 
 const TESTIMONIALS = [
   {
-    quote: 'The 90-day tenor and credit insurance structure gave us the confidence to allocate meaningfully. Our portfolio has consistently returned above 10% net.',
+    quote: 'The short tenor and credit insurance structure gave us the confidence to allocate meaningfully. Our portfolio has consistently delivered strong net returns.',
     name: 'James Thornton',
     role: 'CIO, Family Office',
     location: 'London, UK',
@@ -325,7 +325,7 @@ const TESTIMONIALS = [
     stars: 5,
   },
   {
-    quote: 'We started with $500K and scaled to $5M within 18 months. The onboarding was seamless and the returns have been consistent quarter after quarter.',
+    quote: 'We started small and scaled our allocation significantly within the first year. The onboarding was seamless and the returns have been consistent quarter after quarter.',
     name: 'Sven Larsson',
     role: 'PE Fund Partner',
     location: 'Stockholm, Sweden',
@@ -392,7 +392,7 @@ export default function Investors() {
     <div className="bg-white overflow-x-hidden">
 
       {/* ══════════════════════════════════════════════════════════
-          HERO  — split layout with investor1 image
+          HERO , split layout with investor1 image
       ══════════════════════════════════════════════════════════ */}
       <section className="relative min-h-screen flex items-stretch overflow-hidden bg-[#050d18]">
 
@@ -442,7 +442,7 @@ export default function Investors() {
               className="text-slate-400 text-md leading-relaxed mb-10"
             >
               Participate in credit-insured, short-term trade receivables
-              diversified across industries and geographies — with full
+              diversified across industries and geographies, with full
               transparency and no lock-in.
             </motion.p>
 
@@ -472,7 +472,7 @@ export default function Investors() {
               transition={{ delay: 0.8, duration: 0.6 }}
               className="flex gap-8 mt-12 pt-10 border-t border-white/8"
             >
-              {[['8–12%', 'Target Returns'], ['<90d', 'Avg Tenor'], ['$250M+', 'Financed']].map(([v, l]) => (
+              {[['Strong', 'Target Returns'], ['Short', 'Avg Tenor'], ['Active', 'Financed']].map(([v, l]) => (
                 <div key={l}>
                   <p className="text-2xl font-black text-white">{v}</p>
                   <p className="text-[9px] text-white/30 uppercase tracking-[0.22em] mt-0.5">{l}</p>
@@ -513,8 +513,8 @@ export default function Investors() {
               </div>
               <span className="text-teal-300 text-[10px] font-black uppercase tracking-widest">Live Return</span>
             </div>
-            <p className="text-white text-2xl font-black">10.4%</p>
-            <p className="text-white/40 text-[10px] mt-0.5">Annualised net — last 90 days</p>
+            <p className="text-white text-2xl font-black">Strong</p>
+            <p className="text-white/40 text-[10px] mt-0.5">Annualised net return</p>
           </motion.div>
 
           {/* Second floating badge */}
@@ -566,6 +566,7 @@ export default function Investors() {
                 value={s.value}
                 suffix={s.suffix}
                 prefix={s.prefix}
+                text={s.text}
                 label={s.label}
                 sublabel={s.sublabel}
                 index={i}
@@ -576,7 +577,7 @@ export default function Investors() {
       </section>
 
       {/* ══════════════════════════════════════════════════════════
-          WHY INVEST — 4 PILLARS
+          WHY INVEST, 4 PILLARS
       ══════════════════════════════════════════════════════════ */}
       <section className="section bg-slate-50">
         <div className="container-xl">
@@ -593,7 +594,7 @@ export default function Investors() {
               <span className="text-gradient">alternative investor</span>
             </h2>
             <p className="text-slate-400 text-lg mt-5 max-w-xl mx-auto">
-              Trade receivables offer a compelling risk-return profile — now accessible without the complexity.
+              Trade receivables offer a compelling risk-return profile, now accessible without the complexity.
             </p>
           </motion.div>
 
@@ -647,7 +648,7 @@ export default function Investors() {
       </section>
 
       {/* ══════════════════════════════════════════════════════════
-          RETURNS FEATURE — investor2 image strip
+          RETURNS FEATURE, investor2 image strip
       ══════════════════════════════════════════════════════════ */}
       <section className="section bg-[#060f1e] relative overflow-hidden">
         <div className="absolute inset-0 bg-dots opacity-20 pointer-events-none" />
@@ -680,7 +681,7 @@ export default function Investors() {
                 transition={{ delay: 0.5, duration: 0.6 }}
                 className="absolute -right-5 -bottom-5 glass rounded-2xl shadow-2xl p-5 max-w-[170px] border border-white/10"
               >
-                <p className="text-3xl font-black text-white">8–12%</p>
+                <p className="text-3xl font-black text-white">Strong</p>
                 <p className="text-[10px] text-teal-400/80 uppercase tracking-[0.2em] mt-1 font-bold">Net Annual Yield</p>
               </motion.div>
             </motion.div>
@@ -704,7 +705,7 @@ export default function Investors() {
               </motion.h2>
               <motion.p variants={fadeUp} className="text-slate-400 text-lg leading-relaxed mb-4">
                 Trade receivables have historically delivered superior risk-adjusted returns
-                compared to investment-grade bonds — with significantly shorter duration.
+                compared to investment-grade bonds, with significantly shorter duration.
               </motion.p>
               <motion.p variants={fadeUp} className="text-slate-500 leading-relaxed mb-8">
                 Because each receivable is backed by a real commercial transaction and
@@ -713,10 +714,10 @@ export default function Investors() {
               </motion.p>
               <motion.div variants={fadeUp} className="grid grid-cols-2 gap-4">
                 {[
-                  { label: 'Avg Hold Period', value: '47 days' },
-                  { label: 'Default Rate', value: '< 0.3%' },
-                  { label: 'Receivables Insured', value: '100%' },
-                  { label: 'Investor NPS', value: '72' },
+                  { label: 'Avg Hold Period', value: 'Short' },
+                  { label: 'Default Rate', value: 'Minimal' },
+                  { label: 'Receivables Insured', value: 'All' },
+                  { label: 'Investor NPS', value: 'High' },
                 ].map((s) => (
                   <div key={s.label} className="glass rounded-xl p-4 border border-white/8">
                     <p className="text-xl font-black text-white">{s.value}</p>
@@ -749,10 +750,10 @@ export default function Investors() {
             <Eyebrow dark>The Process</Eyebrow>
             <h2 className="text-3xl lg:text-4xl font-black text-white leading-tight">
               Start earning in{' '}
-              <span className="text-gradient">4 simple steps</span>
+              <span className="text-gradient">a few simple steps</span>
             </h2>
             <p className="text-slate-400 text-lg mt-5 max-w-xl mx-auto">
-              From onboarding to first return — we've made the process as frictionless as possible.
+              From onboarding to first return, we've made the process as frictionless as possible.
             </p>
           </motion.div>
 
@@ -821,7 +822,7 @@ export default function Investors() {
       </section>
 
       {/* ══════════════════════════════════════════════════════════
-          INVESTMENT PRODUCTS — BENTO
+          INVESTMENT PRODUCTS, BENTO
       ══════════════════════════════════════════════════════════ */}
       <section className="section bg-white">
         <div className="container-xl">
@@ -838,7 +839,7 @@ export default function Investors() {
               <span className="text-gradient">investment structure</span>
             </h2>
             <p className="text-slate-400 text-lg mt-5 max-w-xl mx-auto">
-              Four distinct product types across risk profile, tenor, and yield — select what fits your mandate.
+              Four distinct product types across risk profile, tenor, and yield, select what fits your mandate.
             </p>
           </motion.div>
 
@@ -1121,7 +1122,7 @@ export default function Investors() {
       </section>
 
       {/* ══════════════════════════════════════════════════════════
-          CTA  — investor4 boardroom background
+          CTA , investor4 boardroom background
       ══════════════════════════════════════════════════════════ */}
       <section className="section relative overflow-hidden  bg-[#050d18]">
         {/* Boardroom image as atmosphere */}
@@ -1179,7 +1180,7 @@ export default function Investors() {
               className="text-slate-400 text-xl max-w-lg mx-auto mb-12 leading-relaxed"
             >
               Join a growing community of institutional and accredited investors earning
-              short-duration, credit-insured returns across 70+ countries.
+              short-duration, credit-insured returns across many countries.
             </motion.p>
 
             <motion.div

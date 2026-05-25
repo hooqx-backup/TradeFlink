@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+﻿import React, { useState, useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import logo from '../../assets/logos/logo4.png';
@@ -238,7 +238,7 @@ export default function Footer() {
         animate={{ scale: [1, 1.2, 1], opacity: [0.6, 1, 0.6] }}
         transition={{ duration: 14, repeat: Infinity, ease: 'easeInOut', delay: 5 }}
       />
-      {/* Third orb — mid-right, slow drift */}
+      {/* Third orb, mid-right, slow drift */}
       <motion.div
         className="absolute pointer-events-none rounded-full"
         style={{ width: 300, height: 300, top: '40%', right: '20%', background: 'radial-gradient(circle, rgba(99,102,241,0.08) 0%, transparent 70%)' }}
@@ -262,7 +262,7 @@ export default function Footer() {
         {/* ── Main grid ──────────────────────────────────────── */}
         <div className="grid gap-8 lg:grid-cols-[1.15fr_0.85fr]">
 
-          {/* ── LEFT — brand card ──────────────────────────── */}
+          {/* ── LEFT, brand card ──────────────────────────── */}
           <motion.section
             ref={logoRef}
             className="relative overflow-hidden rounded-4xl border border-white/10 bg-white/5 p-8 sm:p-10 backdrop-blur-xl"
@@ -296,11 +296,11 @@ export default function Footer() {
                     Faster capital for global trade.
                   </h2>
                   <p className="max-w-lg text-sm sm:text-base leading-relaxed text-white/55">
-                    Fast, honest trade finance for businesses that can't afford to wait — built for SMEs, active across 70+ countries.
+                    Fast, honest trade finance for businesses that can't afford to wait  built for SMEs, active across countries.
                   </p>
                 </div>
 
-                {/* Office badges — staggered entry */}
+                {/* Office badges, staggered entry */}
                 <motion.div
                   className="flex flex-wrap gap-2.5"
                   variants={containerVar}
@@ -367,7 +367,7 @@ export default function Footer() {
             </div>
           </motion.section>
 
-          {/* ── RIGHT — nav cards ──────────────────────────── */}
+          {/* ── RIGHT, nav cards ──────────────────────────── */}
           <motion.section
             ref={navRef}
             className="grid gap-4 sm:grid-cols-2"

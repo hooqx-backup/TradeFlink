@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react';
+﻿import React, { useState, useRef, useEffect } from 'react';
 import { motion, useInView, useScroll, useTransform, useSpring } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import {
@@ -110,12 +110,12 @@ const COOKIE_TABLE = [
   { name: 'tf_csrf',         category: 'Essential',   duration: 'Session',   purpose: 'Cross-site request forgery protection token.'               },
   { name: 'tf_lang',         category: 'Preference',  duration: '1 year',    purpose: 'Stores your preferred language for the platform.'           },
   { name: 'tf_currency',     category: 'Preference',  duration: '1 year',    purpose: 'Remembers your preferred currency display setting.'         },
-  { name: '_ga',             category: 'Analytics',   duration: '2 years',   purpose: 'Google Analytics — distinguishes unique users.'             },
-  { name: '_ga_*',           category: 'Analytics',   duration: '2 years',   purpose: 'Google Analytics — persists session state.'                 },
-  { name: '_gid',            category: 'Analytics',   duration: '24 hours',  purpose: 'Google Analytics — distinguishes users within a session.'   },
+  { name: '_ga',             category: 'Analytics',   duration: '2 years',   purpose: 'Google Analytics, distinguishes unique users.'             },
+  { name: '_ga_*',           category: 'Analytics',   duration: '2 years',   purpose: 'Google Analytics, persists session state.'                 },
+  { name: '_gid',            category: 'Analytics',   duration: '24 hours',  purpose: 'Google Analytics, distinguishes users within a session.'   },
   { name: 'tf_consent',      category: 'Essential',   duration: '1 year',    purpose: 'Stores your cookie consent preferences.'                    },
   { name: 'tf_dashboard',    category: 'Preference',  duration: '6 months',  purpose: 'Remembers your dashboard layout and widget arrangement.'    },
-  { name: 'intercom-*',      category: 'Functional',  duration: '9 months',  purpose: 'Intercom live chat — identifies returning users.'           },
+  { name: 'intercom-*',      category: 'Functional',  duration: '9 months',  purpose: 'Intercom live chat, identifies returning users.'           },
 ];
 
 const CATEGORY_COLORS = {
@@ -137,7 +137,7 @@ const SECTIONS = [
     content: [
       {
         heading: 'Definition',
-        body: 'Cookies are small text files placed on your device — computer, tablet, or smartphone — when you visit a website. They are widely used to make websites work more efficiently, remember your preferences, and provide reporting information to site owners.',
+        body: 'Cookies are small text files placed on your device, computer, tablet, or smartphone, when you visit a website. They are widely used to make websites work more efficiently, remember your preferences, and provide reporting information to site owners.',
       },
       {
         heading: 'Similar Technologies',
@@ -145,7 +145,7 @@ const SECTIONS = [
       },
       {
         heading: 'First-Party vs Third-Party Cookies',
-        body: 'First-party cookies are set directly by Tradeflink on our own domain. Third-party cookies are set by external services we integrate with — such as analytics providers, live chat tools, and payment processors. We carefully vet all third parties whose cookies operate on our platform.',
+        body: 'First-party cookies are set directly by Tradeflink on our own domain. Third-party cookies are set by external services we integrate with, such as analytics providers, live chat tools, and payment processors. We carefully vet all third parties whose cookies operate on our platform.',
       },
     ],
   },
@@ -163,17 +163,17 @@ const SECTIONS = [
       },
       {
         heading: 'Analytics Cookies',
-        body: 'Analytics cookies help us understand how visitors interact with our platform — which pages are most visited, how long sessions last, and where users drop off. We use Google Analytics with IP anonymisation enabled so no personally identifiable information is transmitted. This data is aggregated and used solely to improve the platform.',
+        body: 'Analytics cookies help us understand how visitors interact with our platform, which pages are most visited, how long sessions last, and where users drop off. We use Google Analytics with IP anonymisation enabled so no personally identifiable information is transmitted. This data is aggregated and used solely to improve the platform.',
         badge: { label: 'Optional', color: '#f59e0b' },
       },
       {
         heading: 'Preference (Functional) Cookies',
-        body: 'Preference cookies remember your personal settings — such as your chosen language, currency display, dashboard layout, and time zone — so you do not have to reconfigure them each time you visit. Disabling these cookies may mean certain features do not work as expected.',
+        body: 'Preference cookies remember your personal settings, such as your chosen language, currency display, dashboard layout, and time zone, so you do not have to reconfigure them each time you visit. Disabling these cookies may mean certain features do not work as expected.',
         badge: { label: 'Optional', color: '#10b981' },
       },
       {
         heading: 'Functional Cookies',
-        body: 'Functional cookies power features beyond basic navigation — including live chat via Intercom, in-app notifications, and platform customisation tools. These enhance your experience but are not strictly required for core services to operate.',
+        body: 'Functional cookies power features beyond basic navigation, including live chat via Intercom, in-app notifications, and platform customisation tools. These enhance your experience but are not strictly required for core services to operate.',
         badge: { label: 'Optional', color: '#8b5cf6' },
       },
     ],
@@ -195,7 +195,7 @@ const SECTIONS = [
       },
       {
         heading: 'Personalisation',
-        body: 'Preference cookies enable a tailored experience — remembering whether you prefer a light or dark interface, your currency of choice, and your saved filter configurations within the dashboard. This reduces repetitive set-up on each visit.',
+        body: 'Preference cookies enable a tailored experience, remembering whether you prefer a light or dark interface, your currency of choice, and your saved filter configurations within the dashboard. This reduces repetitive set-up on each visit.',
       },
       {
         heading: 'Support & Communication',
@@ -262,11 +262,11 @@ const SECTIONS = [
       },
       {
         heading: 'Consent for Non-Essential Cookies',
-        body: 'All non-essential cookies — including analytics, preference, and functional cookies — are placed only after you have provided explicit, informed consent through our Cookie Consent banner or Settings panel. You may withdraw this consent at any time.',
+        body: 'All non-essential cookies, including analytics, preference, and functional cookies, are placed only after you have provided explicit, informed consent through our Cookie Consent banner or Settings panel. You may withdraw this consent at any time.',
       },
       {
         heading: 'Legitimate Interests',
-        body: 'In some cases we may process cookie data on the basis of legitimate interests — for example, where analytics data is used solely for platform security monitoring or fraud detection. In such cases we conduct and document a legitimate interests assessment to ensure your rights are not overridden.',
+        body: 'In some cases we may process cookie data on the basis of legitimate interests, for example, where analytics data is used solely for platform security monitoring or fraud detection. In such cases we conduct and document a legitimate interests assessment to ensure your rights are not overridden.',
       },
     ],
   },
@@ -283,11 +283,11 @@ const SECTIONS = [
       },
       {
         heading: 'Persistent Cookies',
-        body: 'Persistent cookies remain on your device for a defined period — typically between 24 hours and 2 years — depending on their purpose. The specific duration for each cookie we use is listed in the cookie table below. You can delete persistent cookies at any time through your browser settings.',
+        body: 'Persistent cookies remain on your device for a defined period depending on their purpose. The specific duration for each cookie we use is listed in the cookie table below. You can delete persistent cookies at any time through your browser settings.',
       },
       {
         heading: 'Consent Record',
-        body: 'We retain a record of your cookie consent preferences (stored in the tf_consent cookie) for 12 months. After this period, we will ask you to review and re-confirm your preferences to ensure they remain current.',
+        body: 'We retain a record of your cookie consent preferences (stored in the tf_consent cookie) for a defined period. After this, we will ask you to review and re-confirm your preferences to ensure they remain current.',
       },
     ],
   },
@@ -304,7 +304,7 @@ const SECTIONS = [
       },
       {
         heading: 'Version History',
-        body: 'Each version of this Cookie Policy is dated and versioned. Previous versions are available upon request by emailing privacy@tradeflink.com. This is version 1.0, effective 20 May 2026.',
+        body: 'Each version of this Cookie Policy is dated and versioned. Previous versions are available upon request by emailing privacy@tradeflink.com. This is the current version, recently updated.',
       },
     ],
   },
@@ -317,7 +317,7 @@ const SECTIONS = [
     content: [
       {
         heading: 'Questions About Cookies',
-        body: 'If you have any questions about how we use cookies or wish to exercise your rights in relation to cookie-based data, please contact our Data Protection Officer at privacy@tradeflink.com. We aim to respond to all enquiries within 30 days.',
+        body: 'If you have any questions about how we use cookies or wish to exercise your rights in relation to cookie-based data, please contact our Data Protection Officer at privacy@tradeflink.com. We aim to respond to all enquiries promptly.',
       },
       {
         heading: 'Cookie Settings',
@@ -630,7 +630,7 @@ export default function CookiePolicy() {
             <motion.div variants={blurUp} className="flex flex-col gap-2 shrink-0">
               <div className="flex items-center gap-3 px-5 py-3 rounded-2xl bg-white border border-gray-100 text-xs text-slate-500 shadow-sm">
                 <RefreshCw size={13} className="text-teal-500" />
-                <span>Last updated: <strong className="text-[#0f172a] font-bold">20 May 2026</strong></span>
+                <span>Last updated: <strong className="text-[#0f172a] font-bold">Recently Updated</strong></span>
                 <span className="w-px h-3 bg-gray-200" />
                 <span>Version <strong className="text-[#0f172a] font-bold">1.0</strong></span>
               </div>
@@ -764,10 +764,10 @@ export default function CookiePolicy() {
                 className="grid sm:grid-cols-4 gap-4 mb-12"
               >
                 {[
-                  { label: 'Essential',  count: '3', sub: 'Always active',  accent: '#1C96BF', light: 'rgba(28,150,191,0.08)',  Icon: Shield    },
-                  { label: 'Analytics',  count: '3', sub: 'Opt-in',         accent: '#f59e0b', light: 'rgba(245,158,11,0.08)',   Icon: BarChart2 },
-                  { label: 'Preference', count: '3', sub: 'Opt-in',         accent: '#10b981', light: 'rgba(16,185,129,0.08)',   Icon: Sliders   },
-                  { label: 'Functional', count: '1', sub: 'Opt-in',         accent: '#8b5cf6', light: 'rgba(139,92,246,0.08)',   Icon: Settings  },
+                  { label: 'Essential',  count: 'Core',    sub: 'Always active',  accent: '#1C96BF', light: 'rgba(28,150,191,0.08)',  Icon: Shield    },
+                  { label: 'Analytics',  count: 'Usage',   sub: 'Opt-in',         accent: '#f59e0b', light: 'rgba(245,158,11,0.08)',   Icon: BarChart2 },
+                  { label: 'Preference', count: 'Custom',  sub: 'Opt-in',         accent: '#10b981', light: 'rgba(16,185,129,0.08)',   Icon: Sliders   },
+                  { label: 'Functional', count: 'Support', sub: 'Opt-in',         accent: '#8b5cf6', light: 'rgba(139,92,246,0.08)',   Icon: Settings  },
                 ].map((item, i) => (
                   <motion.div
                     key={item.label}
@@ -817,9 +817,9 @@ export default function CookiePolicy() {
                   <div>
                     <h4 className="font-black text-[#0f172a] mb-2">Policy Versioning</h4>
                     <p className="text-slate-400 text-sm leading-relaxed">
-                      This is version 1.0 of Tradeflink's Cookie Policy, effective 20 May 2026.
+                      This is the current version of Tradeflink's Cookie Policy, recently updated.
                       Previous versions are available on request from privacy@tradeflink.com.
-                      We will notify you of any material changes at least 30 days before they take effect.
+                      We will notify you of any material changes with advance notice before they take effect.
                     </p>
                   </div>
                 </div>

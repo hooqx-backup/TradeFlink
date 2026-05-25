@@ -1,4 +1,4 @@
-import { useState, useRef } from 'react';
+﻿import { useState, useRef } from 'react';
 import {
   motion, useInView, useMotionValue, useSpring,
   useTransform, useMotionTemplate, AnimatePresence,
@@ -16,11 +16,11 @@ const CASE_STUDIES = [
     flag: '🇧🇩',
     category: 'Export Factoring',
     challenge: 'A fast-growing textile manufacturer faced chronic cash-flow gaps waiting 90+ days for payment from European buyers, limiting production capacity and forcing rejection of new orders.',
-    solution: 'TradeFlink deployed Export Factoring to advance 85% of invoice value within 48 hours, eliminating the payment wait and freeing capital to fulfil larger orders.',
+    solution: 'TradeFlink deployed Export Factoring to advance the majority of invoice value within days, eliminating the payment wait and freeing capital to fulfil larger orders.',
     results: [
-      { metric: '3×',   label: 'Revenue Growth' },
-      { metric: '68%',  label: 'Faster Payments' },
-      { metric: '$4.2M', label: 'Total Financed' },
+      { metric: 'Tripled',  label: 'Revenue Growth' },
+      { metric: 'Faster',   label: 'Payments' },
+      { metric: 'Funded',   label: 'Total Financed' },
     ],
     quote: 'TradeFlink transformed how we think about cash flow. We went from turning down orders to actively seeking new buyers across Europe.',
     avatar: 'AR',
@@ -34,11 +34,11 @@ const CASE_STUDIES = [
     flag: '🇦🇪',
     category: 'Supply Chain Finance',
     challenge: 'A regional FMCG distributor struggled to meet supplier payment terms, causing frequent supply disruptions and damaged relationships during peak seasons.',
-    solution: "TradeFlink introduced Supply Chain Finance, enabling early supplier payments while extending the importer's own payment terms to 120 days.",
+    solution: "TradeFlink introduced Supply Chain Finance, enabling early supplier payments while extending the importer's own payment terms considerably.",
     results: [
-      { metric: '40%',     label: 'Fewer Disruptions' },
-      { metric: '120 days', label: 'Extended Terms' },
-      { metric: '$6.8M',   label: 'Supply Unlocked' },
+      { metric: 'Reduced',   label: 'Fewer Disruptions' },
+      { metric: 'Extended',  label: 'Buyer Terms' },
+      { metric: 'Unlocked',  label: 'Supply Value' },
     ],
     quote: 'Our supplier relationships have never been stronger. On-time payments have become our single biggest competitive advantage.',
     avatar: 'OK',
@@ -54,9 +54,9 @@ const CASE_STUDIES = [
     challenge: 'A new-to-export garment manufacturer lacked the credit history and collateral required by traditional banks, locking them out of international trade finance entirely.',
     solution: "TradeFlink provided Open Account Trade facilities backed by buyer creditworthiness rather than the exporter's own balance sheet, opening doors to five new markets.",
     results: [
-      { metric: '5',       label: 'New Markets' },
-      { metric: '8 months', label: 'Time to Scale' },
-      { metric: '$1.5M',   label: 'First Year Trade' },
+      { metric: 'Five',    label: 'New Markets' },
+      { metric: 'Quick',   label: 'Time to Scale' },
+      { metric: 'Traded',  label: 'First Year' },
     ],
     quote: 'As a first-time exporter, banks turned us away. TradeFlink saw our potential and gave us the tools to compete globally.',
     avatar: 'PM',
@@ -69,14 +69,14 @@ const CASE_STUDIES = [
     country: 'Brazil',
     flag: '🇧🇷',
     category: 'Invoice Financing',
-    challenge: 'An agricultural exporter had over $2M in outstanding receivables tied up with US buyers, preventing reinvestment into the next harvest cycle and stalling growth.',
-    solution: "TradeFlink's Invoice Financing converted outstanding receivables into immediate working capital within three business days, removing the harvest-cycle bottleneck.",
+    challenge: 'An agricultural exporter had significant receivables tied up with US buyers, preventing reinvestment into the next harvest cycle and stalling growth.',
+    solution: "TradeFlink's Invoice Financing converted outstanding receivables into immediate working capital within days, removing the harvest-cycle bottleneck.",
     results: [
-      { metric: '$2.1M', label: 'Receivables Freed' },
-      { metric: '3 days', label: 'Funding Speed' },
-      { metric: '2.4×',  label: 'Output Growth' },
+      { metric: 'Freed',   label: 'Receivables' },
+      { metric: 'Rapid',   label: 'Funding Speed' },
+      { metric: 'Grew',    label: 'Output' },
     ],
-    quote: 'We used to wait 90 days for money that was already ours. TradeFlink gave us our cash on day three.',
+    quote: 'We used to wait months for money that was already ours. TradeFlink gave us our cash within days.',
     avatar: 'CS',
   },
   {
@@ -90,9 +90,9 @@ const CASE_STUDIES = [
     challenge: 'A cocoa trading firm needed to fulfil large confirmed orders from European and Asian chocolatiers but lacked liquidity to source raw cocoa at the required scale.',
     solution: 'TradeFlink structured Export Factoring tied to confirmed purchase orders, funding procurement before shipment and eliminating the capital gap between supplier and buyer.',
     results: [
-      { metric: '60%',         label: 'Faster Payments' },
-      { metric: '3 continents', label: 'Reach Expanded' },
-      { metric: '$3.3M',       label: 'Trade Enabled' },
+      { metric: 'Faster',   label: 'Payments' },
+      { metric: 'Global',   label: 'Reach Expanded' },
+      { metric: 'Enabled',  label: 'Trade Volume' },
     ],
     quote: 'We competed with trading houses ten times our size. TradeFlink levelled the playing field for African SMEs.',
     avatar: 'KA',
@@ -108,9 +108,9 @@ const CASE_STUDIES = [
     challenge: 'An electronics distributor importing from South Korean manufacturers faced tight 30-day payment terms that drained working capital during peak inventory build-up periods.',
     solution: "TradeFlink's Supply Chain Finance settled manufacturer invoices immediately while granting the importer a 90-day deferred payment window to align cash flow with sales cycles.",
     results: [
-      { metric: '25%',    label: 'Cost Reduction' },
-      { metric: '$8M',    label: 'Trade Volume' },
-      { metric: '90 days', label: 'Payment Deferral' },
+      { metric: 'Reduced',   label: 'Cost' },
+      { metric: 'Volume',    label: 'Trade' },
+      { metric: 'Deferred',  label: 'Payment Terms' },
     ],
     quote: 'The deferred payment window let us build inventory for peak season without burning through our cash reserves.',
     avatar: 'LW',
@@ -532,10 +532,10 @@ export default function CaseStudies() {
             animate={statsInView ? 'show' : 'hidden'}
           >
             {[
-              { metric: '70+',  label: 'Countries Served' },
-              { metric: '500+', label: 'SMEs Financed' },
-              { metric: '$250M+', label: 'Trade Facilitated' },
-              { metric: '98%',  label: 'Client Satisfaction' },
+              { metric: 'Wide',   label: 'Countries Served' },
+              { metric: 'Active', label: 'SMEs Financed' },
+              { metric: 'Strong', label: 'Trade Facilitated' },
+              { metric: 'High',   label: 'Client Satisfaction' },
             ].map((s, i) => (
               <StatPill key={s.label} {...s} colors={STAT_COLORS[i]} delay={i * 0.6} />
             ))}
@@ -547,7 +547,7 @@ export default function CaseStudies() {
       <section id="case-studies" className="py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
-          {/* Filter tabs — glass pill bar + layoutId */}
+          {/* Filter tabs, glass pill bar + layoutId */}
           <div className="mb-14 flex justify-center">
             <div className="relative inline-flex flex-wrap justify-center gap-1.5 rounded-2xl border border-white/[0.09] bg-white/[0.04] p-1.5 backdrop-blur-2xl shadow-xl shadow-black/20">
               {/* Glass strip shimmer */}
@@ -641,7 +641,7 @@ export default function CaseStudies() {
                 </motion.span>
               </h2>
               <p className="mt-5 text-lg text-white/48 leading-relaxed">
-                Join 500+ SMEs already trading without borders. Our team will find the right trade finance solution for your business within 24 hours.
+                Join a growing community of SMEs already trading without borders. Our team will find the right trade finance solution for your business quickly.
               </p>
               <div className="mt-9 flex flex-wrap justify-center gap-4">
                 <motion.div whileHover={{ scale: 1.04, y: -2 }} whileTap={{ scale: 0.95 }}>
