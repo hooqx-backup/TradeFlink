@@ -1,13 +1,6 @@
-import Home from './Pages/Home/Home'
-import MainLayout from './layouts/MainLayout'
-import './App.css'
+import AppRoutes from "./routes";
+import "./App.css";
 
-function App() {
-  return (
-    <MainLayout>
-      <Home />
-    </MainLayout>
-  )
+export default function App() {
+  return <AppRoutes />;
 }
-
-export default App

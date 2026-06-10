@@ -1,19 +1,20 @@
-import React, { useState, useRef } from 'react';
+﻿import React, { useState, useRef } from 'react';
+import { Link } from 'react-router-dom';
 import { motion, AnimatePresence, useInView } from 'framer-motion';
 
 const FAQS = [
   { q: 'How quickly can I get funded after applying?',
-    a: 'Most applications are reviewed within 24–48 hours. Once approved, funds can be transferred within 1–3 business days depending on your bank and country.' },
+    a: 'Most applications are reviewed within a day or two. Once approved, funds can be transferred within a few business days depending on your bank and country.' },
   { q: 'What documents do I need to apply?',
     a: 'Typically: business registration, recent invoices, bank statements, and tax documents. Our team guides you through the exact requirements for your country.' },
   { q: 'Are there any hidden fees?',
-    a: 'No. We believe in complete transparency. All fees are clearly outlined upfront before you commit to any transaction — no surprises, ever.' },
+    a: 'No. We believe in complete transparency. All fees are clearly outlined upfront before you commit to any transaction, no surprises, ever.' },
   { q: 'Which countries do you operate in?',
-    a: 'We currently serve SMEs in over 70 countries across Asia, Europe, Africa, and the Americas. We have offices in Dubai, Delhi, Kolkata, Delaware, London, and Istanbul.' },
+    a: 'We currently serve SMEs across many countries spanning Asia, Europe, Africa, and the Americas. We have offices in Dubai, Delhi, Kolkata, Delaware, London, and Istanbul.' },
   { q: 'What is the minimum funding amount?',
-    a: "There's no strict minimum. We work with businesses of all sizes, though most services have a practical starting point of $1,000 equivalent." },
+    a: "There's no strict minimum. We work with businesses of all sizes, from small invoices to large trade deals, across a wide range of sectors." },
   { q: 'How is my data kept secure?',
-    a: 'We use bank-level 256-bit SSL encryption and comply with international data protection standards including GDPR, ensuring your data is always protected.' },
+    a: 'We use bank-level SSL encryption and comply with international data protection standards including GDPR, ensuring your data is always protected.' },
 ];
 
 export default function FAQ() {
@@ -22,7 +23,7 @@ export default function FAQ() {
   const inView = useInView(sectionRef, { once: true, margin: '-80px' });
 
   return (
-    <section ref={sectionRef} className="w-full bg-white" style={{ overflow: 'clip' }}>
+    <section ref={sectionRef} className="w-full -mb-20 bg-white" style={{ overflow: 'clip' }}>
 
       {/* Top rule */}
       <div className="border-t border-gray-100" />
@@ -37,7 +38,7 @@ export default function FAQ() {
             transition={{ duration: 0.6 }}
           >
             <p className="text-xs font-bold uppercase tracking-[0.22em] text-teal-600 mb-2">Got Questions?</p>
-            <h2 className="text-4xl lg:text-5xl font-black text-gray-900">FAQ</h2>
+            <h2 className="text-3xl lg:text-4xl font-black text-gray-900">FAQ</h2>
           </motion.div>
           <motion.div
             className="flex-1 h-px bg-gray-100 hidden lg:block"
@@ -80,10 +81,10 @@ export default function FAQ() {
                     style={{
                       fontSize: '2.2rem',
                       lineHeight: 1,
-                      color: active === i ? '#0d9488' : '#e5e7eb',
+                      color: active === i ? '#1C96BF' : '#e5e7eb',
                     }}
                   >
-                    {String(i + 1).padStart(2, '0')}
+                    {['01','02','03','04','05','06'][i]}
                   </span>
 
                   {/* Question text */}
@@ -113,7 +114,7 @@ export default function FAQ() {
                 {/* Ghost number */}
                 <p className="font-black leading-none text-gray-100 mb-6 select-none"
                   style={{ fontSize: 'clamp(64px, 8vw, 96px)' }}>
-                  {String(active + 1).padStart(2, '0')}
+                  {['01','02','03','04','05','06'][active]}
                 </p>
 
                 {/* Question repeated */}
@@ -129,17 +130,18 @@ export default function FAQ() {
                 {/* Still have questions? */}
                 <div className="mt-10 pt-8 border-t border-gray-100 flex items-center justify-between">
                   <p className="text-sm text-gray-400">Still have questions?</p>
-                  <motion.a
-                    href="#contact"
-                    className="inline-flex items-center gap-2 text-sm font-bold text-teal-600"
-                    whileHover={{ gap: '12px' }}
-                    transition={{ duration: 0.2 }}
-                  >
-                    Talk to our team
-                    <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                    </svg>
-                  </motion.a>
+                  <Link to="/contact">
+                    <motion.span
+                      className="inline-flex items-center gap-2 text-sm font-bold text-teal-600"
+                      whileHover={{ gap: '12px' }}
+                      transition={{ duration: 0.2 }}
+                    >
+                      Talk to our team
+                      <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                      </svg>
+                    </motion.span>
+                  </Link>
                 </div>
               </motion.div>
             </AnimatePresence>

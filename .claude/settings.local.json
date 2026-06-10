@@ -6,7 +6,27 @@
       "Bash(dir \"c:\\\\Users\\\\ritin\\\\Downloads\\\\Projects\\\\TradeFlink\\\\tradeflink\\\\src\\\\assets\" /b)",
       "Bash(Get-ChildItem -Path \"c:\\\\Users\\\\ritin\\\\Downloads\\\\Projects\\\\TradeFlink\\\\tradeflink\\\\src\" -Recurse -Filter \"*.jsx\" -o \"*.js\")",
       "Bash(Select-Object -ExpandProperty FullName)",
-      "Bash(npx vite *)"
+      "Bash(npx vite *)",
+      "Bash(git checkout *)",
+      "Bash(npm install *)",
+      "Bash(node -e \"const l = require\\('./node_modules/lucide-react/dist/cjs/lucide-react.js'\\); const keys = Object.keys\\(l\\); ['Linkedin','Twitter','Instagram','LinkedinIcon','TwitterIcon','InstagramIcon','X','XIcon'].forEach\\(k => console.log\\(k, keys.includes\\(k\\)\\)\\)\")",
+      "Bash(node -e \"const l = require\\('./node_modules/lucide-react/dist/cjs/lucide-react.js'\\); Object.keys\\(l\\).filter\\(k => /link|share|globe|external|at|hash/i.test\\(k\\)\\).join\\(', '\\)\")",
+      "Bash(node -e \"const l = require\\('./node_modules/lucide-react/dist/cjs/lucide-react.js'\\); console.log\\(Object.keys\\(l\\).filter\\(k => /link|share|globe|external|at|hash/i.test\\(k\\)\\).join\\(', '\\)\\)\")",
+      "Bash(mkdir -p \"c:\\\\Users\\\\ritin\\\\Downloads\\\\Projects\\\\TradeFlink\\\\tradeflink\\\\src\\\\Pages\\\\Investors\")",
+      "Bash(dir \"c:\\\\Users\\\\ritin\\\\Downloads\\\\Projects\\\\TradeFlink\\\\tradeflink\\\\src\\\\assets\\\\images\")",
+      "Bash(findstr /i \"opentrade\")",
+      "Bash(mkdir -p \"c:/Users/ritin/Downloads/Projects/TradeFlink/tradeflink/src/Pages/InvoiceFinancing\")",
+      "Bash(mkdir -p \"c:\\\\Users\\\\ritin\\\\Downloads\\\\Projects\\\\TradeFlink\\\\tradeflink\\\\src\\\\Pages\\\\PrivacyPolicy\")",
+      "Bash(npx tsc *)",
+      "Bash(ls \"C:\\\\Users\\\\ritin\\\\.claude\\\\projects\\\\c--Users-ritin-Downloads-Projects-TradeFlink-tradeflink\\\\memory\\\\\" 2>/dev/null || echo \"empty\")",
+      "Read(//c/Users/ritin/.claude/projects/c--Users-ritin-Downloads-Projects-TradeFlink-tradeflink/memory\" 2>/dev/**)",
+      "Bash(Get-ChildItem -Path \"c:\\\\Users\\\\ritin\\\\Downloads\\\\Projects\\\\TradeFlink\\\\tradeflink\\\\src\\\\Pages\" -Recurse -Directory)",
+      "Bash(Select-Object FullName)",
+      "Bash(Get-ChildItem -Path .\\\\src -Recurse -Directory)",
+      "Bash(Test-Path \"c:\\\\Users\\\\ritin\\\\Downloads\\\\Projects\\\\TradeFlink\\\\tradeflink\\\\README.md\")"
+    ],
+    "additionalDirectories": [
+      "c:\\Users\\ritin\\Downloads\\Projects\\TradeFlink\\tradeflink\\src\\Pages"
     ]
   }
 }

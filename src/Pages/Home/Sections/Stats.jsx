@@ -1,32 +1,15 @@
-import React, { useEffect, useRef, useState } from 'react';
+﻿import React, { useRef, useState } from 'react';
 import { motion, useInView } from 'framer-motion';
 
 const STATS = [
-  { num: 4.5,  suffix: 'T+', prefix: '$', label: 'Global Trade Finance Gap',  sub: 'Addressable market — the problem we exist to solve', decimals: 1 },
-  { num: 70,   suffix: '+',  prefix: '',  label: 'Countries Served',           sub: 'Every major trade corridor, covered' },
-  { num: 1000, suffix: '+',  prefix: '',  label: 'Businesses Funded',          sub: 'SMEs empowered to trade without limits' },
-  { num: 2,    suffix: 'B+', prefix: '$', label: 'Invoices Financed',          sub: 'Capital deployed across global supply chains' },
+  { display: 'Vast',    label: 'Global Trade Finance Gap',  sub: 'Addressable market, the problem we exist to solve' },
+  { display: 'Global',  label: 'Countries Served',           sub: 'Every major trade corridor, covered' },
+  { display: 'Growing', label: 'Businesses Funded',          sub: 'SMEs empowered to trade without limits' },
+  { display: 'Active',  label: 'Trade Financed',             sub: 'Capital deployed across global supply chains' },
 ];
 
-function useCountUp(target, decimals = 0, trigger) {
-  const [val, setVal] = useState(0);
-  useEffect(() => {
-    if (!trigger) return;
-    let start = null;
-    const step = (ts) => {
-      if (!start) start = ts;
-      const p = Math.min((ts - start) / 2000, 1);
-      const eased = 1 - Math.pow(1 - p, 3);
-      setVal(parseFloat((eased * target).toFixed(decimals)));
-      if (p < 1) requestAnimationFrame(step);
-    };
-    requestAnimationFrame(step);
-  }, [trigger, target, decimals]);
-  return val;
-}
 
 function StatRow({ stat, index, trigger }) {
-  const val = useCountUp(stat.num, stat.decimals ?? 0, trigger);
   const [hovered, setHovered] = useState(false);
 
   return (
@@ -43,7 +26,7 @@ function StatRow({ stat, index, trigger }) {
         className="absolute inset-0 pointer-events-none"
         animate={{ opacity: hovered ? 1 : 0 }}
         transition={{ duration: 0.3 }}
-        style={{ background: 'linear-gradient(to right, rgba(13,148,136,0.04), transparent)' }}
+        style={{ background: 'linear-gradient(to right, rgba(28,150,191,0.04), transparent)' }}
       />
 
       {/* Active left border */}
@@ -54,17 +37,17 @@ function StatRow({ stat, index, trigger }) {
         transition={{ duration: 0.25 }}
       />
 
-      {/* Number */}
+      {/* Display */}
       <div className="relative w-56 lg:w-72 shrink-0 py-8 lg:py-10 pl-6 lg:pl-10">
         <span
-          className="font-black leading-none tracking-tight tabular-nums"
+          className="font-black leading-none tracking-tight uppercase"
           style={{
-            fontSize: 'clamp(52px, 6vw, 88px)',
-            color: hovered ? '#0d9488' : '#111827',
+            fontSize: 'clamp(30px, 3.5vw, 54px)',
+            color: hovered ? '#1C96BF' : '#111827',
             transition: 'color 0.3s',
           }}
         >
-          {stat.prefix}{stat.decimals ? val.toFixed(stat.decimals) : Math.round(val).toLocaleString()}{stat.suffix}
+          {stat.display}
         </span>
       </div>
 
@@ -77,13 +60,13 @@ function StatRow({ stat, index, trigger }) {
         <p className="text-sm text-gray-400 leading-relaxed">{stat.sub}</p>
       </div>
 
-      {/* Index number — far right */}
+      {/* Index label, far right */}
       <motion.span
         className="absolute right-6 lg:right-10 text-xs font-bold uppercase tracking-widest"
-        animate={{ color: hovered ? '#0d9488' : '#d1d5db' }}
+        animate={{ color: hovered ? '#1C96BF' : '#d1d5db' }}
         transition={{ duration: 0.3 }}
       >
-        0{index + 1}
+        {['A','B','C','D'][index]}
       </motion.span>
     </motion.div>
   );

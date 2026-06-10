@@ -1,8 +1,8 @@
-import React, { useRef, useState, useCallback } from 'react';
+﻿import React, { useRef, useState, useCallback } from 'react';
 import { motion, useInView, useMotionValue, useTransform, useSpring, AnimatePresence } from 'framer-motion';
-import visionImg from '../../../assets/images/vision.jpg';
-import missionImg from '../../../assets/images/mission.jpg';
-import valuesImg from '../../../assets/images/values.jpg';
+import visionImg from '../../../assets/images/vision.webp';
+import missionImg from '../../../assets/images/mission.webp';
+import valuesImg from '../../../assets/images/values.webp';
 
 const CARDS = [
   {
@@ -10,25 +10,25 @@ const CARDS = [
     tag: 'Vision',
     title: ['Global Trade', 'for All'],
     description:
-      'To make global trade accessible and sustainable for every business, regardless of size or geography.',
+      'Make global trade work for every business, not just the multinationals with armies of bankers.',
     image: visionImg,
-    accent: '#0d9488',
+    accent: '#1C96BF',
   },
   {
     num: '02',
     tag: 'Mission',
     title: ['Empower', 'Every SME'],
     description:
-      'Empower SMEs worldwide with technology-driven trade finance solutions that are transparent, fast, and genuinely inclusive.',
+      'Give every SME fast, honest access to trade finance, no legacy bank gatekeeping, no opaque fees, no waiting months to hear back.',
     image: missionImg,
-    accent: '#0f766e',
+    accent: '#157ea3',
   },
   {
     num: '03',
     tag: 'Values',
     title: ['What', 'Drives Us'],
     description:
-      'Transparency, Innovation, Empathy, and Empowerment — core principles that uplift communities and build lasting connections.',
+      'We build in the open, move fast, listen to our customers, and put SMEs first in every decision we make.',
     image: valuesImg,
     accent: '#14b8a6',
     values: ['Transparency', 'Innovation', 'Empathy', 'Empowerment'],
@@ -73,18 +73,18 @@ function Card({ card, index }) {
           scale: index === 1 ? 0.9 : 1,
         }}
         whileInView={{ opacity: 1, x: 0, y: 0, scale: 1 }}
-        viewport={{ once: true, margin: '-60px' }}
-        transition={{ duration: 1.4, delay: index * 0.22, ease: [0.22, 1, 0.36, 1] }}
+        viewport={{ once: false, margin: '-60px' }}
+        transition={{ duration: 2.52, delay: index * 0.22, ease: [0.22, 1, 0.36, 1] }}
         onMouseMove={handleMouseMove}
         onMouseEnter={() => setHovered(true)}
         onMouseLeave={handleMouseLeave}
       >
-        {/* Background image — zooms on hover */}
+        {/* Background image, zooms on hover */}
         <motion.div
           className="absolute inset-0 bg-cover bg-center"
           style={{ backgroundImage: `url(${card.image})` }}
           animate={{ scale: hovered ? 1.1 : 1 }}
-          transition={{ duration: 0.75, ease: [0.22, 1, 0.36, 1] }}
+          transition={{ duration: 1.35, ease: [0.22, 1, 0.36, 1] }}
         />
 
         {/* Dark base overlay */}
@@ -96,14 +96,14 @@ function Card({ card, index }) {
           }}
         />
 
-        {/* Accent colour overlay — fades in on hover */}
+        {/* Accent colour overlay, fades in on hover */}
         <motion.div
           className="absolute inset-0"
           style={{
             background: `linear-gradient(160deg, ${card.accent}00 0%, ${card.accent}bb 100%)`,
           }}
           animate={{ opacity: hovered ? 1 : 0 }}
-          transition={{ duration: 0.55, ease: 'easeInOut' }}
+          transition={{ duration: 0.99, ease: 'easeInOut' }}
         />
 
         {/* Shimmer sweep on enter */}
@@ -114,8 +114,8 @@ function Card({ card, index }) {
               className="absolute inset-0 pointer-events-none"
               initial={{ x: '-100%' }}
               animate={{ x: '220%' }}
-              exit={{ opacity: 0, transition: { duration: 0.2 } }}
-              transition={{ duration: 0.75, ease: 'easeOut' }}
+              exit={{ opacity: 0, transition: { duration: 0.36 } }}
+              transition={{ duration: 1.35, ease: 'easeOut' }}
               style={{
                 background:
                   'linear-gradient(105deg, transparent 35%, rgba(255,255,255,0.16) 50%, transparent 65%)',
@@ -128,13 +128,13 @@ function Card({ card, index }) {
         {/* Content */}
         <div className="relative z-10 flex flex-col justify-between h-full p-7 lg:p-8">
 
-          {/* Top row — decorative number + tag pill */}
+          {/* Top row, decorative number + tag pill */}
           <div className="flex items-start justify-between">
             <motion.span
               className="font-black leading-none"
               style={{ fontSize: '5.5rem', lineHeight: 1, color: 'rgba(255,255,255,0.07)' }}
               animate={{ color: hovered ? `${card.accent}55` : 'rgba(255,255,255,0.07)' }}
-              transition={{ duration: 0.4 }}
+              transition={{ duration: 0.72 }}
             >
               {card.num}
             </motion.span>
@@ -146,26 +146,26 @@ function Card({ card, index }) {
                 color: hovered ? '#fff' : 'rgba(255,255,255,0.55)',
                 backgroundColor: hovered ? card.accent : 'transparent',
               }}
-              transition={{ duration: 0.35 }}
+              transition={{ duration: 0.63 }}
             >
               {card.tag}
             </motion.div>
           </div>
 
-          {/* Bottom text block — lifts on hover */}
+          {/* Bottom text block, lifts on hover */}
           <motion.div
             animate={{ y: hovered ? -10 : 0 }}
-            transition={{ duration: 0.45, ease: 'easeOut' }}
+            transition={{ duration: 0.81, ease: 'easeOut' }}
           >
             {/* Expanding accent line */}
             <motion.div
               className="rounded-full mb-5"
               style={{ height: 2, backgroundColor: card.accent }}
               animate={{ width: hovered ? 60 : 28 }}
-              transition={{ duration: 0.4, ease: 'easeOut' }}
+              transition={{ duration: 0.72, ease: 'easeOut' }}
             />
 
-            {/* Title — each line masked-reveals from below */}
+            {/* Title, each line masked-reveals from below */}
             <h3 className="text-3xl lg:text-4xl font-black text-white leading-tight mb-3">
               {card.title.map((line, i) => (
                 <div key={i} className="overflow-hidden">
@@ -173,9 +173,9 @@ function Card({ card, index }) {
                     className="block"
                     initial={{ y: '105%' }}
                     whileInView={{ y: 0 }}
-                    viewport={{ once: true }}
+                    viewport={{ once: false }}
                     transition={{
-                      duration: 0.65,
+                      duration: 1.17,
                       delay: 0.35 + index * 0.12 + i * 0.07,
                       ease: [0.22, 1, 0.36, 1],
                     }}
@@ -192,7 +192,7 @@ function Card({ card, index }) {
               animate={{
                 color: hovered ? 'rgba(255,255,255,0.9)' : 'rgba(255,255,255,0.6)',
               }}
-              transition={{ duration: 0.35 }}
+              transition={{ duration: 0.63 }}
             >
               {card.description}
             </motion.p>
@@ -201,7 +201,7 @@ function Card({ card, index }) {
             {card.values && (
               <div className="flex flex-wrap gap-2 mb-5">
                 {card.values.map((v, i) => (
-                  <motion.span
+                    <motion.span
                     key={v}
                     className="text-xs font-semibold rounded-full px-3 py-1"
                     style={{
@@ -211,7 +211,7 @@ function Card({ card, index }) {
                       borderColor: `${card.accent}55`,
                     }}
                     animate={{ color: hovered ? '#fff' : card.accent }}
-                    transition={{ duration: 0.3, delay: i * 0.05 }}
+                    transition={{ duration: 0.54, delay: i * 0.05 }}
                   >
                     {v}
                   </motion.span>
@@ -232,7 +232,7 @@ function Card({ card, index }) {
                 viewBox="0 0 24 24"
                 stroke="currentColor"
                 animate={{ x: hovered ? 6 : 0 }}
-                transition={{ duration: 0.3, ease: 'easeOut' }}
+                transition={{ duration: 0.54, ease: 'easeOut' }}
               >
                 <path
                   strokeLinecap="round"
@@ -251,7 +251,7 @@ function Card({ card, index }) {
 
 export default function VisionMissionValues() {
   const sectionRef = useRef(null);
-  const inView = useInView(sectionRef, { once: true, margin: '-100px' });
+  const inView = useInView(sectionRef, { once: false, margin: '-100px' });
 
   return (
     <section
@@ -259,7 +259,7 @@ export default function VisionMissionValues() {
       className="relative w-full py-28 bg-gray-50"
       style={{ overflow: 'clip' }}
     >
-      {/* Ambient glow — top-right */}
+      {/* Ambient glow, top-right */}
       <motion.div
         className="absolute rounded-full pointer-events-none"
         style={{
@@ -268,13 +268,13 @@ export default function VisionMissionValues() {
           top: -300,
           right: -220,
           background:
-            'radial-gradient(circle, rgba(13,148,136,0.18) 0%, transparent 70%)',
+            'radial-gradient(circle, rgba(28,150,191,0.18) 0%, transparent 70%)',
         }}
         animate={{ scale: [1, 1.22, 1], opacity: [0.7, 1, 0.7] }}
-        transition={{ duration: 9, repeat: Infinity, ease: 'easeInOut' }}
+        transition={{ duration: 16, repeat: Infinity, ease: 'easeInOut' }}
       />
 
-      {/* Ambient glow — bottom-left */}
+      {/* Ambient glow, bottom-left */}
       <motion.div
         className="absolute rounded-full pointer-events-none"
         style={{
@@ -286,15 +286,15 @@ export default function VisionMissionValues() {
             'radial-gradient(circle, rgba(20,184,166,0.1) 0%, transparent 70%)',
         }}
         animate={{ scale: [1, 1.2, 1], opacity: [0.5, 0.8, 0.5] }}
-        transition={{ duration: 11, repeat: Infinity, ease: 'easeInOut', delay: 4 }}
+        transition={{ duration: 20, repeat: Infinity, ease: 'easeInOut', delay: 4 }}
       />
 
-      {/* Dot grid texture — masked so it fades in from top */}
+      {/* Dot grid texture, masked so it fades in from top */}
       <div
         className="absolute inset-0 pointer-events-none"
         style={{
           backgroundImage:
-            'radial-gradient(rgba(13,148,136,0.12) 1px, transparent 1px)',
+            'radial-gradient(rgba(28,150,191,0.12) 1px, transparent 1px)',
           backgroundSize: '36px 36px',
           WebkitMaskImage: 'linear-gradient(to bottom, transparent 0%, black 22%)',
           maskImage: 'linear-gradient(to bottom, transparent 0%, black 22%)',
@@ -311,13 +311,13 @@ export default function VisionMissionValues() {
             className="inline-flex items-center gap-3 mb-5"
             initial={{ opacity: 0, y: 20 }}
             animate={inView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.6 }}
+            transition={{ duration: 1.08 }}
           >
             <motion.span
               className="block h-px bg-teal-500"
               initial={{ width: 0 }}
               animate={inView ? { width: 32 } : {}}
-              transition={{ duration: 0.9, delay: 0.2 }}
+              transition={{ duration: 1.62, delay: 0.2 }}
             />
             <span className="text-teal-600 text-xs font-bold uppercase tracking-[0.22em]">
               Our Purpose
@@ -326,20 +326,20 @@ export default function VisionMissionValues() {
               className="block h-px bg-teal-500"
               initial={{ width: 0 }}
               animate={inView ? { width: 32 } : {}}
-              transition={{ duration: 0.9, delay: 0.2 }}
+              transition={{ duration: 1.62, delay: 0.2 }}
             />
           </motion.div>
 
           {/* Masked headline */}
           <div className="overflow-hidden mb-4">
             <motion.h2
-              className="text-5xl lg:text-6xl font-black text-gray-900"
+              className="text-3xl lg:text-4xl font-black text-gray-900"
               initial={{ y: '100%' }}
               animate={inView ? { y: 0 } : {}}
-              transition={{ duration: 0.9, delay: 0.18, ease: [0.22, 1, 0.36, 1] }}
+              transition={{ duration: 1.62, delay: 0.18, ease: [0.22, 1, 0.36, 1] }}
             >
               Vision, Mission &amp;{' '}
-              <span style={{ color: '#0d9488' }}>Values</span>
+              <span style={{ color: '#1C96BF' }}>Values</span>
             </motion.h2>
           </div>
 
@@ -347,7 +347,7 @@ export default function VisionMissionValues() {
             className="text-lg max-w-xl mx-auto text-gray-500"
             initial={{ opacity: 0, y: 14 }}
             animate={inView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.7, delay: 0.38 }}
+            transition={{ duration: 1.26, delay: 0.38 }}
           >
             What drives everything we do at TradeFlink
           </motion.p>
