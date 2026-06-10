@@ -21,7 +21,9 @@
       "Bash(ls \"C:\\\\Users\\\\ritin\\\\.claude\\\\projects\\\\c--Users-ritin-Downloads-Projects-TradeFlink-tradeflink\\\\memory\\\\\" 2>/dev/null || echo \"empty\")",
       "Read(//c/Users/ritin/.claude/projects/c--Users-ritin-Downloads-Projects-TradeFlink-tradeflink/memory\" 2>/dev/**)",
       "Bash(Get-ChildItem -Path \"c:\\\\Users\\\\ritin\\\\Downloads\\\\Projects\\\\TradeFlink\\\\tradeflink\\\\src\\\\Pages\" -Recurse -Directory)",
-      "Bash(Select-Object FullName)"
+      "Bash(Select-Object FullName)",
+      "Bash(Get-ChildItem -Path .\\\\src -Recurse -Directory)",
+      "Bash(Test-Path \"c:\\\\Users\\\\ritin\\\\Downloads\\\\Projects\\\\TradeFlink\\\\tradeflink\\\\README.md\")"
     ],
     "additionalDirectories": [
       "c:\\Users\\ritin\\Downloads\\Projects\\TradeFlink\\tradeflink\\src\\Pages"

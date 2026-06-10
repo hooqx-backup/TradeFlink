@@ -1,4 +1,4 @@
-﻿import { useState, useEffect } from 'react';
+﻿import { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, Send, CheckCircle2, Shield, Mail, Phone, ChevronDown } from 'lucide-react';
 
@@ -115,6 +115,127 @@ function WhiteSelect({ label, name, value, onChange }) {
   );
 }
 
+/* ── Country codes ──────────────────────────────────────────────── */
+const COUNTRY_CODES = [
+  { code: 'IN', flag: '🇮🇳', name: 'India',          dial: '+91'  },
+  { code: 'AE', flag: '🇦🇪', name: 'UAE',            dial: '+971' },
+  { code: 'US', flag: '🇺🇸', name: 'United States',  dial: '+1'   },
+  { code: 'GB', flag: '🇬🇧', name: 'United Kingdom', dial: '+44'  },
+  { code: 'SA', flag: '🇸🇦', name: 'Saudi Arabia',   dial: '+966' },
+  { code: 'QA', flag: '🇶🇦', name: 'Qatar',          dial: '+974' },
+  { code: 'KW', flag: '🇰🇼', name: 'Kuwait',         dial: '+965' },
+  { code: 'BH', flag: '🇧🇭', name: 'Bahrain',        dial: '+973' },
+  { code: 'OM', flag: '🇴🇲', name: 'Oman',           dial: '+968' },
+  { code: 'PK', flag: '🇵🇰', name: 'Pakistan',       dial: '+92'  },
+  { code: 'BD', flag: '🇧🇩', name: 'Bangladesh',     dial: '+880' },
+  { code: 'LK', flag: '🇱🇰', name: 'Sri Lanka',      dial: '+94'  },
+  { code: 'TR', flag: '🇹🇷', name: 'Turkey',         dial: '+90'  },
+  { code: 'DE', flag: '🇩🇪', name: 'Germany',        dial: '+49'  },
+  { code: 'FR', flag: '🇫🇷', name: 'France',         dial: '+33'  },
+  { code: 'NL', flag: '🇳🇱', name: 'Netherlands',    dial: '+31'  },
+  { code: 'SE', flag: '🇸🇪', name: 'Sweden',         dial: '+46'  },
+  { code: 'SG', flag: '🇸🇬', name: 'Singapore',      dial: '+65'  },
+  { code: 'HK', flag: '🇭🇰', name: 'Hong Kong',      dial: '+852' },
+  { code: 'CN', flag: '🇨🇳', name: 'China',          dial: '+86'  },
+  { code: 'JP', flag: '🇯🇵', name: 'Japan',          dial: '+81'  },
+  { code: 'AU', flag: '🇦🇺', name: 'Australia',      dial: '+61'  },
+  { code: 'ZA', flag: '🇿🇦', name: 'South Africa',   dial: '+27'  },
+  { code: 'NG', flag: '🇳🇬', name: 'Nigeria',        dial: '+234' },
+  { code: 'KE', flag: '🇰🇪', name: 'Kenya',          dial: '+254' },
+  { code: 'EG', flag: '🇪🇬', name: 'Egypt',          dial: '+20'  },
+  { code: 'GH', flag: '🇬🇭', name: 'Ghana',          dial: '+233' },
+  { code: 'CA', flag: '🇨🇦', name: 'Canada',         dial: '+1'   },
+  { code: 'BR', flag: '🇧🇷', name: 'Brazil',         dial: '+55'  },
+  { code: 'MX', flag: '🇲🇽', name: 'Mexico',         dial: '+52'  },
+];
+
+/* ── White phone input ──────────────────────────────────────────── */
+function WhitePhoneInput({ label, countryCode, phone, onCountryChange, onPhoneChange }) {
+  const [focused, setFocused] = useState(false);
+  const [dropdownOpen, setDropdownOpen] = useState(false);
+  const wrapperRef = useRef(null);
+  const selected = COUNTRY_CODES.find(c => c.dial === countryCode) || COUNTRY_CODES[0];
+
+  useEffect(() => {
+    const handleOutside = (e) => {
+      if (wrapperRef.current && !wrapperRef.current.contains(e.target)) {
+        setDropdownOpen(false);
+      }
+    };
+    document.addEventListener('mousedown', handleOutside);
+    return () => document.removeEventListener('mousedown', handleOutside);
+  }, []);
+
+  return (
+    <div ref={wrapperRef}>
+      <label className="block mb-1.5 text-[9px] font-bold uppercase tracking-[0.25em] text-slate-500">
+        {label}
+      </label>
+      <motion.div
+        className="relative overflow-visible rounded-xl border bg-white flex"
+        animate={{
+          borderColor: focused ? 'rgba(28,150,191,0.7)' : 'rgba(0,0,0,0.12)',
+          boxShadow: focused
+            ? '0 0 0 3px rgba(28,150,191,0.12), 0 2px 12px rgba(28,150,191,0.08)'
+            : '0 1px 3px rgba(0,0,0,0.06)',
+        }}
+        transition={{ duration: 0.2 }}
+      >
+        {/* Country selector */}
+        <div className="relative shrink-0">
+          <button
+            type="button"
+            onClick={() => setDropdownOpen(o => !o)}
+            onFocus={() => setFocused(true)}
+            onBlur={(e) => { if (!wrapperRef.current?.contains(e.relatedTarget)) setFocused(false); }}
+            className="flex items-center gap-1.5 px-3 py-3 bg-slate-50 border-r border-black/[0.08] rounded-l-xl text-sm font-bold text-slate-700 outline-none cursor-pointer whitespace-nowrap"
+          >
+            <span style={{ fontSize: '1rem' }}>{selected.flag}</span>
+            <span className="text-[#1C96BF] min-w-[2.2rem] text-[13px]">{selected.dial}</span>
+            <ChevronDown
+              size={11}
+              className="text-slate-400 transition-transform duration-200"
+              style={{ transform: dropdownOpen ? 'rotate(180deg)' : 'none' }}
+            />
+          </button>
+
+          {dropdownOpen && (
+            <div
+              className="absolute top-[calc(100%+4px)] left-0 z-[300] bg-white border border-black/10 rounded-xl shadow-xl overflow-y-auto"
+              style={{ maxHeight: '200px', width: '210px' }}
+            >
+              {COUNTRY_CODES.map(c => (
+                <button
+                  key={c.code}
+                  type="button"
+                  onMouseDown={(e) => { e.preventDefault(); onCountryChange(c.dial); setDropdownOpen(false); }}
+                  className="flex items-center gap-2 w-full px-3 py-2 text-left border-none cursor-pointer text-[13px] text-slate-700 hover:bg-slate-50"
+                  style={{ background: c.dial === countryCode ? 'rgba(28,150,191,0.08)' : 'transparent' }}
+                >
+                  <span style={{ fontSize: '0.95rem' }}>{c.flag}</span>
+                  <span className="font-bold text-[#1C96BF] min-w-[2.2rem]">{c.dial}</span>
+                  <span className="text-slate-500 text-[12px]">{c.name}</span>
+                </button>
+              ))}
+            </div>
+          )}
+        </div>
+
+        {/* Phone number */}
+        <input
+          type="tel"
+          value={phone}
+          onChange={(e) => { e.target.value = e.target.value.replace(/[^0-9\s\-()+]/g, ''); onPhoneChange(e); }}
+          onFocus={() => setFocused(true)}
+          onBlur={(e) => { if (!wrapperRef.current?.contains(e.relatedTarget)) setFocused(false); }}
+          placeholder="e.g. 555 123 4567"
+          className="flex-1 bg-transparent px-4 py-3 text-sm text-slate-800 placeholder:text-slate-400 focus:outline-none rounded-r-xl"
+        />
+      </motion.div>
+    </div>
+  );
+}
+
 /* ── Success state ──────────────────────────────────────────────── */
 function SuccessState({ onReset }) {
   return (
@@ -207,7 +328,7 @@ const fieldVariant = {
 
 /* ── Main Modal ─────────────────────────────────────────────────── */
 export default function ContactModal({ open, onClose }) {
-  const [form,      setForm]      = useState({ name: '', email: '', subject: '', message: '' });
+  const [form,      setForm]      = useState({ name: '', email: '', subject: '', countryCode: '+91', phone: '', message: '' });
   const [sending,   setSending]   = useState(false);
   const [submitted, setSubmitted] = useState(false);
 
@@ -226,7 +347,7 @@ export default function ContactModal({ open, onClose }) {
   useEffect(() => {
     if (!open) {
       const t = setTimeout(() => {
-        setForm({ name: '', email: '', subject: '', message: '' });
+        setForm({ name: '', email: '', subject: '', countryCode: '+91', phone: '', message: '' });
         setSubmitted(false);
         setSending(false);
       }, 400);
@@ -247,6 +368,7 @@ export default function ContactModal({ open, onClose }) {
       `*From:*    ${form.name}`,
       `*Email:*   ${form.email}`,
       form.subject ? `*Re:*      ${form.subject}` : null,
+      form.phone   ? `*Phone:*   ${form.countryCode} ${form.phone}` : null,
       ``,
       `──────────────────────`,
       ``,
@@ -450,7 +572,7 @@ export default function ContactModal({ open, onClose }) {
                       key="success"
                       onReset={() => {
                         setSubmitted(false);
-                        setForm({ name: '', email: '', subject: '', message: '' });
+                        setForm({ name: '', email: '', subject: '', countryCode: '+91', phone: '', message: '' });
                       }}
                     />
                   ) : (
@@ -494,6 +616,16 @@ export default function ContactModal({ open, onClose }) {
                         <WhiteSelect
                           label="Subject" name="subject" value={form.subject}
                           onChange={handleChange}
+                        />
+                      </motion.div>
+
+                      <motion.div variants={fieldVariant} style={{ position: 'relative', zIndex: 10 }}>
+                        <WhitePhoneInput
+                          label="Phone Number (optional)"
+                          countryCode={form.countryCode}
+                          phone={form.phone}
+                          onCountryChange={(dial) => setForm(f => ({ ...f, countryCode: dial }))}
+                          onPhoneChange={(e) => setForm(f => ({ ...f, phone: e.target.value }))}
                         />
                       </motion.div>
 
