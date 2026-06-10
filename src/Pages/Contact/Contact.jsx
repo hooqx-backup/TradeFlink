@@ -362,6 +362,152 @@ function FormTextarea({ label, name, value, onChange, required, placeholder }) {
   );
 }
 
+const COUNTRY_CODES = [
+  { code: 'IN', flag: '🇮🇳', name: 'India',          dial: '+91'  },
+  { code: 'AE', flag: '🇦🇪', name: 'UAE',            dial: '+971' },
+  { code: 'US', flag: '🇺🇸', name: 'United States',  dial: '+1'   },
+  { code: 'GB', flag: '🇬🇧', name: 'United Kingdom', dial: '+44'  },
+  { code: 'SA', flag: '🇸🇦', name: 'Saudi Arabia',   dial: '+966' },
+  { code: 'QA', flag: '🇶🇦', name: 'Qatar',          dial: '+974' },
+  { code: 'KW', flag: '🇰🇼', name: 'Kuwait',         dial: '+965' },
+  { code: 'BH', flag: '🇧🇭', name: 'Bahrain',        dial: '+973' },
+  { code: 'OM', flag: '🇴🇲', name: 'Oman',           dial: '+968' },
+  { code: 'PK', flag: '🇵🇰', name: 'Pakistan',       dial: '+92'  },
+  { code: 'BD', flag: '🇧🇩', name: 'Bangladesh',     dial: '+880' },
+  { code: 'LK', flag: '🇱🇰', name: 'Sri Lanka',      dial: '+94'  },
+  { code: 'TR', flag: '🇹🇷', name: 'Turkey',         dial: '+90'  },
+  { code: 'DE', flag: '🇩🇪', name: 'Germany',        dial: '+49'  },
+  { code: 'FR', flag: '🇫🇷', name: 'France',         dial: '+33'  },
+  { code: 'NL', flag: '🇳🇱', name: 'Netherlands',    dial: '+31'  },
+  { code: 'SE', flag: '🇸🇪', name: 'Sweden',         dial: '+46'  },
+  { code: 'SG', flag: '🇸🇬', name: 'Singapore',      dial: '+65'  },
+  { code: 'HK', flag: '🇭🇰', name: 'Hong Kong',      dial: '+852' },
+  { code: 'CN', flag: '🇨🇳', name: 'China',          dial: '+86'  },
+  { code: 'JP', flag: '🇯🇵', name: 'Japan',          dial: '+81'  },
+  { code: 'AU', flag: '🇦🇺', name: 'Australia',      dial: '+61'  },
+  { code: 'ZA', flag: '🇿🇦', name: 'South Africa',   dial: '+27'  },
+  { code: 'NG', flag: '🇳🇬', name: 'Nigeria',        dial: '+234' },
+  { code: 'KE', flag: '🇰🇪', name: 'Kenya',          dial: '+254' },
+  { code: 'EG', flag: '🇪🇬', name: 'Egypt',          dial: '+20'  },
+  { code: 'GH', flag: '🇬🇭', name: 'Ghana',          dial: '+233' },
+  { code: 'CA', flag: '🇨🇦', name: 'Canada',         dial: '+1'   },
+  { code: 'BR', flag: '🇧🇷', name: 'Brazil',         dial: '+55'  },
+  { code: 'MX', flag: '🇲🇽', name: 'Mexico',         dial: '+52'  },
+];
+
+function FormPhoneInput({ label, countryCode, phone, onCountryChange, onPhoneChange, onOpenChange }) {
+  const [focused, setFocused] = useState(false);
+  const [dropdownOpen, setDropdownOpen] = useState(false);
+  const wrapperRef = useRef(null);
+  const selected = COUNTRY_CODES.find(c => c.dial === countryCode) || COUNTRY_CODES[0];
+
+  const setOpen = (val) => { setDropdownOpen(val); onOpenChange?.(val); };
+
+  useEffect(() => {
+    const handleOutside = (e) => {
+      if (wrapperRef.current && !wrapperRef.current.contains(e.target)) {
+        setOpen(false);
+      }
+    };
+    document.addEventListener('mousedown', handleOutside);
+    return () => document.removeEventListener('mousedown', handleOutside);
+  }, []);
+
+  return (
+    <div className="relative" ref={wrapperRef}>
+      <label style={{
+        position: 'absolute', left: '1rem', zIndex: 1, pointerEvents: 'none',
+        top: '-0.5rem', fontSize: '0.65rem',
+        color: focused ? '#1C96BF' : '#94a3b8',
+        fontWeight: 800, letterSpacing: '0.08em', textTransform: 'uppercase',
+        background: '#fff', padding: '0 0.375rem',
+        transition: 'color 0.25s ease',
+      }}>{label}</label>
+      <div style={{
+        display: 'flex', position: 'relative',
+        borderRadius: '0.875rem',
+        border: `2px solid ${focused ? '#1C96BF' : '#e2e8f0'}`,
+        background: '#fff',
+        transition: 'border-color 0.25s ease, box-shadow 0.25s ease',
+        boxShadow: focused ? '0 0 0 4px rgba(28,150,191,0.12), 0 4px 16px rgba(28,150,191,0.08)' : 'none',
+        overflow: 'visible',
+      }}>
+        {/* Country code selector */}
+        <div style={{ position: 'relative', flexShrink: 0 }}>
+          <button
+            type="button"
+            onClick={() => setOpen(!dropdownOpen)}
+            onFocus={() => setFocused(true)}
+            onBlur={(e) => { if (!wrapperRef.current?.contains(e.relatedTarget)) setFocused(false); }}
+            style={{
+              display: 'flex', alignItems: 'center', gap: '0.375rem',
+              padding: '1rem 0.75rem',
+              background: '#f8fafc',
+              border: 'none', borderRight: '1.5px solid #e2e8f0',
+              borderRadius: '0.75rem 0 0 0.75rem',
+              cursor: 'pointer', whiteSpace: 'nowrap',
+              fontSize: '0.875rem', fontWeight: 700, color: '#0f172a',
+              outline: 'none',
+            }}
+          >
+            <span style={{ fontSize: '1.1rem' }}>{selected.flag}</span>
+            <span style={{ color: '#1C96BF', minWidth: '2.5rem' }}>{selected.dial}</span>
+            <ChevronDown
+              size={13}
+              style={{ color: '#94a3b8', transform: dropdownOpen ? 'rotate(180deg)' : 'none', transition: 'transform 0.2s ease' }}
+            />
+          </button>
+
+          {dropdownOpen && (
+            <div style={{
+              position: 'absolute', top: 'calc(100% + 4px)', left: 0, zIndex: 200,
+              background: '#fff', border: '1.5px solid #e2e8f0',
+              borderRadius: '0.875rem', boxShadow: '0 16px 48px rgba(0,0,0,0.12)',
+              maxHeight: '220px', overflowY: 'auto', width: '230px',
+            }}>
+              {COUNTRY_CODES.map(c => (
+                <button
+                  key={c.code}
+                  type="button"
+                  onMouseDown={(e) => { e.preventDefault(); onCountryChange(c.dial); setOpen(false); }}
+                  style={{
+                    display: 'flex', alignItems: 'center', gap: '0.625rem',
+                    width: '100%', padding: '0.6rem 0.875rem',
+                    background: c.dial === countryCode ? 'rgba(28,150,191,0.08)' : 'transparent',
+                    border: 'none', cursor: 'pointer', textAlign: 'left',
+                    fontSize: '0.8rem', color: '#0f172a',
+                  }}
+                >
+                  <span style={{ fontSize: '1rem' }}>{c.flag}</span>
+                  <span style={{ fontWeight: 700, color: '#1C96BF', minWidth: '2.5rem' }}>{c.dial}</span>
+                  <span style={{ color: '#64748b', fontSize: '0.75rem' }}>{c.name}</span>
+                </button>
+              ))}
+            </div>
+          )}
+        </div>
+
+        {/* Phone number input */}
+        <input
+          type="tel"
+          name="phone"
+          value={phone}
+          onChange={(e) => { e.target.value = e.target.value.replace(/[^0-9\s\-()+]/g, ''); onPhoneChange(e); }}
+          onFocus={() => setFocused(true)}
+          onBlur={(e) => { if (!wrapperRef.current?.contains(e.relatedTarget)) setFocused(false); }}
+          placeholder="e.g. 555 123 4567"
+          style={{
+            flex: 1, padding: '1rem',
+            border: 'none', background: 'transparent',
+            fontSize: '0.875rem', color: '#0f172a',
+            outline: 'none', borderRadius: '0 0.75rem 0.75rem 0',
+          }}
+        />
+      </div>
+    </div>
+  );
+}
+
 function FormSelect({ label, name, value, onChange }) {
   const [focused, setFocused] = useState(false);
   const OPTIONS = ['General Inquiry','Product Demo','Invoice Financing','Supply Chain Solutions','Partnership Opportunity','Media & Press','Support'];
@@ -548,9 +694,10 @@ function FaqItem({ q, a, index }) {
 
 /* ── Main Page ────────────────────────────────────────────────────── */
 export default function Contact() {
-  const [form, setForm] = useState({ name: '', email: '', company: '', subject: '', message: '' });
+  const [form, setForm] = useState({ name: '', email: '', company: '', subject: '', countryCode: '+91', phone: '', message: '' });
   const [submitted, setSubmitted] = useState(false);
   const [sending, setSending] = useState(false);
+  const [phoneDropdownOpen, setPhoneDropdownOpen] = useState(false);
   const { x: orbX, y: orbY } = useMouseParallax(0.03);
 
   const [hoveredCard, setHoveredCard] = useState(null);
@@ -568,6 +715,7 @@ export default function Contact() {
       `*Email:*   ${form.email}`,
       form.company ? `*Company:* ${form.company}` : null,
       form.subject ? `*Re:*      ${form.subject}` : null,
+      form.phone   ? `*Phone:*   ${form.countryCode} ${form.phone}` : null,
       ``,
       `──────────────────────`,
       ``,
@@ -911,7 +1059,7 @@ export default function Contact() {
               </div>
 
               {submitted ? (
-                <SuccessState onReset={() => { setSubmitted(false); setForm({ name:'', email:'', company:'', subject:'', message:'' }); }} />
+                <SuccessState onReset={() => { setSubmitted(false); setForm({ name:'', email:'', company:'', subject:'', countryCode:'+91', phone:'', message:'' }); }} />
               ) : (
                 <motion.form
                   onSubmit={handleSubmit}
@@ -933,6 +1081,19 @@ export default function Contact() {
                     <motion.div whileHover={{ scale: 1.02 }} transition={{ duration: 0.3 }}>
                       <FormSelect label="Subject" name="subject" value={form.subject} onChange={handleChange} />
                     </motion.div>
+                  </motion.div>
+                  <motion.div
+                    variants={fadeUp}
+                    style={{ position: 'relative', zIndex: phoneDropdownOpen ? 50 : 1 }}
+                  >
+                    <FormPhoneInput
+                      label="Phone Number (optional)"
+                      countryCode={form.countryCode}
+                      phone={form.phone}
+                      onCountryChange={(dial) => setForm(f => ({ ...f, countryCode: dial }))}
+                      onPhoneChange={(e) => setForm(f => ({ ...f, phone: e.target.value }))}
+                      onOpenChange={setPhoneDropdownOpen}
+                    />
                   </motion.div>
                   <motion.div variants={fadeUp} whileHover={{ scale: 1.01 }} transition={{ duration: 0.3 }}>
                     <FormTextarea label="Your Message" name="message" value={form.message} onChange={handleChange} required placeholder="Tell us how we can help..." />
