@@ -122,17 +122,6 @@ export default function CTA() {
           ))}
         </motion.div>
 
-        <motion.p
-          className="mt-5 text-xs text-white/20"
-          initial={{ opacity: 0 }}
-          animate={inView ? { opacity: 1 } : {}}
-          transition={{ duration: 0.5, delay: 1.1 }}
-        >
-          Reach us at{' '}
-          <a href="tel:+14703809098" className="text-teal-500 hover:text-teal-300 transition-colors">
-            +1-470-380-9098
-          </a>
-        </motion.p>
 
       </div>
 

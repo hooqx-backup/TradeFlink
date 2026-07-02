@@ -54,17 +54,6 @@ export default function Footer() {
             <p className="text-gray-400 text-sm mb-4 md:mb-0">
               © {currentYear} Tradeflink. All rights reserved.
             </p>
-            <div className="flex gap-6">
-              <a href="#" className="text-gray-400 hover:text-teal-400 transition">
-                <span>LinkedIn</span>
-              </a>
-              <a href="#" className="text-gray-400 hover:text-teal-400 transition">
-                <span>Twitter</span>
-              </a>
-              <a href="#" className="text-gray-400 hover:text-teal-400 transition">
-                <span>Facebook</span>
-              </a>
-            </div>
           </div>
         </div>
       </div>

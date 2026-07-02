@@ -543,7 +543,6 @@ export default function ContactModal({ open, onClose }) {
                 >
                   {[
                     { Icon: Mail,         text: 'info@tradeflink.com',  href: 'mailto:info@tradeflink.com' },
-                    { Icon: Phone,        text: '+91 70036 34890',       href: 'tel:+917003634890' },
                     { Icon: WhatsAppIcon, text: 'Chat on WhatsApp',      href: `https://wa.me/917003634890?text=${encodeURIComponent('*TRADEFLINK, INQUIRY*\n\n──────────────────────\n\nI would like to learn more about your trade finance services.\n\n──────────────────────\n_Sent via tradeflink.com_')}`, color: '#25D366' },
                   ].map(({ Icon, text, href, color }) => (
                     <motion.a
